@@ -2,18 +2,18 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
-const baseUrl = process.env.BASE_URL || '/cs4535-public-resources/';
+const baseUrl = process.env.BASE_URL || '/CS4535-Fall-2026/';
 
 const config: Config = {
   title: 'CS 4535: Software Design & Delivery',
   tagline: 'Professional Practicum Capstone — AI & Open Source',
   favicon: 'img/favicon.ico',
 
-  url: 'https://neu-pdi.github.io',
+  url: 'https://neu-se.github.io',
   baseUrl: baseUrl,
 
-  organizationName: 'neu-pdi',
-  projectName: 'cs4535-public-resources',
+  organizationName: 'neu-se',
+  projectName: 'cs4535-fall-2026',
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -29,7 +29,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          editUrl: 'https://github.com/neu-pdi/cs4535-public-resources/edit/main/',
+          editUrl: 'https://github.com/neu-se/cs4535-fall-2026/edit/main/',
         },
         blog: false,
         theme: {
