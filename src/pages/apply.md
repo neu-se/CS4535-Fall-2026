@@ -11,7 +11,11 @@ description: Apply to CS 4535
 
 ## Prerequisites
 
-- **CS 3100** or equivalent — you need software engineering fundamentals
+The only prerequisite is **CS 3100** (or its predecessor, **CS 3500**). No other courses required. The application and pre-application activity are how we assess readiness — not a list of prior classes.
+
+## Time Commitment
+
+This is a 4-credit course. Expect to spend **200 minutes per week in class** (MWR 10:30–11:35 AM) — some of which is dedicated time working on your project — plus **8–12 hours per week outside of class** studying, working on the project, preparing demos, doing code review, and writing documentation.
 
 ## Pre-Application Activity (Strongly Recommended)
 
@@ -20,10 +24,8 @@ All Pawtograder repositories are **public and open source** — you can start ex
 Before applying, try this:
 
 1. Clone the [Pawtograder repo](https://github.com/pawtograder/platform)
-2. Set up local Supabase using Docker
-3. Seed the database
-4. Make a production build
-5. Start a headless browser, log in as an instructor, and take a screenshot of the enrollments page
+2. Follow the steps in the README to: set up local Supabase using Docker, seed the database, make a production build, start it
+3. Start a browser, log in as an instructor, navigate to Course Settings > Enrollments, and take a screenshot of the page
 
 If you get stuck, join the [Pawtograder Community Discord](https://discord.gg/tZRR36bcgQ) and engage meaningfully in the support community there. Getting unstuck with help from others is a skill, not a failure.
 

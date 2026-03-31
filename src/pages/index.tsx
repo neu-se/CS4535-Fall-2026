@@ -196,7 +196,7 @@ Style: pixel art, 16-bit retro aesthetic, detailed but readable at small sizes. 
         <div style={{ marginBottom: '3rem' }}>
           <h2>Apply</h2>
           <p style={{ lineHeight: 1.7, color: 'var(--ifm-color-emphasis-800)' }}>
-            This is a selective capstone for up to 50 students. Enrollment is by application — we're building a team, not filling seats. We prioritize diversity of skills: frontend, backend, user research, ops, documentation, and everything in between.
+            This is a selective capstone for up to 50 students. The only prerequisite is CS 3100 (or CS 3500). Enrollment is by application — we're building a team, not filling seats. We prioritize diversity of skills: frontend, backend, user research, ops, documentation, and everything in between.
           </p>
           <p style={{ lineHeight: 1.7, color: 'var(--ifm-color-emphasis-800)' }}>
             Applications are open and reviewed on a rolling basis. Join the <a href="https://discord.gg/tZRR36bcgQ">Pawtograder Community Discord</a> to get started early.
