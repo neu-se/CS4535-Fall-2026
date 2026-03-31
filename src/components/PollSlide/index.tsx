@@ -1,0 +1,136 @@
+import React from 'react';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import CodeBlock from '@theme/CodeBlock';
+
+interface PollSlideProps {
+  choices?: string[];
+  image?: string;
+  imageAlt?: string;
+  code?: string;
+  language?: string;
+  username?: string;
+  codeFormat?: boolean;
+  bottomText?: string;
+}
+
+/**
+ * Poll slide component for Poll Everywhere integration.
+ * Displays optional image, optional code block, optional choices, and QR code for voting.
+ *
+ * @param choices - Array of answer choices (auto-labeled A, B, C, etc.)
+ * @param image - Optional image path (relative to static folder)
+ * @param imageAlt - Optional alt text for image (default: "Poll image")
+ * @param code - Optional code snippet to display
+ * @param language - Language for code syntax highlighting (default: "java")
+ * @param username - Poll Everywhere username (e.g., "espertus"); If omitted, logo is shown
+ * @param codeFormat - Whether to format choices as code (default: false)
+ * @param bottomText - Optional additional text displayed below the choices
+ */
+export default function PollSlide({
+  choices,
+  image,
+  imageAlt = 'Poll image',
+  code,
+  language = 'java',
+  username,
+  codeFormat = false,
+  bottomText
+}: PollSlideProps) {
+  // All useBaseUrl calls at top level to satisfy React hooks rules
+  const qrSrc = useBaseUrl(`/img/lectures/poll-ev/qr-pollev-${username}.png`);
+  const logoSrc = useBaseUrl('/img/lectures/poll-ev/poll-ev.png');
+  const imageSrc = useBaseUrl(image || '');
+  const pollUrl = username ? `https://pollev.com/${username}` : '';
+
+  // Dedent code by removing common leading whitespace
+  const dedent = (str: string): string => {
+    const lines = str.split('\n');
+    // Remove empty first/last lines from template literal formatting
+    if (lines[0]?.trim() === '') lines.shift();
+    if (lines[lines.length - 1]?.trim() === '') lines.pop();
+
+    // Find minimum indentation (ignoring empty lines)
+    const minIndent = lines
+      .filter(line => line.trim().length > 0)
+      .reduce((min, line) => {
+        const match = line.match(/^(\s*)/);
+        const indent = match ? match[1].length : 0;
+        return Math.min(min, indent);
+      }, Infinity);
+
+    // Remove that indentation from all lines
+    return lines
+      .map(line => line.slice(minIndent === Infinity ? 0 : minIndent))
+      .join('\n');
+  };
+
+  const formattedCode = code ? dedent(code) : '';
+
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+  return (
+    <>
+      <div style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'flex-start',
+        marginTop: '1em',
+        gap: '2em'
+      }}>
+
+        <div style={{ flex: 1 }}>
+          {image && (
+            <img
+              src={imageSrc}
+              alt={imageAlt}
+              style={{ maxHeight: '40vh', maxWidth: '100%', marginBottom: '1em' }}
+            />
+          )}
+
+          {code && (
+            <div style={{ fontSize: '0.7em', marginBottom: choices ? '1em' : 0 }}>
+              <CodeBlock language={language}>{formattedCode}</CodeBlock>
+            </div>
+          )}
+
+          {choices && choices.length > 0 && (
+            <div style={{ fontSize: '0.75em' }}>
+              {choices.map((choice, index) => (
+                <p key={index} style={{ margin: '0.4em 0' }}>
+                  <strong>{letters[index]}.</strong>{' '}
+                  {codeFormat ? <code>{choice}</code> : choice}
+                </p>
+              ))}
+            </div>
+          )}
+
+          {bottomText && (
+            <p style={{ fontSize: '0.85em', fontStyle: 'italic', marginTop: '1em' }}>
+              {bottomText}
+            </p>
+          )}
+        </div>
+
+        <div style={{ textAlign: 'center', flexShrink: 0 }}>
+          <img
+            src={username ? qrSrc : logoSrc}
+            alt="Poll Everywhere QR Code or Logo"
+            style={{ height: '30vh' }}
+          />
+          {username && (
+            <p style={{ fontSize: '0.8em', marginTop: '0.5em' }}>
+              Text <strong>{username}</strong> to 22333 if the<br />URL isn't working for you.
+            </p>
+          )}
+        </div>
+
+      </div>
+
+      {username && (
+        <p style={{ textAlign: 'right', marginTop: '1em' }}>
+          <a href={pollUrl}>{pollUrl}</a>
+        </p>
+      )}
+    </>
+  );
+}
