@@ -27,6 +27,17 @@ Style: pixel art, 16-bit retro aesthetic, detailed but readable at small sizes. 
             Professional Practicum Capstone &middot; AI &amp; Open Source &middot; Fall 2026 &middot; MWR 10:30–11:35 AM
           </p>
 
+          <div style={{
+            background: 'var(--ifm-color-success-contrast-background)',
+            border: '1px solid var(--ifm-color-success-dark)',
+            borderRadius: '8px',
+            padding: '0.75rem 1.25rem',
+            marginBottom: '1.5rem',
+            lineHeight: 1.6,
+          }}>
+            <strong>30+ seats still available for Fall 2026.</strong> We're building a large section — our goal is 50 students. Applications are accepted on a rolling basis, so <Link to="/apply"><strong>apply as soon as possible</strong></Link>.
+          </div>
+
           <p style={{ lineHeight: 1.7, color: 'var(--ifm-color-emphasis-800)' }}>
             When you join a company, you'll be working on a product that predates you. Lots of features. Lots of code. Lots of technical debt. Some teams struggle under that weight — barely satisfying their users, burning through resources. But the best teams find ways to make a codebase better than they found it, ship features that users didn't know they needed, and turn inherited complexity into a platform for something new. The difference isn't luck — it's skill. This course teaches you that skill.
           </p>
@@ -114,15 +125,21 @@ Style: pixel art, 16-bit retro aesthetic, detailed but readable at small sizes. 
               </p>
             </div>
             <div className="tech-stack-card">
-              <h4>Gradebook Performance &amp; Refactor</h4>
+              <h4>Paper Exam Generation &amp; Grading</h4>
               <p style={{ fontSize: '0.9rem', margin: 0 }}>
-                Profile, optimize, and refactor the gradebook across the full stack. Backend query optimization and frontend rendering at scale.
+                A full Gradescope replacement: generate and shuffle exam variants, barcode and scan handling, OCR (including handwriting), and grading workflows. A major project.
               </p>
             </div>
             <div className="tech-stack-card">
-              <h4>Operations</h4>
+              <h4>GitHub → Forgejo Migration</h4>
               <p style={{ fontSize: '0.9rem', margin: 0 }}>
-                Monitoring, performance tuning, CLI tools, CI workflows. Build the tools that make everything else possible.
+                Move Pawtograder's Git hosting from GitHub to self-hosted Forgejo: account auto-provisioning, repo automation, CI, and the migration path itself.
+              </p>
+            </div>
+            <div className="tech-stack-card">
+              <h4>Coder Workspaces Integration</h4>
+              <p style={{ fontSize: '0.9rem', margin: 0 }}>
+                One-click cloud dev environments for intro courses: integrate Coder with Pawtograder — SSO, per-class workspace provisioning, and grading hooks.
               </p>
             </div>
           </div>
@@ -196,10 +213,10 @@ Style: pixel art, 16-bit retro aesthetic, detailed but readable at small sizes. 
         <div style={{ marginBottom: '3rem' }}>
           <h2>Apply</h2>
           <p style={{ lineHeight: 1.7, color: 'var(--ifm-color-emphasis-800)' }}>
-            This is a selective capstone for up to 50 students. The only prerequisite is CS 3100 (or CS 3500). Enrollment is by application — we're building a team, not filling seats. We prioritize diversity of skills: frontend, backend, user research, ops, documentation, and everything in between.
+            This is a selective capstone for up to 50 students, and <strong>30+ seats are still available</strong>. The only prerequisite is CS 3100 (or CS 3500). Enrollment is by application — we're building a team, not filling seats. We prioritize diversity of skills: frontend, backend, user research, ops, documentation, and everything in between.
           </p>
           <p style={{ lineHeight: 1.7, color: 'var(--ifm-color-emphasis-800)' }}>
-            Applications are open and reviewed on a rolling basis. Join the <a href="https://discord.gg/tZRR36bcgQ">Pawtograder Community Discord</a> to get started early.
+            Applications are open and reviewed on a rolling basis — seats fill as strong applications arrive, so apply as soon as possible. The fastest path to a decision: complete the pre-application activity (get Pawtograder running locally) before you apply — it answers most of the questions we'd otherwise have. Join the <a href="https://discord.gg/tZRR36bcgQ">Pawtograder Community Discord</a> to get started early.
           </p>
           <p style={{ lineHeight: 1.7, color: 'var(--ifm-color-emphasis-800)' }}>
             <Link to="/apply"><strong>Learn more and apply →</strong></Link>

@@ -47,17 +47,18 @@ What matters is that you can engage with a production codebase, contribute meani
 
 *Week 1 — Get into the code:*
 1. **The architecture of Pawtograder** — Walkthrough of the actual codebase. How the pieces fit together: Next.js frontend, Supabase backend, edge functions, GitHub integrations, Discord bot, MCP server. Where the complexity lives. Where the debt lives.
-2. **Software processes & continuous delivery** — How modern teams ship software. CI/CD pipelines, trunk-based development, deployment strategies, feature flags. Why waterfall doesn't work here and what does. How to get your first PR merged.
-3. **Serverless & microservices** — Focused discussion: when serverless (edge functions, Deno) makes sense, when it doesn't. Microservices vs. monolith tradeoffs in the context of a small team on a real product.
+2. **Software processes & continuous delivery** — How modern teams ship software. CI/CD pipelines, trunk-based development, deployment strategies (red/black, blue/green, rolling upgrades), feature flags. Why waterfall doesn't work here and what does. How to get your first PR merged.
+3. **Reliably releasing software** — Dark launch: deploying with features off, incremental ramp, dogfooding, rollback as first response. Safe database migrations: the nullable-field → dark-launch-writes → dark-launch-reads → cleanup pattern. Observability tied to rollouts: correlating error rates with feature flag ramps. How to ship to 1,500 users without breaking things.
+4. **Serverless & microservices** — Focused discussion: when serverless (edge functions, Deno) makes sense, when it doesn't. Microservices vs. monolith tradeoffs in the context of a small team on a real product. The socio-technical dimension: microservices as a team scaling solution, not just a technical one.
 
 *Week 2 — Work effectively:*
-4. **End-to-end testing & performance testing** — Playwright for E2E, k6 for load testing. What to test, what not to test, and how to avoid a test suite that's slower than the features it protects.
-5. **Monitoring & incident response** — Observability (logs, metrics, traces). Setting up alerts that matter. Incident response: detection, triage, mitigation, postmortem. Preventing incidents from happening in the first place.
-6. **Estimation & scrum** — Story points, sprint planning, velocity. How to scope work when you're new to a codebase. When estimation is useful and when it's theater.
+5. **End-to-end testing & performance testing** — Playwright for E2E, k6 for load testing. What to test, what not to test, and how to avoid a test suite that's slower than the features it protects.
+6. **Monitoring & incident response** — Observability (logs, metrics, traces). Setting up alerts that matter. Connecting monitoring to feature rollouts — how to detect a bad deploy before users report it. Incident response: detection, triage, mitigation, postmortem.
+7. **Estimation & scrum** — Story points, sprint planning, velocity. How to scope work when you're new to a codebase. When estimation is useful and when it's theater.
 
 *Week 3 — Think bigger:*
-7. **Risk management** — Identifying what can go wrong before it does. Risk registers, mitigation strategies, the relationship between risk and the January 2027 release constraint.
-8. **User research** — Talking to users, usability studies, synthesizing findings into actionable design decisions. How to learn what users need vs. what they say they want.
+8. **Risk management** — Identifying what can go wrong before it does. Risk registers, mitigation strategies, the relationship between risk and the January 2027 stability target.
+9. **User research** — Talking to users, usability studies, synthesizing findings into actionable design decisions. How to learn what users need vs. what they say they want.
 
 **Hands-on work (parallel with lectures):**
 
@@ -90,11 +91,14 @@ Rethink and rebuild the office hours experience. The current system works but wa
 **Docusaurus Integration**
 Build deep integrations between Pawtograder and Docusaurus-based course content sites like the "CS 3100 Public Resources." Lecture schedule synchronization, office hours widgets, search, live polls embedded into slides. This project bridges two ecosystems and requires understanding both the Pawtograder platform and the Docusaurus plugin architecture.
 
-**Gradebook Performance & Refactor**
-The gradebook supports a rich query language and complex grading policies, but performance degrades at scale and the codebase has accumulated technical debt. On the backend: database query optimization, architectural refactoring, and performance testing. On the frontend: handling massive React tables with 1,000+ rows and hundreds of columns with real-time updates — virtualization, incremental rendering, and state management at a scale that breaks naive approaches. Profile, optimize, and refactor across the full stack.
+**Paper Exam Generation & Grading**
+Build a full Gradescope replacement inside Pawtograder: generate and shuffle exam variants, barcode each page, handle scan ingest, OCR (including handwriting recognition), and route scanned pages into grading workflows. This is a major project — document generation, image processing, and grader UX — motivated by real demand from courses that grade handwritten work and want off Gradescope.
 
-**Operations**
-Monitoring, general performance tuning, CLI tools, CI workflow improvements. You own the infrastructure that makes everything else possible. Build dashboards, set up alerting, create developer tooling, improve the build and deploy pipeline. This is the "you built it, you run it" project for the people who want to build the tools to build the features.
+**GitHub → Forgejo Migration**
+GitHub Classroom is deprecated, and Pawtograder's long-term plan is to move student-facing Git hosting to self-hosted [Forgejo](https://forgejo.org/). Design and build the migration: automatic account provisioning (no more GitHub-account-linking friction), repository and permissions automation, CI integration, and a credible migration path for existing courses.
+
+**Coder Workspaces Integration**
+Give students one-click cloud development environments by integrating [Coder](https://coder.com/) with Pawtograder: seamless SSO between the two platforms, per-class workspace provisioning and lifecycle management, Git integration, and grading actions that run against workspaces. Aimed at intro courses where local environment setup is a major barrier.
 
 ## Grading
 

@@ -7,6 +7,10 @@ description: Apply to CS 4535
 
 # Apply to CS 4535
 
+:::tip 30+ seats still available for Fall 2026
+We're building a large section — our goal is 50 students, and more than 30 seats are still open. Applications are reviewed on a **rolling basis**, so **apply as soon as possible**: [Application Form →](https://docs.google.com/forms/d/e/1FAIpQLSfIBnbT78hq7X4OgZ1g1ozTl8wWkWfiHJBlJeUPrmNmOvGclA/viewform?usp=publish-editor)
+:::
+
 **CS 4535: Software Design & Delivery** is a selective capstone for up to 50 students. The product is [Pawtograder](https://github.com/pawtograder) — a production platform with 1,500+ weekly active users across CS 2000, 2100, and 3100 at Northeastern. All 50 students work on one codebase together, shipping continuously to production throughout the semester. We're building a team, not filling seats.
 
 ## Prerequisites
@@ -35,7 +39,7 @@ Once you have the app running locally, click through the interface. Explore it a
 
 **Bonus:** Improve a documentation page and submit a PR.
 
-This is not graded. But it tells us you can engage with a real codebase and seek help productively when you're stuck — which is most of what professional software engineering actually is.
+This is not graded. But it tells us you can engage with a real codebase and seek help productively when you're stuck — which is most of what professional software engineering actually is. And because we review applications on a rolling basis, an application that arrives with the activity already done is an easy decision: it answers nearly every question we'd otherwise have. Those applicants tend to hear back very quickly.
 
 ## Application Questions
 
@@ -66,11 +70,11 @@ You don't need to pick one in your application — but tell us where your energy
 
 We prioritize **diversity of skills**. We're not looking for 50 of the same person. Your application should reflect what *you* bring to the team.
 
-Completing the pre-application activity is strongly recommended. It's the clearest signal that you can engage with a real codebase.
+Completing the pre-application activity is strongly recommended. It's the clearest signal that you can engage with a real codebase — and with 30+ seats open and rolling review, an application with that signal rarely needs a second look.
 
 ## Timeline
 
-- **Application:** Open now
-- **Review:** Rolling — we review applications as they come in
-- **Decisions:** Accepted students will receive enrollment instructions before the start of the Fall 2026 semester
+- **Application:** Open now — 30+ of 50 seats still available
+- **Review:** Rolling — we review applications as they come in, so apply as soon as possible
+- **Decisions:** Rolling as well. Applications that include a completed pre-application activity are the fastest to decide — expect to hear back within days, not weeks. Accepted students will receive enrollment instructions before the start of the Fall 2026 semester
 
