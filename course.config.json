@@ -1,0 +1,676 @@
+{
+  "courseCode": "CS 4535",
+  "courseTitle": "Software Design & Delivery",
+  "semester": "Fall 2026",
+  "academicYear": "2026-2027",
+  "startDate": "2026-09-09",
+  "endDate": "2026-12-13",
+  "timezone": "America/New_York",
+  "sections": [
+    {
+      "id": "03",
+      "name": "Section 03",
+      "crn": "TBD",
+      "timeZone": "America/New_York",
+      "meetings": [
+        {
+          "type": "lecture",
+          "days": [
+            "Monday",
+            "Wednesday",
+            "Thursday"
+          ],
+          "startTime": "10:30",
+          "endTime": "11:35",
+          "location": "TBD"
+        }
+      ],
+      "instructors": [
+        "Bell, J."
+      ]
+    }
+  ],
+  "holidays": [
+    {
+      "date": "2026-09-07",
+      "name": "Labor Day",
+      "type": "holiday",
+      "notes": "University closed (before first day of classes)"
+    },
+    {
+      "date": "2026-09-21",
+      "name": "Yom Kippur",
+      "type": "holiday",
+      "notes": "No class"
+    },
+    {
+      "date": "2026-10-12",
+      "name": "Indigenous Peoples' Day",
+      "type": "holiday",
+      "notes": "No class — Monday session lost"
+    },
+    {
+      "date": "2026-11-11",
+      "name": "Veterans Day",
+      "type": "holiday",
+      "notes": "No class — Wednesday session lost"
+    },
+    {
+      "date": "2026-11-25",
+      "endDate": "2026-11-29",
+      "name": "Fall Break (Thanksgiving)",
+      "type": "break",
+      "notes": "No class Wed 11/25 or Thu 11/26; classes resume Mon 11/30"
+    },
+    {
+      "date": "2026-12-14",
+      "endDate": "2026-12-20",
+      "name": "Final Exam Period",
+      "type": "exam-period",
+      "notes": "No final exam in CS 4535 — portfolio and reflection due instead"
+    }
+  ],
+  "scheduleNotes": [
+    {
+      "message": "DRAFT schedule — session topics, readings and presentation assignments are placeholders and will change.",
+      "weeks": [
+        1
+      ],
+      "status": "warning"
+    },
+    {
+      "message": "Onboarding phase (weeks 1–3): lectures every session, plus the ticket burn-down. Come to Thu 9/10 with a local dev environment running.",
+      "weeks": [
+        1
+      ],
+      "status": "info"
+    },
+    {
+      "message": "Project bids due Thu 9/17. Teams announced Thu 9/24.",
+      "weeks": [
+        2
+      ],
+      "status": "info"
+    },
+    {
+      "message": "Studio phase begins. Weekly rhythm: Mon standup + clinic · Wed tech talk or student presentations · Thu team work session, game day or demo day.",
+      "weeks": [
+        4
+      ],
+      "status": "success"
+    },
+    {
+      "message": "All three sessions this week run async: Mon 10/5 Discord standup, Wed 10/7 recorded talk, Thu 10/8 Drill Zero. Leave Thu 10/1 with a sprint plan through Oct 13.",
+      "weeks": [
+        4
+      ],
+      "status": "warning"
+    },
+    {
+      "message": "Async week — instructor at OOPSLA/ISSTA. Mon 10/5 written standup, Wed 10/7 recorded talk + discussion thread, Thu 10/8 Drill Zero (async, pass/fail).",
+      "weeks": [
+        5
+      ],
+      "status": "warning"
+    },
+    {
+      "message": "Feature freeze Mon 11/23. Weeks 13–14 are hardening, documentation and ops playbooks for the January 2027 handoff.",
+      "weeks": [
+        12
+      ],
+      "status": "warning"
+    }
+  ],
+  "lectures": [
+    {
+      "lectureId": "s01-intro-architecture",
+      "title": "Course Intro + Pawtograder Architecture I",
+      "dates": [
+        "2026-09-09"
+      ],
+      "topics": [
+        "Course structure",
+        "The product and its users",
+        "Where the complexity lives",
+        "Where the debt lives"
+      ],
+      "notes": "Project slate pitched"
+    },
+    {
+      "lectureId": "s02-dev-workflow",
+      "title": "Working Session: Local Dev & the Contribution Workflow",
+      "dates": [
+        "2026-09-10"
+      ],
+      "topics": [
+        "Local Supabase + Docker",
+        "Seeding",
+        "branch → PR → CI → review → merge"
+      ],
+      "notes": "Everyone claims a first ticket"
+    },
+    {
+      "lectureId": "s03-data-and-security",
+      "title": "Architecture II: Supabase, RLS & Student-Data Privacy",
+      "dates": [
+        "2026-09-14"
+      ],
+      "topics": [
+        "Postgres + RLS",
+        "Edge functions",
+        "Authz boundaries",
+        "FERPA and real student data"
+      ]
+    },
+    {
+      "lectureId": "s04-continuous-delivery",
+      "title": "Software Processes & Continuous Delivery",
+      "dates": [
+        "2026-09-16"
+      ],
+      "topics": [
+        "CI/CD pipelines",
+        "Trunk-based development",
+        "Deployment strategies",
+        "Feature flags"
+      ]
+    },
+    {
+      "lectureId": "s05-releasing-safely",
+      "title": "Reliably Releasing Software",
+      "dates": [
+        "2026-09-17"
+      ],
+      "topics": [
+        "Dark launch",
+        "Safe database migrations",
+        "Observability tied to rollouts",
+        "Rollback as first response"
+      ],
+      "notes": "Project bids due"
+    },
+    {
+      "lectureId": "s06-testing",
+      "title": "Testing: E2E, Visual Acceptance & Performance",
+      "dates": [
+        "2026-09-23"
+      ],
+      "topics": [
+        "Playwright",
+        "Visual acceptance testing",
+        "k6 load testing",
+        "What not to test"
+      ]
+    },
+    {
+      "lectureId": "s07-monitoring",
+      "title": "Monitoring, Observability & Incident Response",
+      "dates": [
+        "2026-09-24"
+      ],
+      "topics": [
+        "Logs, metrics, traces",
+        "Issue trackers and Sentry/Bugsink",
+        "Detection, triage, mitigation, postmortem"
+      ],
+      "notes": "Onboarding burn-down due · teams announced"
+    },
+    {
+      "lectureId": "s08-studio-kickoff",
+      "title": "Studio Kickoff: Team Charters, Backlog & Estimation",
+      "dates": [
+        "2026-09-28"
+      ],
+      "topics": [
+        "Team charters",
+        "Backlog grooming",
+        "Story points and sprint planning",
+        "Scoping in an unfamiliar codebase"
+      ]
+    },
+    {
+      "lectureId": "s09-user-research",
+      "title": "User Research & Product Thinking",
+      "dates": [
+        "2026-09-30"
+      ],
+      "topics": [
+        "Usability studies",
+        "Synthesizing findings",
+        "What users need vs. what they say"
+      ]
+    },
+    {
+      "lectureId": "s10-talk-iac",
+      "title": "Tech Talk: Infrastructure as Code & DevOps",
+      "dates": [
+        "2026-10-01"
+      ],
+      "topics": [
+        "Environments as code",
+        "Declared vs. actual: configuration drift",
+        "Provisioning and configuration",
+        "Build and deploy pipelines"
+      ],
+      "notes": "Instructor-led · leave with a sprint plan for the Oct 5–13 gap"
+    },
+    {
+      "lectureId": "s11-async-standup",
+      "title": "Async Standup + Clinic (no meeting)",
+      "dates": [
+        "2026-10-05"
+      ],
+      "topics": [
+        "Written standup in Discord by 10:30",
+        "Clinic slots by appointment",
+        "TA-led triage"
+      ],
+      "notes": "ASYNC — instructor at OOPSLA/ISSTA. Attendance = your standup post."
+    },
+    {
+      "lectureId": "s12-async-agents",
+      "title": "Async Tech Talk: Agents & Workflows (recorded)",
+      "dates": [
+        "2026-10-07"
+      ],
+      "topics": [
+        "Context and sub-agents",
+        "Directed goals",
+        "Human-as-coordinator pattern",
+        "GitHub + Obsidian as shared context"
+      ],
+      "notes": "ASYNC — watch by Fri 10/9, then one question or observation in the Discord thread."
+    },
+    {
+      "lectureId": "s13-drill-zero",
+      "title": "Drill Zero: Async Triage (pass/fail)",
+      "dates": [
+        "2026-10-08"
+      ],
+      "topics": [
+        "A broken preview stack, no warning",
+        "Detect → triage → mitigate on your own time",
+        "Written triage log: what you saw, what you tried, what fixed it"
+      ],
+      "notes": "ASYNC — no meeting. Low stakes, pass/fail. Primes the Oct 22 game day. Triage log due Fri 10/9."
+    },
+    {
+      "lectureId": "s14-presentations-1",
+      "title": "Student Presentations: Reading TBD ×2",
+      "dates": [
+        "2026-10-14"
+      ],
+      "topics": [
+        "Team TBD — reading TBD",
+        "Team TBD — reading TBD"
+      ],
+      "notes": "PLACEHOLDER — assign readings and teams · checkpoint 1 due"
+    },
+    {
+      "lectureId": "s15-demo-day-1",
+      "title": "Demo Day 1",
+      "dates": [
+        "2026-10-15"
+      ],
+      "topics": [
+        "All teams demo on the live product",
+        "5 minutes + questions"
+      ],
+      "notes": "First session back after the gap — accountability checkpoint"
+    },
+    {
+      "lectureId": "s16-standup",
+      "title": "Standup + Clinic",
+      "dates": [
+        "2026-10-19"
+      ],
+      "topics": [
+        "All-hands standup",
+        "Team consultation slots"
+      ]
+    },
+    {
+      "lectureId": "s17-presentations-2",
+      "title": "Student Presentations: Reading TBD ×2",
+      "dates": [
+        "2026-10-21"
+      ],
+      "topics": [
+        "Team TBD — reading TBD",
+        "Team TBD — reading TBD"
+      ],
+      "notes": "PLACEHOLDER — assign readings and teams"
+    },
+    {
+      "lectureId": "s18-game-day-1",
+      "title": "Game Day 1: Runner Drift (telegraphed)",
+      "dates": [
+        "2026-10-22"
+      ],
+      "topics": [
+        "Detect → triage → mitigate → postmortem",
+        "Stale runner image, scale set deregistered",
+        "Failure with no error anywhere"
+      ],
+      "notes": "Announced in advance; instructor narrates the response"
+    },
+    {
+      "lectureId": "s19-standup",
+      "title": "Standup + Clinic",
+      "dates": [
+        "2026-10-26"
+      ],
+      "topics": [
+        "All-hands standup",
+        "Team consultation slots"
+      ]
+    },
+    {
+      "lectureId": "s20-presentations-3",
+      "title": "Student Presentations: Reading TBD ×2",
+      "dates": [
+        "2026-10-28"
+      ],
+      "topics": [
+        "Team TBD — reading TBD",
+        "Team TBD — reading TBD"
+      ],
+      "notes": "PLACEHOLDER — assign readings and teams"
+    },
+    {
+      "lectureId": "s21-demo-day-2",
+      "title": "Demo Day 2",
+      "dates": [
+        "2026-10-29"
+      ],
+      "topics": [
+        "All teams demo on the live product"
+      ]
+    },
+    {
+      "lectureId": "s22-standup",
+      "title": "Standup + Clinic",
+      "dates": [
+        "2026-11-02"
+      ],
+      "topics": [
+        "All-hands standup",
+        "Team consultation slots"
+      ]
+    },
+    {
+      "lectureId": "s23-studio-work",
+      "title": "Integration Session I: Cross-Team Technical Integration",
+      "dates": [
+        "2026-11-04"
+      ],
+      "topics": [
+        "Shared schema and migration collisions",
+        "Flag interactions across teams",
+        "Merge and rebase conflicts on shared files",
+        "Everyone in the room, failures on screen"
+      ],
+      "notes": "Coupled work — the counterpart to the async sprint. Co-presence is the point."
+    },
+    {
+      "lectureId": "s24-game-day-2",
+      "title": "Game Day 2: The Dashboard Lies",
+      "dates": [
+        "2026-11-05"
+      ],
+      "topics": [
+        "Pods dying while monitoring stays green",
+        "Broken observability path",
+        "Write the alert that should have existed"
+      ],
+      "notes": "Fault injected into each team's own stack · checkpoint 2 due"
+    },
+    {
+      "lectureId": "s25-standup",
+      "title": "Standup + Clinic",
+      "dates": [
+        "2026-11-09"
+      ],
+      "topics": [
+        "All-hands standup",
+        "Team consultation slots"
+      ]
+    },
+    {
+      "lectureId": "s26-demo-day-3",
+      "title": "Demo Day 3",
+      "dates": [
+        "2026-11-12"
+      ],
+      "topics": [
+        "All teams demo on the live product"
+      ]
+    },
+    {
+      "lectureId": "s27-standup",
+      "title": "Standup + Integration Session II (pre-freeze)",
+      "dates": [
+        "2026-11-16"
+      ],
+      "topics": [
+        "All-hands standup",
+        "Cross-team integration ahead of the 11/23 freeze",
+        "What still has to land together"
+      ],
+      "notes": "Last integration point before feature freeze"
+    },
+    {
+      "lectureId": "s28-talk-risk",
+      "title": "Tech Talk: Risk Management & Release Readiness",
+      "dates": [
+        "2026-11-18"
+      ],
+      "topics": [
+        "Risk registers",
+        "Mitigation strategies",
+        "What ships in January and what doesn't"
+      ],
+      "notes": "Instructor-led — sets up the feature freeze"
+    },
+    {
+      "lectureId": "s29-game-day-3",
+      "title": "Game Day 3: Unannounced",
+      "dates": [
+        "2026-11-19"
+      ],
+      "topics": [
+        "Two faults, one irrelevant",
+        "Hypothesis discipline",
+        "Your first theory is wrong"
+      ],
+      "notes": "Not announced — students should not know it is a drill until they notice"
+    },
+    {
+      "lectureId": "s30-feature-freeze",
+      "title": "Feature Freeze Checkpoint",
+      "dates": [
+        "2026-11-23"
+      ],
+      "topics": [
+        "What's in and what's out",
+        "Flag state review",
+        "Hardening plan for the last two weeks"
+      ],
+      "notes": "FEATURE FREEZE — only one session this week"
+    },
+    {
+      "lectureId": "s31-standup",
+      "title": "Standup + Clinic (Hardening)",
+      "dates": [
+        "2026-11-30"
+      ],
+      "topics": [
+        "Bug triage",
+        "Ops playbooks",
+        "Documentation debt"
+      ]
+    },
+    {
+      "lectureId": "s32-presentations-4",
+      "title": "Student Presentations: Reading TBD ×2",
+      "dates": [
+        "2026-12-02"
+      ],
+      "topics": [
+        "Team TBD — reading TBD",
+        "Team TBD — reading TBD"
+      ],
+      "notes": "PLACEHOLDER / buffer slot"
+    },
+    {
+      "lectureId": "s33-demo-day-4",
+      "title": "Demo Day 4",
+      "dates": [
+        "2026-12-03"
+      ],
+      "topics": [
+        "All teams demo on the live product"
+      ],
+      "notes": "Process checkpoint 3 due"
+    },
+    {
+      "lectureId": "s34-retro",
+      "title": "Retro, Postmortem & Portfolio Workshop",
+      "dates": [
+        "2026-12-07"
+      ],
+      "topics": [
+        "Semester retrospective",
+        "Writing the contribution portfolio",
+        "Reflection prompts"
+      ]
+    },
+    {
+      "lectureId": "s35-final-demos-1",
+      "title": "Final Demos I",
+      "dates": [
+        "2026-12-09"
+      ],
+      "topics": [
+        "Teams 1–3 final demos"
+      ]
+    },
+    {
+      "lectureId": "s36-final-demos-2",
+      "title": "Final Demos II & Handoff",
+      "dates": [
+        "2026-12-10"
+      ],
+      "topics": [
+        "Teams 4–6 final demos",
+        "January 2027 handoff review"
+      ]
+    }
+  ],
+  "assignments": [
+    {
+      "id": "onboarding-tickets",
+      "title": "Onboarding Ticket Burn-Down",
+      "type": "homework",
+      "assignedDate": "2026-09-09",
+      "dueDate": "2026-09-24",
+      "points": 100,
+      "notes": "Documentation and small implementation tickets"
+    },
+    {
+      "id": "project-bids",
+      "title": "Project Bids",
+      "type": "homework",
+      "assignedDate": "2026-09-09",
+      "dueDate": "2026-09-17",
+      "notes": "Ranked preferences across the project slate"
+    },
+    {
+      "id": "first-implementation",
+      "title": "First Implementation Ticket",
+      "type": "homework",
+      "assignedDate": "2026-09-17",
+      "dueDate": "2026-10-01",
+      "notes": "Scoped ticket shipped through the full pipeline"
+    },
+    {
+      "id": "gap-sprint",
+      "title": "Async Sprint: Focused Learning + Team Sync (Oct 2–13)",
+      "type": "project",
+      "assignedDate": "2026-10-01",
+      "dueDate": "2026-10-14",
+      "notes": "Handout drafted at docs/assignments/async-sprint.md (unpublished) — add \"url\": \"/docs/assignments/async-sprint\" when it ships. Individual focus work with an evidence artifact each · 2 team sync points with written outcomes · standups Mon 10/5 and Mon 10/12. Graded on process; feeds Checkpoint 1 on 10/14."
+    },
+    {
+      "id": "checkpoint-1",
+      "title": "Process Checkpoint 1 (design docs, ADRs, research artifacts)",
+      "type": "project",
+      "assignedDate": "2026-09-28",
+      "dueDate": "2026-10-14",
+      "notes": "Part of Engineering Process (250 pts)"
+    },
+    {
+      "id": "reading-presentation",
+      "title": "Reading Presentation (assigned topic, per team)",
+      "type": "reading",
+      "assignedDate": "2026-09-28",
+      "dueDate": "2026-12-02",
+      "notes": "PLACEHOLDER — each team presents once on an assigned reading; individual dates TBD"
+    },
+    {
+      "id": "checkpoint-2",
+      "title": "Process Checkpoint 2",
+      "type": "project",
+      "assignedDate": "2026-10-14",
+      "dueDate": "2026-11-05"
+    },
+    {
+      "id": "drill-zero",
+      "title": "Drill Zero — Async Triage Log (pass/fail)",
+      "type": "homework",
+      "assignedDate": "2026-10-08",
+      "dueDate": "2026-10-09",
+      "notes": "Pass/fail. A credible triage log passes even if you never fixed it — saying what you ruled out and how is the point."
+    },
+    {
+      "id": "game-day-postmortems",
+      "title": "Game Day Postmortems (3)",
+      "type": "project",
+      "assignedDate": "2026-10-22",
+      "dueDate": "2026-12-03",
+      "notes": "One postmortem per game day, due within 48h of each; graded under Operations & stability"
+    },
+    {
+      "id": "feature-freeze",
+      "title": "Feature Freeze — flags set, ops playbooks drafted",
+      "type": "project",
+      "assignedDate": "2026-11-18",
+      "dueDate": "2026-11-23"
+    },
+    {
+      "id": "checkpoint-3",
+      "title": "Process Checkpoint 3",
+      "type": "project",
+      "assignedDate": "2026-11-05",
+      "dueDate": "2026-12-03"
+    },
+    {
+      "id": "portfolio",
+      "title": "Contribution Portfolio & Reflection",
+      "type": "project",
+      "assignedDate": "2026-11-30",
+      "dueDate": "2026-12-10",
+      "points": 150,
+      "notes": "Due at final demos — move to finals week (Dec 14–20) if you'd rather give them the weekend"
+    }
+  ],
+  "metadata": {
+    "department": "Khoury College of Computer Sciences",
+    "credits": 4,
+    "prerequisites": [
+      "CS 3100 (or CS 3500)"
+    ],
+    "description": "A professional practicum capstone. Fifty students work as one team on Pawtograder, a production platform with 1,500+ weekly active users, practicing the full software development lifecycle from design through operations.",
+    "syllabus": "/syllabus"
+  }
+}

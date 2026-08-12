@@ -1,3 +1,4 @@
+import path from 'path';
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
@@ -39,6 +40,15 @@ const config: Config = {
     ],
   ],
 
+  plugins: [
+    [path.resolve(__dirname, './plugins/classasaurus/index.ts'), {
+      configPath: './course.config.json',
+      generateSchedule: true,
+      scheduleRoute: '/schedule',
+      validateLectureFiles: false,
+    }],
+  ],
+
   themeConfig: {
     image: 'img/software-that-ships-social.webp',
     navbar: {
@@ -49,6 +59,7 @@ const config: Config = {
       },
       items: [
         // {to: '/syllabus', label: 'Syllabus', position: 'left'},
+        {to: '/schedule', label: 'Schedule', position: 'left'},
         {to: '/apply', label: 'Apply', position: 'left'},
         {
           type: 'search',
@@ -63,6 +74,7 @@ const config: Config = {
           title: 'Course',
           items: [
             // {label: 'Syllabus', to: '/syllabus'},
+            {label: 'Schedule', to: '/schedule'},
             {label: 'Apply', to: '/apply'},
           ],
         },

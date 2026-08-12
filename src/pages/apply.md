@@ -11,7 +11,7 @@ description: Apply to CS 4535
 We're building a large section — our goal is 50 students, and more than 30 seats are still open. Applications are reviewed on a **rolling basis**, so **apply as soon as possible**: [Application Form →](https://docs.google.com/forms/d/e/1FAIpQLSfIBnbT78hq7X4OgZ1g1ozTl8wWkWfiHJBlJeUPrmNmOvGclA/viewform?usp=publish-editor)
 :::
 
-**CS 4535: Software Design & Delivery** is a selective capstone for up to 50 students. The product is [Pawtograder](https://github.com/pawtograder) — a production platform with 1,500+ weekly active users across CS 2000, 2100, and 3100 at Northeastern. All 50 students work on one codebase together, shipping continuously to production throughout the semester. We're building a team, not filling seats.
+**CS 4535: Software Design & Delivery** is a selective capstone for up to 50 students. The product is [Pawtograder](https://github.com/pawtograder) — a production platform at Northeastern. This fall it runs CS 2000, 2100, 3100, 3650 and 4530, plus sections of 5001, 5008 and 5010 — and this course. All 50 students work on one codebase together, shipping continuously to production throughout the semester. We're building a team, not filling seats.
 
 ## Prerequisites
 

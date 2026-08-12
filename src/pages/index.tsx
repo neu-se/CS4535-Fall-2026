@@ -38,12 +38,23 @@ Style: pixel art, 16-bit retro aesthetic, detailed but readable at small sizes. 
             <strong>30+ seats still available for Fall 2026.</strong> We're building a large section — our goal is 50 students. Applications are accepted on a rolling basis, so <Link to="/apply"><strong>apply as soon as possible</strong></Link>.
           </div>
 
+          <div style={{
+            background: 'var(--ifm-color-info-contrast-background)',
+            border: '1px solid var(--ifm-color-info-dark)',
+            borderRadius: '8px',
+            padding: '0.75rem 1.25rem',
+            marginBottom: '1.5rem',
+            lineHeight: 1.6,
+          }}>
+            <strong>A preliminary schedule is now posted.</strong> Session topics, game days and assignment dates are drafts and will change before September — but the shape of the semester is there. <Link to="/schedule"><strong>See the schedule →</strong></Link>
+          </div>
+
           <p style={{ lineHeight: 1.7, color: 'var(--ifm-color-emphasis-800)' }}>
             When you join a company, you'll be working on a product that predates you. Lots of features. Lots of code. Lots of technical debt. Some teams struggle under that weight — barely satisfying their users, burning through resources. But the best teams find ways to make a codebase better than they found it, ship features that users didn't know they needed, and turn inherited complexity into a platform for something new. The difference isn't luck — it's skill. This course teaches you that skill.
           </p>
 
           <p style={{ lineHeight: 1.7, color: 'var(--ifm-color-emphasis-800)' }}>
-            The product is <a href="https://github.com/pawtograder">Pawtograder</a> — a production platform with 1,500+ weekly active users across CS 2000, 2100, and 3100 at Northeastern. It manages assignments, group projects, grading workflows, discussion forums, live polling, and real-time office hours. All repos are public and open source — you can start exploring right now. Your commits don't go to a grading script. They go to staging, then to production. All 50 students work on one codebase together, shipping continuously to production throughout the semester.
+            The product is <a href="https://github.com/pawtograder">Pawtograder</a> — a production platform at Northeastern. This fall it runs CS 2000, 2100, 3100, 3650 and 4530, plus sections of 5001, 5008 and 5010 — and this course. Your classmates are its users, and so are you. It manages assignments, group projects, grading workflows, discussion forums, live polling, and real-time office hours. All repos are public and open source — you can start exploring right now. Your commits don't go to a grading script. They go to staging, then to production. All 50 students work on one codebase together, shipping continuously to production throughout the semester.
           </p>
 
           <p style={{ lineHeight: 1.7, color: 'var(--ifm-color-emphasis-800)' }}>
@@ -80,7 +91,7 @@ Style: pixel art, 16-bit retro aesthetic, detailed but readable at small sizes. 
 
           <h3>Phase 1: Onboarding (Weeks 1–3)</h3>
           <p style={{ lineHeight: 1.7, color: 'var(--ifm-color-emphasis-800)' }}>
-            Lectures cover the architecture of Pawtograder, CI/CD and continuous delivery, serverless and microservices patterns, testing and monitoring, estimation, risk management, and user research — ordered to get you productive in the codebase as fast as possible.
+            Lectures every session: the architecture of Pawtograder, Supabase and row-level security (and what it means to hold real student data), continuous delivery, how to release to 1,500 users without breaking them, testing, and monitoring and incident response. Ordered to get you productive in the codebase as fast as possible.
           </p>
           <p style={{ lineHeight: 1.7, color: 'var(--ifm-color-emphasis-800)' }}>
             In parallel, you'll complete a ticket burn-down: documentation tickets and a small implementation task, shipping a change through the full pipeline (branch → PR → review → merge → deploy).
@@ -91,11 +102,26 @@ Style: pixel art, 16-bit retro aesthetic, detailed but readable at small sizes. 
             After onboarding, class shifts to studio format. You bid on a project team and work continuously for the rest of the semester:
           </p>
           <ul style={{ lineHeight: 1.8, color: 'var(--ifm-color-emphasis-800)', marginBottom: '1rem' }}>
-            <li><strong>Day 1:</strong> Standup + Clinic — 15-min all-hands standup, then teams sign up for instructor/TA consultation on blockers and design tradeoffs</li>
-            <li><strong>Day 2:</strong> Design/Code Review — 1–2 teams present a design decision, significant PR, or user research finding for structured critique</li>
-            <li><strong>Day 3:</strong> Team work session — dedicated in-class time for coordination, pair programming, and co-located work</li>
+            <li><strong>Monday:</strong> Standup + Clinic — all-hands standup, then teams sign up for instructor/TA consultation on blockers and design tradeoffs</li>
+            <li><strong>Wednesday:</strong> A tech talk, or student-led presentations — each team teaches the room an assigned reading and what it means for our codebase</li>
+            <li><strong>Thursday:</strong> Team work session, game day, or demo day</li>
             <li><strong>Biweekly:</strong> Demo days — each team demos what shipped, live in the real product, 5 minutes plus questions</li>
           </ul>
+
+          <h3>Game days</h3>
+          <p style={{ lineHeight: 1.7, color: 'var(--ifm-color-emphasis-800)' }}>
+            Several times during the studio phase, something breaks. You get your own environment, a fault appears in it, and you have the session to detect it, triage it, mitigate it, and write the postmortem. The scenarios are drawn from real outages in our own infrastructure — including a CI failure that ran for twenty hours without logging a single error anywhere. They escalate: the first one is announced in advance, the last one isn't.
+          </p>
+
+          <h3>Async and integration</h3>
+          <p style={{ lineHeight: 1.7, color: 'var(--ifm-color-emphasis-800)' }}>
+            Not all work needs a room. Early on, most of your work is individual focus — reading unfamiliar code, running a spike, reproducing a bug — so part of the term runs async, with written standups and team-scheduled sync points. Later it inverts: six teams landing changes in one codebase means shared migrations, interacting feature flags, and merge conflicts on the same files. That work is coupled, and we do it together in dedicated integration sessions.
+          </p>
+
+          <h3>Feature freeze and handoff</h3>
+          <p style={{ lineHeight: 1.7, color: 'var(--ifm-color-emphasis-800)' }}>
+            Features freeze before Thanksgiving. The last two weeks are hardening, ops playbooks, and documentation — because in January 2027 the next semester's classes depend on everything you shipped. That's a real constraint, not a grading rubric.
+          </p>
         </div>
 
         {/* Projects */}
@@ -233,6 +259,7 @@ Style: pixel art, 16-bit retro aesthetic, detailed but readable at small sizes. 
           justifyContent: 'center',
         }}>
           <Link to="/apply"><strong>Apply</strong></Link>
+          <Link to="/schedule"><strong>Schedule</strong></Link>
           <a href="https://github.com/pawtograder"><strong>Pawtograder on GitHub</strong></a>
         </div>
 

@@ -8,7 +8,7 @@ Course website for CS 4535 at Northeastern University, Khoury College of Compute
 
 ## About the course
 
-50 students work on one codebase together — [Pawtograder](https://github.com/pawtograder), a production platform with 1,500+ weekly active users. Your commits go to staging, then to production. The goal: leave the codebase better than you found it for the next semester's classes.
+50 students work on one codebase together — [Pawtograder](https://github.com/pawtograder), a production platform that in Fall 2026 runs CS 2000, 2100, 3100, 3650 and 4530, plus sections of 5001, 5008 and 5010 — including this course. Your commits go to staging, then to production. The goal: leave the codebase better than you found it for the next semester's classes.
 
 ## Development
 

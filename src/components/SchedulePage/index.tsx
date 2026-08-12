@@ -477,9 +477,9 @@ function ScheduleTable({ entries, sectionName, lectureDays, labDays, assignments
                               No Class
                             </div>
                           </>
-                        ) : lectureEntry?.lecture?.lectureId ? (
+                        ) : lectureEntry?.lecture?.materials?.slides ? (
                           <div style={{ marginBottom: '0.25rem' }}>
-                            <Link to={`/lecture-notes/${lectureEntry.lecture.lectureId}`}>
+                            <Link to={lectureEntry.lecture.materials.slides}>
                               {topic}
                             </Link>
                           </div>
@@ -698,8 +698,8 @@ export default function SchedulePage({ scheduleData }: Props) {
 
   const combinedSectionName = useMemo(() => {
     const lecturePart = lectureSection ? `${lectureSection.name}` : 'Lecture';
-    const labPart = labSection ? `${labSection.name}` : 'Lab';
-    return `${lecturePart} + ${labPart}`;
+    if (!labSection) return lecturePart;
+    return `${lecturePart} + ${labSection.name}`;
   }, [lectureSection, labSection]);
 
   const formatDays = (days: string[]) => days.map(d => d.slice(0, 3)).join('/');
@@ -789,11 +789,11 @@ export default function SchedulePage({ scheduleData }: Props) {
           <Box>
             Loosely, the course is organized as follows:
             <ul>
-              <li>Module 1 (weeks 1 - 4): Design in the small — Java fundamentals, design principles, changeability</li>
-              <li>Module 2 (weeks 5 - 10): Design in the large — testing, teams, architecture, distributed systems</li>
-              <li>Module 3 (weeks 11 - 15): Design for users — UCD, accessibility, GUIs, concurrency</li>
+              <li>Onboarding (weeks 1 - 3): lectures every session — architecture, continuous delivery, safe releases, testing, monitoring, user research — alongside the ticket burn-down</li>
+              <li>Studio (weeks 4 - 12): Mon standup + clinic · Wed tech talk or student presentations · Thu team work session, with demo days every two weeks</li>
+              <li>Hardening &amp; handoff (weeks 12 - 14): feature freeze, ops playbooks, documentation, final demos</li>
             </ul>
-            Modules 1 and 2 are each followed by an exam, and Module 3 is followed by a cumulative final exam.
+            There is no final exam. The semester ends with final demos, a contribution portfolio and a reflection.
           </Box>
           <ScheduleTable
             entries={combinedEntries}
