@@ -476,7 +476,32 @@ sidebar: false
             try {
                 // Validate configuration
                 validateCourseConfig(courseConfig);
-                
+
+                // Drop materials.slides for decks that aren't published yet. Slides ship
+                // week by week while course.config.json lists the whole term, so a config
+                // entry is a plan and not a promise that the file exists. Without this the
+                // schedule page links every lecture and the build fails the broken-link
+                // check; the SchedulePage component already renders the topic as plain text
+                // when materials.slides is absent.
+                const unpublishedSlides: string[] = [];
+                for (const lecture of courseConfig.lectures ?? []) {
+                    const slidesUrl = lecture.materials?.slides;
+                    if (!slidesUrl || !slidesUrl.startsWith('/lecture-slides/')) {
+                        continue;
+                    }
+                    const slideId = slidesUrl.slice('/lecture-slides/'.length);
+                    const exists = ['.mdx', '.md'].some((ext) =>
+                        fs.existsSync(path.join(context.siteDir, 'lecture-slides', `${slideId}${ext}`))
+                    );
+                    if (!exists) {
+                        delete lecture.materials!.slides;
+                        unpublishedSlides.push(slideId);
+                    }
+                }
+                if (unpublishedSlides.length > 0) {
+                    console.log(`📝 ${unpublishedSlides.length} lecture(s) have no slides yet, so the schedule won't link them: ${unpublishedSlides.join(', ')}`);
+                }
+
                 // Generate schedule
                 const courseSchedule = generateSchedule(courseConfig);
                 console.log(`📅 Generated schedule with ${courseSchedule.allEntries.length} total class meetings`);
