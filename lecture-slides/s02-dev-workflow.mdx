@@ -1,0 +1,857 @@
+---
+sidebar_position: 2
+title: "Working Session: Local Dev & the Contribution Workflow"
+image: /img/lectures/s02-dev-workflow.webp
+---
+
+import RevealJS, { Slide } from '@site/src/components/RevealJS';
+import Img from '@site/src/components/Img';
+
+<RevealJS transition="slide">
+
+{/* ============================================ */}
+{/* COVER IMAGE */}
+{/* ============================================ */}
+
+<Slide>
+
+  <Img
+    src="/img/lectures/s02-dev-workflow.webp"
+    prompt="Concept: 'Laptop to production: the path of a first PR.' 8-bit lo-fi pixel art, retro game aesthetic, clean outlines, 16:9 landscape, side-scrolling platformer level laid out left to right. On the far left, a small pixel developer sits at a laptop on a cluttered desk, drawn in warm amber tones, with a tangle of Docker whale icons and a spinning loading spinner above the screen. A glowing teal path leads rightward through four platform checkpoints, each a small floating island with a simple icon and a flag: a branching git fork, a pull-request arrow, a gear with a green checkmark for CI, and two tiny figures at a screen for review. At the far right, the path arrives at a clean cool-blue server tower with a green light on it and a tiny crowd of happy users below. Top banner reads 'S2: Local Dev and the Contribution Workflow'. A tagline below the banner reads 'From Your Laptop to Real Users.' Bottom text reads 'CS 4535: Software Design and Delivery'."
+    alt="Pixel art side-scrolling level. Left: a developer at a cluttered laptop in warm amber tones, tangled in Docker icons and a loading spinner. A glowing teal path runs right through four checkpoints — a git branch, a pull request, CI with a green check, and two people doing code review — arriving at a cool blue server with a green light and a small crowd of happy users. Tagline: From Your Laptop to Real Users."
+  />
+
+<aside className="notes">
+**Session:** Thu Sep 10 · Working Session: Local Dev & the Contribution Workflow · 65 min
+
+**This is a working session, not a lecture.** Roughly half the room time is hands-on. Slides are scaffolding between work blocks.
+
+**Structure (Two paths → Get it running → The pipeline → Claim a role → Getting unstuck):**
+- Arc 1: Two Paths Into the Codebase (~7 min) — staging backend vs full local stack
+- Arc 2: Get It Running (~18 min, mostly hands-on) — the commands, the checkpoint, the three gotchas
+- Arc 3: The Path of a First PR (~15 min) — branch, PR, CI, review, merge, deploy
+- Arc 4: Claim Your Hunt Role (~15 min, mostly hands-on) — the four roles, and getting wired up
+- Arc 5: When You Are Stuck (~7 min) — the 30-minute rule, how to ask
+- Takeaways (~2 min)
+
+**Narrative spine:** By the end of this room you have the app running, your accounts wired up, and a hunt role with your name on it. Everything else this semester is downstream of those facts.
+
+**Room logistics — TODO, decide before class:**
+- Staff in the room to float during work blocks? How many?
+- Do you want students paired for the setup block? Pairing halves the "my Docker is broken" queue.
+- Have a fallback ready: a Codespace or a staging-only path for laptops that won't cooperate.
+
+**Preparation:** Have the role sign-up open before class, and the push-access list ready to work through. If sign-up is slow, the whole Arc 4 work block collapses.
+
+> **Transition:** Reminders first, then what we're doing today.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* REMINDERS */}
+{/* ============================================ */}
+
+<Slide>
+
+## Reminders
+
+<div style={{fontSize: '0.8em', textAlign: 'left'}}>
+
+- **OPEN:** The Ticket Hunt — due Wed Sep 16
+- **OPEN:** Project Bids — due Thu Sep 17
+- **OPEN:** Onboarding: Gradebook Column Groups — due Thu Sep 24
+
+</div>
+
+<aside className="notes">
+60 seconds. Nothing is due yet; the hunt is the thing they act on today.
+
+> **Transition:** Now, today.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* TITLE */}
+{/* ============================================ */}
+
+<Slide>
+
+# CS 4535: Software Design & Delivery
+
+## Working Session: Local Dev & the Contribution Workflow
+
+<p style={{marginTop: '2em', fontSize: '0.8em', color: '#666'}}>
+  &copy;2026 Jonathan Bell, CC-BY-SA
+</p>
+
+<aside className="notes">
+**Framing:** Yesterday was the map. Today is the keys.
+
+**Set expectations in the first 30 seconds:** you'll be typing today, things will break, and breaking things in this room with staff present is the cheapest possible time to break them.
+
+> **Transition:** Here's what you'll be able to do after today.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* LEARNING OBJECTIVES */}
+{/* ============================================ */}
+
+<Slide>
+
+## Learning Objectives
+
+<p style={{fontSize: '0.85em', textAlign: 'left'}}>
+After this session, you'll be able to:
+</p>
+
+<ol style={{fontSize: '0.75em', textAlign: 'left'}}>
+  <li>Run Pawtograder locally against a seeded database</li>
+  <li>Trace a change through branch, PR, CI, review, merge and deploy</li>
+  <li>Claim a hunt role, and say what makes a ticket somebody can act on</li>
+  <li>Know where and how to ask for help when stuck</li>
+</ol>
+
+<aside className="notes">
+**Time allocation:**
+- Arc 1: Two paths (~7 min) — objective 1
+- Arc 2: Get it running (~18 min, hands-on) — objective 1
+- Arc 3: The path of a first PR (~15 min) — objective 2
+- Arc 4: Claim your role (~15 min, hands-on) — objective 3
+- Arc 5: Getting unstuck (~7 min) — objective 4
+
+**Four objectives is a lot for 65 minutes**, and it only works because two of them are achieved by doing rather than by hearing. Protect the two work blocks. If you must cut, cut Arc 3 depth — the pipeline gets a full session on 9/16.
+
+> **Transition:** Let's start with a choice you have to make before you type anything.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* SPINE STATEMENT                              */}
+{/* ============================================ */}
+
+<Slide>
+
+## You Leave This Room With Two Things
+
+<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1em', fontSize: '0.85em', marginTop: '1em'}}>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.8em', borderRadius: '8px'}}>
+
+**1.**
+Pawtograder running on your machine
+
+</div>
+
+<div style={{backgroundColor: 'rgba(100,150,255,0.12)', padding: '0.8em', borderRadius: '8px'}}>
+
+**2.**
+A hunt role with your name on it
+
+</div>
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.82em', marginTop: '1em', fontWeight: 'bold', color: '#e76f51'}}>
+Everything else this semester is downstream of those two facts.
+</p>
+
+<aside className="notes">
+**Say this and then hold everyone to it.** The measure of whether this session worked isn't whether they enjoyed it, it's how many hands are up at the two checkpoints.
+
+**TODO:** Do you want a live show-of-hands count at each checkpoint? It creates useful peer pressure and tells you who needs clinic time on Monday.
+
+> **Transition:** First: there are two ways to run this thing, and picking the wrong one costs you an afternoon.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* ARC 1: TWO PATHS (~7 min)                    */}
+{/* ============================================ */}
+
+<Slide>
+
+## Two Ways to Run Pawtograder
+
+<Img
+  src="/img/lectures/s02-two-paths.webp"
+  prompt="A clean educational diagram (not pixel art), 16:9 landscape, light background, split into two labeled halves separated by a thin vertical divider. Left half, headed 'Path A: Frontend only' and tinted light teal: a laptop icon labeled 'Next.js dev server on localhost 3000', with a single long arrow reaching right and off-panel to a cloud box labeled 'Shared staging backend'. A small caption reads 'Minutes to start. No Docker. Cannot change the schema.' Right half, headed 'Path B: Full local stack' and tinted light blue: the same laptop icon, but now stacked beneath it inside a large dashed box labeled 'Docker' are four small containers labeled 'Postgres', 'Auth', 'Realtime and Storage', 'Edge Functions', plus two side boxes labeled 'Supabase Studio on 54323' and 'Mail catcher on 54324'. A small caption reads 'Slower to start. Required for migrations and end-to-end tests.' Restrained, professional, textbook-figure quality."
+  alt="Split diagram. Path A, frontend only: a Next.js dev server on localhost:3000 pointing at a shared staging backend in the cloud — minutes to start, no Docker, cannot change the schema. Path B, full local stack: the same dev server plus Docker containers for Postgres, Auth, Realtime and Storage, and Edge Functions, with Supabase Studio on port 54323 and a mail catcher on 54324 — slower to start, required for migrations and end-to-end tests."
+/>
+
+<aside className="notes">
+**The point:** most students will need Path B eventually, but Path A gets them productive today, and hunting the docs and the student views needs nothing more.
+
+**Do not let anyone spend today's work block fighting Docker if their first ticket is frontend or docs.** Path A isn't the beginner path, it's the correct path for a whole class of work.
+
+> **Transition:** So which do you need?
+</aside>
+
+</Slide>
+
+<Slide>
+
+## Which One Do You Need?
+
+<div style={{fontSize: '0.68em', textAlign: 'left'}}>
+
+| If your work touches… | You need |
+|---|---|
+| Docs, copy, a component, a page layout | **Path A** — staging backend |
+| A database migration or an RLS policy | **Path B** — full local |
+| An edge function | **Path B** — full local |
+| Playwright end-to-end tests | **Path B** — full local |
+| Anything you aren't sure about | Start with **A**, escalate |
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.75em', marginTop: '0.8em'}}>
+Signups are disabled on staging. In a local instance, any email works — and putting <strong>instructor</strong> in the address makes you an instructor.
+</p>
+
+<aside className="notes">
+**The fragment is a practical gift.** Students spend real time confused about why they can't make an account, or why they only see the student view.
+
+**One more that belongs in the notes:** the local frontend serves HTTPS with a self-signed certificate, because the office hours queue needs camera and microphone access. They'll get a browser warning and must click through it. Every single term someone reports this as a bug.
+
+> **Transition:** Laptops open. Here are the commands.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* ARC 2: GET IT RUNNING (~18 min, hands-on)    */}
+{/* Objective 1                                  */}
+{/* ============================================ */}
+
+<Slide>
+
+## Path A: Frontend Against Staging
+
+<div style={{fontSize: '0.7em', textAlign: 'left'}}>
+
+```bash
+git clone https://github.com/pawtograder/platform
+cd platform
+nvm install 22 && nvm use 22
+npm install                       # ignore the deprecation wall
+cp .env.local.staging .env.local  # nothing to fill in
+npm run dev                       # https://localhost:3000
+```
+
+</div>
+
+<div className="fragment" style={{backgroundColor: 'rgba(255,200,100,0.2)', padding: '0.5em', borderRadius: '8px', fontSize: '0.7em', marginTop: '0.8em', border: '2px solid rgba(255,180,0,0.5)'}}>
+
+Your browser will warn you about the self-signed certificate. That's expected — click through. HTTPS is required for camera and microphone access in the help queue.
+
+Sign in with **email and password**. OAuth on staging redirects to the deployed site, not your laptop.
+
+</div>
+
+<div style={{fontSize: '0.62em', marginTop: '0.6em'}}>
+
+Every command on the next few slides also lives at [/docs/local-dev](/docs/local-dev).
+
+</div>
+
+<aside className="notes">
+**If anyone doesn't have `nvm`, that's the first two minutes.** Install link is on the cheat sheet: https://github.com/nvm-sh/nvm#installing-and-updating. Node 22 matches CI.
+
+**There is nothing to fill in, and say so explicitly.** `.env.local.staging` is tracked in git and holds only browser-facing values (Supabase URL, anon key, web URL). The secrets that pair with it live in an untracked `.env.local.staging.priv` and are staff-only; nothing on Path A needs them. The README still says "fill in your own values," which is now wrong — that's a free ticket for somebody in the new-contributor role.
+
+**The email-and-password line saves an afternoon.** GoTrue's allow list on staging is `https://staging.pawtograder.net/*`, so a GitHub/Discord/Microsoft round trip bounces them to the deployed site and looks like a broken login on localhost.
+
+**Point at the cheat sheet once, here.** Everything in Arc 2 is written down at `/docs/local-dev`, which means you can move faster than they can type.
+
+> **Transition:** If your work needs the database, you need the whole stack.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## Path B: The Full Local Stack
+
+<div style={{fontSize: '0.68em', textAlign: 'left'}}>
+
+```bash
+# Docker must be running first
+npx supabase start        # boots Postgres, Auth, Realtime, Storage
+npx supabase db reset     # replays 400+ migrations, loads base data
+npx supabase status -o env  # copy keys into .env.local
+
+npm run seed              # a test class with real logins
+npm run dev
+
+# only when you're exercising an edge function:
+npx supabase functions serve --env-file .env.local
+```
+
+</div>
+
+<div className="fragment" style={{fontSize: '0.68em', textAlign: 'left', marginTop: '0.6em'}}>
+
+Then: app on `https://localhost:3000` · Studio on `localhost:54323` · captured mail on `localhost:54324`
+
+</div>
+
+<aside className="notes">
+**`npm run seed` prints a wall of output.** Scroll up and search for "Login Credentials". Every seeded user's password is `change-it`.
+
+**Studio on 54323 is underused and worth 30 seconds of demo.** Being able to look directly at the rows is how you debug an RLS problem, and Monday's session assumes they can.
+
+**The mail catcher on 54324** is where magic-link and confirmation emails land locally. Students otherwise assume auth is broken.
+
+**Say that `functions serve` is optional.** Browsing a seeded class doesn't touch an edge function, so nobody should be blocked on it today. It matters when they hit submissions, webhooks or the async workers, and the symptom is specific: those calls fail while everything else works.
+
+**Two things from the cheat sheet worth naming out loud, because they change how Arc 4 goes:**
+- `npx tsx scripts/GenerateMagicLink.ts <email>` prints a login URL for any user, no password needed. It's how you move between the four hunt roles in seconds.
+- `FIXED_GRADER_EMAIL=you@northeastern.edu npm run seed` seeds *your* address into that role, so the grading pass happens as you. Same for `FIXED_INSTRUCTOR_EMAIL`, `FIXED_STUDENT_EMAIL`, `FIXED_ADMIN_EMAIL`.
+
+**Also on the cheat sheet, not worth room time:** `npm run seed -- --help`, six templates from `micro` (30 students) to `large` (900), and `--date-range-start/-end` in days relative to now, which is how you manufacture a past-due assignment.
+
+> **Transition:** One decision about how you run it, and then the gotchas.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## `dev` Is For Editing. Otherwise, Build.
+
+<div style={{fontSize: '0.72em', textAlign: 'left'}}>
+
+```bash
+npm run dev              # compiles each route on first hit
+npm run build && npm start   # a few minutes, then fast everywhere
+```
+
+</div>
+
+<div style={{fontSize: '0.7em', textAlign: 'left', marginTop: '0.7em'}}>
+
+`next dev` recompiles per route as you click. Fine while you're editing one page. Painful when you're exploring the app as four different roles, and fatal for a Playwright run.
+
+</div>
+
+<div className="fragment" style={{backgroundColor: 'rgba(255,200,100,0.2)', padding: '0.5em', borderRadius: '8px', fontSize: '0.68em', marginTop: '0.7em', border: '2px solid rgba(255,180,0,0.5)'}}>
+
+`NEXT_PUBLIC_*` is baked into the bundle at build time. Change it, delete `.next`, rebuild. And never run `dev` and `start` at the same time.
+
+</div>
+
+<aside className="notes">
+**This is the slide that makes their hunt week bearable**, and nobody discovers it alone. Clicking through the instructor views on `next dev` feels like the product is slow. It isn't; the compiler is.
+
+**Say the number:** the build wants ~8 GB of heap and takes a few minutes. That's a real cost on a small laptop, which is why it's a choice and not a rule.
+
+**The fragment is the same fact as the E2E setup** they'll meet in s06: full-suite runs use a prod build on 3001 with `NEXT_PUBLIC_PAWTOGRADER_WEB_URL` exported *before* the build. Don't explain that today, just plant the build-time rule.
+
+**If you're running long, this is the slide to cut** — it's on the cheat sheet, and Arc 2's work block matters more.
+
+> **Transition:** Three things eat afternoons. Here they are in advance.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## The Three Gotchas
+
+<div style={{fontSize: '0.62em', textAlign: 'left'}}>
+
+1. **Your database is older than your checkout.** Symptoms all differ, cause is one: `column ... does not exist`, `Could not find the '...' column in the schema cache`, `no partition of relation "audit" found for row`. Fix: `npx supabase db reset`, then `npm run seed`. If `start` restored a stale volume, `npx supabase stop --no-backup` first.
+2. **Wrong Supabase CLI.** The CLI is pinned to **2.105.0** in `package.json`. On older versions `db reset` dies with `must be owner of table objects`. Use `npx`, never a global install.
+3. **You changed the schema and skipped `npm run client-local`.** The generated types still describe the old schema, so you get type errors that point anywhere except at your migration.
+
+</div>
+
+<div style={{fontSize: '0.62em', textAlign: 'left', marginTop: '0.5em'}}>
+
+Schema change, in full: `npx supabase migration new <name>` · write the SQL · `npx supabase db reset` · `npm run client-local`
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.72em', marginTop: '0.5em', fontWeight: 'bold', color: '#2a9d8f'}}>
+All three are written down in <code>AGENTS.md</code>. Point your agent at that file.
+</p>
+
+<aside className="notes">
+**Do not walk through all three in detail.** Put the slide up, say "screenshot this," and name the symptom for each so they can pattern-match later. The detail is in the repo and on the cheat sheet.
+
+**Gotcha 1 is deliberately one gotcha and not three.** The stale-volume case, the schema-cache case, and the audit-partition case are the same fact wearing three error messages, and `db reset` fixes all of them. Teach the reflex: reset early, don't perform surgery on your local database.
+
+**Gotcha 3 is the one that matters for column groups.** Everyone doing that assignment writes a migration, and the ones who skip `client-local` spend an evening on type errors in files they never touched. Say it now and again on 9/14.
+
+**The fragment is the real lesson of the slide**, and it generalizes: the repo already documents its own traps, and the students who read `AGENTS.md` and `CLAUDE.md` before flailing get to the same place in a tenth of the time. This is also the first concrete instance of the course's AI posture — good context beats good prompting.
+
+> **Transition:** Work block. Get to the checkpoint.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## Work Block: Get to the Checkpoint
+
+<p style={{fontSize: '0.9em', fontWeight: 'bold', color: '#e76f51'}}>
+10 minutes. Staff are circulating.
+</p>
+
+<div style={{fontSize: '0.75em', textAlign: 'left', marginTop: '0.8em'}}>
+
+**The checkpoint:** you're logged in to a course as a seeded user and can see an assignment.
+
+**Every command is at** [/docs/local-dev](/docs/local-dev). Don't retype from the slides.
+
+**If you get there:** help the person next to you.
+
+**If you are stuck:** raise a hand. Don't silently debug — that's what the rest of the semester is for.
+
+</div>
+
+<aside className="notes">
+**Actually stop talking for the full ten minutes.** The temptation to fill the silence with clarifications is what kills working sessions.
+
+**Watch for the pattern**, not the individual: if six hands go up for the same error, stop the room and fix it collectively on the projector.
+
+**Take names of anyone still broken at the end.** Those are your Monday clinic appointments, and following up unprompted on Monday buys enormous trust.
+
+> **Transition:** Now — where does the code you write actually go?
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* ARC 3: THE PATH OF A FIRST PR (~15 min)      */}
+{/* Objective 2                                  */}
+{/* ============================================ */}
+
+<Slide>
+
+## The Path of a First PR
+
+<Img
+  src="/img/lectures/s02-pr-pipeline.webp"
+  prompt="A clean educational pipeline diagram (not pixel art), 16:9 landscape, light background, flowing left to right with six stages as rounded rectangles connected by thick teal arrows. Stages, in order: 'Branch', 'Pull request', 'CI', 'Review', 'Merge to main', 'Deploy'. Beneath the 'CI' stage, five small chips branch downward, labeled 'lint and prettier', 'jest unit', 'deno function tests', 'playwright and argos', 'preview deploy'. Beneath 'Review', two small chips labeled 'peer review' and 'staff review'. Beneath 'Deploy', a small chip labeled 'Helm chart to cluster'. Add two thin orange feedback arrows curving backward: one from 'CI' back to 'Branch' labeled 'red build', one from 'Review' back to 'Branch' labeled 'changes requested'. Restrained, professional, legible from the back of a room."
+  alt="Pipeline diagram flowing left to right through six stages — branch, pull request, CI, review, merge to main, deploy. CI branches into lint and prettier, Jest unit tests, Deno function tests, Playwright with Argos visual snapshots, and a preview deploy. Review branches into peer review and staff review; deploy notes the Helm chart to the cluster. Orange feedback arrows loop back from CI on a red build and from review on requested changes."
+/>
+
+<aside className="notes">
+**Trace it once at full speed**, then stop on the two orange arrows — the loops back are where students actually spend their time, and nobody warns them.
+
+**Full treatment of this pipeline is s04 on 9/16.** Today is orientation, not the deep dive. Don't start explaining trunk-based development.
+
+**Connect it to yesterday's trace:** the same CI machinery that runs on their PR is what grades student submissions through `assignment-action`. It's the same idea pointed at two different problems.
+
+> **Transition:** So what does CI actually stop you from doing?
+</aside>
+
+</Slide>
+
+<Slide>
+
+## What CI Protects
+
+<div style={{fontSize: '0.68em', textAlign: 'left'}}>
+
+| Check | What it catches |
+|---|---|
+| `npm run lint` | ESLint violations, and unformatted code |
+| Jest | Unit-level regressions |
+| `npm run test:functions` | Deno tests for the edge functions |
+| Playwright (~100 tests) | A user flow that stopped working |
+| Argos | A page that changed appearance without anyone deciding to |
+| Preview deploy | Your branch, running, at a URL commented on the PR |
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.75em', marginTop: '0.8em', fontWeight: 'bold', color: '#e76f51'}}>
+Run <code>npm run format</code> before you commit. CI rejects unformatted code, and that round trip is a wasted twenty minutes.
+</p>
+
+<p className="fragment" style={{fontSize: '0.7em', marginTop: '0.6em'}}>
+Branch <strong>in the repo</strong>, not in a fork. The E2E lane won't run for a fork PR.
+</p>
+
+<aside className="notes">
+**The Argos row is the interesting one** and worth naming as visual acceptance testing — most students have never seen it. It gets its own arc in s06.
+
+**The preview-deploy row is the one that will surprise them:** every PR gets the whole stack stood up on the cluster at its own URL. That's how a reviewer looks at their work without checking out their branch, and it's the concrete payoff of Monday-after-next's IaC session.
+
+**The first fragment is the single most useful sentence in this session.** Say it twice. It's the number one cause of a red first PR.
+
+**The second fragment is why the push-access list matters.** The E2E workflow uses `pull_request_target` and gates on whether the head branch lives in `pawtograder/platform`, because that job executes PR code on the project's own runners. A fork PR gets lint and nothing else. Don't teach the security reasoning today, just the rule: branch in the repo, and get push access if you don't have it.
+
+> **Transition:** CI is the cheap part of review. Humans are the expensive part.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## What a Good PR Looks Like Here
+
+<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1em', fontSize: '0.68em', marginTop: '0.5em'}}>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.6em', borderRadius: '8px'}}>
+
+**Gets merged**
+
+- One concern, reviewable in one sitting
+- Description says what changed and why
+- Links the ticket
+- Green CI before you ask for review
+- Says how you tested it
+
+</div>
+
+<div style={{backgroundColor: 'rgba(231,111,81,0.15)', padding: '0.6em', borderRadius: '8px'}}>
+
+**Sits for a week**
+
+- Four unrelated changes in one branch
+- Description is the branch name
+- Red CI, awaiting review
+- A formatting sweep mixed into a feature
+- No indication anyone ran it
+
+</div>
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.75em', marginTop: '0.8em'}}>
+Your git history is the evidence for your band claim in December, and a professional record besides.
+</p>
+
+<aside className="notes">
+**This is the slide to be concrete on.** If you can pull up one genuinely good merged PR and one that stalled, do that instead of reading the columns. Real artifacts land far harder than a table.
+
+**Tie the fragment back to yesterday's band scheme**, since there are no points to appeal to. Name what a PR history is evidence *for*: a first implementation ticket merged, deployed and verified running (LO3); six substantive reviews across the term with two outside your own team (LO4); no dead threads on your own PRs, judged as a habit (LO4); and at Distinction, a feature owned end to end. A thin history isn't a low score, it's a requirement you can't claim in December.
+
+**Review escalation gets its full treatment later** — today just say that peer review comes first and staff review gates the merge, so a good description is written for a peer, not for me.
+
+**TODO:** Confirm the current branch naming convention and whether you want it stated here.
+
+> **Transition:** Which means you need a ticket. Board's open.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* ARC 4: CLAIM YOUR HUNT ROLE (~15 min)         */}
+{/* Objective 3 — mostly hands-on                */}
+{/* ============================================ */}
+
+<Slide>
+
+## Claim Your Role
+
+<div style={{fontSize: '0.75em', textAlign: 'left'}}>
+
+The hunt has four roles: the student, the grader, the instructor, the new contributor. You already have the student role. Claim a second one here, so all four get covered.
+
+</div>
+
+<div className="fragment" style={{backgroundColor: 'rgba(100,150,255,0.12)', padding: '0.6em', borderRadius: '8px', fontSize: '0.72em', marginTop: '0.8em'}}>
+
+**The new-contributor role expires.** You're a new contributor exactly once, and it's this week. By October you'll know too much to see what the setup docs leave out.
+
+</div>
+
+<aside className="notes">
+**TODO — needs your decision before class:** where does role sign-up actually happen? A GitHub project board, a Discord thread, a spreadsheet? Whatever it is, put the URL on this slide. This is the operational hinge of the whole session.
+
+**Say the coverage rule out loud:** everyone picking the new-contributor role leaves the grader and instructor workflows unhunted, and those are where the product is thinnest. Balance the room as they sign up.
+
+**The wiring is the other thing that has to happen in this room.** Three things, all on the next work block slide: GitHub handle linked to Pawtograder, their fork of the column-groups handout, and session capture enabled. Anyone who leaves without them is chasing you next week.
+
+> **Transition:** So what are you looking for?
+</aside>
+
+</Slide>
+
+<Slide>
+
+## What Makes a Fileable Ticket
+
+<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1em', fontSize: '0.68em', marginTop: '0.5em'}}>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.6em', borderRadius: '8px'}}>
+
+**File this**
+
+- Numbered steps a stranger can follow
+- What you expected, and what happened
+- Who it affects, and what it cost them
+- Evidence: a screenshot, a trace, a log line
+
+</div>
+
+<div style={{backgroundColor: 'rgba(231,111,81,0.15)', padding: '0.6em', borderRadius: '8px'}}>
+
+**Not yet**
+
+- "This file uses `any` forty-one times"
+- A symptom with no user in it
+- Something you couldn't reproduce
+- A duplicate one search would have found
+
+</div>
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.75em', marginTop: '0.8em'}}>
+Hunt in the area you're curious about. Your bid on 9/17 will be much better for it.
+</p>
+
+<aside className="notes">
+**The fragment connects today to the bid deadline** and is the real strategic advice of the session: an hour spent as a grader in the gradebook tells you more about whether you want the gradebook project than any pitch I gave yesterday.
+
+**Ambition is not the problem** — a ticket with no user in it is. Someone will file "refactor the gradebook." Redirect them to the moment that actually cost somebody something.
+
+> **Transition:** Filing is only half of it.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## The Other Half: Triage
+
+<div style={{fontSize: '0.78em', textAlign: 'left'}}>
+
+Two tickets filed, and two things somebody hasn't decided about, decided. Every triage reaches one of three verdicts:
+
+1. **Still real.** The reproduction, who it affects, a size. It becomes claimable.
+2. **No longer real.** Fixed, obsolete, or a false positive. Say how you know.
+3. **Undecidable without something I don't have.** Name what you'd need and who has it.
+
+</div>
+
+<div className="fragment" style={{backgroundColor: 'rgba(255,200,100,0.2)', padding: '0.5em', borderRadius: '8px', fontSize: '0.72em', marginTop: '0.8em', border: '2px solid rgba(255,180,0,0.5)'}}>
+
+The verdict earns nothing. The reasoning is the deliverable.
+
+</div>
+
+<aside className="notes">
+**This half gets forgotten**, because filing is more fun than deciding. Say the split out loud: two filed, two triaged, and the triage is where the judgment is.
+
+**Verdict 3 is a real answer, not a cop-out.** A student who writes "undecidable, I'd need to know whether phase 2 is scheduled and only the instructor knows" has done the assignment. Say so now or you'll get four of them apologizing.
+
+**The trap worth naming:** the same `TODO` text appears in six migration files. That's one issue, not six. And a suppression with a written justification above it is somebody's decision, not their ticket.
+
+> **Transition:** Second work block. Get wired up, then claim.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## Work Block: Get Wired Up, Claim Your Role
+
+<p style={{fontSize: '0.9em', fontWeight: 'bold', color: '#e76f51'}}>
+8 minutes. Four things, in this order.
+</p>
+
+<div style={{fontSize: '0.72em', textAlign: 'left', marginTop: '0.8em'}}>
+
+1. **Link your GitHub handle to your Pawtograder account.** Without it we can't credit anything you file.
+2. **Open the column-groups assignment** and confirm your fork of the handout repo exists.
+3. **Enable session capture.** One command, then it rides along on `git push`.
+4. **Claim your second role** so all four get covered.
+
+</div>
+
+<div className="fragment" style={{fontSize: '0.75em', marginTop: '0.6em'}}>
+
+**If any of the four didn't work:** tell me now, not on Monday.
+
+</div>
+
+<aside className="notes">
+**TODO — needed before class:** the exact `entire` install and enable command, and the corpus remote it should push to. Put it on the slide; students will not retype a URL correctly from speech.
+
+**Steps 1 and 2 are the ones that silently fail.** A handle that isn't linked looks fine until Sep 16, when their filed tickets don't count. Ask for hands on each of the four rather than on the block as a whole.
+
+**On step 3, say what it does in one sentence and point at the syllabus**, rather than explaining it here: sessions are captured, they go to a course repo, the [syllabus](/syllabus#ai-policy) says who sees them and how to opt out of the research half. Someone will ask; the answer is in writing, which is the point.
+
+> **Transition:** Last thing — and it's the one that decides how your semester goes.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* ARC 5: WHEN YOU ARE STUCK (~7 min)           */}
+{/* Objective 4                                  */}
+{/* ============================================ */}
+
+<Slide>
+
+## The 30-Minute Rule
+
+<p style={{fontSize: '0.85em'}}>
+Thirty minutes of no progress on the same problem, and you owe the team a question.
+</p>
+
+<div className="fragment" style={{fontSize: '0.75em', textAlign: 'left', marginTop: '0.8em'}}>
+
+Not because struggling is bad — struggling is where the learning is. But because **silent** struggling is invisible to everyone who could have unblocked you in ninety seconds.
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.8em', marginTop: '0.8em', fontWeight: 'bold', color: '#e76f51'}}>
+The failure mode isn't asking too early. It's a student who says nothing for eight days.
+</p>
+
+<aside className="notes">
+**This is a culture-setting slide and it needs your delivery, not the words on it.** Students arrive from courses where asking is a penalty, and in a studio course that instinct is genuinely destructive.
+
+**Name the standup connection:** "blocked" with a specific ask is the most valuable line anyone posts on a Monday. It gets its own objective in s11.
+
+**TODO:** Consider telling a story about a time you were stuck and asked late. It undercuts the "professor is never stuck" assumption more effectively than any policy statement.
+
+> **Transition:** And here's how to ask so you get an answer.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## How to Ask
+
+<div style={{fontSize: '0.7em', textAlign: 'left'}}>
+
+**Four lines. That's the whole template.**
+
+1. What I'm trying to do
+2. What I did
+3. What I expected, and what happened instead — **paste the actual error**
+4. What I already ruled out
+
+</div>
+
+<div className="fragment" style={{backgroundColor: 'rgba(231,111,81,0.15)', padding: '0.5em', borderRadius: '8px', fontSize: '0.7em', marginTop: '0.8em'}}>
+
+Not: "supabase isn't working, any ideas?"
+
+</div>
+
+<div className="fragment" style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.5em', borderRadius: '8px', fontSize: '0.7em', marginTop: '0.5em'}}>
+
+Instead: "Running `db reset` to get the seeded class. It fails at migration `2026…` with `must be owner of table objects`. I checked I'm on the pinned CLI via `npx`. Full log in the thread."
+
+</div>
+
+<aside className="notes">
+**The two example fragments do all the work here.** Read both out loud. The contrast teaches faster than the numbered list above them.
+
+**Say the honest thing about why this matters:** a well-formed question gets answered in minutes because it's answerable. A vague one sits because answering it means interviewing you first.
+
+**The same template makes a good ticket, a good PR description, and a good standup post.** It's one skill wearing three hats — worth naming.
+
+> **Transition:** And here's where each kind of question goes.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## Where to Ask
+
+<div style={{fontSize: '0.68em', textAlign: 'left'}}>
+
+| Where | For what |
+|---|---|
+| **Discord** | Setup problems, "is this expected?", anything fast |
+| **The ticket itself** | Scope questions — they belong in the thread, permanently |
+| **Monday clinic** | Design tradeoffs, architecture, "we're stuck as a team" |
+| **[/docs/local-dev](/docs/local-dev)** | Every command from today, plus seeding, migrations, edge functions |
+| **The repo** | `README.md`, `AGENTS.md`, `CLAUDE.md`, `DEPLOYMENT.md` — read first |
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.72em', marginTop: '0.8em'}}>
+Ask in public by default. Your question is somebody else's answer next week.
+</p>
+
+<aside className="notes">
+**"Ask in public by default" is the norm to establish now**, and it's fragile: one DM answered generously teaches everyone that DMs work. Redirect them, kindly and consistently.
+
+**TODO:** Put the actual Discord channel names on this slide. "Ask in Discord" without a channel means everything lands in general.
+
+> **Transition:** Two things to take away.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* KEY TAKEAWAYS                                */}
+{/* ============================================ */}
+
+<Slide>
+
+## Key Takeaways
+
+<div style={{fontSize: '0.75em', textAlign: 'left'}}>
+
+1. **Pick your path deliberately.** Staging for frontend and docs; the full local stack the moment you touch the schema, an edge function, or E2E.
+2. **Small, green, well-described PRs get merged.** Everything else waits.
+3. **Thirty minutes, then ask** — in public, with the error pasted.
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.8em', marginTop: '1em', fontWeight: 'bold', color: '#2a9d8f'}}>
+You have a running app, a role, and everything wired up. Now go find what's wrong.
+</p>
+
+<aside className="notes">
+Close on the fragment.
+
+**Last thing before they leave:** anyone whose app is still not running should be on your Monday clinic list, and they should know they're on it.
+
+> **Transition:** Monday we go under the hood — and into the part of the system that can leak real student data.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* UP NEXT */}
+{/* ============================================ */}
+
+<Slide>
+
+## Up Next
+
+<div style={{fontSize: '0.85em', textAlign: 'left'}}>
+
+**Mon Sep 14 — Architecture II: Supabase, RLS & Student-Data Privacy**
+
+You now have a local database with seeded students in it. Monday: why every row checks your badge, why that check is expensive, and what FERPA obligates you to.
+
+</div>
+
+<div style={{fontSize: '0.75em', textAlign: 'left', marginTop: '1em'}}>
+
+**Before then:**
+
+- **The Ticket Hunt** — two filed, two triaged, due Wed Sep 16
+- **Project Bids** — due Thu Sep 17
+- Column groups is open the whole time. Don't start it on Sep 23
+
+</div>
+
+<aside className="notes">
+Close on the transition, not the reminders — students should leave knowing what today was for.
+</aside>
+
+</Slide>
+
+</RevealJS>

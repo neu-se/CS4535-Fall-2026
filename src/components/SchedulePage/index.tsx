@@ -789,11 +789,11 @@ export default function SchedulePage({ scheduleData }: Props) {
           <Box>
             Loosely, the course is organized as follows:
             <ul>
-              <li>Onboarding (weeks 1 - 3): lectures every session — architecture, continuous delivery, safe releases, testing, monitoring, user research — alongside the ticket burn-down</li>
+              <li>Onboarding (weeks 1 - 3): lectures every session — architecture, continuous delivery, safe releases, testing, monitoring, user research — alongside the ticket hunt and the column-groups bake-off</li>
               <li>Studio (weeks 4 - 12): Mon standup + clinic · Wed tech talk or student presentations · Thu team work session, with demo days every two weeks</li>
               <li>Hardening &amp; handoff (weeks 12 - 14): feature freeze, ops playbooks, documentation, final demos</li>
             </ul>
-            There is no final exam. The semester ends with final demos, a contribution portfolio and a reflection.
+            There is no final exam. The semester ends with final demos and the Learning Summary Report.
           </Box>
           <ScheduleTable
             entries={combinedEntries}

@@ -10,7 +10,8 @@
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "generate-images": "npx tsx plugins/classasaurus/scripts/generate-images-cli.ts"
   },
   "dependencies": {
     "@chakra-ui/react": "^3.9.0",
@@ -21,6 +22,7 @@
     "@emotion/styled": "^11.14.1",
     "@kth/canvas-api": "^5.1.1",
     "@mdx-js/react": "^3.0.0",
+    "@types/reveal.js": "^5.2.2",
     "clsx": "^2.0.0",
     "date-fns": "^4.1.0",
     "html-entities": "^2.6.0",
@@ -29,7 +31,8 @@
     "prism-react-renderer": "^2.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-icons": "^5.5.0"
+    "react-icons": "^5.5.0",
+    "reveal.js": "^5.2.1"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^3.9.2",

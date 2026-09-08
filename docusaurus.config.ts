@@ -41,6 +41,16 @@ const config: Config = {
   ],
 
   plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'lecture-slides',
+        path: 'lecture-slides',
+        routeBasePath: 'lecture-slides',
+        editUrl: 'https://github.com/neu-se/cs4535-fall-2026/edit/main/',
+        sidebarPath: './sidebars.ts',
+      },
+    ],
     [path.resolve(__dirname, './plugins/classasaurus/index.ts'), {
       configPath: './course.config.json',
       generateSchedule: true,
@@ -58,7 +68,7 @@ const config: Config = {
         src: 'img/logo.svg',
       },
       items: [
-        // {to: '/syllabus', label: 'Syllabus', position: 'left'},
+        {to: '/syllabus', label: 'Syllabus', position: 'left'},
         {to: '/schedule', label: 'Schedule', position: 'left'},
         {to: '/apply', label: 'Apply', position: 'left'},
         {
@@ -73,7 +83,7 @@ const config: Config = {
         {
           title: 'Course',
           items: [
-            // {label: 'Syllabus', to: '/syllabus'},
+            {label: 'Syllabus', to: '/syllabus'},
             {label: 'Schedule', to: '/schedule'},
             {label: 'Apply', to: '/apply'},
           ],
@@ -86,6 +96,9 @@ const config: Config = {
         },
       ],
       copyright: `CS 4535 — Northeastern University, Khoury College of Computer Sciences`,
+    },
+    mermaid: {
+      theme: { light: 'default', dark: 'dark' },
     },
     prism: {
       theme: prismThemes.github,
