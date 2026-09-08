@@ -47,6 +47,427 @@
   margin-bottom: 0;
 }
 
+.markdown ul ul {
+  list-style-type: circle;
+}
+
+.markdown ul ul ul {
+  list-style-type: square;
+}
+
+.markdown li > p {
+  --ifm-list-paragraph-margin: 0.5em;
+  --ifm-paragraph-margin-bottom: 0.5em;
+}
+
+/* ===================================
+   FOUC Prevention (Flash of Unstyled Content)
+   ===================================
+
+   Before RevealJS initializes, all slides are rendered in the DOM
+   and would be visible/stacked on top of each other. This CSS
+   hides the slides container until RevealJS takes over.
+
+   RevealJS adds .present class to the current slide after init.
+   We detect this and reveal the slides container.
+*/
+
+/* Hide the entire slides container before RevealJS initializes */
+/* Use :not(:has(.present)) to detect if RevealJS hasn't run yet */
+.reveal .slides:not(:has(.present)) {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Once RevealJS initializes and adds .present class, show the container */
+.reveal .slides:has(.present) {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* RevealJS integration styles */
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal .slides section {
+  text-align: left;
+}
+
+/* Ensure HTML elements render correctly in RevealJS slides */
+.reveal .slides section div,
+.reveal .slides section p,
+.reveal .slides section li {
+  display: block;
+  visibility: visible;
+}
+
+/* Ensure lists maintain their list display type for proper numbering/bullets */
+.reveal .slides section ul,
+.reveal .slides section ol {
+  display: block;
+  visibility: visible;
+  list-style-position: outside !important;
+  padding-left: 2.5em !important;
+  margin-left: 0;
+  overflow: visible !important;
+}
+
+/* Ensure ordered lists show numbers - override any 'none' values */
+.reveal .slides section ol {
+  list-style-type: decimal !important;
+  list-style-position: outside !important;
+  list-style-image: none !important;
+  list-style: decimal outside none !important;
+}
+
+/* Ensure list items in ordered lists show numbers */
+.reveal .slides section ol li {
+  list-style-type: decimal !important;
+  display: list-item !important;
+}
+
+/* Ensure markers are visible for ordered lists */
+.reveal .slides section ol li::marker {
+  display: inline-block !important;
+  visibility: visible !important;
+  color: inherit !important;
+  content: counter(list-item, decimal) "." !important;
+  font-weight: normal !important;
+}
+
+/* Set up counter for ordered lists */
+.reveal .slides section ol {
+  counter-reset: list-item !important;
+}
+
+.reveal .slides section ol li {
+  counter-increment: list-item !important;
+}
+
+/* Ensure unordered lists show bullets */
+.reveal .slides section ul {
+  list-style-type: disc !important;
+  list-style: disc outside !important;
+}
+
+/* Ensure list items in unordered lists show bullets */
+.reveal .slides section ul li {
+  list-style-type: disc !important;
+  display: list-item !important;
+}
+
+/* Note: Removed overly broad "div[style] { display: flex }" rule that was
+   forcing all styled divs to flex row. Multi-column layouts should use
+   display: grid with gridTemplateColumns, or explicitly set display: flex. */
+
+/* Ensure code blocks in RevealJS slides use full width */
+.reveal .slides section pre,
+.reveal .slides section pre code,
+.reveal .slides section .prism-code,
+.reveal .slides section .codeBlock,
+.reveal .slides section .codeBlockContent {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box;
+}
+
+/* Inline code styling - ensure it displays inline with light-mode colors */
+.reveal .slides section code:not(pre code) {
+  display: inline !important;
+  padding: 0.2em 0.4em !important;
+  margin: 0 !important;
+  font-size: 0.9em !important;
+  background-color: #f6f8fa !important;
+  border: 1px solid #d1d9e0 !important;
+  border-radius: 3px !important;
+  color: #24292f !important;
+  font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', monospace !important;
+  white-space: nowrap !important;
+  vertical-align: baseline !important;
+}
+
+/* Light mode (white theme) inline code colors */
+.reveal[data-theme="white"] .slides section code:not(pre code),
+.reveal.has-white .slides section code:not(pre code) {
+  background-color: #f6f8fa !important;
+  border-color: #d1d9e0 !important;
+  color: #24292f !important;
+}
+
+/* Dark mode (black theme) inline code colors */
+.reveal[data-theme="black"] .slides section code:not(pre code),
+.reveal.has-black .slides section code:not(pre code) {
+  background-color: #2d333b !important;
+  border-color: #444c56 !important;
+  color: #adbac7 !important;
+}
+
+/* Ensure code block containers don't constrain width */
+.reveal .slides section .codeBlockContent {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Allow code blocks to overflow horizontally if needed */
+.reveal .slides section pre {
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+}
+
+/* Ensure RevealJS viewport gets correct background based on theme */
+/* When theme is 'white', ensure white background */
+.reveal-viewport:has(.reveal[data-theme="white"]),
+.reveal-viewport.has-white {
+  background: #fff !important;
+}
+
+/* When theme is 'black', ensure black background */
+.reveal-viewport:has(.reveal[data-theme="black"]),
+.reveal-viewport.has-black {
+  background: #191919 !important;
+}
+
+/* Fallback: Apply background directly to reveal container based on theme */
+.reveal[data-theme="white"],
+.reveal.has-white {
+  background: #fff !important;
+}
+
+.reveal[data-theme="black"],
+.reveal.has-black {
+  background: #191919 !important;
+}
+
+/* Ensure slides container also respects theme */
+.reveal[data-theme="white"] .slides,
+.reveal.has-white .slides {
+  background: transparent;
+}
+
+.reveal[data-theme="black"] .slides,
+.reveal.has-black .slides {
+  background: transparent;
+}
+
+/* Fix text colors for RevealJS themes */
+/* White theme (light mode) - use dark text */
+.reveal[data-theme="white"] h1,
+.reveal[data-theme="white"] h2,
+.reveal[data-theme="white"] h3,
+.reveal[data-theme="white"] h4,
+.reveal[data-theme="white"] h5,
+.reveal[data-theme="white"] h6,
+.reveal.has-white h1,
+.reveal.has-white h2,
+.reveal.has-white h3,
+.reveal.has-white h4,
+.reveal.has-white h5,
+.reveal.has-white h6 {
+  color: #222 !important;
+}
+
+.reveal[data-theme="white"] p,
+.reveal[data-theme="white"] li,
+.reveal[data-theme="white"] td,
+.reveal[data-theme="white"] th,
+.reveal.has-white p,
+.reveal.has-white li,
+.reveal.has-white td,
+.reveal.has-white th {
+  color: #333 !important;
+}
+
+/* Black theme (dark mode) - use light text */
+.reveal[data-theme="black"] h1,
+.reveal[data-theme="black"] h2,
+.reveal[data-theme="black"] h3,
+.reveal[data-theme="black"] h4,
+.reveal[data-theme="black"] h5,
+.reveal[data-theme="black"] h6,
+.reveal.has-black h1,
+.reveal.has-black h2,
+.reveal.has-black h3,
+.reveal.has-black h4,
+.reveal.has-black h5,
+.reveal.has-black h6 {
+  color: #eee !important;
+}
+
+.reveal[data-theme="black"] p,
+.reveal[data-theme="black"] li,
+.reveal[data-theme="black"] td,
+.reveal[data-theme="black"] th,
+.reveal.has-black p,
+.reveal.has-black li,
+.reveal.has-black td,
+.reveal.has-black th {
+  color: #ddd !important;
+}
+
+/* Hide breadcrumbs, footer, and pagination on pages with RevealJS presentations */
+/* This gives more vertical space for the slides */
+body:has(.reveal) .theme-doc-breadcrumbs {
+  display: none !important;
+}
+
+/* Hide the doc footer (edit this page, last updated) */
+body:has(.reveal) .theme-doc-footer,
+body:has(.reveal) footer.theme-doc-footer,
+body:has(.reveal) .theme-doc-footer-edit-meta-row,
+body:has(.reveal) .docusaurus-mt-lg.theme-doc-footer {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Hide pagination nav (previous/next links) */
+body:has(.reveal) .pagination-nav,
+body:has(.reveal) nav.pagination-nav,
+body:has(.reveal) .docusaurus-mt-lg.pagination-nav {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Also hide the article footer if it exists */
+body:has(.reveal) article > footer {
+  display: none !important;
+}
+
+body:has(.reveal) article > nav {
+  display: none !important;
+}
+
+/* Fullscreen mode - hide ALL Docusaurus UI elements */
+html.reveal-fullscreen body {
+  overflow: hidden !important;
+}
+
+/* Hide all Docusaurus navigation and UI */
+html.reveal-fullscreen #__docusaurus {
+  display: none !important;
+}
+
+/* Show only the portal container with dead space background */
+html.reveal-fullscreen #reveal-fullscreen-portal {
+  display: block !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 99999 !important;
+  /* Dead space background - light mode default (subtle gray) */
+  background: #d4d4d4 !important;
+}
+
+/* Dark mode dead space background for fullscreen portal */
+html.reveal-fullscreen[data-theme="dark"] #reveal-fullscreen-portal,
+html.reveal-fullscreen:has([data-theme="black"]) #reveal-fullscreen-portal {
+  background: #0a0a0a !important;
+}
+
+/* Override Reveal.js viewport background in fullscreen to show dead space */
+html.reveal-fullscreen .reveal-viewport {
+  background: transparent !important;
+}
+
+/* Ensure the slides container has the proper background and shadow */
+html.reveal-fullscreen .reveal .slides {
+  background: #fff !important;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+}
+
+html.reveal-fullscreen[data-theme="dark"] .reveal .slides,
+html.reveal-fullscreen .reveal[data-theme="black"] .slides,
+html.reveal-fullscreen .reveal.has-black .slides {
+  background: #191919 !important;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Make individual slide backgrounds follow the slides container size, not full viewport */
+html.reveal-fullscreen .reveal .slide-background {
+  /* Hide individual backgrounds since we're using the slides container bg */
+  display: none !important;
+}
+
+/* Ensure fullscreen reveal fills the portal - DON'T use display:flex as it breaks height inheritance */
+html.reveal-fullscreen #reveal-fullscreen-portal .reveal {
+  width: 100% !important;
+  height: 100% !important;
+  position: relative !important;
+  display: block !important;
+  /* Make reveal background transparent so dead space shows through */
+  background: transparent !important;
+}
+
+/* Also make the slide backgrounds container transparent so dead space shows */
+html.reveal-fullscreen #reveal-fullscreen-portal .reveal .backgrounds {
+  background: transparent !important;
+}
+
+/* Compact title slide - makes h1 smaller to give more room for content */
+.reveal .slides section.compactTitle h1 {
+  font-size: 2em !important;
+  margin-bottom: 0.5em !important;
+}
+
+.reveal .slides section.compactTitle h3 {
+  font-size: 1.2em !important;
+  margin-bottom: 1em !important;
+}
+
+/* Table styling for RevealJS slides - auto-fit to slide width */
+.reveal .slides section table {
+  width: 100% !important;
+  max-width: 100% !important;
+  table-layout: auto !important;
+  font-size: 0.8em !important;
+  margin: 1em 0 !important;
+  border-collapse: collapse !important;
+}
+
+.reveal .slides section table th,
+.reveal .slides section table td {
+  padding: 0.5em 0.75em !important;
+  text-align: left !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+}
+
+.reveal .slides section table th {
+  font-weight: bold !important;
+  border-bottom: 2px solid currentColor !important;
+}
+
+.reveal .slides section table td {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Dark theme table borders */
+.reveal[data-theme="black"] .slides section table th,
+.reveal.has-black .slides section table th {
+  border-bottom-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.reveal[data-theme="black"] .slides section table td,
+.reveal.has-black .slides section table td {
+  border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+
+/* Improve spacing in ordered lists. */
+.reveal ol li {
+  padding-left: 0.5em;
+}
+
 /* Tech stack grid */
 .tech-stack-grid {
   display: grid;

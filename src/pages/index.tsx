@@ -75,7 +75,7 @@ Style: pixel art, 16-bit retro aesthetic, detailed but readable at small sizes. 
         <div style={{ marginBottom: '3rem' }}>
           <h2>Philosophy</h2>
           <p style={{ lineHeight: 1.7, color: 'var(--ifm-color-emphasis-800)', fontStyle: 'italic', fontSize: '1.05rem' }}>
-            How much do you do? I define the minimum for an A. You decide the minimum for your goals. Choose the topic focus that you want. Make the GitHub resume that you want. Use the AI that you want, too.
+            How much do you do? We define the minimum for an A. You decide the minimum for your goals. Choose the topic focus that you want. Make the GitHub resume that you want. Use the AI that you want, too.
           </p>
           <p style={{ lineHeight: 1.7, color: 'var(--ifm-color-emphasis-800)' }}>
             Real products need more than people who can write code. They need people who can talk to users, design interfaces, write documentation, set up monitoring, optimize queries, wrangle CI pipelines, and figure out why the thing that worked yesterday doesn't work today. This course has room for all of those people.
@@ -94,7 +94,7 @@ Style: pixel art, 16-bit retro aesthetic, detailed but readable at small sizes. 
             Lectures every session: the architecture of Pawtograder, Supabase and row-level security (and what it means to hold real student data), continuous delivery, how to release to 1,500 users without breaking them, testing, and monitoring and incident response. Ordered to get you productive in the codebase as fast as possible.
           </p>
           <p style={{ lineHeight: 1.7, color: 'var(--ifm-color-emphasis-800)' }}>
-            In parallel, you'll complete a ticket burn-down: documentation tickets and a small implementation task, shipping a change through the full pipeline (branch → PR → review → merge → deploy).
+            In parallel, you'll hunt real defects across the product and file them as tickets the class can act on, and build first-class gradebook column groups as a design bake-off: everyone solves the same problem independently, as a pull request that never merges.
           </p>
 
           <h3>Phase 2: Studio (Weeks 4–14)</h3>
@@ -126,7 +126,7 @@ Style: pixel art, 16-bit retro aesthetic, detailed but readable at small sizes. 
 
         {/* Projects */}
         <div style={{ marginBottom: '3rem' }}>
-          <h2>Projects</h2>
+          <h2 id="projects">Projects</h2>
           <p style={{ lineHeight: 1.7, color: 'var(--ifm-color-emphasis-800)' }}>
             One team per project. Team sizes adjust based on demand through a bidding process. Each project spans the full SDLC. The projects below are starting points — we're also looking for ideas from students. If you see a problem in Pawtograder that isn't listed here, tell us in your application.
           </p>
@@ -136,6 +136,12 @@ Style: pixel art, 16-bit retro aesthetic, detailed but readable at small sizes. 
               <h4>Usability Strike Force</h4>
               <p style={{ fontSize: '0.9rem', margin: 0 }}>
                 User research and UX improvements. Conduct usability studies with real users, identify pain points, design and ship improvements.
+              </p>
+            </div>
+            <div className="tech-stack-card">
+              <h4>Accessibility Strike Force</h4>
+              <p style={{ fontSize: '0.9rem', margin: 0 }}>
+                Get the student-facing pages to WCAG AA and prove it, testing against the real NVDA and VoiceOver lanes in the repo rather than a linter.
               </p>
             </div>
             <div className="tech-stack-card">
