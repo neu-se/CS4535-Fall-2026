@@ -278,13 +278,18 @@ Every command on the next few slides also lives at [/docs/local-dev](/docs/local
 
 ## Path B: The Full Local Stack
 
-<div style={{fontSize: '0.68em', textAlign: 'left'}}>
+<div style={{fontSize: '0.56em', textAlign: 'left'}}>
 
 ```bash
 # Docker must be running first
 npx supabase start        # boots Postgres, Auth, Realtime, Storage
 npx supabase db reset     # replays 400+ migrations, loads base data
-npx supabase status -o env  # copy keys into .env.local
+
+# the CLI's key names are not the app's. Rename them on the way out:
+npx supabase status -o env \
+  --override-name api.url=NEXT_PUBLIC_SUPABASE_URL \
+  --override-name auth.anon_key=NEXT_PUBLIC_SUPABASE_ANON_KEY \
+  --override-name auth.service_role_key=SUPABASE_SERVICE_ROLE_KEY >> .env.local
 
 npm run seed              # a test class with real logins
 npm run dev
@@ -295,6 +300,12 @@ npx supabase functions serve --env-file .env.local
 
 </div>
 
+<div style={{backgroundColor: 'rgba(255,200,100,0.2)', padding: '0.4em', borderRadius: '8px', fontSize: '0.6em', marginTop: '0.4em', border: '2px solid rgba(255,180,0,0.5)'}}>
+
+Then three by hand, which no command emits: `SUPABASE_URL` and `SUPABASE_ANON_KEY` (same values, without the `NEXT_PUBLIC_`), and `ENABLE_SIGNUPS=true`.
+
+</div>
+
 <div className="fragment" style={{fontSize: '0.68em', textAlign: 'left', marginTop: '0.6em'}}>
 
 Then: app on `https://localhost:3000` · Studio on `localhost:54323` · captured mail on `localhost:54324`
@@ -302,6 +313,10 @@ Then: app on `https://localhost:3000` · Studio on `localhost:54323` · captured
 </div>
 
 <aside className="notes">
+**Say why the `--override-name` block is on the slide at all.** A plain `npx supabase status -o env` prints `API_URL`, `ANON_KEY` and `SERVICE_ROLE_KEY`; the app reads `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY`. Paste the output as-is and nothing is configured, with no error anywhere that says so. Same text is at [/docs/local-dev](/docs/local-dev#path-b-the-full-local-stack), so nobody has to retype the flags from the screen.
+
+**The amber box is the part that bites after they think they're done.** Each source key maps to exactly one name per run, so the `NEXT_PUBLIC_`-less duplicates cannot come out of the same command.
+
 **`npm run seed` prints a wall of output.** Scroll up and search for "Login Credentials". Every seeded user's password is `change-it`.
 
 **Studio on 54323 is underused and worth 30 seconds of demo.** Being able to look directly at the rows is how you debug an RLS problem, and Monday's session assumes they can.
@@ -570,7 +585,7 @@ The hunt has four roles: the student, the grader, the instructor, the new contri
 
 **Say the coverage rule out loud:** everyone picking the new-contributor role leaves the grader and instructor workflows unhunted, and those are where the product is thinnest. Balance the room as they sign up.
 
-**The wiring is the other thing that has to happen in this room.** Three things, all on the next work block slide: GitHub handle linked to Pawtograder, their fork of the column-groups handout, and session capture enabled. Anyone who leaves without them is chasing you next week.
+**The wiring is the other thing that has to happen in this room.** Three things: GitHub handle linked to Pawtograder, their fork of the column-groups handout, and session capture enabled. Capture gets its own slide next, the other two are on the work block slide after it. Anyone who leaves without them is chasing you next week.
 
 > **Transition:** So what are you looking for?
 </aside>
@@ -653,6 +668,73 @@ The verdict earns nothing. The reasoning is the deliverable.
 
 </Slide>
 
+{/* ============================================ */}
+{/* SESSION CAPTURE                              */}
+{/* ============================================ */}
+
+<Slide>
+
+## Session Capture: Install Entire
+
+<p style={{fontSize: '0.72em', textAlign: 'left'}}>
+Required on every repo you work in this semester. One install, one enable, then it rides along on <code>git push</code>.
+</p>
+
+<div style={{fontSize: '0.58em', textAlign: 'left'}}>
+
+```bash
+# macOS / Linux
+brew tap entireio/tap && brew trust entireio/tap
+brew install --cask entire
+# no Homebrew: curl -fsSL https://entire.io/install.sh | bash
+```
+
+```powershell
+# Windows, PowerShell 5.1 or later
+irm https://entire.io/install.ps1 | iex
+```
+
+```bash
+cd platform
+entire enable --local \
+  --checkpoint-remote github:neu-cs4535/fa26-entire-checkpoints
+entire status   # checkpoint destination must be the corpus repo
+```
+
+</div>
+
+<div className="fragment" style={{backgroundColor: 'rgba(100,150,255,0.12)', padding: '0.5em', borderRadius: '8px', fontSize: '0.68em', marginTop: '0.6em'}}>
+
+It hooks whichever agent you use and stores each session beside the commit it produced. Transcripts go to a private course repo, never to `pawtograder/platform`. Who reads them, and how to opt out of the research half: [syllabus](/syllabus#what-we-keep-from-your-sessions).
+
+</div>
+
+<div className="fragment" style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.5em', borderRadius: '8px', fontSize: '0.66em', marginTop: '0.5em'}}>
+
+**Already have the stack running?** Give your agent one small task, commit it, then read back what got captured: `entire checkpoint list`, then `entire checkpoint explain <id>`.
+
+</div>
+
+<aside className="notes">
+**Confirm every student's GitHub account has write access to `neu-cs4535/fa26-entire-checkpoints` before class.** A student whose checkpoint push is rejected gets a warning on `git push`, not a failure, so a broken corpus is silent and you find out in October.
+
+**Why `--local`:** it writes the setting to `.entire/settings.local.json`, which is gitignored, instead of `.entire/settings.json`, which is committed. Students branch in `pawtograder/platform` itself, so without `--local` their first PR carries a config change nobody asked for.
+
+**Why `--checkpoint-remote` at all, in one sentence if asked:** checkpoints are git refs, so by default they ride to the repo you push code to, and that repo is public. The flag sends them somewhere private instead. Don't teach the ref layout today.
+
+**`entire enable` prompts for which agent to hook.** Claude Code, Codex, Copilot CLI, Cursor, Gemini, opencode and Pi are all on the list, so nobody has to switch tools. They can add a second one later with `entire agent add <name>`.
+
+**The line that has to land: `entire status` is the checkpoint.** It prints the checkpoint destination and how many are unpushed. If the destination reads `pawtograder/platform`, the enable didn't take and their transcripts are headed somewhere public. Ask for hands on the destination line, not on "did it install".
+
+**The green box is the in-class stretch for the students who are already running.** A rename or a one-line test is enough to produce a checkpoint. `entire checkpoint explain` is the slide that sells the tool, because seeing your own prompt and diff paired is the moment it stops sounding like surveillance and starts looking like a tool. Demo it yourself if the room is thin on working stacks.
+
+**Say the credential rule here, briefly.** Redaction is best-effort and a hardcoded secret in the working tree can ride through in a snapshot. If something sensitive lands in a session, tell us and we purge and rotate.
+
+> **Transition:** Second work block. Get wired up, then claim.
+</aside>
+
+</Slide>
+
 <Slide>
 
 ## Work Block: Get Wired Up, Claim Your Role
@@ -665,7 +747,7 @@ The verdict earns nothing. The reasoning is the deliverable.
 
 1. **Link your GitHub handle to your Pawtograder account.** Without it we can't credit anything you file.
 2. **Open the column-groups assignment** and confirm your fork of the handout repo exists.
-3. **Enable session capture.** One command, then it rides along on `git push`.
+3. **Enable session capture.** The two commands on the last slide, then `entire status` to confirm where checkpoints are going.
 4. **Claim your second role** so all four get covered.
 
 </div>
@@ -677,11 +759,9 @@ The verdict earns nothing. The reasoning is the deliverable.
 </div>
 
 <aside className="notes">
-**TODO — needed before class:** the exact `entire` install and enable command, and the corpus remote it should push to. Put it on the slide; students will not retype a URL correctly from speech.
-
 **Steps 1 and 2 are the ones that silently fail.** A handle that isn't linked looks fine until Sep 16, when their filed tickets don't count. Ask for hands on each of the four rather than on the block as a whole.
 
-**On step 3, say what it does in one sentence and point at the syllabus**, rather than explaining it here: sessions are captured, they go to a course repo, the [syllabus](/syllabus#ai-policy) says who sees them and how to opt out of the research half. Someone will ask; the answer is in writing, which is the point.
+**On step 3, don't re-explain the previous slide.** The one thing to check in the room is the destination line from `entire status`. Anything about who reads the sessions goes to the [syllabus](/syllabus#ai-policy), which is where the answer is in writing.
 
 > **Transition:** Last thing — and it's the one that decides how your semester goes.
 </aside>

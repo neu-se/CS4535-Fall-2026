@@ -48,7 +48,7 @@ Docker has to be running first.
 ```bash
 npx supabase start                            # Postgres, Auth, Realtime, Storage
 npx supabase db reset                         # replay every migration, load supabase/seed.sql
-npx supabase status -o env                    # the keys to paste into .env.local
+npx supabase status -o env                    # keys, under the CLI's names, not the app's
 npm run seed                                  # a class with fabricated students you can log into
 npm run dev
 ```
@@ -64,6 +64,21 @@ Your `.env.local` needs the values `supabase status` just printed:
 | `SUPABASE_SERVICE_ROLE_KEY` | the service role key. Server-side only, never in the browser, never committed |
 | `NEXT_PUBLIC_PAWTOGRADER_WEB_URL` | wherever you're serving the app, usually `https://localhost:3000` |
 | `ENABLE_SIGNUPS` | `true`, so you can make accounts from the UI |
+
+Copying that output verbatim configures nothing. `supabase status -o env` names its variables
+`API_URL`, `ANON_KEY` and `SERVICE_ROLE_KEY`, and the app reads none of those. Rename them as you
+paste, or have the CLI emit the right names in the first place:
+
+```bash
+npx supabase status -o env \
+  --override-name api.url=NEXT_PUBLIC_SUPABASE_URL \
+  --override-name auth.anon_key=NEXT_PUBLIC_SUPABASE_ANON_KEY \
+  --override-name auth.service_role_key=SUPABASE_SERVICE_ROLE_KEY >> .env.local
+```
+
+Each source key maps to one name per run, so the duplicates are still yours to add: `SUPABASE_URL`
+with the same value as `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_ANON_KEY` with the same value as
+`NEXT_PUBLIC_SUPABASE_ANON_KEY`, and `ENABLE_SIGNUPS=true`.
 
 And the ports:
 
@@ -129,7 +144,16 @@ Anything the app emails you locally, including magic links and confirmations, la
 | `large` | 900 students, 80 graders, 20 assignments. For anything where scale is the question |
 | `tcrs` | 50 students in stable 3 to 4 person groups, reused across all 10 group assignments |
 | `marketing` | A 500-student course that looks good in a screenshot |
+| `cs4535` | 24 students, 8 past-due assignments, and a gradebook with columns that actually group. What the [column groups assignment](./assignments/onboarding-column-groups.md) is written against |
 | `custom` | 100 students, and a starting point for your own flags |
+
+Seed `cs4535` for the column groups assignment:
+
+```bash
+npm run seed -- --template cs4535
+```
+
+It's the only template with more than one multi-column group in its gradebook, and grouping is what that assignment is about. Run plain `npm run seed` afterward as well if you want a second, differently shaped gradebook for your backfill to run against. The two classes coexist.
 
 Flags that override whichever template you picked: `--class-name`, `--students`, `--graders`, `--instructors`, `--assignments`, `--manual-graded-columns`, `--grading-scheme current|specification`, `--help-requests`, `--discussion-posts`, `--date-range-start`, `--date-range-end`.
 
@@ -193,6 +217,47 @@ This serves everything in `supabase/functions/` at `http://127.0.0.1:54321/funct
 
 You don't need real GitHub App credentials to do it. Put `E2E_ENABLE=true`, `END_TO_END_SECRET=not-a-secret`, `EDGE_FUNCTION_SECRET=some-secret-value`, `GITHUB_APP_ID=1` and any RSA private key in `GITHUB_PRIVATE_KEY_STRING` into `.env.local`. The dummy key is there because the function runtime builds a GitHub client when it loads; the E2E bypass keeps it from making real calls.
 
+## Session capture
+
+Every repo you work in this semester runs [Entire](https://github.com/entireio/cli), which hooks your coding agent and stores each session as a git object beside the commit it produced. Install it once:
+
+```bash
+# macOS / Linux
+brew tap entireio/tap && brew trust entireio/tap
+brew install --cask entire
+
+# no Homebrew
+curl -fsSL https://entire.io/install.sh | bash
+```
+
+On Windows, in PowerShell 5.1 or later:
+
+```powershell
+irm https://entire.io/install.ps1 | iex
+```
+
+Then enable it in each clone. `entire enable` asks which agent to hook, and Claude Code, Codex, Copilot CLI, Cursor, Gemini, opencode and Pi are all supported, so you keep whatever you already use:
+
+```bash
+cd platform
+entire enable --local \
+  --checkpoint-remote github:neu-cs4535/fa26-entire-checkpoints
+entire status
+```
+
+Read the `entire status` output before you move on. It prints where checkpoints are going, and that destination has to be [`neu-cs4535/fa26-entire-checkpoints`](https://github.com/neu-cs4535/fa26-entire-checkpoints), the private course corpus repo. Checkpoints are ordinary git refs, so a misconfigured repo pushes your transcripts wherever you push your code, and `pawtograder/platform` is public. The `--local` flag keeps this setting in `.entire/settings.local.json`, which is gitignored, so it never turns up in a pull request.
+
+After that it rides along on `git push` and there is nothing else to do. To see what a session actually contains:
+
+| Command | What it shows |
+|---|---|
+| `entire status` | The current session, the checkpoint destination, and how many checkpoints are unpushed |
+| `entire checkpoint list` | Checkpoints on this branch |
+| `entire checkpoint explain <id>` | One checkpoint in full: the prompts, the files touched, the diff |
+| `entire session resume <branch>` | Restores the latest checkpointed session so you can pick up where you left off |
+
+Two rules. Don't paste credentials into an agent, because redaction is best-effort and a hardcoded secret in your working tree can ride through in a code snapshot. And if something sensitive does land in a session, say so and we'll purge it and rotate the key.
+
 ## Before you push
 
 | Command | What it does |
@@ -212,6 +277,8 @@ Opening a PR runs the lint lane, which is `npm run lint`, the Jest tests, the De
 The end-to-end lane, which is Playwright plus Argos visual snapshots, is gated on trust. It runs for branches pushed to `pawtograder/platform` itself and not for pull requests from forks, because that job checks out and executes the PR's code on the project's own runners. So work on a branch in the repo, and ask for push access if you don't have it yet. A fork PR is a PR nobody can fully check.
 
 Argos uploads snapshots only from CI, so running Playwright locally never touches the visual baseline.
+
+That's the upstream repo, which is where everything from the studio phase onward is merged. The [column groups assignment](./assignments/onboarding-column-groups.md) is the exception: it goes to a handout repo of its own, which runs a much shorter set of checks, described on that page.
 
 ## Where to look next
 

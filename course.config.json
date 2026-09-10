@@ -808,7 +808,14 @@
       "CS 3100 (or CS 3500)"
     ],
     "description": "A professional practicum capstone. A small cohort works on Pawtograder, a production platform with 1,500+ weekly active users, practicing the full software development lifecycle from design through operations.",
-    "syllabus": "/syllabus"
+    "syllabus": "/syllabus",
+    "officeHours": [
+      {
+        "instructor": "Jonathan Bell",
+        "schedule": "Mondays 1:00–2:00 PM, Thursdays 9:30–10:30 AM",
+        "location": "WVH 326"
+      }
+    ]
   },
   "defaultSlidesPath": "/lecture-slides"
 }

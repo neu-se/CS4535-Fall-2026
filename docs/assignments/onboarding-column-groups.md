@@ -14,9 +14,9 @@ Open the gradebook for any course in Pawtograder and the columns are grouped. As
 
 Nobody built it. The grouping is computed in the browser on every render, in the [`groupedColumns` memo](https://github.com/pawtograder/platform/blob/main/app/course/%5Bcourse_id%5D/manage/gradebook/gradebookTable.tsx#L2556-L2615) in `manage/gradebook/gradebookTable.tsx`. It [splits `col.slug` on `-`](https://github.com/pawtograder/platform/blob/main/app/course/%5Bcourse_id%5D/manage/gradebook/gradebookTable.tsx#L2567), takes a prefix off the front, [special-cases anything shaped `assignment-<type>-*`](https://github.com/pawtograder/platform/blob/main/app/course/%5Bcourse_id%5D/manage/gradebook/gradebookTable.tsx#L2571-L2577), and then runs a [contiguity check on `sort_order`](https://github.com/pawtograder/platform/blob/main/app/course/%5Bcourse_id%5D/manage/gradebook/gradebookTable.tsx#L2580-L2587) to decide where one group ends and the next begins.
 
-The same heuristic exists a second time, in the student-facing what-if view at [`gradebook/whatIf.tsx`](https://github.com/pawtograder/platform/blob/main/app/course/%5Bcourse_id%5D/gradebook/whatIf.tsx#L543-L599). Deliverable 3 below is about the instructor gradebook; if you convert the what-if view as well, say so in the PR.
+The same heuristic is copy-pasted elsewhere in the app. The student-facing what-if view at [`gradebook/whatIf.tsx`](https://github.com/pawtograder/platform/blob/main/app/course/%5Bcourse_id%5D/gradebook/whatIf.tsx#L543-L599) is one of those places, and it is not the only one. Deliverable 3 below is about the instructor gradebook. If you convert the other copies as well, say so in the PR.
 
-Now read the schema. [`gradebook_columns`](https://github.com/pawtograder/platform/blob/main/supabase/migrations/20250614231720_gradebook.sql#L98-L113) is created in `supabase/migrations/20250614231720_gradebook.sql`. There is no group column and no group table. There is [`sort_order`](https://github.com/pawtograder/platform/blob/main/supabase/migrations/20250614231720_gradebook.sql#L112), an integer, and that's all there is. The table's [existing RLS policies](https://github.com/pawtograder/platform/blob/main/supabase/migrations/20250614231720_gradebook.sql#L649-L662) are the ones your new table has to sit consistently beside.
+Now read the schema. [`gradebook_columns`](https://github.com/pawtograder/platform/blob/main/supabase/migrations/20250614231720_gradebook.sql#L98-L113) is created in `supabase/migrations/20250614231720_gradebook.sql`. There is no group column and no group table. There is [`sort_order`](https://github.com/pawtograder/platform/blob/main/supabase/migrations/20250614231720_gradebook.sql#L112), an integer, and that's all there is. The table's [existing RLS policies](https://github.com/pawtograder/platform/blob/main/supabase/migrations/20250614231720_gradebook.sql#L648-L661) are the ones your new table has to sit consistently beside.
 
 Those line numbers are current as of September 2026 and will drift as the class works. If a link lands somewhere that makes no sense, search the file for `groupedColumns` rather than trusting the anchor.
 
@@ -48,7 +48,21 @@ One pull request from your fork to the handout repository, final by **Thu Sep 24
 5. **The band you are claiming, stated in the PR description**, with a sentence justifying it. The bands are under [Grading](#grading) below. At Credit, that's the written list. I assess by checking whether the claim is true, so a Pass that's true is worth more to you than a Distinction that isn't.
 6. **What you tested against, and the down path.** Which courses, which columns, what you actually ran, and what happens if this has to be undone after it has already run once.
 
-You'll need the full local stack for this one, since a migration is exactly the case the staging backend can't serve. [Local Development](../local-dev.md) has the setup, and the loop you'll be in all week is four commands: `npx supabase migration new <name>`, write the SQL, `npx supabase db reset` to replay it from scratch, and `npm run client-local` to regenerate the TypeScript types your new table needs to appear in. Skipping that last one is the most common way this assignment goes wrong, because the type errors it produces point at files you never touched.
+You'll need the full local stack for this one, since a migration is exactly the case the staging backend can't serve. [Local Development](../local-dev.md) has the setup. Seed with `npm run seed -- --template cs4535`: that's the class whose gradebook everything above describes, and the stock `npm run seed` gives you one where almost every column is already a group of one. The loop you'll be in all week is four commands: `npx supabase migration new <name>`, write the SQL, `npx supabase db reset` to replay it from scratch, and `npm run client-local` to regenerate the TypeScript types your new table needs to appear in. Skipping `npm run client-local` is the most common way this assignment goes wrong, because the type errors it produces point at files you never touched. `db reset` also drops the seeded class, so re-seed after every replay or you'll be reading an empty gradebook.
+
+### What CI tells you, and what it doesn't
+
+Three checks run on your pull request.
+
+`lint` is `npm run lint`: `next lint` plus `prettier --check .` over the whole tree. This is the round trip [Local Development](../local-dev.md#before-you-push) warns you about, and `npm run format` before you commit avoids all of it.
+
+`deno-unit-tests` runs the Deno tests under `supabase/functions`.
+
+`gradebook-e2e` is the one worth waiting for. It brings up a throwaway Supabase, replays every migration including yours, seeds the `cs4535` class, and drives the instructor gradebook in a real browser. Three things can go wrong there, and each is worth knowing about. Your migration can fail to apply from scratch, which is what `npx supabase db reset` catches locally. Your committed `SupabaseTypes.d.ts` can disagree with the schema your migration produces, which is what `npm run client-local` is for. Or the gradebook can come up with nothing grouped.
+
+It also uploads screenshots of your gradebook, collapsed and expanded, as a build artifact. Download them: that's what your grouping actually looks like, and it's the same view I read when I grade. If you want to see a case handled a particular way, this is where you check that it is.
+
+None of this is a claim that your design is good. Green means it applies, the types match, and the table still groups something. Your design is assessed from the writeup instead.
 
 ## The design writeup
 

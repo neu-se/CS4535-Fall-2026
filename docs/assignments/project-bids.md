@@ -24,7 +24,7 @@ A bid has four parts. It's about an hour's work if you've been paying attention 
 
 Rank **every project on [the slate](/#projects)** from most to least wanted. Not just your top three.
 
-The bottom of your ranking matters more than you'd think. A project you would be actively unhappy on is more useful for us to know than one more project you'd enjoy.
+The bottom of your ranking matters more than you'd think. Projects you'd be actively unhappy on are more useful for us to know than one more project you'd enjoy, and the form asks about them in its own question, so name them there.
 
 Rank honestly. We resolve by demand rather than by second-guessing, and there is no ordering trick that improves your odds. What misreporting reliably does is put a project you don't want somewhere we can legitimately place you on it.
 
@@ -34,7 +34,7 @@ A paragraph each. We're reading for one thing: do you understand the problem, an
 
 > *Weak:* "Office hours seems like an interesting product challenge and I'd love to work on the UX."
 
-> *Strong:* "I used office hours a few times in CS 3100 last spring. The queue position estimate was wrong every single time — it counts the people ahead of you but not how long each one is likely to take, so a queue of three can mean five minutes or fifty. I'd start by measuring actual time-to-resolution per help request and find out whether that estimate can be made honest before touching anything visual."
+> *Strong:* "I used office hours a few times in CS 3100 last spring. The queue position estimate was wrong every single time, because it counts the people ahead of you but not how long each one is likely to take, so a queue of three can mean five minutes or fifty. I'd start by measuring actual time-to-resolution per help request and find out whether that estimate can be made honest before touching anything visual."
 
 The second one isn't better because it's longer. It's better because it names a specific behavior, says why that behavior is wrong, and proposes a first step that could turn out to be a dead end.
 
@@ -74,12 +74,6 @@ A proposal needs five things:
 
 Proposals are due with your bid, and we'll tell you on Sep 24 whether yours is running. A proposal that doesn't run isn't wasted. Some become tickets, and the good ones have a way of turning up on next year's slate.
 
-## Where this goes
-
-One **survey in Pawtograder**, open Wed Sep 9 and closing **Thu Sep 17, 23:59 ET**. It has four fields, matching the four sections above: the ranking, the two paragraphs, your primary and secondary energy, and the optional evidence. Under a page in total.
-
-If you are proposing a project that isn't on the slate, it goes in the same survey.
-
 ## How bids get resolved
 
 Demand decides, and it resolves like this:
@@ -90,6 +84,18 @@ Demand decides, and it resolves like this:
 - You hear on **Thu Sep 24, in class.** Not before. We can't resolve any of it until the last bid is in.
 
 Many of you will get your first or second choice, and more of you than usual will not, simply because there are seven projects and only three or four slots. If you land somewhere you didn't rank near the top, come to the first Monday clinic and say so. There is usually something to be done about it in week four and almost nothing to be done about it in week nine.
+
+## AI Policy
+
+Use an agent to read the slate, dig into the code behind a project you're considering, or check whether something you noticed is already filed. That's the same permission [the ticket hunt](./ticket-hunt.md) gives you, and this is a good week to spend it.
+
+The two case paragraphs have to be yours. We're reading them for whether you've touched the problem, which is the one thing an agent can't do on your behalf, and a generated case comes back as a fluent restatement of the slate blurb we wrote ourselves. If your case comes from something you actually hit, say what you hit and the difference will be obvious.
+
+## Submission
+
+One **survey in Pawtograder**, open Wed Sep 9 and closing **Thu Sep 17, 23:59 ET**. It follows the four sections above: drag all seven projects into rank order, name any you'd be actively unhappy on, write the two paragraphs, pick a primary and a secondary energy, and attach evidence if you have it. Filling in the form takes about fifteen minutes. The thinking behind it takes about an hour.
+
+If you're proposing a project that isn't on the slate, check the box at the end of the same survey and the five proposal questions appear.
 
 ## Grading Rubric
 

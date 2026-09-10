@@ -80,7 +80,7 @@ Follow the setup and contribution docs literally, in order, without using anythi
 
 **Getting the instance:** [Local Development](../local-dev.md) has the setup commands, the seeding options, and the problems that most often cost people an afternoon. Two entries there matter for this assignment in particular. `scripts/GenerateMagicLink.ts` prints a login URL for any seeded user, which is how you move between roles without collecting passwords. And `FIXED_GRADER_EMAIL=you@northeastern.edu npm run seed` seeds your own address into the grader seat, so the grading pass happens as you.
 
-**Finding the mechanism in the code:** Once one of the roles gives you a symptom, you can often work out the mechanism from the code, and a ticket that names the mechanism gives whoever picks it up somewhere to start. Use your IDE or `grep` to find, for exmaple, flags to disable eslint rules or TODO comments. 
+**Finding the mechanism in the code:** Once one of the roles gives you a symptom, you can often work out the mechanism from the code, and a ticket that names the mechanism gives whoever picks it up somewhere to start. Use your IDE or `grep` to find, for example, flags to disable eslint rules or TODO comments.
 
 ## AI Policy
 
@@ -110,9 +110,11 @@ Two tickets filed Sep 16 at 23:00, both from the student role, both one line lon
 
 ## Submission
 
-File both tickets as issues on [`pawtograder/platform`](https://github.com/pawtograder/platform/issues), labeled `cs4535-hunt` so we can find them, and post each triage verdict as a comment on the item you triaged. Complete the survey in Pawtograder, including links to the tickets and triages you filed.
+File both tickets as issues on [`pawtograder/platform`](https://github.com/pawtograder/platform/issues), labeled `cs4535-hunt` so we can find them, and post each triage verdict as a comment on the item you triaged. We read the issues and the comments there, not the form.
 
-We spend Sep 16–17 deduping, sizing, and labeling everything the hunt produced. What survives is labeled `cs4535-first-ticket` and becomes the pool published on **Thu Sep 17**, which the [First Implementation Ticket](./first-implementation-ticket.md) draws from when it opens on **Thu Oct 15**. You may not claim your own ticket then, since the point is to read code somebody else chose and understand a problem as somebody else described it.
+The **hunt form in Pawtograder** is the record that you did it. It opens Wed Sep 9 and closes with the assignment on Wed Sep 16, 23:59 ET. Per ticket it asks for the issue link, the role it came from, who's affected and how many of them, and where you saw it. It also asks what evidence you attached, one sentence on why it matters, and a size or what you'd need to produce one. Per triage it asks for the item, a link to your comment, your verdict, and what you checked to reach it. Two other fields are worth knowing about before you start: the terms you searched before filing, so keep them as you go, and roughly how long the assignment took you, which is how we size next year's version of it.
+
+We spend Sep 16–17 deduping, sizing, and labeling everything the hunt produced, working from the form. What survives is labeled `cs4535-first-ticket` and becomes the pool published on **Thu Sep 17**, which the [First Implementation Ticket](./first-implementation-ticket.md) draws from when it opens on **Thu Oct 15**. You may not claim your own ticket then, since the point is to read code somebody else chose and understand a problem as somebody else described it.
 
 Your ticket being merged into somebody else's, or closed as already fixed, is not a mark against you. A duplicate filed after a real search is a different thing from one filed instead of searching.
 

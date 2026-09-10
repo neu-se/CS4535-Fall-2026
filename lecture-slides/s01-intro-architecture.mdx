@@ -24,10 +24,10 @@ import Img from '@site/src/components/Img';
 <aside className="notes">
 **Session:** Wed Sep 9 · Course Intro + Pawtograder Architecture I · 65 min
 
-**Structure (The deal → The product → The vocabulary → The stack → The debt → Your slate):**
-- Arc 1: The Deal (~8 min) — what this course is, how it's graded, the weekly rhythm, the AI posture
-- Arc 2: The Product and Its Users (~7 min) — what Pawtograder does, who depends on it, how big it is
-- Arc 3: The Vocabulary (~8 min) — the six infrastructure building blocks, then a real slide each on "what is a database" and "why is there an EventBridge". Lifted from CS 3100 `l21-serverless`
+**Structure (Who's here → How it's graded → The vocabulary → The stack → The debt → Your slate):**
+- Arc 1: Who's In the Room (~15 min) — introductions, everyone in the room, including the AI conversation
+- Arc 2: How This Works (~9 min) — the four bands, what counts as evidence, the two halves of the calendar
+- Arc 3: The Vocabulary (~4–8 min) — the six infrastructure building blocks, then a real slide each on "what is a database" and "why is there an EventBridge". Lifted from CS 3100 `l21-serverless`
 - Arc 4: The Stack (~24 min) — the thesis, then diagrams as evidence: inventory, communication, inside Postgres, then autograding and gradebook recalculation as sequences. Closes on the roadmap slide, which tells anyone feeling behind that every box has a date
 - Arc 5: Where Complexity and Debt Live (~5 min) — one map slide, and the debt talked over it rather than listed on it
 - Arc 6: The Project Slate (~9 min) — projects pinned to areas of the system
@@ -36,6 +36,10 @@ import Img from '@site/src/components/Img';
 
 **Narrative spine:** You're joining a product that predates you, that real people use this semester, and that ships its first official release in January 2027. Today is the map: what it does, how it's built, where it hurts, and which part of it you might own.
 
+**The pitch is gone, on purpose.** Everyone enrolled so far came in through an application, and all of them did the pre-application activity. They are already sold on the course, and most have already had Pawtograder running on their own laptop. Spending ten minutes telling them what the product is and why the course is interesting would be telling them what they already did. That time went to introductions instead.
+
+**What the cut pitch slides carried that still has to be said** — say it inside your own introduction (see the Introductions slide): what Pawtograder is, that it runs ten courses this term including this one, and the blast radius. That's about two minutes of talking.
+
 **The architectural thesis is the spine of Arc 4**, and it's stated on a slide before any diagram appears:
 1. **The database is the application** — the logic lives in the database, and the database enforces security on the data.
 2. **We want the application to be sequentially consistent** — one coherent order of events; what you just did is what you see.
@@ -43,9 +47,9 @@ import Img from '@site/src/components/Img';
 
 Every diagram in Arc 4 is evidence for one of those three. Say so, and say it again in the takeaways. Students who leave with those three sentences can predict most of the codebase; students who leave with a component list can't.
 
-**Timing risk:** this now adds to about 69 minutes for a 65-minute room, deliberately — Arc 3's length depends entirely on who is sitting in front of you, and you won't know until you ask.
+**The timing risk is now real.** Fifteen minutes of introductions is worth it on a room this size, but it costs time you have to find elsewhere. The deck as written runs about 74 minutes in a 65-minute room. **Pre-commit to the cuts before you walk in** rather than discovering them at 11:15. The two designated cuts, in order, buy back six minutes and cost almost nothing (see the cut order below).
 
-**Arc 3 is the variable.** If most of the room took CS 3100 with you, they have seen the building-blocks grid and the arc takes four minutes. If you have co-op returners and transfers, it takes twelve and is worth every one of them. Ask first (see the TODO on that slide).
+**Arc 3 is the other variable.** Everyone enrolled so far set up local Supabase and Postgres for the pre-application activity, so the floor is higher than it would be in an open-enrollment section. This arc is likelier to take four minutes than twelve. But *ask* rather than assume. The introductions will already have told you who took 3100 with you and who's coming back from co-op, so you'll know before you get here.
 
 **Arc 4 now runs 10 slides and it is over-provisioned on purpose. The designated overflow is one slide:**
 - **"Sequence: How a Gradebook Cell Gets Its Value"** — the richest slide in the deck and the easiest to promise for later. Skip it and say one sentence instead.
@@ -54,13 +58,15 @@ Every diagram in Arc 4 is evidence for one of those three. Say so, and say it ag
 
 **Never cut the two claim-3 slides** (outbound and inbound). They're the part of the thesis a student can't reconstruct by reading the repo.
 
-**Cut order beyond that**, in this sequence: shorten the debt talk over the complexity map to two bullets, then drop the "Data Access: Prefer RPCs" slide. **Protect Arc 6** — bids are due 9/17 and this is the only session that explains the areas of the system.
+**Cut order beyond that**, in this sequence: drop the "Data Access: Prefer RPCs" slide, then shorten the debt talk over the complexity map to two bullets. **Protect Arc 6** — bids are due 9/17 and this is the only session that explains the areas of the system.
+
+**Do not buy time back out of the introductions.** On a roster this small, this is the session that decides whether the room talks to each other for the next fourteen weeks. If you're behind at 11:00, take it out of Arc 4, which is over-provisioned for exactly this reason.
 
 **Two things must not be cut, whatever the clock says:**
 - **Arc 3, the vocabulary.** A student who doesn't know what a database is gets nothing from five architecture diagrams. It's load-bearing for the map.
 - **The roadmap slide that closes Arc 4.** It costs 90 seconds and it's what stops a first-generation-to-this-material student from concluding the course isn't for them.
 
-**The anti-intimidation thread runs through the whole deck**, deliberately, in four places: the fragment on the learning-objectives slide ("describe" and "map" are the verbs), the small right-aligned `full session: <date>` pointers under the technical slides, the roadmap table at the end of Arc 4, and the "nobody has read all of it" line back in Arc 2. If you only land one, land the roadmap.
+**The anti-intimidation thread runs through the whole deck**, deliberately, in four places: the fragment on the learning-objectives slide ("describe" and "map" are the verbs), the small right-aligned `full session: <date>` pointers under the technical slides, the roadmap table at the end of Arc 4, and the "nobody has read all of it" line, which now lives in your own introduction rather than on a slide. If you only land one, land the roadmap.
 
 **Tone note:** Be honest about the debt. The pitch of this course isn't "come work on our nice codebase," it's "this is what inheriting a real system feels like, and you'll get good at it."
 
@@ -112,7 +118,7 @@ Day one caveat: nothing is due yet, so this slide is really just "the hunt and t
 <aside className="notes">
 **Framing:** Every other software course you've taken started from an empty directory. This one doesn't. You're walking into a running system with users, history, and consequences.
 
-**TODO:** Introduce yourself and the staff. Say how long Pawtograder has existed and roughly how many students have been graded through it — the number is the credibility hook for the whole semester.
+**Say that in one sentence and move.** Introductions are two slides away, and your own introduction is where you explain the product and its users.
 
 **What this session unblocks:** They can't bid on a project (due 9/17) until they know what the areas of the system are. That's the real job of today.
 
@@ -154,9 +160,9 @@ Say it in your own words, but say all three parts:
 - Every single piece has a session with its name on it — you'll see the schedule near the end.
 
 **Time allocation:**
-- Arc 1: The Deal (~8 min)
-- Arc 2: The Product and Its Users (~7 min)
-- Arc 3: The Vocabulary (~8 min) — prerequisite for objective 1
+- Arc 1: Who's In the Room (~15 min)
+- Arc 2: How This Works (~9 min)
+- Arc 3: The Vocabulary (~4–8 min) — prerequisite for objective 1
 - Arc 4: The Stack (~24 min) — objective 1
 - Arc 5: Where Complexity and Debt Live (~5 min) — objective 1, honestly
 - Arc 6: The Project Slate (~9 min) — objective 2
@@ -164,121 +170,93 @@ Say it in your own words, but say all three parts:
 
 Only three objectives today, on purpose. Day one is oriented toward one deliverable and one deadline.
 
-> **Transition:** Let's start with the deal.
+**Introductions aren't on the objectives list and that's fine** — don't apologize for them or promise they'll be quick. On a roster this small, knowing who everyone is matters more than anything else on the list.
+
+> **Transition:** Before any of that — it's a small room in here. Let's find out who.
 </aside>
 
 </Slide>
 
 {/* ============================================ */}
-{/* SPINE STATEMENT                              */}
-{/* ============================================ */}
-
-<Slide>
-
-## The Question This Course Answers
-
-<p style={{fontSize: '1.05em', marginTop: '1em'}}>
-When you join a company, you inherit a product that predates you. Lots of features. Lots of code. Lots of technical debt.
-</p>
-
-<p className="fragment" style={{fontSize: '0.95em', marginTop: '1em'}}>
-Some teams sink under that weight. The best teams leave the codebase better than they found it — and ship.
-</p>
-
-<p className="fragment" style={{fontSize: '0.95em', marginTop: '1em', fontWeight: 'bold', color: '#2a9d8f'}}>
-That difference is a skill. This semester you practice it on a product with real users and a real release date.
-</p>
-
-<aside className="notes">
-**This is the central claim of the course.** Everything else — the tech talks, the game days, the demo days — is in service of it.
-
-**The constraint that makes it real:** Pawtograder's first official release is January 2027. That's not a course-imposed deadline; it's the actual product deadline, and it will shape what you're allowed to ship in December.
-
-**Say the uncomfortable part:** Real students are using this system this semester. A bad merge isn't a lost grade, it's somebody's office hours queue going down during finals week.
-
-> **Transition:** So here is the deal for the semester.
-</aside>
-
-</Slide>
-
-{/* ============================================ */}
-{/* ARC 1: THE DEAL (~8 min)                     */}
-{/* What the course is and how it's graded      */}
+{/* ARC 1: WHO'S IN THE ROOM (~15 min)           */}
+{/* Nine of us. This is the whole team.          */}
 {/* ============================================ */}
 
 <Slide>
 
-## The Deal
+## Who's In the Room
 
-<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1em', fontSize: '0.72em', marginTop: '0.5em'}}>
-
-<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.6em', borderRadius: '8px'}}>
-
-**What you get**
-
-- A production codebase with real users
-- Latitude to choose where you focus
-- A GitHub history that's evidence, not homework
-- Any AI tooling you want
-
-</div>
-
-<div style={{backgroundColor: 'rgba(231,111,81,0.15)', padding: '0.6em', borderRadius: '8px'}}>
-
-**What you owe**
-
-- Work that ships, behind a flag if it's not done
-- Reviews that make someone else's code better
-- Showing up — this is a studio, not a lecture
-- Ownership when what you shipped breaks
-
-</div>
-
-</div>
-
-<p className="fragment" style={{fontSize: '0.85em', marginTop: '0.8em', fontWeight: 'bold', color: '#2a9d8f'}}>
-I define the minimum for an A. You decide the minimum for your goals.
+<p style={{fontSize: '0.8em', marginTop: '0.3em'}}>
+It's a small room. By December you'll have reviewed each other's code. Let's start there.
 </p>
 
-<aside className="notes">
-That last line is the philosophy of the course and it will be tested in week 3 when someone asks "is this enough?" The answer is: enough for what you said you wanted.
+<div style={{fontSize: '0.75em', textAlign: 'left', marginTop: '0.6em'}}>
 
-**TODO:** Decide whether to say out loud here that the course is 4 credits and what that implies about weekly hours. Students will do the arithmetic anyway.
+Tell us:
 
-> **Transition:** And there's room here for more than one kind of engineer.
-</aside>
-
-</Slide>
-
-<Slide>
-
-## A Wide Range of Backgrounds Welcome
-
-<p style={{fontSize: '0.82em'}}>
-Real products need more than people who write features.
-</p>
-
-<div style={{fontSize: '0.75em', textAlign: 'left'}}>
-
-They need people who talk to users, design interfaces, write documentation, set up monitoring, optimize queries, wrangle CI, and figure out why the thing that worked yesterday doesn't.
+<ol>
+  <li>Your name, and something you did over the summer</li>
+  <li>What you want out of this Fall &mdash; in this course, and after it</li>
+  <li>Your relationship with AI tooling: <strong>how you use it, how you <em>want</em> to use it, and how you don't</strong></li>
+</ol>
 
 </div>
 
-<div className="fragment" style={{backgroundColor: 'rgba(100,150,255,0.12)', padding: '0.6em', borderRadius: '8px', fontSize: '0.72em', marginTop: '0.8em'}}>
+<p style={{fontSize: '0.75em', marginTop: '0.5em', fontStyle: 'italic'}}>
+I'll go first.
+</p>
 
-The student who runs usability studies, synthesizes findings, and ships the resulting redesign is doing real engineering. So is the one who profiles the gradebook and rewrites the query layer. **The difference is where you focus, not whether your work counts.**
+<div className="fragment" style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.5em', borderRadius: '8px', fontSize: '0.72em', marginTop: '0.6em'}}>
+
+On question 3: **there is no AI restriction in this course. Use anything.** I'm asking because nobody has this figured out, and a room's worth of honest answers is a better starting point than a policy.
 
 </div>
 
 <aside className="notes">
-**Why this slide exists on day one:** Self-selection. Some students who would thrive here will drop after seeing "Supabase" and "RLS" on the syllabus because they assume it's a backend course.
+**Fifteen minutes, and protect them.** Everyone enrolled, plus you. Roughly 90 seconds each, and you should be the one who models the length — if your own introduction runs five minutes, theirs will too.
 
-**TODO:** A concrete example from a past student would land better than the abstraction. Do you have one from CS 4530 or from Pawtograder contributors?
+**Go first, and use your turn to carry what the cut pitch slides used to say.** Four things, in about two minutes:
+- Who you are and what you work on.
+- **What Pawtograder is and how long it's existed** — say roughly how many students have been graded through it. That number is the credibility hook for the whole semester.
+- **Who's using it right now:** CS 2000, 2100, 3100, 3650, 4530, 5001, 5004, 5008, 5010 — *and this course*. They'll submit this course's work through the system they're about to change. Break a student view and you've annoyed several thousand people across ten courses. Break an instructor grading view and a course can't return grades that week. Break it in December and you've done it during finals.
+- **The scale, honestly:** about 300k lines of TypeScript, 417 migrations, 62 edge functions, 129 routes — and zero people who have read all of it, including me. Nobody reads it all. You read the part you own and you learn how to find the rest.
 
-> **Transition:** Here's how that gets graded.
+**Then answer your own question 3 before you ask it of anyone else.** They will calibrate to whatever you say, so say the real thing, including the parts where you don't reach for it.
+
+**Why question 3 is in the introductions and not on a policy slide.** "Use anything" is a permission and nothing more, and a slide announcing it teaches nothing. This room has to compare notes for fourteen weeks, so the first data point is everyone in it saying out loud what they currently do. Expect real spread: someone drives an agent for everything, someone has decided it makes them worse, and both are welcome. **Don't adjudicate any of the answers.** Just note where the room is.
+
+**What you owe them in return, said once at the end of the round** — "use anything" is an abdication if we stop there, so name the three things we actually provide:
+- **Instruction:** the agents and workflows session, Wed 10/7 (s12) — structuring context, decomposing across sub-agents, judging when an agent is the wrong tool.
+- **A forum:** a standing channel for prompts, setups, and failures. Treat it as a lab notebook.
+- **Clinic:** bring agent output you're unsure about. "Should I trust this?" is a legitimate use of clinic time.
+
+**The practical hook, worth 20 seconds:** the repo ships `CLAUDE.md` and `AGENTS.md`. Students who point their agent at those two files get dramatically better results than students who don't — good context beats good prompting, and it's the first concrete lesson in this course's AI posture.
+
+**Then the accountability line — don't soften it:**
+
+> "The agent wrote it" isn't a defense at a demo day. You shipped it.
+
+**Listen for two things you need later today:**
+- **Who took CS 3100 with you, and who's back from co-op or coming in from elsewhere.** That answer sets the length of Arc 3 — four minutes or twelve — and you'd otherwise have to stop and ask for it there.
+- **Where each person's energy is**, such as users and design, infrastructure, data, or product. You're announcing teams on 9/24 off bids you haven't seen yet, and this round is the only unfiltered version of that signal you'll get.
+
+**Close the round by saying the roster is still open**, because this is the one moment where it lands. Admissions are rolling, there are seats, and the people best placed to fill them are sitting in front of you — they know who in their year would be good at this and would never have heard of the course otherwise. Ask them directly to send someone to the apply page. Two framings that both work: a small team is an advantage and you'd still take a few more, or simply that you'd rather they picked the next teammates than that a seat went empty.
+
+**Do not put a headcount on a slide, here or anywhere.** The number moves, and a student who hears "there are eight of us" on day one reads a later arrival as a change of plan rather than the normal thing it is.
+
+**TODO:** Name the actual forum channel once Discord is set up. Also decide whether staff introduce themselves here or at Thursday's working session, where they'll actually be floating.
+
+**Deliberate contrast with CS 3100**, if it comes up. AI is restricted there in weeks 1–5 because the skill being built is the typing. Here the skill is judgment, integration, and accountability — and the agent doesn't change any of those.
+
+> **Transition:** That's the room. Here's how the room gets graded.
 </aside>
 
 </Slide>
+
+{/* ============================================ */}
+{/* ARC 2: HOW THIS WORKS (~9 min)               */}
+{/* Grading, evidence, and the two halves        */}
+{/* ============================================ */}
 
 <Slide>
 
@@ -317,7 +295,9 @@ There's no way to reach an A while being weak at one of the eight outcomes.
 
 **Cite the source if anyone asks** whether this is invented: task-oriented portfolio assessment, Cain, Grundy and Woodward, European Journal of Engineering Education 43(4), 2018. It's not a local experiment.
 
-> **Transition:** The calendar has two very different halves.
+**The line that used to live on the cut "Deal" slide, and is worth keeping somewhere:** I define the minimum for an A; you decide the minimum for your goals. It'll be tested in week 3 when someone asks "is this enough?" The answer is: enough for what you said you wanted — which is why you just told the room what you want out of the semester.
+
+> **Transition:** So what do you actually hand in? Almost nothing.
 </aside>
 
 </Slide>
@@ -398,198 +378,15 @@ Which makes the report quick to write if you did the work, and unwritable if you
 
 **The two-roles bullet needs 30 seconds and no more.** Every student is on a project team and also on one cross-project function (release and CI, accessibility, observability, or docs and handoff), one member per project team. The function is a standing responsibility, not a second project. Detail lands at studio kickoff on Sep 28. Today they only need to know it exists, because it changes how they read the slate. If anyone asks why: it is how TUM runs iPraktikum, it is roughly Team Topologies, and it is how most companies they will join are organized, including the failure modes.
 
-> **Transition:** One more piece of the deal: AI.
-</aside>
+**Say the team arithmetic here rather than making them wait for Arc 6:** on today's roster that's two teams, and two of the seven projects. It changes how they listen to the slate and it stops one person deciding they've already got a team of one. Say "on today's roster" and mean it — the number moves if late enrollments land, and you don't want to walk that back on Sep 24.
 
-</Slide>
-
-<Slide>
-
-## Use the AI You Want
-
-<p style={{fontSize: '0.82em'}}>
-There's no AI restriction in this course. Use anything.
-</p>
-
-<div className="fragment" style={{fontSize: '0.75em', textAlign: 'left', marginTop: '0.7em'}}>
-
-**And you are not on your own with it.** We'll teach it and we'll study it together:
-
-<ul>
-  <li>A session on agents and workflows — context, sub-agents, human-as-coordinator</li>
-  <li>A standing forum channel for what is working and what isn't</li>
-  <li>Clinic time for "my agent produced this, how should I determine if I can trust it?"</li>
-</ul>
-
-</div>
-
-<p className="fragment" style={{fontSize: '0.78em', marginTop: '0.7em', fontWeight: 'bold', color: '#2a9d8f'}}>
-Nobody has this figured out. The practice changes every week, so sharing what you learn <em>is</em> part of the course.
-</p>
-
-<aside className="notes">
-**Deliberate contrast with CS 3100**, where AI is restricted in weeks 1–5 because the skill being built is the typing. Here the skill is judgment, integration and accountability — and the agent doesn't change any of those.
-
-**But "use anything" is not a policy, it is an abdication if we stop there.** Three things we actually provide:
-- **Instruction:** the async agents talk on Wed 10/7 (s12) — structuring context, decomposing across sub-agents, judging when an agent is the wrong tool.
-- **A forum:** a channel for sharing prompts, setups, failures. Treat it as a lab notebook, not a help desk.
-- **Clinic:** bring agent output you're unsure about. "Should I trust this?" is a legitimate use of clinic time.
-
-**Say the honest thing:** this is changing faster than any syllabus can track. What worked in September may be wrong by November. That's why the sharing is the curriculum and not a footnote.
-
-**Practical hook, worth 20 seconds:** the repo ships `CLAUDE.md` and `AGENTS.md`. Students who point their agent at those get dramatically better results than students who don't — good context beats good prompting, and it's the first concrete lesson in this course's AI posture.
-
-**Then the accountability line** — don't soften it:
-
-> "The agent wrote it" isn't a defense at a demo day. You shipped it.
-
-**TODO:** Name the actual forum channel here once Discord is set up.
-
-> **Transition:** That's the deal. Now — the product.
+> **Transition:** That's the rhythm. Before the map, ninety seconds on what the pieces of a map even are.
 </aside>
 
 </Slide>
 
 {/* ============================================ */}
-{/* ARC 2: THE PRODUCT AND ITS USERS (~7 min)    */}
-{/* ============================================ */}
-
-<Slide>
-
-## What Pawtograder Is
-
-<Img
-  src="/img/lectures/s01-product-surface.webp"
-  prompt="A clean educational diagram (not pixel art), 16:9 landscape, on a light background with teal and blue accents. Center: a single rounded rectangle labeled 'Pawtograder'. Radiating outward from it, eight labeled feature cards arranged in a ring, each with a simple line icon: 'Autograding', 'Hand grading and rubrics', 'Group projects', 'Gradebook with query language', 'Discussion forum', 'Office hours queue', 'Surveys and live polling', 'Flashcards'. Around the outer edge, three small human figures labeled 'Students', 'TAs and graders', and 'Instructors', each with thin connector lines to the feature cards they touch most. Restrained, professional, textbook-figure quality. No decorative clutter."
-  alt="Diagram: a central Pawtograder box surrounded by eight feature cards — autograding, hand grading and rubrics, group projects, gradebook with a query language, discussion forum, office hours queue, surveys and live polling, flashcards — with students, TAs, and instructors connected to the features they use most."
-/>
-
-<aside className="notes">
-**Do not narrate all eight features.** They have used the product; they know what it does from the outside. The point of this slide is the *breadth* — that this isn't one CRUD app, it's eight products sharing a database, which is exactly why the architecture looks the way it does.
-
-**The bit they do not know:** the three user classes have genuinely different needs and genuinely different blast radii. Breaking a student view annoys 500 people; breaking an instructor grading view stops a course from returning grades.
-
-> **Transition:** Here's the part that matters for how you'll behave this semester.
-</aside>
-
-</Slide>
-
-<Slide>
-
-## The Users Are In the Building Right Now
-
-<p style={{fontSize: '0.75em', textAlign: 'left'}}>
-Pawtograder is running these courses <strong>this semester</strong>:
-</p>
-
-<div style={{fontSize: '0.95em', textAlign: 'center', margin: '0.5em 0', fontWeight: 'bold', letterSpacing: '0.02em', color: '#4A90A4'}}>
-
-CS 2000 · 2100 · 3100 · 3650 · 4530 · 5001 · 5004 · 5008 · 5010
-
-</div>
-
-<div className="fragment" style={{backgroundColor: 'rgba(255,200,100,0.2)', padding: '0.6em', borderRadius: '8px', fontSize: '0.8em', marginTop: '0.4em', border: '2px solid rgba(255,180,0,0.5)', textAlign: 'center'}}>
-
-**…and CS 4535.**
-
-You'll submit this course's work through the system you're about to change. And your projects merge into our class deployment pipeline.
-
-</div>
-
-<div className="fragment" style={{backgroundColor: 'rgba(231,111,81,0.15)', padding: '0.5em', borderRadius: '8px', fontSize: '0.7em', marginTop: '0.5em'}}>
-
-So production holds real student work, real grades, and real FERPA-protected records — including yours. A whole session on that: **Mon 9/14**.
-
-</div>
-
-<aside className="notes">
-**Land the list, then pause before the fragment.** Ten courses across the undergraduate core, systems, and the graduate align sequence. Read a few of the numbers out loud and let the room recognize their own transcript in it.
-
-**Then the fragment, which is the actual point of the slide.** They aren't building software for a hypothetical user. They're building it for themselves, their roommates, and the class they're sitting in. A bad Thursday deploy is somebody's 5001 assignment.
-
-**Say the blast radius plainly** — it's the most effective thing on this slide:
-- Break a student view and you've annoyed several thousand people across ten courses.
-- Break an instructor grading view and a course can't return grades that week.
-- Break it in December and you've done it during finals.
-
-**This is also why the ops and review discipline is graded so heavily.** Feature flags, rollback plans and monitoring aren't bureaucracy here; they're the difference between an experiment and an incident.
-
-**The double-edged part, worth 20 seconds** and it sets up two of the projects: being your own user is a gift for empathy and a trap for assumptions. You're a fourth-year CS student with a fast laptop and a mouse. Many users aren't — which is exactly what the usability and accessibility projects exist to find out.
-
-**But say the payoff too**, or this lands as pure threat: this is the rare course where the work doesn't go in a drawer in December. Ship something in October and your friends are using it in October.
-
-**TODO:** Fill in the actual total enrollment across those ten courses. One number — "about N students this term" — does more work than the whole list does. Also sanity-check the list against the fall term before class; the slide is only credible if it's exactly right.
-
-> **Transition:** So how big is the thing you just inherited?
-</aside>
-
-</Slide>
-
-<Slide>
-
-## What You Just Inherited
-
-<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '0.8em', fontSize: '0.7em', marginTop: '0.5em'}}>
-
-<div style={{backgroundColor: 'rgba(100,150,255,0.12)', padding: '0.6em', borderRadius: '8px'}}>
-
-**~300k**
-lines of TypeScript
-
-**417**
-database migrations
-
-**62**
-Supabase Edge Functions
-
-</div>
-
-<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.6em', borderRadius: '8px'}}>
-
-**129**
-page routes
-
-**255**
-React components
-
-**46**
-Playwright E2E specs
-
-</div>
-
-<div style={{backgroundColor: 'rgba(231,111,81,0.15)', padding: '0.6em', borderRadius: '8px'}}>
-
-**1**
-production deployment
-
-**1**
-release date that's not negotiable
-
-**0**
-people who have read all of it
-
-</div>
-
-</div>
-
-<p className="fragment" style={{fontSize: '0.82em', marginTop: '0.8em', fontWeight: 'bold', color: '#2a9d8f'}}>
-Nobody reads it all. You read the part you own, and you learn how to find the rest.
-</p>
-
-<aside className="notes">
-**This is the most important slide in Arc 2.** The numbers are there to provoke the correct reaction: you can't understand this system by reading it.
-
-**Counts are from the current main** — regenerate before class if it has been a while. The "0 people" line includes me, and saying so out loud is the point.
-
-**The skill this course teaches, stated plainly:** navigating a system larger than your working memory. That's the actual professional skill, and it's why the course isn't "here is a small project, build it."
-
-> **Transition:** Before the map, ninety seconds on what the pieces of a map even are.
-</aside>
-
-</Slide>
-
-{/* ============================================ */}
-{/* ARC 3: THE VOCABULARY (~8 min)               */}
+{/* ARC 3: THE VOCABULARY (~4-8 min)             */}
 {/* Lifted from CS 3100 l21-serverless           */}
 {/* Skip only if the room is already fluent       */}
 {/* ============================================ */}
@@ -679,13 +476,13 @@ Every one of these six gets its own session — schedule at the end of today
 
 **Why this arc exists at all:** the next four slides name Postgres, edge functions, pgmq, EventBridge, Realtime and Prometheus in the space of about a minute. A student who isn't sure what a database *is* stops following at slide one and never says so.
 
-**Do not lecture the grid — name each box in one sentence and move.** Eight minutes for this whole arc.
+**Do not lecture the grid — name each box in one sentence and move.** Four to eight minutes for the whole arc, and with this cohort it's likely the short end. Every one of them stood a Postgres and a Supabase stack up on their own laptop for the pre-application activity, so "database" and "object storage" are not abstractions to them.
 
 **The framing that makes it stick:** these are design patterns for infrastructure. You don't build them, you rent them and compose them. The pattern is the same whether the system is a monolith or serverless; what changes is who operates it.
 
 **Two boxes get their own slide** because they're the two students actually stumble on: what a database is, and why there's an event bus in front of our webhooks. The other four are one sentence each.
 
-**TODO:** Ask on day one who has taken 3100 and who is coming from co-op or another program. That answer tells you whether this arc takes 4 minutes or 12.
+**You already know who's in front of you** from the introductions. Set the pace from that rather than asking again here.
 
 > **Transition:** Start with the one that everything else leans on.
 </aside>
@@ -1538,7 +1335,7 @@ Every project spans the full lifecycle. None of them is only frontend or only ba
 <aside className="notes">
 **This slide is the whole reason today happens before 9/17.** Bids are ranked preferences; teams are announced 9/24.
 
-**Give each project about 60 seconds and do not improvise.** With a small cohort, not every project on this slide will get a team — say that out loud early, because otherwise a student falls in love with one that never runs. Teams are 3–4 people, one team per project, and the bid decides which projects survive. The honest pitch for each:
+**Give each project about 60 seconds and do not improvise.** Say the arithmetic out loud before you start: today's roster is two teams, so **two of these seven run and five don't**. If you skip that, someone spends the week falling in love with a project that never happens. The bid is what decides which two survive. The honest pitch for each:
 - **Usability:** the product works and isn't pleasant. Fixing that requires talking to users, which most engineers won't do.
 - **Accessibility:** WCAG AA on student pages, tested against *real* assistive technology rather than a linter. The NVDA and VoiceOver lanes in `tools/a11y-judge/` pass today but still need a resync ladder to walk a page cleanly — so the work is both fixing pages and making the oracle honest. Frame it as a testing problem, not a compliance checklist.
 - **Office hours:** designed under assumptions that no longer hold. Real greenfield design inside a live system.
@@ -1549,7 +1346,9 @@ Every project spans the full lifecycle. None of them is only frontend or only ba
 
 **The two projects that are NOT here**, and students who read the old planning notes will ask: gradebook performance and operations. Both are hazardous, both matter, and neither gets a team in a release semester. Saying that plainly is more credible than pretending the slate covers everything.
 
-**Name the team size on the slide when you know the roster: 3–4 people per team, one team per project.** Students bid far more sensibly once they know how many projects can actually run — with a small cohort that's two or three of the seven, and saying so is kinder than letting them discover it on Sep 24.
+**Students bid far more sensibly once they know how many projects can actually run**, and saying so now is kinder than letting them discover it on Sep 24. It also changes what a bid *is*: with two teams, their second and third choices are load-bearing.
+
+**One upside of a small roster worth naming:** you can build the teams around what people said they wanted this morning. Say that you'll do it — it makes the bids more honest.
 
 > **Transition:** Two dates, then one thing to do tonight.
 </aside>
@@ -1579,7 +1378,7 @@ Between now and 9/17 you'll have run the app locally, filed a ticket or two from
 <aside className="notes">
 **The framing matters:** bids are informed by the week's work, not by the pitch. Students who hunt in an area they're curious about make much better bids.
 
-> **Transition:** So — tonight.
+> **Transition:** So — Thursday.
 </aside>
 
 </Slide>
@@ -1594,29 +1393,35 @@ Between now and 9/17 you'll have run the app locally, filed a ticket or two from
 ## Before Thursday
 
 <p style={{fontSize: '0.85em', fontWeight: 'bold', color: '#e76f51'}}>
-Come to Thursday with Pawtograder running on your laptop.
+Come to Thursday ready to get Pawtograder running.
 </p>
 
 <div style={{fontSize: '0.72em', textAlign: 'left', marginTop: '0.6em'}}>
 
-- Clone `pawtograder/platform`
-- Node 22 (use `nvm`), and **Docker installed and running**
-- Read the README's local-dev section — don't improvise
-- Get as far as you can; **being stuck is a fine outcome**, being stuck silently is not
-- Post where you got stuck in Discord
+- Bring a laptop with Node 22 (use `nvm`) and **Docker installed**
+- A fresh clone of `pawtograder/platform` if you get to it — `main` has moved since the application
+- You don't have to have it working by then. Thursday is when we do that part together
+- If you do get a head start, click through the app as a user and note one thing that's wrong
+- **Being stuck is a fine outcome**, being stuck silently is not
 
 </div>
 
 <div className="fragment" style={{backgroundColor: 'rgba(255,200,100,0.2)', padding: '0.5em', borderRadius: '8px', fontSize: '0.72em', marginTop: '0.8em', border: '2px solid rgba(255,180,0,0.5)'}}>
 
-Thursday is a **working session**, not a lecture. If you arrive with nothing installed, you'll spend it downloading Docker instead of shipping.
+Thursday is a **working session**, not a lecture. Whatever is already installed when you sit down is time you get back for code.
 
 </div>
 
 <aside className="notes">
-**Be blunt about this.** The single biggest predictor of a bad week 2 is arriving Thursday with an empty laptop.
+**Do not turn this into an overnight assignment.** Most of the room stood this stack up once already for the application, so the instinct is to ask them to do it again tonight. Resist it. The ask is that they turn up *able* to do it: a laptop, Node, Docker installed. The setup itself is what Thursday is for, and a student who spent last night fighting Docker alone is worse off than one who arrives fresh and does it with help in the room.
+
+**Say the reason out loud, because it changes what they hear.** Installing Docker takes an hour of downloading and no thinking. Doing it in a room with staff and everyone else takes twenty minutes and teaches them who to ask. The only thing that can't happen in the room is the download.
+
+**The one thing worth doing beforehand, if they have time:** a fresh clone. `main` has moved since they applied, the pinned Supabase CLI version matters, and stale Docker volumes are the most common way a setup that worked in August stops working in September. Frame it as a head start, not a requirement.
 
 **Say that you expect breakage** and that Thursday exists to fix it collectively. Students who think they're supposed to succeed alone won't post in Discord.
+
+**The "note one thing that's wrong" bullet is optional on purpose.** For anyone who does get there, it leads into the ticket hunt, due 9/16, and into a bid grounded in something they actually saw. Nobody is behind for skipping it.
 
 **TODO:** Confirm the Discord invite is in the syllabus and on this slide before class.
 
@@ -1642,7 +1447,7 @@ Thursday is a **working session**, not a lecture. If you arrive with nothing ins
 </div>
 
 <p className="fragment" style={{fontSize: '0.8em', marginTop: '1em', fontWeight: 'bold', color: '#2a9d8f'}}>
-Tonight: get it running. Thursday: ship something.
+Thursday: get it running, together. Then ship something.
 </p>
 
 <aside className="notes">

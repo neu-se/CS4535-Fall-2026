@@ -13,6 +13,8 @@ description: CS 4535 Course Syllabus
 
 **Section 3:** MWR 10:30–11:35 AM
 
+**Office hours:** Mondays 1:00–2:00 PM and Thursdays 9:30–10:30 AM, WVH 326
+
 **Class size:** Up to 50 students; 10–20 expected for Fall 2026
 
 :::info
@@ -355,7 +357,7 @@ In CS 3100 this statement existed to model restraint, because AI use was restric
 
 ### What we keep from your sessions
 
-Your agent sessions are captured as you work and pushed to a course-owned repository. The tool is [Entire](https://github.com/entireio/cli), an MIT-licensed CLI that hooks whichever agent you use and stores each session as a git object alongside the commit it produced. Setup is one command in the first working session, and after that it rides along on `git push` and you stop thinking about it.
+Your agent sessions are captured as you work and pushed to a course-owned repository. The tool is [Entire](https://github.com/entireio/cli), an MIT-licensed CLI that hooks whichever agent you use and stores each session as a git object alongside the commit it produced. Setup is an install and one enable command in the first working session, walked through in class and written down at [/docs/local-dev](/docs/local-dev#session-capture). After that it rides along on `git push` and you stop thinking about it.
 
 This is part of the course rather than an extra, for three reasons:
 
@@ -428,9 +430,11 @@ January 2027 is the first semester after this course, and the first semester whe
 
 ## Communication
 
-**Discord is the primary channel.** Join the [Pawtograder Community Discord](https://discord.gg/tZRR36bcgQ). Setup problems, "is this expected?", and anything fast belongs there.
+**Discord is the primary channel.** Join the [Pawtograder Community Discord](https://discord.gg/tZRR36bcgQ). Setup problems, "is this expected?", and anything fast belongs there. I read it throughout the day, most days, so a channel post is usually the fastest way to reach me.
 
-**Ask in public by default.** Your question is somebody else's answer next week, and a DM helps exactly one person. We'll usually redirect a DM to a channel rather than answer it privately.
+**Ask in public by default.** Your question is somebody else's answer next week, and a DM helps exactly one person. Save DMs for things that are genuinely private. If you DM me about something that isn't, expect to be pointed at a channel.
+
+**Office hours** are Mondays 1:00–2:00 PM and Thursdays 9:30–10:30 AM in WVH 326. Drop in, no appointment. If neither block works with your schedule, post in Discord and we'll find a time.
 
 **Scope questions belong in the ticket**, where they stay attached to the work permanently.
 
