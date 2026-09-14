@@ -1596,17 +1596,15 @@ RLS filters. It does not reject. "The gradebook is empty" and "you are not allow
 
 - Does every row carry the `class_id` its policy is checked against?
 - Does your policy reach through another table? Whose policy did you just inherit?
-- Can a student in **another** course select from your table? Log in and try it
 - Does the write policy's `WITH CHECK` say the same thing as its `USING`?
 - Is there a constraint that makes a cross-class row impossible, not merely disallowed?
-- Did you `EXPLAIN (ANALYZE, BUFFERS)` the query the **app** sends, not a query you made up?
-- Does any policy predicate call a function? What is `loops=` on that node?
+- Did you `EXPLAIN (ANALYZE, BUFFERS)` the query the **app** sends?
 - Did you open the gradebook as a student, an instructor, and someone in neither?
 
 </div>
 
 <p className="fragment" style={{fontSize: '0.72em', marginTop: '0.7em'}}>
-Deliverable 6 is "what you tested against, and the down path." Six of these seven are that paragraph.
+Deliverable 6 is "what you tested against, and the down path." Answer this list in the PR and you have written most of it.
 </p>
 
 <p style={{fontSize: '0.55em', marginTop: '0.3em', textAlign: 'right', fontStyle: 'italic', color: '#4A90A4'}}>
