@@ -1,0 +1,160 @@
+---
+sidebar_position: 5
+title: "Reliably Releasing Software"
+image: /img/lectures/s05-releasing-safely.png
+---
+
+import RevealJS, { Slide } from '@site/src/components/RevealJS';
+import Img from '@site/src/components/Img';
+
+<RevealJS transition="slide">
+
+{/* ============================================ */}
+{/* COVER IMAGE */}
+{/* ============================================ */}
+
+<Slide>
+
+  <Img
+    src="/img/lectures/s05-releasing-safely.png"
+    prompt="PLACEHOLDER concept: A dimmer switch wired into a running building. 8-bit lo-fi pixel art, retro game aesthetic, clean outlines, teal and blue cool tones with warm amber accents, 16:9 landscape. Top banner reads Reliably Releasing Software. Bottom text reads CS 4535: Software Design and Delivery."
+    alt="TODO: describe the cover image once generated."
+  />
+
+<aside className="notes">
+**Session:** Thu Sep 17 · Reliably Releasing Software
+
+**TODO — outline only.** Fill in the arc, timings and content slides.
+
+**Topics on the schedule:** Dark launch, Safe database migrations, Observability tied to rollouts, Rollback as first response
+**Draw on:** vault note `pawtograder/cs4535-reference-meiklejohn-reliable-releases` — Meiklejohn's *Reliably Releasing Software* (CMU 313). Especially the four-step migration pattern (add nullable field, dark-launch writes, dark-launch reads, then clean up) and correlating error rate with flag ramps.
+
+Consider assigning the deck itself as the reading.
+
+> **Transition:** Reminders first, then what we're doing today.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* REMINDERS */}
+{/* ============================================ */}
+
+<Slide>
+
+## Reminders
+
+<div style={{fontSize: '0.8em', textAlign: 'left'}}>
+
+- **DUE:** Onboarding: Gradebook Column Groups — due Thu Sep 24
+- **DUE:** Project Bids — due Thu Sep 17
+- **RELEASED:** First Implementation Ticket — released Thu Sep 17, due Thu Oct 1
+
+</div>
+
+<aside className="notes">
+Keep this to 60 seconds. Deadlines and returning feedback only — questions about a specific assignment go to clinic or Discord.
+
+> **Transition:** Now, today.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* TITLE */}
+{/* ============================================ */}
+
+<Slide>
+
+# CS 4535: Software Design & Delivery
+
+## Reliably Releasing Software
+
+<p style={{marginTop: '2em', fontSize: '0.8em', color: '#666'}}>
+  &copy;2026 Jonathan Bell, CC-BY-SA
+</p>
+
+<aside className="notes">
+TODO: framing — why this session, and what it unblocks.
+
+> **Transition:** Here's what you'll be able to do after today.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* LEARNING OBJECTIVES */}
+{/* ============================================ */}
+
+<Slide>
+
+## Learning Objectives
+
+<p style={{fontSize: '0.85em', textAlign: 'left'}}>
+After this session, you'll be able to:
+</p>
+
+<ol style={{fontSize: '0.75em', textAlign: 'left'}}>
+  <li>Apply the four-step pattern for a safe database migration</li>
+  <li>Design a dark launch with an incremental ramp</li>
+  <li>Correlate error rate with a flag ramp to detect a bad release</li>
+  <li>Choose rollback over forward-fix, and say why</li>
+</ol>
+
+<aside className="notes">
+TODO: time allocation across arcs.
+
+> **Transition:** Let's start.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* CONTENT — TODO                              */}
+{/* ============================================ */}
+
+<Slide>
+
+## TODO: Content
+
+Outline only — content slides go here.
+
+<aside className="notes">
+TODO
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* UP NEXT */}
+{/* ============================================ */}
+
+<Slide>
+
+## Up Next
+
+<div style={{fontSize: '0.85em', textAlign: 'left'}}>
+
+**Wed Sep 23 — Software Processes & Continuous Delivery**
+
+TODO: one-line transition from today into that session.
+
+</div>
+
+<div style={{fontSize: '0.75em', textAlign: 'left', marginTop: '1em'}}>
+
+**Before then:**
+
+- **Onboarding: Gradebook Column Groups** — due Thu Sep 24
+- **Project Bids** — due Thu Sep 17
+- **First Implementation Ticket** — released Thu Sep 17, due Thu Oct 1
+
+</div>
+
+<aside className="notes">
+Close on the transition, not the reminders — students should leave knowing what today was for.
+</aside>
+
+</Slide>
+
+</RevealJS>

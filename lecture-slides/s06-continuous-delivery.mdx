@@ -1,0 +1,163 @@
+---
+sidebar_position: 6
+title: "Software Processes & Continuous Delivery"
+image: /img/lectures/s06-continuous-delivery.png
+---
+
+import RevealJS, { Slide } from '@site/src/components/RevealJS';
+import Img from '@site/src/components/Img';
+
+<RevealJS transition="slide">
+
+{/* ============================================ */}
+{/* COVER IMAGE */}
+{/* ============================================ */}
+
+<Slide>
+
+  <Img
+    src="/img/lectures/s06-continuous-delivery.png"
+    prompt="PLACEHOLDER concept: An assembly line with a stop cord anyone can pull. 8-bit lo-fi pixel art, retro game aesthetic, clean outlines, teal and blue cool tones with warm amber accents, 16:9 landscape. Top banner reads Software Processes & Continuous Delivery. Bottom text reads CS 4535: Software Design and Delivery."
+    alt="TODO: describe the cover image once generated."
+  />
+
+<aside className="notes">
+**Session:** Wed Sep 23 · Software Processes & Continuous Delivery
+
+**Moved back from Sep 16.** It lands better here: by now every one of them has had CI go red on their column-groups PR, so trunk-based development and pipeline design are answers to something they have already felt rather than abstractions delivered before they opened a PR.
+
+**TODO — outline only.** Fill in the arc, timings and content slides.
+
+**Topics on the schedule:** CI/CD pipelines, Trunk-based development, Deployment strategies, Feature flags
+**Draw on:** CS 3100 `l22-teams` (CI, PRs, code review in practice) and `l23-oss`.
+
+**TODO — Jon:** your classic CS 4530 notes on software process. Not in the vault or any local repo I can see — point me at them and I will fold them in. The new first objective (process models and what each optimizes for) is a placeholder for that material.
+
+> **Transition:** Reminders first, then what we're doing today.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* REMINDERS */}
+{/* ============================================ */}
+
+<Slide>
+
+## Reminders
+
+<div style={{fontSize: '0.8em', textAlign: 'left'}}>
+
+- **DUE:** Onboarding: Gradebook Column Groups — due Thu Sep 24
+- **DUE:** Project Bids — due Thu Sep 17
+- **RELEASED:** First Implementation Ticket — released Thu Sep 17, due Thu Oct 1
+
+</div>
+
+<aside className="notes">
+Keep this to 60 seconds. Deadlines and returning feedback only — questions about a specific assignment go to clinic or Discord.
+
+> **Transition:** Now, today.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* TITLE */}
+{/* ============================================ */}
+
+<Slide>
+
+# CS 4535: Software Design & Delivery
+
+## Software Processes & Continuous Delivery
+
+<p style={{marginTop: '2em', fontSize: '0.8em', color: '#666'}}>
+  &copy;2026 Jonathan Bell, CC-BY-SA
+</p>
+
+<aside className="notes">
+TODO: framing — why this session, and what it unblocks.
+
+> **Transition:** Here's what you'll be able to do after today.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* LEARNING OBJECTIVES */}
+{/* ============================================ */}
+
+<Slide>
+
+## Learning Objectives
+
+<p style={{fontSize: '0.85em', textAlign: 'left'}}>
+After this session, you'll be able to:
+</p>
+
+<ol style={{fontSize: '0.75em', textAlign: 'left'}}>
+  <li>Situate our workflow among software process models, and say what each one optimizes for</li>
+  <li>Describe the stages of the CI/CD pipeline and what each one protects against</li>
+  <li>Contrast trunk-based development with long-lived feature branches</li>
+  <li>Compare blue/green, rolling and red/black deployment strategies</li>
+  <li>Decide whether a change ships behind a feature flag</li>
+</ol>
+
+<aside className="notes">
+TODO: time allocation across arcs.
+
+> **Transition:** Let's start.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* CONTENT — TODO                              */}
+{/* ============================================ */}
+
+<Slide>
+
+## TODO: Content
+
+Outline only — content slides go here.
+
+<aside className="notes">
+TODO
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* UP NEXT */}
+{/* ============================================ */}
+
+<Slide>
+
+## Up Next
+
+<div style={{fontSize: '0.85em', textAlign: 'left'}}>
+
+**Thu Sep 24 — Testing: E2E, Visual Acceptance & Performance**
+
+TODO: one-line transition from today into that session.
+
+</div>
+
+<div style={{fontSize: '0.75em', textAlign: 'left', marginTop: '1em'}}>
+
+**Before then:**
+
+- **Onboarding: Gradebook Column Groups** — due Thu Sep 24
+- **Project Bids** — due Thu Sep 17
+- **First Implementation Ticket** — released Thu Sep 17, due Thu Oct 1
+
+</div>
+
+<aside className="notes">
+Close on the transition, not the reminders — students should leave knowing what today was for.
+</aside>
+
+</Slide>
+
+</RevealJS>

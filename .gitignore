@@ -28,3 +28,7 @@ src/pages/overview.md
 # Stored at project root to avoid Docusaurus processing during builds
 .image-cache/
 ai-slop-report.md
+
+# Instructor-only working files. The leading underscore stops Docusaurus building
+# them, but this repository is public, so keep them out of git as well.
+docs/assignments/_*.md

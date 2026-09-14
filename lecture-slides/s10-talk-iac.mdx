@@ -1,0 +1,169 @@
+---
+sidebar_position: 10
+title: "Tech Talk: Operations — IaC, Observability & Incident Response"
+image: /img/lectures/s10-talk-iac.png
+---
+
+import RevealJS, { Slide } from '@site/src/components/RevealJS';
+import Img from '@site/src/components/Img';
+
+<RevealJS transition="slide">
+
+{/* ============================================ */}
+{/* COVER IMAGE */}
+{/* ============================================ */}
+
+<Slide>
+
+  <Img
+    src="/img/lectures/s10-talk-iac.png"
+    prompt="PLACEHOLDER concept: The blueprint next to the building that actually got built. 8-bit lo-fi pixel art, retro game aesthetic, clean outlines, teal and blue cool tones with warm amber accents, 16:9 landscape. Top banner reads Tech Talk: Infrastructure as Code & DevOps. Bottom text reads CS 4535: Software Design and Delivery."
+    alt="TODO: describe the cover image once generated."
+  />
+
+<aside className="notes">
+**Session:** Thu Oct 1 · Tech Talk: Operations — IaC, Observability & Incident Response
+
+**TODO — outline only.** Fill in the arc, timings and content slides.
+
+**Topics on the schedule:** Environments as code, configuration drift, logs/metrics/traces, detection/triage/mitigation/postmortem
+
+**This session absorbed the old Sep 24 monitoring session.** The two halves are one idea: you declare the system, you watch the system, and you respond when what you declared and what is running disagree. Configuration drift and a lying dashboard are the same failure seen from two ends.
+
+**Keep it a survey and let the Game Days do the depth.** Incident response is not learned from a lecture. Game Day 1 on Oct 22 is telegraphed, Game Day 2 on Nov 5 is "The Dashboard Lies" and is fault-injected into each team's own demo, and Game Day 3 on Nov 19 is unannounced. This session is what they need in order to have a chance in those rooms, not a complete treatment.
+
+**Monitoring was on Sep 24 and that was too early.** Nothing was in production, no team owned anything, and the first promotion to production is Nov 12. Here it is three weeks before the first Game Day and right as the studio phase gets going.
+
+**Still carries:** declare your target band, and leave with a sprint plan for Oct 2-13.
+
+**Time risk is real** now that this is two topics. Decide in advance which half is the survey and which gets the examples; the observability half has the better examples because Pawtograder's Sentry and Grafana are live and theirs to look at.
+
+
+> **Transition:** Reminders first, then what we're doing today.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* REMINDERS */}
+{/* ============================================ */}
+
+<Slide>
+
+## Reminders
+
+<div style={{fontSize: '0.8em', textAlign: 'left'}}>
+
+- **FEEDBACK:** Onboarding: Gradebook Column Groups — closed Thu Sep 24; feedback coming back shortly
+- **DUE:** First Implementation Ticket — due Thu Oct 1
+- **RELEASED:** Async Sprint: Focused Learning + Team Sync (Oct 2–13) — released Thu Oct 1, due Wed Oct 14
+- **DUE:** Drill Zero — Async Triage Log (pass/fail) — due Fri Oct 9
+
+</div>
+
+<aside className="notes">
+Keep this to 60 seconds. Deadlines and returning feedback only — questions about a specific assignment go to clinic or Discord.
+
+> **Transition:** Now, today.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* TITLE */}
+{/* ============================================ */}
+
+<Slide>
+
+# CS 4535: Software Design & Delivery
+
+## Tech Talk: Infrastructure as Code & DevOps
+
+<p style={{marginTop: '2em', fontSize: '0.8em', color: '#666'}}>
+  &copy;2026 Jonathan Bell, CC-BY-SA
+</p>
+
+<aside className="notes">
+TODO: framing — why this session, and what it unblocks.
+
+> **Transition:** Here's what you'll be able to do after today.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* LEARNING OBJECTIVES */}
+{/* ============================================ */}
+
+<Slide>
+
+## Learning Objectives
+
+<p style={{fontSize: '0.85em', textAlign: 'left'}}>
+After this session, you'll be able to:
+</p>
+
+<ol style={{fontSize: '0.75em', textAlign: 'left'}}>
+  <li>Explain what infrastructure as code promises and where the promise breaks</li>
+  <li>Identify the three classes of drift: undeclared, duplicated, and stale</li>
+  <li>Find a real disagreement between our repo and our cluster</li>
+  <li>Decide which drift to fix and which to simply document</li>
+</ol>
+
+<aside className="notes">
+TODO: time allocation across arcs.
+
+> **Transition:** Let's start.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* CONTENT — TODO                              */}
+{/* ============================================ */}
+
+<Slide>
+
+## TODO: Content
+
+Outline only — content slides go here.
+
+<aside className="notes">
+TODO
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* UP NEXT */}
+{/* ============================================ */}
+
+<Slide>
+
+## Up Next
+
+<div style={{fontSize: '0.85em', textAlign: 'left'}}>
+
+**Mon Oct 5 — Async Standup + Clinic (no meeting)**
+
+TODO: one-line transition from today into that session.
+
+</div>
+
+<div style={{fontSize: '0.75em', textAlign: 'left', marginTop: '1em'}}>
+
+**Before then:**
+
+- **First Implementation Ticket** — due Thu Oct 1
+- **Async Sprint: Focused Learning + Team Sync (Oct 2–13)** — released Thu Oct 1, due Wed Oct 14
+- **Drill Zero — Async Triage Log (pass/fail)** — due Fri Oct 9
+
+</div>
+
+<aside className="notes">
+Close on the transition, not the reminders — students should leave knowing what today was for.
+</aside>
+
+</Slide>
+
+</RevealJS>

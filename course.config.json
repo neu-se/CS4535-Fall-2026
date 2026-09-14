@@ -158,19 +158,20 @@
       }
     },
     {
-      "lectureId": "s04-continuous-delivery",
-      "title": "Software Processes & Continuous Delivery",
+      "lectureId": "s04-client-architecture",
+      "title": "Architecture III: The Client",
       "dates": [
         "2026-09-16"
       ],
       "topics": [
-        "CI/CD pipelines",
-        "Trunk-based development",
-        "Deployment strategies",
-        "Feature flags"
+        "App Router layout",
+        "Generated types from the schema",
+        "TableController and realtime",
+        "Data access conventions",
+        "The gradebook table"
       ],
       "materials": {
-        "slides": "/lecture-slides/s04-continuous-delivery"
+        "slides": "/lecture-slides/s04-client-architecture"
       },
       "notes": "Ticket hunt due — 2 tickets filed, 2 triaged"
     },
@@ -192,35 +193,35 @@
       }
     },
     {
-      "lectureId": "s06-testing",
-      "title": "Testing: E2E, Visual Acceptance & Performance",
+      "lectureId": "s06-continuous-delivery",
+      "title": "Software Processes & Continuous Delivery",
       "dates": [
         "2026-09-23"
       ],
       "topics": [
-        "Playwright",
-        "Visual acceptance testing",
-        "k6 load testing",
-        "What not to test"
+        "CI/CD pipelines",
+        "Trunk-based development",
+        "Deployment strategies",
+        "Feature flags"
       ],
       "materials": {
-        "slides": "/lecture-slides/s06-testing"
+        "slides": "/lecture-slides/s06-continuous-delivery"
       }
     },
     {
-      "lectureId": "s07-monitoring",
-      "title": "Monitoring, Observability & Incident Response",
+      "lectureId": "s07-testing",
+      "title": "Testing: E2E, Visual Acceptance & Performance",
       "dates": [
         "2026-09-24"
       ],
       "topics": [
-        "Logs, metrics, traces",
-        "Issue trackers and Sentry/Bugsink",
-        "Detection, triage, mitigation, postmortem"
+        "Playwright",
+        "Visual acceptance testing",
+        "What not to test"
       ],
       "notes": "Column groups due · teams announced",
       "materials": {
-        "slides": "/lecture-slides/s07-monitoring"
+        "slides": "/lecture-slides/s07-testing"
       }
     },
     {
@@ -257,15 +258,15 @@
     },
     {
       "lectureId": "s10-talk-iac",
-      "title": "Tech Talk: Infrastructure as Code & DevOps",
+      "title": "Tech Talk: Operations — IaC, Observability & Incident Response",
       "dates": [
         "2026-10-01"
       ],
       "topics": [
         "Environments as code",
         "Declared vs. actual: configuration drift",
-        "Provisioning and configuration",
-        "Build and deploy pipelines"
+        "Logs, metrics, traces",
+        "Detection, triage, mitigation, postmortem"
       ],
       "notes": "Instructor-led · declare your target band · leave with a sprint plan for Oct 2–13",
       "materials": {

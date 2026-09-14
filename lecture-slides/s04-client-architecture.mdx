@@ -1,0 +1,170 @@
+---
+sidebar_position: 4
+title: "Architecture III: The Client"
+image: /img/lectures/s04-client-architecture.png
+---
+
+import RevealJS, { Slide } from '@site/src/components/RevealJS';
+import Img from '@site/src/components/Img';
+
+<RevealJS transition="slide">
+
+{/* ============================================ */}
+{/* COVER IMAGE */}
+{/* ============================================ */}
+
+<Slide>
+
+  <Img
+    src="/img/lectures/s04-client-architecture.png"
+    prompt="PLACEHOLDER concept: The other half of the building. 8-bit lo-fi pixel art, retro game aesthetic, clean outlines, teal and blue cool tones with warm amber accents, 16:9 landscape. Top banner reads Architecture III: The Client. Bottom text reads CS 4535: Software Design and Delivery."
+    alt="TODO: describe the cover image once generated."
+  />
+
+<aside className="notes">
+**Session:** Wed Sep 16 · Architecture III: The Client
+
+**TODO — outline only.** Fill in the arc, timings and content slides.
+
+**Topics on the schedule:** App Router layout, generated types, TableController and realtime, data-access conventions, the gradebook table
+
+**Why this session exists, and it is not "learn React".** s01 and s03 are architecture sessions about Postgres and the infrastructure. Nothing covers the 156k lines under `app/` and `components/`, which is the part they actually type in. Deliverable 3 of the column-groups assignment is a change to `gradebookTable.tsx`, due the next day, and the first implementation tickets start on the 28th.
+
+**This pays off a promise already made in s01**, whose notes say to skip TableController there because "s06 has the room for it".
+
+**Content this needs to carry, roughly in order:**
+- Where things live: `app/` (App Router), `components/`, `hooks/`, `lib/`. The treemap from s01 is the map; this is the walkthrough.
+- **Generated types.** `npm run client-local` after every migration, never hand-edit `SupabaseTypes.d.ts`. Already flagged twice, in s02's three gotchas and in s03. This is where it gets explained rather than asserted.
+- **TableController and realtime.** How a row gets from Postgres to a component without the component polling for it.
+- **Data access conventions.** RPC-first, per s01's "Prefer RPCs" slide, which says this is the single convention most first PRs violate. Review sends back a route handler that queries Supabase directly.
+- **The gradebook table as the worked case**, because every one of them is inside it this week. The `groupedColumns` memo is the thing they are replacing, and there are three copies of the slug heuristic, not one.
+
+**Timing note:** this now lands eight days before column groups is due, not one. That is the whole reason it moved forward from Sep 23. They need the frontend conventions while there is still time to act on them, and the ticket hunt closes tonight, so everyone has just spent a week reading this code.
+
+**The architecture arc is now contiguous:** s01 the map, s03 the database, this one the client. Say that at the top. After today they have seen the whole system once, and everything from Sep 17 onward is about shipping changes to it.
+
+> **Transition:** Reminders first, then what we're doing today.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* REMINDERS */}
+{/* ============================================ */}
+
+<Slide>
+
+## Reminders
+
+<div style={{fontSize: '0.8em', textAlign: 'left'}}>
+
+- **DUE:** Onboarding: Gradebook Column Groups — due Thu Sep 24
+- **FEEDBACK:** Project Bids — closed Thu Sep 17; feedback coming back shortly
+- **DUE:** First Implementation Ticket — due Thu Oct 1
+
+</div>
+
+<aside className="notes">
+Keep this to 60 seconds. Deadlines and returning feedback only — questions about a specific assignment go to clinic or Discord.
+
+> **Transition:** Now, today.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* TITLE */}
+{/* ============================================ */}
+
+<Slide>
+
+# CS 4535: Software Design & Delivery
+
+## Testing: E2E, Visual Acceptance & Performance
+
+<p style={{marginTop: '2em', fontSize: '0.8em', color: '#666'}}>
+  &copy;2026 Jonathan Bell, CC-BY-SA
+</p>
+
+<aside className="notes">
+TODO: framing — why this session, and what it unblocks.
+
+> **Transition:** Here's what you'll be able to do after today.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* LEARNING OBJECTIVES */}
+{/* ============================================ */}
+
+<Slide>
+
+## Learning Objectives
+
+<p style={{fontSize: '0.85em', textAlign: 'left'}}>
+After this session, you'll be able to:
+</p>
+
+<ol style={{fontSize: '0.75em', textAlign: 'left'}}>
+  <li>Distinguish unit, end-to-end, visual acceptance and load testing by what each catches</li>
+  <li>Write a Playwright test for a real user flow</li>
+  <li>Identify what isn't worth testing and explain the tradeoff</li>
+</ol>
+
+<aside className="notes">
+TODO: time allocation across arcs.
+
+> **Transition:** Let's start.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* CONTENT — TODO                              */}
+{/* ============================================ */}
+
+<Slide>
+
+## TODO: Content
+
+Outline only — content slides go here.
+
+<aside className="notes">
+TODO
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* UP NEXT */}
+{/* ============================================ */}
+
+<Slide>
+
+## Up Next
+
+<div style={{fontSize: '0.85em', textAlign: 'left'}}>
+
+**Thu Sep 17 — Reliably Releasing Software**
+
+TODO: one-line transition from today into that session.
+
+</div>
+
+<div style={{fontSize: '0.75em', textAlign: 'left', marginTop: '1em'}}>
+
+**Before then:**
+
+- **Project Bids** — due Thu Sep 17
+- **Onboarding: Gradebook Column Groups** — due Thu Sep 24
+
+</div>
+
+<aside className="notes">
+Close on the transition, not the reminders — students should leave knowing what today was for.
+</aside>
+
+</Slide>
+
+</RevealJS>

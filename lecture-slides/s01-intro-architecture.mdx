@@ -1092,7 +1092,7 @@ sequenceDiagram
 </div>
 
 <p style={{fontSize: '0.58em', marginTop: '0.3em', textAlign: 'right', fontStyle: 'italic', color: '#4A90A4'}}>
-CI in depth: <strong>Wed 9/16</strong> · what it tests: <strong>Wed 9/23</strong>
+CI in depth: <strong>Wed 9/23</strong> · what it tests: <strong>Thu 9/24</strong>
 </p>
 
 <aside className="notes">
@@ -1213,7 +1213,7 @@ Types come from the schema. After a migration, run <code>npm run client-local</c
 
 **The Deno gotcha is worth 20 seconds:** files under `supabase/functions/` are Deno. The `@/*` path alias doesn't work there. Students lose an afternoon to this exactly once.
 
-**Do not** get into TableController here. It comes up when they touch the frontend, and s06 has the room for it.
+**Do not** get into TableController here. It gets a whole session on 9/16, Architecture III: The Client, which is where the frontend conventions live.
 
 > **Transition:** That's the whole map. Before we go anywhere else — a word to anyone who feels behind.
 </aside>
@@ -1229,11 +1229,11 @@ Types come from the schema. After a migration, run <code>npm run client-local</c
 | What you saw today | Where it gets a whole session |
 |---|---|
 | Databases, RLS, student-data privacy | **Mon 9/14** — Architecture II |
-| CI/CD, feature flags, trunk-based development | **Wed 9/16** — Software Processes & Continuous Delivery |
+| The frontend: App Router, types, TableController | **Wed 9/16** — Architecture III: The Client |
 | Migrations, dark launches, rollback | **Thu 9/17** — Reliably Releasing Software |
-| E2E, visual acceptance and load testing | **Wed 9/23** — Testing |
-| Sentry, Prometheus, Grafana, writing alerts | **Thu 9/24** — Monitoring & Incident Response |
-| Infrastructure as code, drift, DevOps | **Thu 10/1** — Tech Talk: IaC & DevOps |
+| CI/CD, feature flags, trunk-based development | **Wed 9/23** — Software Processes & Continuous Delivery |
+| E2E and visual acceptance testing | **Thu 9/24** — Testing |
+| IaC, drift, Sentry/Grafana, incident response | **Thu 10/1** — Tech Talk: Operations |
 | Agents, context, sub-agents | **Wed 10/7** — Tech Talk: Agents & Workflows |
 | Risk registers, release readiness | **Wed 11/18** — Tech Talk: Risk & Release Readiness |
 | All of it, under time pressure | **Game days** — 10/22, 11/5, 11/19 |

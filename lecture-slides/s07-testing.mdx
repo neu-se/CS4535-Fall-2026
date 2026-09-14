@@ -1,0 +1,175 @@
+---
+sidebar_position: 7
+title: "Testing: E2E, Visual Acceptance & Performance"
+image: /img/lectures/s07-testing.png
+---
+
+import RevealJS, { Slide } from '@site/src/components/RevealJS';
+import Img from '@site/src/components/Img';
+
+<RevealJS transition="slide">
+
+{/* ============================================ */}
+{/* COVER IMAGE */}
+{/* ============================================ */}
+
+<Slide>
+
+  <Img
+    src="/img/lectures/s07-testing.png"
+    prompt="PLACEHOLDER concept: A safety net under a trapeze, with holes in it. 8-bit lo-fi pixel art, retro game aesthetic, clean outlines, teal and blue cool tones with warm amber accents, 16:9 landscape. Top banner reads Testing: E2E, Visual Acceptance and Performance. Bottom text reads CS 4535: Software Design and Delivery."
+    alt="TODO: describe the cover image once generated."
+  />
+
+<aside className="notes">
+**Session:** Thu Sep 24 · Testing: E2E, Visual Acceptance & Performance
+
+**TODO — outline only.** Fill in the arc, timings and content slides.
+
+**Topics on the schedule:** Playwright, visual acceptance testing, what not to test
+
+**Moved here from Oct 19, and before that from Sep 23.** Sep 23 was too early, because nobody had written anything worth testing. Oct 19 was too late to help the first implementation ticket. This lands on the day column groups is due, which is the first moment they have a concrete hook.
+
+**The hook: the suite that ran on their own PR.** `gradebook-e2e` brings up a throwaway Supabase, replays every migration including theirs, seeds the class and drives the instructor gradebook in a real browser. It also uploads screenshots of their gradebook, collapsed and expanded, as a build artifact. They have all seen it go red by now. Open one of their runs rather than a toy example.
+
+**Cut:** k6 / load testing. Jon: won't fit in a 60-minute session. Make it a clinic topic or a self-serve doc, and point the gradebook team at it directly, since they are the ones who need it. The title still says Performance; either drop that word or keep it as the pointer to the doc.
+
+**Two things they have already met**, so build on them rather than introducing them cold:
+- s02 covered what the three CI checks tell you, and that green means it applies, the types match and the table still groups something, not that the design is good.
+- s02 planted the build-time rule: full-suite runs use a prod build on 3001 with `NEXT_PUBLIC_PAWTOGRADER_WEB_URL` exported before the build.
+
+**The Argos row from s02's pipeline diagram is the visual-acceptance hook.** Most of them have never seen visual acceptance testing, and s02's notes say it gets its own arc here.
+
+**Timing:** teams are announced in this session and the studio phase starts on the 28th, so this is the last content session before they are building as a team. "What not to test" matters more than usual for that reason.
+**Jon's framing — use the Swiss cheese model as the intro.** This lecture is the *last* layer of swiss cheese. You might get a chance to see something smoldering before it explodes into a burning sun of pain. That's what monitoring is for.
+
+**Draw on:** CS 3100 `l35-safety-reliability` — the Swiss cheese model is already built there, with the layer labels Contracts / Testing / Architecture / Monitoring and the tagline "Every Layer Has Holes." Students who took 3100 have seen it; this reuses the frame and puts monitoring in its place.
+
+**Cover the actual stack:** Sentry (we run Bugsink), Prometheus, Grafana, Loki. Why you want all four, what each one answers. Then the two judgment questions: what do you put in a Sentry context and why does it matter, and what is worth making a metric of?
+
+> **Transition:** Reminders first, then what we're doing today.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* REMINDERS */}
+{/* ============================================ */}
+
+<Slide>
+
+## Reminders
+
+<div style={{fontSize: '0.8em', textAlign: 'left'}}>
+
+- **DUE:** Onboarding: Gradebook Column Groups — due Thu Sep 24
+- **FEEDBACK:** Project Bids — closed Thu Sep 17; feedback coming back shortly
+- **DUE:** First Implementation Ticket — due Thu Oct 1
+
+</div>
+
+<aside className="notes">
+Keep this to 60 seconds. Deadlines and returning feedback only — questions about a specific assignment go to clinic or Discord.
+
+> **Transition:** Now, today.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* TITLE */}
+{/* ============================================ */}
+
+<Slide>
+
+# CS 4535: Software Design & Delivery
+
+## Testing: E2E, Visual Acceptance & Performance
+
+<p style={{marginTop: '2em', fontSize: '0.8em', color: '#666'}}>
+  &copy;2026 Jonathan Bell, CC-BY-SA
+</p>
+
+<aside className="notes">
+TODO: framing — why this session, and what it unblocks.
+
+> **Transition:** Here's what you'll be able to do after today.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* LEARNING OBJECTIVES */}
+{/* ============================================ */}
+
+<Slide>
+
+## Learning Objectives
+
+<p style={{fontSize: '0.85em', textAlign: 'left'}}>
+After this session, you'll be able to:
+</p>
+
+<ol style={{fontSize: '0.75em', textAlign: 'left'}}>
+  <li>Place monitoring as the last layer of defense — the one that catches what testing, review and rollout let through</li>
+  <li>Distinguish what Sentry, Prometheus, Grafana and Loki each answer, and why you want all four</li>
+  <li>Decide what belongs in a Sentry context, and what is worth making a metric</li>
+  <li>Write an alert that would have caught a real past incident</li>
+</ol>
+
+<aside className="notes">
+TODO: time allocation across arcs.
+
+> **Transition:** Let's start.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* CONTENT — TODO                              */}
+{/* ============================================ */}
+
+<Slide>
+
+## TODO: Content
+
+Outline only — content slides go here.
+
+<aside className="notes">
+TODO
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* UP NEXT */}
+{/* ============================================ */}
+
+<Slide>
+
+## Up Next
+
+<div style={{fontSize: '0.85em', textAlign: 'left'}}>
+
+**Mon Sep 28 — Studio Kickoff: Team Charters, Backlog & Estimation**
+
+TODO: one-line transition from today into that session.
+
+</div>
+
+<div style={{fontSize: '0.75em', textAlign: 'left', marginTop: '1em'}}>
+
+**Before then:**
+
+- **Onboarding: Gradebook Column Groups** — due Thu Sep 24
+- **First Implementation Ticket** — due Thu Oct 1
+
+</div>
+
+<aside className="notes">
+Close on the transition, not the reminders — students should leave knowing what today was for.
+</aside>
+
+</Slide>
+
+</RevealJS>
