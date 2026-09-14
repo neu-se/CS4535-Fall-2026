@@ -941,10 +941,17 @@ export async function processImage(
     message?: string;
     entry?: CacheEntry;
 }> {
-    // Check if image already exists at target path
-    const targetPath = path.join(config.projectRoot, image.targetDir, `${image.baseName}.png`);
-    if (fs.existsSync(targetPath) && !config.force) {
-        return { status: 'exists', message: 'Image already exists' };
+    // Check if image already exists at target path.
+    // A finished image is whichever extension the author settled on, not necessarily .png:
+    // most of the decks here reference .webp, and hand-made assets (screenshots, diagrams
+    // exported from elsewhere) never have a .png sibling at all. Checking only .png made
+    // the generator treat every finished image as missing and offer to overwrite it.
+    const FINISHED_EXTENSIONS = ['.png', '.webp', '.jpg', '.jpeg', '.avif', '.gif', '.svg'];
+    const existing = FINISHED_EXTENSIONS.map((ext) =>
+        path.join(config.projectRoot, image.targetDir, `${image.baseName}${ext}`)
+    ).find((candidate) => fs.existsSync(candidate));
+    if (existing && !config.force) {
+        return { status: 'exists', message: `Image already exists (${path.extname(existing)})` };
     }
 
     // Build full prompt
