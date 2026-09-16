@@ -1,7 +1,7 @@
 ---
 sidebar_position: 4
 title: "Architecture III: The Client"
-image: /img/lectures/s04-client-architecture.png
+image: /img/lectures/s04-client-architecture.webp
 ---
 
 import RevealJS, { Slide } from '@site/src/components/RevealJS';
@@ -16,34 +16,63 @@ import Img from '@site/src/components/Img';
 <Slide>
 
   <Img
-    src="/img/lectures/s04-client-architecture.png"
-    prompt="PLACEHOLDER concept: The other half of the building. 8-bit lo-fi pixel art, retro game aesthetic, clean outlines, teal and blue cool tones with warm amber accents, 16:9 landscape. Top banner reads Architecture III: The Client. Bottom text reads CS 4535: Software Design and Delivery."
-    alt="TODO: describe the cover image once generated."
+    src="/img/lectures/s04-client-architecture.webp"
+    prompt="Concept: 'Same binding, longer wire.' 8-bit lo-fi pixel art, retro game aesthetic, clean outlines, 16:9 landscape. In the foreground on the left, a wooden desk holds a chunky pixel computer monitor showing a simple app window with a horizontal slider and, beside it, a small number label. A thick glowing amber wire runs from the slider to the label, looping once, clearly connecting the two. That same amber wire then continues out of the monitor, through an open window, and stretches away to the right across a small pixel city skyline drawn in cool teals and blues, growing thinner with distance, until it enters an enormous filing vault building on the far right horizon, drawn as a grid of tiny drawers with one tiny pixel security guard standing at its door. No other wires anywhere in the scene. Top banner reads 'S4: Architecture III, The Client'. A tagline below the banner reads 'Same Binding. Longer Wire.' Bottom text reads 'CS 4535: Software Design and Delivery'."
+    alt="Pixel art of a desk with a monitor showing a slider bound to a number label by a glowing amber wire. The same wire runs out the window, across a teal city skyline, and into a distant filing vault guarded by a tiny figure. Tagline: Same Binding. Longer Wire."
   />
 
 <aside className="notes">
-**Session:** Wed Sep 16 · Architecture III: The Client
+**Session:** Wed Sep 16 · Architecture III: The Client · 65 min
 
-**TODO — outline only.** Fill in the arc, timings and content slides.
+**Structure, in order: there is no backend, who says no, watch it move, where does a change go, how the cache works, what the gradebook actually does, what you're replacing.**
+- Arc 1, There Is No Backend (~11 min). The server boundary, the two authorization gates, and a live demo of realtime.
+- Discussion 1, Where Does This Change Go? (~6 min, pairs). Four feature requests, five layers.
+- Arc 2, One Cache, Many Subscribers (~14 min). JavaFX binding as the bridge, the ObservableList gotcha, TableController, generated types.
+- Arc 3, The Gradebook Table, Honestly (~10 min). The memo, its eighteen callers, the three copies.
+- Discussion 2, Sketch It (~5 min, pairs) and debrief (~4 min).
+- Takeaways and up next (~4 min).
 
-**Topics on the schedule:** App Router layout, generated types, TableController and realtime, data-access conventions, the gradebook table
+**Narrative spine:** there is no backend. The browser talks to Postgres, and the only reason that is survivable is Monday's lesson, which is that the database defends itself. Every frontend convention they are about to be graded on falls out of that one fact.
 
-**Why this session exists, and it is not "learn React".** s01 and s03 are architecture sessions about Postgres and the infrastructure. Nothing covers the 156k lines under `app/` and `components/`, which is the part they actually type in. Deliverable 3 of the column-groups assignment is a change to `gradebookTable.tsx`, due the next day, and the first implementation tickets start on the 28th.
+**This session is built at 60 minutes for a 65 minute room, on purpose.** s03 was written at 68 and ran over. The five minutes are not spare capacity to fill. They are the demo going wrong, or a pair-share the room wants to keep going. Protect them.
 
-**This pays off a promise already made in s01**, whose notes say to skip TableController there because "s06 has the room for it".
+**Three objectives, not six.** s03 had six and I said out loud that it was too many. This one has three and they map one to one onto the three questions on the How Today Works slide.
 
-**Content this needs to carry, roughly in order:**
-- Where things live: `app/` (App Router), `components/`, `hooks/`, `lib/`. The treemap from s01 is the map; this is the walkthrough.
-- **Generated types.** `npm run client-local` after every migration, never hand-edit `SupabaseTypes.d.ts`. Already flagged twice, in s02's three gotchas and in s03. This is where it gets explained rather than asserted.
-- **TableController and realtime.** How a row gets from Postgres to a component without the component polling for it.
-- **Data access conventions.** RPC-first, per s01's "Prefer RPCs" slide, which says this is the single convention most first PRs violate. Review sends back a route handler that queries Supabase directly.
-- **The gradebook table as the worked case**, because every one of them is inside it this week. The `groupedColumns` memo is the thing they are replacing, and there are three copies of the slug heuristic, not one.
+**The room's React problem is the design constraint for this whole session.** Some of them have never written TypeScript and more of them have never written React. Neither apologize for that gap nor try to fill it in 65 minutes. The response is structural: teach the three questions every client answers in any framework, and show this codebase's answers as one set among many.
 
-**Timing note:** this now lands eight days before column groups is due, not one. That is the whole reason it moved forward from Sep 23. They need the frontend conventions while there is still time to act on them, and the ticket hunt closes tonight, so everyone has just spent a week reading this code.
+**Do not teach React.** If you find yourself explaining what a hook is in the abstract, you have lost the thread. The two bridge slides do that work by analogy to something most of the room has already built.
 
-**The architecture arc is now contiguous:** s01 the map, s03 the database, this one the client. Say that at the top. After today they have seen the whole system once, and everything from Sep 17 onward is about shipping changes to it.
+**The JavaFX bridge, and how hard to lean on it.** Several of them took PDI2 and built a JavaFX app with properties, bindings and an ObservableList. For those people, slides 11 and 12 rename something they already built. Use that. But CS 3100 is not a stated prerequisite here and some of the room took it elsewhere, took it from somebody else, or did not take it at all, so both slides have to stand alone with the JavaFX column treated as a bonus rather than a premise. Say "if you built the smart home app, this is the same slide" and move on. Do not poll the room on who took what.
 
-> **Transition:** Reminders first, then what we're doing today.
+**Where the experience gap actually falls today, and it is worth naming on the How Today Works slide.** React fluency buys you syntax. It buys you nothing at all on "which layer does this change belong in" or "is this derived or stored," and those are the two things the session is about. Both pair-shares are deliberately answerable without writing a line of TypeScript, and both slides say so.
+
+**The line that does the most work all session** is on slide 17: the memo is not the interface, its return shape is, and eighteen call sites depend on it. Keep the shape, change where it comes from. Say it, then say it again in the takeaways. A student who leaves with only that sentence can still do deliverable 3.
+
+**Every number on these slides came from the tree at `e95a7c15`.** 430 of 637 tsx files carry "use client". `layout.tsx` is 108 lines. `SupabaseTypes.d.ts` is 14,494 lines. `TableController.ts` is 3,433. `groupedColumns` has eighteen references in `gradebookTable.tsx`. If somebody checks and gets a different number, they are right and the tree moved, which is the correct lesson about line numbers anyway.
+
+**Run sheet for 65 minutes.** Marks to steer by, not a script:
+
+| Mark | What should be happening |
+|---|---|
+| 0:00 | Reminders, then the ticket hunt slide. Hunt closes tonight |
+| 0:03 | Title, objectives, how today works |
+| 0:06 | Arc 1. **Open the two browser windows now**, before you need them |
+| 0:14 | **Live demo**: change a score, watch it land |
+| 0:17 | **Discussion 1**: where does this change go (6 min, pairs) |
+| 0:23 | Arc 2. Bridge slides first, then TableController |
+| 0:34 | Generated types, then gloss the self-study slide in one sentence |
+| 0:37 | Arc 3. The memo, the eighteen callers, the three copies |
+| 0:47 | **Sketch it** (5 min, pairs) |
+| 0:52 | Debrief. Compress this if you are behind |
+| 0:56 | Takeaways, up next. Out at 1:00 |
+
+**Never cut:** the live demo, both bridge slides, and slide 17. If you are behind at 0:47, take it out of the debrief, not out of the sketch. s03 proved that presenting conclusions at people who have not tried to reach them is the version that does not work.
+
+**Cheapest cuts, in order:** the self-study syntax slide is already a one-sentence gloss and can be silent. Slide 18 can lose the whatIf reference and keep only the reorder path. Slide 20 can be three sentences instead of three points.
+
+**Preparation, and this one is not optional.** Two browser windows, side by side, before class starts: the instructor gradebook for the seeded cs4535 class in one, the same course as a student in the other. Use `scripts/GenerateMagicLink.ts` for the second login. Test the demo once in the room you are teaching in. If the wifi is bad, the recorded clip is the fallback and nobody needs to know.
+
+> **Transition:** Reminders first, then the thing that's due tonight.
 </aside>
 
 </Slide>
@@ -58,16 +87,78 @@ import Img from '@site/src/components/Img';
 
 <div style={{fontSize: '0.8em', textAlign: 'left'}}>
 
-- **DUE:** Onboarding: Gradebook Column Groups — due Thu Sep 24
-- **FEEDBACK:** Project Bids — closed Thu Sep 17; feedback coming back shortly
-- **DUE:** First Implementation Ticket — due Thu Oct 1
+- **Weekly office hours:** Mon 1-2p, Thurs 9:30-10:30a, WVH 326
+- **Discussion also on Discord:** Join via Pawtograder
+- **DUE TONIGHT, Wed Sep 16:** The Ticket Hunt
+- **DUE Thu Sep 17:** Project Bids
+- **DUE Thu Sep 24:** Onboarding: Gradebook Column Groups
 
 </div>
 
 <aside className="notes">
-Keep this to 60 seconds. Deadlines and returning feedback only — questions about a specific assignment go to clinic or Discord.
+Sixty seconds. Deadlines only. Questions about a specific assignment go to clinic or Discord.
 
-> **Transition:** Now, today.
+**Bids close tomorrow night**, and tomorrow's session is the last one before they do. Anybody still undecided should be talking to you at the break rather than at 23:00 on Thursday.
+
+> **Transition:** One of those closes in twelve hours, so let's be precise about what it wants.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* THE TICKET HUNT                              */}
+{/* ============================================ */}
+
+<Slide>
+
+## The Ticket Hunt Closes Tonight, 23:59
+
+<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1em', fontSize: '0.6em', marginTop: '0.4em'}}>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.7em', borderRadius: '8px'}}>
+
+**Two tickets you file**
+
+GitHub issues on <code>pawtograder/platform</code>, labeled <code>cs4535-hunt</code>.
+
+From **two different roles**. One is you as a student; the second is the role you claimed on Sep 10.
+
+Steps a stranger can follow · expected vs. actual · where you saw it · who it affects · evidence · why it matters.
+
+**Search first.** Duplicates are the most common way this goes wrong.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(100,150,255,0.12)', padding: '0.7em', borderRadius: '8px'}}>
+
+**Two items you triage**
+
+Comments on somebody else's item. Axe findings in <code>#910</code>, a <code>TODO</code> in the tree, or an unlabeled issue.
+
+One of three verdicts: **still real** (with a size), **no longer real** (with how you know), or **undecidable** (naming what you'd need and who has it).
+
+The reasoning is what's assessed. "Still relevant" earns nothing.
+
+</div>
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.68em', marginTop: '0.8em', fontWeight: 'bold', color: '#e76f51'}}>
+It lands in two places. GitHub is where the work goes. The hunt form in Pawtograder is the record that you did it, and it closes at the same moment.
+</p>
+
+<aside className="notes">
+**Two minutes, and the fragment is the whole reason this slide exists.** Every year somebody files four beautiful GitHub items and submits nothing in Pawtograder, and from where I sit that student did not do the assignment. Say it plainly: the issues and comments are the work, the form is the record, and both close at 23:59 tonight.
+
+**What the form asks for that they cannot reconstruct later**, so they should fill it in as they go rather than at 23:30: the terms they searched before filing, and roughly how long the whole thing took. The search terms matter because a duplicate filed after a real search is a different thing from one filed instead of searching, and the form is the only place that distinction is visible. The timing is how next year's version gets sized.
+
+**Remind them what tomorrow does with this.** Thursday we dedupe, size and label everything the hunt produced, and what survives becomes the `cs4535-first-ticket` pool. That pool is what the First Implementation Ticket draws from on Oct 15, and they may not claim their own. So the quality of tonight's filing is the quality of somebody else's October.
+
+**Do not take questions about specific tickets here.** Discord or clinic. This slide is a checklist, not a surgery.
+
+**One thing worth saying out loud if the room looks thin on triage:** the undecidable verdict is a real verdict and a useful one. People sit on an item for an hour because they think they have to resolve it. Naming precisely what you would need and who has it is the answer, and it takes ten minutes.
+
+> **Transition:** That's tonight. Now, today.
 </aside>
 
 </Slide>
@@ -80,16 +171,20 @@ Keep this to 60 seconds. Deadlines and returning feedback only — questions abo
 
 # CS 4535: Software Design & Delivery
 
-## Testing: E2E, Visual Acceptance & Performance
+## Architecture III: The Client
 
 <p style={{marginTop: '2em', fontSize: '0.8em', color: '#666'}}>
   &copy;2026 Jonathan Bell, CC-BY-SA
 </p>
 
 <aside className="notes">
-TODO: framing — why this session, and what it unblocks.
+**Framing, and it closes the arc that started on Sep 9.** Day one was the map. Monday was the database. Today is the part you actually type in, and after today you have seen the whole system once. Everything from tomorrow onward is about shipping changes to it rather than learning what it is.
 
-> **Transition:** Here's what you'll be able to do after today.
+**The hook, in one sentence:** Monday I told you the database defends itself. Today is the session where you find out what that bought us, which is that there is almost no backend between your browser and Postgres.
+
+**Say the promise is being kept.** On day one I skipped TableController and said it got its own session. This is that session.
+
+> **Transition:** Three things you'll be able to do after today.
 </aside>
 
 </Slide>
@@ -106,63 +201,848 @@ TODO: framing — why this session, and what it unblocks.
 After this session, you'll be able to:
 </p>
 
-<ol style={{fontSize: '0.75em', textAlign: 'left'}}>
-  <li>Distinguish unit, end-to-end, visual acceptance and load testing by what each catches</li>
-  <li>Write a Playwright test for a real user flow</li>
-  <li>Identify what isn't worth testing and explain the tradeoff</li>
+<ol style={{fontSize: '0.78em', textAlign: 'left'}}>
+  <li>Trace one value from a Postgres row to a rendered cell, and say how it updates without a reload</li>
+  <li>Decide which layer a change belongs in: migration, RPC, controller, hook, or component</li>
+  <li>Say what the gradebook's grouping is derived from today, what its interface is, and what your migration has to preserve</li>
 </ol>
 
 <aside className="notes">
-TODO: time allocation across arcs.
+**Time allocation:**
+- Arc 1 (~11 min) and the demo. Objective 1
+- Discussion 1 (~6 min). Objective 2, and it is the only rehearsal they get for it
+- Arc 2 (~14 min). Objective 1 again, in detail
+- Arc 3 (~10 min) and Discussion 2 (~9 min). Objective 3
 
-> **Transition:** Let's start.
+**Three, and say why it is three.** Monday had six objectives and I told the room that was too many. Cutting to three was a deliberate response to how Monday ran. Saying that out loud costs ten seconds and tells them the course adjusts.
+
+**Objective 2 is the one with the longest reach.** It is Discussion 1 today, it is deliverable 3 next week, and it is every ticket they pick up from Oct 15 onward. A student who can look at a feature request and say "that is an RLS change, not a component change" is most of the way to being useful in this codebase.
+
+**Objective 3 is deliverable 3, stated as something they can check.** It is the only one graded this month.
+
+> **Transition:** Here's how the hour is built, and what you need to follow it.
 </aside>
 
 </Slide>
 
 {/* ============================================ */}
-{/* CONTENT — TODO                              */}
+{/* HOW TODAY WORKS                              */}
 {/* ============================================ */}
 
 <Slide>
 
-## TODO: Content
+## How Today Works
 
-Outline only — content slides go here.
+<div style={{fontSize: '0.7em', textAlign: 'left'}}>
+
+Every client application, in every language, answers three questions. Today is those three questions, and this codebase's answers:
+
+</div>
+
+<div style={{fontSize: '0.66em', textAlign: 'left', marginTop: '0.6em'}}>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.5em', borderRadius: '8px', marginBottom: '0.4em'}}>
+
+**1.** Where does the data live while the user is looking at it?
+
+</div>
+
+<div style={{backgroundColor: 'rgba(100,150,255,0.12)', padding: '0.5em', borderRadius: '8px', marginBottom: '0.4em'}}>
+
+**2.** How does the screen find out it changed?
+
+</div>
+
+<div style={{backgroundColor: 'rgba(231,111,81,0.15)', padding: '0.5em', borderRadius: '8px'}}>
+
+**3.** What is recomputed, and what is stored?
+
+</div>
+
+</div>
+
+<p style={{fontSize: '0.68em', marginTop: '0.7em', textAlign: 'left'}}>
+Two working breaks, in pairs. <strong>No TypeScript required for either one</strong>, and none of today needs you to have written React.
+</p>
+
+<p className="fragment" style={{fontSize: '0.7em', marginTop: '0.4em', fontWeight: 'bold', color: '#e76f51'}}>
+Question 3 is the assignment due on the 24th.
+</p>
 
 <aside className="notes">
-TODO
+**This slide is the accommodation, and it works by being true rather than by being generous.** Swing, JavaFX, Android, iOS, a game loop, a terminal UI: all of them answer these three questions, and a student who has built any of them has met all three under different names. React is one set of answers. Say that, and mean it.
+
+**Say the no-TypeScript norm and then honor it.** Both exercises are designed so that a pair with no React between them can do the whole thing in English. Monday's "no SQL" instruction is why the pseudocode exercise worked with a room this mixed, and this is the same move. If you improvise a third exercise that needs TSX, you have broken the promise on this slide.
+
+**Name where the gap actually falls, without naming who has it.** React fluency buys syntax. It buys nothing on question 2, which is an architecture question, and nothing on question 3, which is the same entity-versus-derived argument they had on Monday wearing different clothes. The people who found Monday's first discussion easy are not necessarily the people who will find today easy, and vice versa. Let them discover that.
+
+**They pair themselves.** Six pairs, no seating plan, no engineering of who sits with whom, and no commentary on it. Same as Monday.
+
+**The report-out norm, restated once:** both people talk, and the answer comes from whichever of the two is less sure.
+
+> **Transition:** Question one. Where does the data live? The answer starts with something that isn't there.
 </aside>
 
 </Slide>
 
 {/* ============================================ */}
-{/* UP NEXT */}
+{/* ARC 1: THERE IS NO BACKEND (~11 min)         */}
+{/* Objective 1                                  */}
+{/* ============================================ */}
+
+<Slide>
+
+## There Is No Backend
+
+<div style={{fontSize: '0.62em', textAlign: 'left'}}>
+
+`app/course/[course_id]/layout.tsx`, the server component every course page sits under, in full:
+
+</div>
+
+<div style={{fontSize: '0.54em', textAlign: 'left', marginTop: '0.3em'}}>
+
+```text
+authenticate the user
+resolve their role in this course, or redirect away
+if they're a student, prefetch their rows so the first paint isn't empty
+hand everything to client-side providers
+```
+
+</div>
+
+<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '0.6em', fontSize: '0.6em', marginTop: '0.8em', textAlign: 'center'}}>
+
+<div style={{backgroundColor: 'rgba(100,150,255,0.12)', padding: '0.6em', borderRadius: '8px'}}>
+
+**108**
+
+lines in that file
+
+</div>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.6em', borderRadius: '8px'}}>
+
+**430 / 637**
+
+components marked `"use client"`
+
+</div>
+
+<div style={{backgroundColor: 'rgba(231,111,81,0.15)', padding: '0.6em', borderRadius: '8px'}}>
+
+**2**
+
+files in the repo marked `"use server"`
+
+</div>
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.72em', marginTop: '0.8em', fontWeight: 'bold', color: '#e76f51'}}>
+Below that layout, the browser talks to Postgres.
+</p>
+
+<aside className="notes">
+**This is the claim of the session and everything else is a consequence of it.** Put it on the board.
+
+**Next.js is here for routing, and very little else.** They will read that this is a Next.js app and reasonably assume a server tier, because that is what the framework's own documentation is mostly about. It isn't one. The App Router gives us URL structure, one server component that does auth, and a build. There is no REST API, no GraphQL layer, no service tier, and no model objects on a server somewhere that own the data.
+
+**The three numbers are the argument, so let them sit.** Two "use server" files in a 215,000 line tree is the one that lands. If somebody has built a Spring or Django or Rails app, this is genuinely strange and they should say so.
+
+**Expect, and welcome, the objection: "isn't that wildly insecure?"** That is the correct instinct and it is the transition to the next slide. Anyone who has built a client-server application has had it drilled into them that the client cannot be trusted, and that is still true here. What changed is where the trust boundary sits. Do not resolve it on this slide; ask who thinks it is a problem and let them say why first.
+
+**If nobody objects, prompt it.** "Every one of you has a `gradebook_column_students` table with everybody's grades in it, and I just told you the browser queries it directly. Nobody wants to say anything?"
+
+**The prefetch detail is worth thirty seconds if you have them, and is the first cut if you don't.** Students get their rows prefetched on the server so the first paint is not empty. Staff do not, because a 400 student gradebook would block the layout render, so staff pages stream and fill in. Same code, different strategy, decided by role. It is a nice small instance of the thing tomorrow's session is entirely about.
+
+> **Transition:** So who says no?
+</aside>
+
+</Slide>
+
+<Slide>
+
+## Two Gates, and Neither One Is In Your Component
+
+<Img
+  src="/img/lectures/s04-two-gates.webp"
+  prompt="A clean educational architecture diagram (not pixel art), 16:9 landscape, plain white background, no title text and no heading text anywhere. Two horizontal lanes stacked with clear space between them. The upper lane is labeled 'PULL' at its far left edge: a browser window icon on the left, a long arrow labeled 'select' pointing right toward a database cylinder labeled 'Postgres' on the right, and standing directly in front of the cylinder a tall teal shield labeled 'RLS policy, once per row'. The lower lane is labeled 'PUSH' at its far left edge: the same database cylinder on the right, a long arrow labeled 'broadcast' pointing left back toward the browser window on the left, and standing directly in front of the browser a tall amber shield labeled 'channel topic'. Immediately to the right of the amber shield, stack three small monospace labels reading 'class:123:staff', 'class:123:students', 'class:123:user:abc'. Centered in the white space between the two lanes, draw a small plain rectangle labeled 'your React component', connected to each lane by one short thin dashed line, with a small caption directly beneath it reading 'no authorization here'. Only two shields and only two arrows in the whole figure. Restrained, professional, textbook-figure quality, teal and amber on white, legible from the back of a lecture hall."
+  alt="Diagram with two lanes. The pull lane runs from a browser through a teal shield labeled RLS policy, once per row, into Postgres. The push lane runs from Postgres back to the browser through an amber shield labeled channel topic, beside the three topic names class:123:staff, class:123:students and class:123:user:abc. Between the lanes a small box labeled your React component connects to both by dashed lines, captioned no authorization here."
+/>
+
+<aside className="notes">
+**Monday's answer, extended by one half.** They know the pull side: a policy is a predicate Postgres staples onto every query, evaluated once per row, and there is no code path anybody can forget to call. That is why the browser is allowed to hold a Supabase client at all.
+
+**The push side is the new part, and it is a genuinely nice piece of design.** Realtime changes do not arrive on one firehose that the client filters. They arrive on a topic, and the topic you are subscribed to is itself an authorization decision. Three of them matter: `class:<id>:staff`, `class:<id>:students`, and `class:<id>:user:<profile_id>`. A grade change that only staff should know about is broadcast on the staff topic, and a student's browser is not listening there.
+
+**Say the general principle, because it is the transferable one:** RLS defends the data you asked for. The topic defends the data nobody asked for and that the server volunteered. Those are different problems and they need different mechanisms. A system that gets the first one right and pushes everything to everybody has still leaked.
+
+**The box in the middle is the point of the diagram.** There is no authorization code in the component. Not "there shouldn't be" as a style preference; there is nowhere sensible to put it, because anything you write there is running on a machine the user controls. If a student's first instinct for "students shouldn't see unreleased grades" is to add a conditional in the render, this diagram is the answer, and Discussion 1 is about to test whether it landed.
+
+**Cheap and worth it if somebody asks how the broadcast gets sent:** a trigger on the table, which is Monday's material again.
+
+> **Transition:** That's the claim. Let's watch it happen.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## Watch It Move
+
+<div style={{fontSize: '0.75em', textAlign: 'left', marginTop: '1em'}}>
+
+Two windows. Instructor gradebook on the left, the same course as a student on the right.
+
+</div>
+
+<div style={{fontSize: '0.7em', textAlign: 'left', marginTop: '0.8em'}}>
+
+Change one score.
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.75em', marginTop: '1.2em', textAlign: 'left'}}>
+No reload. No polling. One websocket frame, and one cell repainted.
+</p>
+
+<aside className="notes">
+**Three minutes, and this is the slide that teaches question 2 to somebody who cannot yet read the code that implements it.** Do not skip it because you are behind. Skip the self-study slide instead.
+
+**Run it in this order, and narrate each step:**
+1. Both windows visible, network tab open on the student window, filtered to WS. Say there is one connection and it was opened when the page loaded.
+2. Change a score in the instructor window. The student window updates. Let the silence sit for a second before explaining.
+3. Point at the network tab. No new requests. One frame arrived on the socket that was already open.
+4. Reload neither window. Say that out loud, because half the room will assume you did.
+
+**Then the part that makes it architecture rather than a magic trick:** ask what had to be true for that to work. Something in the database noticed the change, decided which topic it belonged on, and pushed it. Something in the browser was already listening to that topic, found the one row that changed, and told exactly one cell to repaint. The rest of the gradebook did not re-render, and the next fifteen minutes are about why that last part is hard.
+
+**If you have a spare thirty seconds, do the negative case**, because it proves the topic gate from the previous slide better than any diagram: change something staff-only and show that nothing arrives in the student window.
+
+**Fallback if the demo fails:** the recorded clip. Play it, say the wifi lost, move on in ten seconds. Do not debug in front of the room.
+
+> **Transition:** Before we open the machinery, a question about where you'd put things.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* DISCUSSION 1 (~6 min, pairs)                 */}
+{/* Objective 2                                  */}
+{/* ============================================ */}
+
+<Slide>
+
+## Discussion: Where Does This Change Go?
+
+<div style={{fontSize: '0.64em', textAlign: 'left'}}>
+
+Six minutes, in pairs. For each request, pick a layer and name one consequence. No code.
+
+</div>
+
+<div style={{fontSize: '0.58em', textAlign: 'left', marginTop: '0.5em'}}>
+
+```text
+LAYERS   migration  ·  RPC  ·  controller  ·  hook  ·  component
+```
+
+</div>
+
+<ol style={{fontSize: '0.6em', textAlign: 'left', marginTop: '0.6em'}}>
+  <li>An instructor can rename a column group.</li>
+  <li>The group header shows how many columns are in it.</li>
+  <li>Students never see a group that hasn't been released.</li>
+  <li>The gradebook shows a class average for each group.</li>
+</ol>
+
+<p className="fragment" style={{fontSize: '0.66em', marginTop: '0.6em', fontWeight: 'bold', color: '#e76f51'}}>
+One of these is not the layer it looks like.
+</p>
+
+<aside className="notes">
+**This is objective 2, and it is the only rehearsal they get before it counts.** Deliverable 3 next week and every ticket from Oct 15 onward is this judgment. Six minutes.
+
+**Say "no code" and mean it.** Every one of the four is answerable by somebody who has never opened this repository, because the question is about responsibility rather than syntax.
+
+**What each one is doing:**
+1. **Rename a group.** Straightforward, and it is the warm-up: a write, so it needs a policy, and the schema needs somewhere to put the name. Most pairs get here. The follow-up if they are quick: who is allowed to, and where is that written down?
+2. **Show a count.** Genuinely a component concern, and it is in the list so that the answer is not always "further down." Do not let them talk themselves out of it. If the rows are already on the client, counting them is free and belongs where it is displayed.
+3. **Students never see an unreleased group.** This is the trap and it is the reason the slide exists. It reads like a conditional in a render, and a conditional in a render is not a security control, it is a suggestion. The right answer is an RLS policy, and the fragment is pointing here. If a pair says "hide it in the component," ask what happens when the student opens the network tab, and let them work out that the row already arrived.
+4. **Class average per group.** The interesting one, and there is no single right answer. Computing it in the browser means shipping every student's score to every client, which is a privacy problem before it is a performance problem. An RPC computes it next to the data and returns one number. This is Monday's claim 1 again: the cost is what you touch, and here what you touch is also what you disclose.
+
+**Report-out: take all six pairs, question 3 first.** Ask for the layer and the consequence, and put the tally for question 3 on the board. If most of the room said component, that is the most useful thing to happen in the session and you should say so rather than moving on politely.
+
+**Watch for the failure mode** where a pair answers every question with "the database," having correctly learned Monday's lesson and over-applied it. Question 2 is the corrective and it is in the list for exactly that reason.
+
+**Do not resolve question 4 fully.** Leave it open. It comes back in Arc 3 when they see what the client is already computing that it probably should not be.
+
+> **Transition:** Now the machinery. And the good news is most of you have built it before.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* ARC 2: ONE CACHE, MANY SUBSCRIBERS (~14 min) */}
+{/* Objective 1                                  */}
+{/* ============================================ */}
+
+<Slide>
+
+## You've Bound a Label to a Property Before
+
+<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.8em', fontSize: '0.46em', marginTop: '0.3em'}}>
+
+<div>
+
+*JavaFX, if you built the smart home app*
+
+```java
+brightnessValueLabel.textProperty().bind(
+    light.brightnessProperty().asString("%d%%"));
+```
+
+</div>
+
+<div>
+
+*Pawtograder, `useGradebookColumn(id)`*
+
+```js
+const [column, setColumn] = useState(
+  controller.rows.find(c => c.id === id));
+
+useEffect(() =>
+  controller.getById(id, setColumn).unsubscribe,
+  [id]);
+
+return column;
+```
+
+</div>
+
+</div>
+
+<p style={{fontSize: '0.68em', marginTop: '0.7em', textAlign: 'left'}}>
+Both say the same thing: <strong>bind once, never refresh by hand.</strong> The right-hand one writes out the unsubscribe, because nothing owns the lifetime for you.
+</p>
+
+<p className="fragment" style={{fontSize: '0.7em', marginTop: '0.5em', fontWeight: 'bold', color: '#e76f51'}}>
+A hook is a ViewModel. That's the whole idea.
+</p>
+
+<aside className="notes">
+**This slide exists because half this room has already built this, in Java, for a grade.** If they took PDI2 they wrote `bind()`, they wrote a ViewModel, and they were told never to call `updateUI()` again. Name that in one sentence and let the people who recognize it feel it. Do not poll who took it, do not linger, and do not make anybody who did not take it feel late.
+
+**For everyone else the left column is just a second example, not a prerequisite.** The sentence under both columns is the content. Read it out.
+
+**Walk the right column in plain English and do not say the word "hook" until the fragment:**
+- Line 1: remember a value, and start with whatever the cache already has, so the first paint is not empty.
+- Line 2: tell the cache to call me when row `id` changes, and hand back the function that stops it calling me.
+- Line 3: give the current value to whoever asked.
+
+That is subscribe, update, unsubscribe. Anyone who has attached a listener to anything, in any language, has written this.
+
+**The one real difference, and it is worth the fifteen seconds:** JavaFX has a scene graph that knows when a widget goes away, so `bind()` can clean up after itself. There is no scene graph here. The component can vanish at any time and nothing else knows, so the unsubscribe is written by hand, every time. That is the ugliest line on the slide and it is ugly for a reason.
+
+**"A hook is a ViewModel" is the sentence to leave them with**, and for the PDI2 half it retires the whole mystery in four words. UI state, no UI dependency, testable on its own. The same thing L30 spent a session on.
+
+**Do not go further into React than this slide goes.** No render cycle, no reconciliation, no dependency arrays. If somebody asks, the honest answer is that it matters and it is not what today is for, and the crash-course doc is linked from the last slide.
+
+> **Transition:** And if you built that app, you also met the bug on the next slide.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## The Gotcha You Already Met
+
+<div style={{fontSize: '0.6em', textAlign: 'left', marginBottom: '0.3em'}}>
+
+`ObservableList` fires when items are **added or removed**, but not when a property *inside* an existing item changes.
+
+</div>
+
+<Img
+  src="/img/lectures/s04-listener-fanout.webp"
+  prompt="A clean educational diagram (not pixel art), 16:9 landscape, plain white background, no title text and no heading text anywhere. On the left, one tall rounded rectangle labeled 'TableController', with a smaller rectangle nested inside it labeled 'one query, one cache'. From the right edge of that rectangle, three clearly separated fan-out groups of arrows spread rightward, each group its own color and its own vertical band with white space between the bands. The top band, drawn in cool teal, has exactly two arrows and the label 'list listeners: the whole table repaints'. The middle band, drawn in mid blue, has exactly five arrows and the label 'row listeners, by id: one header repaints'. The bottom band, drawn in warm amber, has about twenty short dense arrows arranged in a small fan and the label 'cell listeners, by student and column: one cell repaints'. At the far right end of the bottom band only, draw a small spreadsheet grid of about six by six empty squares with exactly one square filled solid amber. In the bottom right margin, a small caption reads '40 columns times 400 students'. Restrained, professional, textbook-figure quality, legible from the back of a lecture hall."
+  alt="Diagram of one TableController box on the left fanning out into three separate groups of arrows: two teal arrows labeled list listeners, the whole table repaints; five blue arrows labeled row listeners by id, one header repaints; and about twenty amber arrows labeled cell listeners by student and column, one cell repaints, ending at a spreadsheet grid with a single cell highlighted. Caption: 40 columns times 400 students."
+/>
+
+<aside className="notes">
+**This is the best slide in the session and it is built entirely out of something they were already taught.** The quote at the top is from L30 of PDI2, near enough verbatim. The answer they were given for GA1 was `setAll()`: replace the whole list, let the ListView redraw, simple and slightly wasteful and completely reliable.
+
+**Say the number before you say anything else.** Forty columns, four hundred students, sixteen thousand cells. `setAll()` means one score change repaints all of them. That is why this codebase could not take the simple answer, and it is why `TableController.ts` is 3,433 lines instead of an array. The file is big because the cheap answer does not survive contact with a real roster.
+
+**The three bands are three granularities of the same idea**, and the third one is the one they have not seen before:
+- Subscribe to the list, get told when anything changes. Coarse, correct, expensive.
+- Subscribe to one row by id. This is `useGradebookColumn` from the last slide, and it is why a column header can repaint alone.
+- Subscribe to a student and column pair. `useGradebookColumnStudent` does this, against a purpose-built index, and it is how one cell repaints while the other 15,999 sit still.
+
+**L30's other answer was the extractor**, which you called more elegant and harder to understand, and you recommended against it for GA1. The bottom band is the extractor, built by hand, at production scale. If anybody took PDI2, that is a satisfying thing to be told.
+
+**The transferable lesson, and say it in these words:** the granularity of your subscription decides the cost of a change. That is true in JavaFX, it is true here, and it will be true in whatever framework they are using in five years.
+
+**Do not go into the debounce, the refetch watermark, or tentative rows.** All three are real, all three are in that file, and none of them fit. If somebody asks, say the file has a lot more in it and that reading it is a good use of an afternoon.
+
+> **Transition:** So what is the thing all those arrows come out of?
+</aside>
+
+</Slide>
+
+<Slide>
+
+## One Query Per Table, Per Course
+
+<div style={{fontSize: '0.5em', textAlign: 'left'}}>
+
+```js
+get gradebookColumns() {
+  if (!this._gradebookColumns) {
+    this._gradebookColumns = new TableController({
+      client: this.client,
+      table: "gradebook_columns",
+      query: this.client.from("gradebook_columns")
+                        .select("*")
+                        .eq("class_id", this.courseId),
+      classRealTimeController: this.classRealTimeController,
+      initialData: this._initialData?.gradebookColumns
+    });
+  }
+  return this._gradebookColumns;
+}
+```
+
+</div>
+
+<p style={{fontSize: '0.66em', marginTop: '0.5em', textAlign: 'left'}}>
+Built on first use. One query, scoped to one course. Every component on the page shares it.
+</p>
+
+<aside className="notes">
+**Twelve lines, and it is the whole idea of a controller.** Read it out loud line by line; there is nothing hidden in it.
+
+**Four things to point at, in this order:**
+1. **`if (!this._gradebookColumns)`.** Lazy. A page that never shows the gradebook never runs this query. There are roughly thirty of these getters on `CourseController` and most pages wake up three or four.
+2. **`.eq("class_id", this.courseId)`.** The cache is per course, and so is the query. Ten courses share one database and this client holds rows for one of them.
+3. **`classRealTimeController`.** This is where the arrows on the last slide come from. Handing it in at construction is what makes the cache self-updating rather than a snapshot.
+4. **`initialData`.** The server prefetch from the first slide of this arc, landing here. If the layout already fetched the rows, the controller starts full instead of starting empty and flashing.
+
+**The thing worth saying that is not on the slide:** the `.eq("class_id", ...)` is a convenience, not a defense. If a student edited that line to another course id, the query would still return nothing, because the policy runs regardless. Scoping is for cost; the policy is for safety. Monday's claim 1 and claim 2 side by side in one line of TypeScript.
+
+**If asked why it is a getter and not a field:** so that constructing a `CourseController` is cheap, and so that a page pays only for the tables it actually reads. Thirty eager queries on every navigation would be a bad trade.
+
+> **Transition:** One thing has to be true for any of that to typecheck.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## The Schema Is the Contract
+
+<div style={{fontSize: '0.7em', textAlign: 'left'}}>
+
+`utils/supabase/SupabaseTypes.d.ts` is **14,494 lines**, and nobody wrote it.
+
+</div>
+
+<div style={{fontSize: '0.56em', textAlign: 'left', marginTop: '0.6em'}}>
+
+```bash
+npx supabase migration new add_column_groups   # write the SQL
+npx supabase db reset                          # replay it from scratch
+npm run client-local                           # regenerate the types
+npm run seed -- --template cs4535              # db reset dropped your class
+```
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.68em', marginTop: '0.7em', fontWeight: 'bold', color: '#e76f51'}}>
+Skip the third command and you get type errors in files you never opened.
+</p>
+
+<aside className="notes">
+**Third time this has been said, and the first time it has been explained.** s02 listed it as a gotcha, Monday asserted it. Here it is a consequence, which is the only version that sticks: if the browser talks to Postgres, then the schema is the API, so the types have to be derived from the schema or they are fiction. There is no server in between with its own model classes to disagree with.
+
+**Never hand-edit that file.** It is regenerated wholesale. An edit survives until the next person runs the command, which is a nasty failure because it is somebody else's build that breaks.
+
+**The four commands are the loop they will be in all week**, and they are in the handout, but say the fourth one out loud because it is the one that wastes an afternoon: `db reset` drops the seeded class. Re-seed after every replay or you will be staring at an empty gradebook wondering what your migration broke.
+
+**The fragment is the diagnostic worth memorizing.** The symptom of a missed `client-local` is type errors pointing at files you have never touched, because your new table is missing from the generated union and everything that reads the union goes red at once. A student who recognizes that symptom saves an hour; one who does not goes looking for a bug in `gradebookTable.tsx` that is not there.
+
+**CI catches it, and that is worth thirty seconds** because it reframes what the check is for. `gradebook-e2e` replays every migration into a throwaway database and then compares the committed types against the schema that produced. Green does not mean the design is good. It means it applies, the types match, and something still groups. The design is assessed from the writeup.
+
+> **Transition:** One reference slide, then the code you're actually changing.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## Eight Things You'll Meet In That File
+
+<p style={{fontSize: '0.6em', textAlign: 'left', fontStyle: 'italic'}}>Self-study. Enough to read `gradebookTable.tsx` without a React course.</p>
+
+<div style={{fontSize: '0.54em', textAlign: 'left', marginTop: '0.4em'}}>
+
+| | |
+|---|---|
+| `useState(x)` | a field that repaints its component when it changes |
+| `useEffect(fn, [deps])` | run `fn` after render; re-run when `deps` change. Return a cleanup function |
+| `useMemo(fn, [deps])` | cache `fn`'s result until `deps` change |
+| `<Thing prop={x} />` | construct `Thing`, passing `x`. Arguments, spelled like HTML |
+| `{expr}` in markup | evaluate `expr` and render it |
+| `Foo<Bar>` | a generic, same as Java |
+| `a?.b` | `b`, or `undefined` if `a` is null |
+| `a ?? b` | `a`, unless it's null, then `b` |
+
+</div>
+
+<aside className="notes">
+**One sentence on the way past, and do not teach from it.** "That table is everything you need to read the gradebook file, it's on the site, read it before you start the migration." Then move.
+
+**It is here so that nobody has to ask in the moment**, and so that Arc 3 can put real code on screen without half the room losing the thread on syntax. It is deliberately eight rows and deliberately informal. `useEffect` is not really "run after render" and I do not care. It is true enough to read this codebase with.
+
+**The longer version is `docs/client-crash-course.md`**, which is about fifteen minutes and is linked from the column groups handout. Point at it here and again on the last slide.
+
+**If somebody wants the honest version of `useMemo`**, the next slide is about to give it to them, because the memo we are about to read has a key so awkward that it explains what the dependency array is really for better than any definition would.
+
+> **Transition:** Here's the code. It's sixty lines and it's all yours next week.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* ARC 3: THE GRADEBOOK TABLE, HONESTLY (~10m)  */}
+{/* Objective 3                                  */}
+{/* ============================================ */}
+
+<Slide>
+
+## What the Memo Actually Does
+
+<p style={{fontSize: '0.58em', textAlign: 'left', fontStyle: 'italic'}}>`gradebookTable.tsx`, around line 2556. React removed; this is all of it.</p>
+
+<div style={{fontSize: '0.46em', textAlign: 'left', marginTop: '0.3em'}}>
+
+```js
+for (const col of columns) {                      // sorted by sort_order
+  const parts = col.slug.split("-");
+
+  const base = (parts[0] === "assignment" && parts.length >= 3)
+    ? parts[0] + "-" + parts[1]                   // assignment-lab, assignment-exam
+    : parts[0] || "other";
+
+  const contiguous = lastSortOrder === -1
+    || col.sort_order === lastSortOrder + 1;      // no gap since the last one
+
+  if (!contiguous || base !== currentGroupKey) {
+    currentGroupKey = base;
+    currentGroupIndex++;                          // start a new group here
+  }
+
+  groups[base + "-" + currentGroupIndex].columns.push(col);
+  lastSortOrder = col.sort_order;
+}
+```
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.66em', marginTop: '0.5em', fontWeight: 'bold', color: '#e76f51'}}>
+A group is a string prefix plus an unbroken run of integers. That is the entire concept.
+</p>
+
+<aside className="notes">
+**Say "there is no React on this slide" before you say anything else.** Split a string, walk a list, compare to the previous one. Anyone who has written any language can read every line, and that is the point of showing it this way.
+
+**Read it out and let the room reach the fragment before you do.** Two signals decide grouping: a prefix taken off the front of the slug, and a contiguity check on `sort_order`. Nothing else. There is no group table, no group id, no group anywhere in the schema. Monday they built one on paper. This is what it is replacing.
+
+**The consequences fall straight out of the code and they should name them, not you.** Ask what happens if you delete a column in the middle of a group. The gap breaks contiguity, `currentGroupIndex` increments, and everything after it becomes a second group with the same display name. Ask what happens if you reorder. Group identity is positional, so the groups change. Both are in the handout and both are much better discovered here than read there.
+
+**The one they will not get without help, and it is worth thirty seconds:** `assignment-lab-3` has three parts so it becomes group `assignment-lab`. `assignment-lab` has two parts, falls to the `else` branch, and becomes group `assignment`. The same family, two groups, decided by how many hyphens somebody typed.
+
+**And the one that makes it permanent:** there is a BEFORE UPDATE trigger on `gradebook_columns` that refuses any change to `slug` once set. So the field that decides grouping is a field nobody is allowed to correct. Today the only way to move a column between groups is to delete it and lose its scores.
+
+**Do not list all ten failure modes.** Three is enough to make the point and the rest are theirs to find; the Credit band is about finding them.
+
+**The memo key is the smell and it is worth naming as a smell.** The real code hashes the entire column list with `JSON.stringify` and parses it back out inside the memo, because there was no stable identity to key on. When the cheapest way to say "has this changed" is to serialize everything, the thing you are grouping by is not a real identity. That is the argument for the assignment in one sentence.
+
+> **Transition:** So replace it. Except the memo isn't the part that's hard.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## The Memo Is Not the Interface
+
+<div style={{fontSize: '0.58em', textAlign: 'left'}}>
+
+What sixty lines of slug-splitting produces:
+
+</div>
+
+<div style={{fontSize: '0.5em', textAlign: 'left', marginTop: '0.3em'}}>
+
+```ts
+Record<string, { groupName: string; columns: Column[] }>
+```
+
+</div>
+
+<div style={{fontSize: '0.62em', textAlign: 'left', marginTop: '0.8em'}}>
+
+`groupedColumns` is referenced **18 times** in that file: the table headers, the virtualizer's height math, the collapse state, and the drag-to-reorder path.
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.78em', marginTop: '1em', fontWeight: 'bold', color: '#e76f51'}}>
+Keep the shape. Change where it comes from.
+</p>
+
+<aside className="notes">
+**This is the takeaway of the session. If they leave with one sentence, make it the fragment.**
+
+**Say the trap out loud, because the handout's wording invites it.** Deliverable 3 says the memo stops splitting slugs, and it is easy to read that as "delete sixty lines, write a query, done." Then you start, and the table headers break, and the row heights are wrong, and dragging a column moves the wrong block, and it is Tuesday night. Eighteen call sites depend on the shape that memo returns, and none of them care where the rows came from.
+
+**So the real shape of the task is small:** keep returning the same structure, and build it from rows you read instead of strings you split. What is left where the memo was should be doing nothing more interesting than shaping rows you were handed. That is the handout's own wording and this is what it means.
+
+**Say this is deliberate guidance and not a spoiler.** Discovering the eighteen call sites the hard way costs a weekend and teaches nothing the objective asks for. The learning objective is recognizing that a derived value's *shape* is an interface with callers, which is a claim about design that holds in any codebase and in any language. They met the same idea in OOD under a different name.
+
+**The good news to give them, and it is genuinely good news:** this is why a student who has never written React can do this assignment. You are not authoring components. You are changing where an existing function gets its input, and keeping its output the same.
+
+**If somebody asks whether they can change the shape:** yes, at Distinction, and then they own all eighteen callers and should say so in the PR. That is a real claim and an assessable one. It is not the Pass path.
+
+> **Transition:** One more thing before you go and do it, and it's the part people miss.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## Three Copies, Not Two
+
+<div style={{fontSize: '0.62em', textAlign: 'left'}}>
+
+The same slug-splitting rule is written out in three places:
+
+</div>
+
+<div style={{fontSize: '0.56em', textAlign: 'left', marginTop: '0.5em'}}>
+
+| Where | What it decides |
+|---|---|
+| `gradebookTable.tsx` ~2556 | the instructor gradebook's headers |
+| `whatIf.tsx` ~543 | what students see in the what-if view |
+| `gradebookTable.tsx` ~229 | which block a drag moves |
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.68em', marginTop: '0.8em', fontWeight: 'bold', color: '#e76f51'}}>
+And none of them exist in SQL. No report, export, or edge function can see a group at all.
+</p>
+
+<aside className="notes">
+**The third one is the one that bites, and it is the one nobody finds.** `buildVisibleReorderUnits`, same file, line 229, splits slugs a third time to work out what a drag should pick up. A submission that converts the memo, leaves that alone, and claims Distinction has a reorder path still running the old rule. That is precisely the seam the Distinction band tests, and I would rather say so now than write it in feedback on the 25th.
+
+**Say the general version, because it is the reusable one:** a rule that is written down three times is not a rule, it is three rules that currently agree. The moment one of them is corrected they stop agreeing, and nothing anywhere will tell you.
+
+**The fragment is Monday's lesson arriving from the other direction and it deserves a beat.** Grouping exists only at render time in one browser. It is not in the database, so a report cannot group by it, an export cannot carry it, and an edge function cannot reason about it. Monday the question was what a policy costs. Today it is what a concept costs when it lives in the wrong tier.
+
+**This is also the answer to question 4 from Discussion 1**, which you deliberately left open. A class average per group is not currently computable in SQL, because SQL has never heard of a group. Once it is a row, it is one query. Point back at the board.
+
+**If you are behind, cut the whatIf row and keep the reorder row.** The reorder row is the one that costs them marks.
+
+> **Transition:** So: you designed the table on Monday. What does the client read instead?
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* DISCUSSION 2: SKETCH IT (~5 min, pairs)      */}
+{/* Objective 3                                  */}
+{/* ============================================ */}
+
+<Slide>
+
+## Sketch It. No TypeScript.
+
+<div style={{fontSize: '0.6em', textAlign: 'left'}}>
+
+Five minutes, in pairs. Get Monday's sketch out. Groups are rows now.
+
+</div>
+
+<div style={{fontSize: '0.54em', textAlign: 'left', marginTop: '0.5em'}}>
+
+```text
+SHAPE    what does the thing the table reads look like?
+         ............................................
+
+OWNER    who sorts the groups, and who decides collapsed?
+         ............................................
+
+CHANGE   somebody renames a group in another browser.
+         what happens in yours, and how?
+         ............................................
+
+KEEP     what must still be true for the other 17 callers?
+         ............................................
+```
+
+</div>
+
+<aside className="notes">
+**Five minutes, and it is deliberately the same four-blank shape as Monday's `THING / READ / WRITE / NEVER`.** They will recognize the form, which means no time is spent explaining the exercise. English, bullet points, pseudocode, a drawing. All fine.
+
+**This is the client half of a design they already did.** Monday they decided what a group is in the database. Today they decide what the screen asks for. A pair that discovers those two answers disagree has found the most useful thing in the exercise.
+
+**What each line is doing:**
+- `SHAPE` is slide 17, tested. Anyone who writes down the `Record` shape has understood that the interface is the constraint. Anyone who writes a flat list of groups has quietly signed up for rewriting eighteen call sites and should find that out now rather than on Tuesday.
+- `OWNER` is the derived-versus-stored question with a concrete edge. Sort order belongs in the database, because it is a property of the group and it has to be the same for everybody. Collapsed state does not, because it is one person's view of their own screen and nobody else should see it. Most pairs put both in the same place. That is the teachable moment, and it is a genuine design distinction rather than a React fact.
+- `CHANGE` is the whole reason slides 11 and 12 exist, and it is the one almost nobody fills in. Expect blanks. The answer is a row changed, a broadcast went out on a topic, a controller updated one row in its cache, and the listeners for that row fired. If a pair writes "refetch the page," ask them what the demo showed.
+- `KEEP` is the takeaway, one more time, in their own handwriting.
+
+**Circulate and read over shoulders.** Six pairs, five minutes, you can see all of it. Decide from what you read which of the three debrief points to spend the next four minutes on.
+
+**Tell them to keep this with Monday's sketch.** Between the two they have most of the design writeup, and the writeup is what makes this assignment LO2 rather than a SQL exercise. Those answers are much easier to write on the 23rd if they wrote them down on the 14th and the 16th.
+
+> **Transition:** Here's where these usually come apart.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## Where Sketches Come Apart
+
+<div style={{fontSize: '0.64em', textAlign: 'left', marginTop: '0.4em'}}>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.6em', borderRadius: '8px', marginBottom: '0.5em'}}>
+
+**The group key gets rebuilt on the client anyway**, out of habit. If you have the row, you have the id.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(100,150,255,0.12)', padding: '0.6em', borderRadius: '8px', marginBottom: '0.5em'}}>
+
+**Sorting drifts into the component.** Group order is everyone's; collapsed is only yours.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(231,111,81,0.15)', padding: '0.6em', borderRadius: '8px'}}>
+
+**`CHANGE` is blank.** A rename in another browser has to arrive somehow, and you already watched it happen.
+
+</div>
+
+</div>
+
+<aside className="notes">
+**Four minutes, and it is a debrief rather than a lecture.** By now they have argued their way to most of this. Take the points in whatever order the sketches you read make useful, and skip any point the room already got.
+
+**Compress this slide to three sentences if you are behind.** It is the designated cut and it is a much cheaper loss than the exercise. Monday proved that presenting four decisions at people who have not tried to make them is the version that does not work. That applies here too.
+
+**Point one is the habit, and it is worth naming as a habit rather than an error.** They have spent a week inside code that derives group identity from a string, so deriving it again is the path of least resistance. Once a group is a row, the id is the identity. If their sketch still splits a slug anywhere, ask what the slug is for now.
+
+**Point two is the one with the real design content**, and if you only have time for one, make it this one. Two things that look like the same kind of state and belong in different places. Order is a property of the group, shared by everyone, and it lives in the database. Collapsed is a property of one person looking at one screen and it should never leave the browser. The test question: if two instructors have the gradebook open, should collapsing a group on one screen collapse it on the other? Nobody says yes once it is put that way, and now they have derived the split themselves.
+
+**Point three is the callback, and say it as a callback.** They watched a score move between two windows forty minutes ago. A rename is the same mechanism with a different table. If they can say row, topic, controller, listener, cell, they have objective 1.
+
+> **Transition:** Three things to take away.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* TAKEAWAYS                                    */}
+{/* ============================================ */}
+
+<Slide>
+
+## Key Takeaways
+
+<div style={{fontSize: '0.66em', textAlign: 'left', marginTop: '0.4em'}}>
+
+<div style={{backgroundColor: 'rgba(100,150,255,0.12)', padding: '0.55em', borderRadius: '8px', marginBottom: '0.45em'}}>
+
+**Where does the data live?** In one controller per table per course, shared by every component, kept current by the database rather than by a refresh button.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.55em', borderRadius: '8px', marginBottom: '0.45em'}}>
+
+**How does the screen find out?** A row changed, a topic carried it, one listener fired, one cell repainted. Authorization happened twice and neither time in your component.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(231,111,81,0.15)', padding: '0.55em', borderRadius: '8px'}}>
+
+**Derived or stored?** Today a column group is derived, three times, from a string nobody is allowed to edit. Next week you store it.
+
+</div>
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.72em', marginTop: '0.7em', fontWeight: 'bold', color: '#e76f51'}}>
+Keep the shape. Change where it comes from.
+</p>
+
+<aside className="notes">
+**Three takeaways, matching the three questions from the start of the hour.** Read them as answers to those questions rather than as new material.
+
+**Then the fragment, one more time.** Third time today and that is deliberate. It is the sentence that turns a frightening file into a small task, and it is the one that most needs to survive the walk out of the room.
+
+**Point at the self-study material in one sentence:** the syntax table is on the site, `docs/client-crash-course.md` is fifteen minutes and is linked from the assignment, and the honest way to spend an hour this week is reading `TableController.ts` with the fanout diagram next to it.
+
+**Last thing, and say it plainly.** After today they have seen the whole system once: the map, the database, the client. Nothing else in this course is an architecture tour. From tomorrow it is all about shipping changes to it.
+
+> **Transition:** Tomorrow, and what's due.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* UP NEXT                                      */}
 {/* ============================================ */}
 
 <Slide>
 
 ## Up Next
 
-<div style={{fontSize: '0.85em', textAlign: 'left'}}>
+<div style={{fontSize: '0.8em', textAlign: 'left'}}>
 
-**Thu Sep 17 — Reliably Releasing Software**
-
-TODO: one-line transition from today into that session.
+**Thu Sep 17: Reliably Releasing Software**
 
 </div>
 
-<div style={{fontSize: '0.75em', textAlign: 'left', marginTop: '1em'}}>
+<div style={{fontSize: '0.68em', textAlign: 'left', marginTop: '0.5em'}}>
+
+You now know how a change reaches a browser. Tomorrow is how it reaches production without taking anything down: dark launches, safe migrations, and rollback as the first response rather than the last.
+
+</div>
+
+<div style={{fontSize: '0.66em', textAlign: 'left', marginTop: '1em'}}>
 
 **Before then:**
 
-- **Project Bids** — due Thu Sep 17
-- **Onboarding: Gradebook Column Groups** — due Thu Sep 24
+- **The Ticket Hunt**, tonight 23:59. GitHub *and* the form
+- **Project Bids**, due Thu Sep 17, 23:59
+- **Column Groups**, due Thu Sep 24, 23:59. Eight days
 
 </div>
 
 <aside className="notes">
-Close on the transition, not the reminders — students should leave knowing what today was for.
+**Close on the transition rather than on the reminders**, so they leave knowing what today was for.
+
+**The link to tomorrow is real and worth drawing.** Today was the last stop on a change's journey and tomorrow is the first: their migration has to reach ten courses' worth of live data without breaking any of them, and that is what a safe migration means. Column groups is the assignment where both halves meet.
+
+**Then the hunt, once more, on the way out.** Tonight, both places. Anybody whose form is empty at 23:00 has not submitted, whatever their GitHub history says.
+
+**And the bids.** Tomorrow's session is the last one before they close, and the ticket pool that publishes tomorrow is partly what they should be bidding against.
 </aside>
 
 </Slide>

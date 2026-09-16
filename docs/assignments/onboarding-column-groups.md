@@ -50,6 +50,8 @@ One pull request from your fork to the handout repository, final by **Thu Sep 24
 
 You'll need the full local stack for this one, since a migration is exactly the case the staging backend can't serve. [Local Development](../local-dev.md) has the setup. Seed with `npm run seed -- --template cs4535`: that's the class whose gradebook everything above describes, and the stock `npm run seed` gives you one where almost every column is already a group of one. The loop you'll be in all week is four commands: `npx supabase migration new <name>`, write the SQL, `npx supabase db reset` to replay it from scratch, and `npm run client-local` to regenerate the TypeScript types your new table needs to appear in. Skipping `npm run client-local` is the most common way this assignment goes wrong, because the type errors it produces point at files you never touched. `db reset` also drops the seeded class, so re-seed after every replay or you'll be reading an empty gradebook.
 
+Deliverable 3 is a change to a React file, and you don't need to know React to make it. [Client Crash Course](../client-crash-course.md) is about fifteen minutes and covers the TypeScript and React you'll actually meet in `gradebookTable.tsx`. The short version: the grouping memo's return shape is an interface with eighteen callers in that file, so keep the shape and change where it comes from.
+
 ### What CI tells you, and what it doesn't
 
 Three checks run on your pull request.
