@@ -28,17 +28,6 @@ Style: pixel art, 16-bit retro aesthetic, detailed but readable at small sizes. 
           </p>
 
           <div style={{
-            background: 'var(--ifm-color-success-contrast-background)',
-            border: '1px solid var(--ifm-color-success-dark)',
-            borderRadius: '8px',
-            padding: '0.75rem 1.25rem',
-            marginBottom: '1.5rem',
-            lineHeight: 1.6,
-          }}>
-            <strong>30+ seats still available for Fall 2026.</strong> We're building a large section — our goal is 50 students. Applications are accepted on a rolling basis, so <Link to="/apply"><strong>apply as soon as possible</strong></Link>.
-          </div>
-
-          <div style={{
             background: 'var(--ifm-color-info-contrast-background)',
             border: '1px solid var(--ifm-color-info-dark)',
             borderRadius: '8px',
@@ -245,13 +234,13 @@ Style: pixel art, 16-bit retro aesthetic, detailed but readable at small sizes. 
         <div style={{ marginBottom: '3rem' }}>
           <h2>Apply</h2>
           <p style={{ lineHeight: 1.7, color: 'var(--ifm-color-emphasis-800)' }}>
-            This is a selective capstone for up to 50 students, and <strong>30+ seats are still available</strong>. The only prerequisite is CS 3100 (or CS 3500). Enrollment is by application — we're building a team, not filling seats. We prioritize diversity of skills: frontend, backend, user research, ops, documentation, and everything in between.
+            This is a selective capstone for up to 50 students. The only prerequisite is CS 3100 (or CS 3500). Enrollment is by application — we're building a team, not filling seats. We prioritize diversity of skills: frontend, backend, user research, ops, documentation, and everything in between.
           </p>
           <p style={{ lineHeight: 1.7, color: 'var(--ifm-color-emphasis-800)' }}>
-            Applications are open and reviewed on a rolling basis — seats fill as strong applications arrive, so apply as soon as possible. The fastest path to a decision: complete the pre-application activity (get Pawtograder running locally) before you apply — it answers most of the questions we'd otherwise have. Join the <a href="https://discord.gg/tZRR36bcgQ">Pawtograder Community Discord</a> to get started early.
+            Applications for Fall 2026 closed on September 14, 2026. The <a href="https://discord.gg/tZRR36bcgQ">Pawtograder Community Discord</a> is open to anyone who wants to work on the platform.
           </p>
           <p style={{ lineHeight: 1.7, color: 'var(--ifm-color-emphasis-800)' }}>
-            <Link to="/apply"><strong>Learn more and apply →</strong></Link>
+            <Link to="/apply"><strong>Learn more about the course →</strong></Link>
           </p>
         </div>
 

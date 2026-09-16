@@ -7,8 +7,8 @@ description: Apply to CS 4535
 
 # Apply to CS 4535
 
-:::tip 30+ seats still available for Fall 2026
-We're building a large section — our goal is 50 students, and more than 30 seats are still open. Applications are reviewed on a **rolling basis**, so **apply as soon as possible**: [Application Form →](https://docs.google.com/forms/d/e/1FAIpQLSfIBnbT78hq7X4OgZ1g1ozTl8wWkWfiHJBlJeUPrmNmOvGclA/viewform?usp=publish-editor)
+:::info Applications for Fall 2026 closed on Monday, September 14, 2026
+Thanks to everyone who applied. The rest of this page describes the course and what we looked for in an application. Everything on this site stays public, and the [Pawtograder Community Discord](https://discord.gg/tZRR36bcgQ) is open to anyone who wants to work on the platform.
 :::
 
 **CS 4535: Software Design & Delivery** is a selective capstone for up to 50 students. The product is [Pawtograder](https://github.com/pawtograder) — a production platform at Northeastern. This fall it runs CS 2000, 2100, 3100, 3650 and 4530, plus sections of 5001, 5008 and 5010 — and this course. All 50 students work on one codebase together, shipping continuously to production throughout the semester. We're building a team, not filling seats.
@@ -43,7 +43,7 @@ This is not graded. But it tells us you can engage with a real codebase and seek
 
 ## Application Questions
 
-Complete this **[Application Form →](https://docs.google.com/forms/d/e/1FAIpQLSfIBnbT78hq7X4OgZ1g1ozTl8wWkWfiHJBlJeUPrmNmOvGclA/viewform?usp=publish-editor)**
+The application form closed on September 14, 2026 and is no longer accepting responses.
 
 ## Other Ways to Stand Out
 
@@ -70,11 +70,11 @@ You don't need to pick one in your application — but tell us where your energy
 
 We prioritize **diversity of skills**. We're not looking for 50 of the same person. Your application should reflect what *you* bring to the team.
 
-Completing the pre-application activity is strongly recommended. It's the clearest signal that you can engage with a real codebase — and with 30+ seats open and rolling review, an application with that signal rarely needs a second look.
+Completing the pre-application activity was strongly recommended. It's the clearest signal that you can engage with a real codebase, and an application carrying that signal rarely needed a second look.
 
 ## Timeline
 
-- **Application:** Open now — 30+ of 50 seats still available
-- **Review:** Rolling — we review applications as they come in, so apply as soon as possible
-- **Decisions:** Rolling as well. Applications that include a completed pre-application activity are the fastest to decide — expect to hear back within days, not weeks. Accepted students will receive enrollment instructions before the start of the Fall 2026 semester
+- **Application:** Closed Mon Sep 14, 2026
+- **Review:** Rolling, as applications arrived
+- **Decisions:** Sent on a rolling basis. Accepted students received enrollment instructions before the start of the Fall 2026 semester
 
