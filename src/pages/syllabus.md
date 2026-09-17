@@ -13,7 +13,7 @@ description: CS 4535 Course Syllabus
 
 **Section 3:** MWR 10:30–11:35 AM
 
-**Office hours:** Mondays 1:00–2:00 PM and Thursdays 9:30–10:30 AM, WVH 326
+**Office hours:** On Discord, or by appointment
 
 **Class size:** Up to 50 students; 10–20 expected for Fall 2026
 
@@ -434,7 +434,7 @@ January 2027 is the first semester after this course, and the first semester whe
 
 **Ask in public by default.** Your question is somebody else's answer next week, and a DM helps exactly one person. Save DMs for things that are genuinely private. If you DM me about something that isn't, expect to be pointed at a channel.
 
-**Office hours** are Mondays 1:00–2:00 PM and Thursdays 9:30–10:30 AM in WVH 326. Drop in, no appointment. If neither block works with your schedule, post in Discord and we'll find a time.
+**Office hours** run on Discord, or in person by appointment. Post in the course Discord and you'll usually get an answer there; if you'd rather talk it through, message me and we'll find a time.
 
 **Scope questions belong in the ticket**, where they stay attached to the work permanently.
 

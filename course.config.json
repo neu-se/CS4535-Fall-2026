@@ -177,15 +177,16 @@
     },
     {
       "lectureId": "s05-releasing-safely",
-      "title": "Reliably Releasing Software",
+      "title": "Architecture IV: Deployment",
       "dates": [
         "2026-09-17"
       ],
       "topics": [
-        "Dark launch",
+        "The system, in one slide",
+        "Down paths and what they cost",
+        "Environments and promotion",
         "Safe database migrations",
-        "Observability tied to rollouts",
-        "Rollback as first response"
+        "Where a defect gets caught"
       ],
       "notes": "Project bids due · cs4535-first-ticket pool published",
       "materials": {
@@ -813,8 +814,8 @@
     "officeHours": [
       {
         "instructor": "Jonathan Bell",
-        "schedule": "Mondays 1:00–2:00 PM, Thursdays 9:30–10:30 AM",
-        "location": "WVH 326"
+        "schedule": "On Discord, or by appointment",
+        "location": "Discord, or WVH 326 by appointment"
       }
     ]
   },
