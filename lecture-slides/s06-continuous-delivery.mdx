@@ -24,14 +24,20 @@ import Img from '@site/src/components/Img';
 <aside className="notes">
 **Session:** Wed Sep 23 · Software Processes & Continuous Delivery
 
-**Moved back from Sep 16.** It lands better here: by now every one of them has had CI go red on their column-groups PR, so trunk-based development and pipeline design are answers to something they have already felt rather than abstractions delivered before they opened a PR.
+**Why this sits here rather than earlier in September.** By now every student has had CI go red on their column-groups pull request, so trunk-based development and pipeline design are answers to something they have already felt rather than abstractions delivered before they opened a PR.
 
-**TODO — outline only.** Fill in the arc, timings and content slides.
+**PARTIALLY DRAFTED.** The slides on feature flags, dark launch, ramps and reading an error rate against a ramp are finished and sit below, marked with a banner comment. The arcs around them still need writing.
 
 **Topics on the schedule:** CI/CD pipelines, Trunk-based development, Deployment strategies, Feature flags
 **Draw on:** CS 3100 `l22-teams` (CI, PRs, code review in practice) and `l23-oss`.
 
-**TODO — Jon:** your classic CS 4530 notes on software process. Not in the vault or any local repo I can see — point me at them and I will fold them in. The new first objective (process models and what each optimizes for) is a placeholder for that material.
+**Source for the two objectives this session inherits:** CS 4530, *Module 14: Continuous Development Processes*, Spring 2024, at `https://neu-se.github.io/CS4530-Spring-2024/Slides/Module%2014%20Continuous%20Development.pdf`
+
+**Still to write, and what Module 14 offers for each:**
+- **Catching errors sooner.** The Develop, Build, Test, Deploy, Monitor pipeline; CI triggered by commits and pull requests; a real `test.yml`; attributes of effective CI (do not leave builds broken, run on every change, do not replace pre-commit testing, feedback in minutes); why one change per CI run pinpoints blame; flaky tests against compute resources; CI service models; and Google TAP at 50,000 changes and 4 billion test cases a day with an 11-minute average wait.
+- **Trunk-based development.** Module 14's pre-2016 Facebook diagram is the artifact to build this around: week-long branches, a weekly stabilize branch, a release branch, and the constraint that your change does not go out unless you are there that day to support it. Pair it with the post-2016 push-from-master picture the CI and CD slide below already references.
+- **Continuous delivery compared with test-driven development.** Module 14's closing slide. TDD writes and maintains tests per feature and locates bugs at unit level. Continuous delivery writes and maintains high-level observability metrics, deploys features one at a time, watches for canaries, and writes fewer integration and system tests. It points straight at the testing session the next day.
+- **Available and not yet placed:** infrastructure as code, monitoring tools, the McNamara fallacy on metrics, and Netflix automated rollback on SPS. Infrastructure and observability belong to the Operations session, so take only what this one needs.
 
 > **Transition:** Reminders first, then what we're doing today.
 </aside>
@@ -97,15 +103,22 @@ After this session, you'll be able to:
 </p>
 
 <ol style={{fontSize: '0.75em', textAlign: 'left'}}>
-  <li>Situate our workflow among software process models, and say what each one optimizes for</li>
+  <li>Describe how continuous development catches errors sooner in the lifecycle</li>
   <li>Describe the stages of the CI/CD pipeline and what each one protects against</li>
   <li>Contrast trunk-based development with long-lived feature branches</li>
-  <li>Compare blue/green, rolling and red/black deployment strategies</li>
-  <li>Decide whether a change ships behind a feature flag</li>
+  <li>Explain what a feature flag separates, and design a ramp for a change</li>
+  <li>Tell from a ramp and an error rate whether a release is going badly</li>
+  <li>Compare continuous delivery with test-driven development as quality strategies</li>
 </ol>
 
 <aside className="notes">
-TODO: time allocation across arcs.
+**Six is too many and will need cutting once the arcs are written.** Objectives 1 and 6 came from Module 14 and bracket the session; 4 and 5 arrived with the slides moved from s05 on Sep 16; 2 and 3 were already here. Likely merge: 2 into 1.
+
+**Objectives 4 and 5 land on prepared ground.** The room met promotion, environments, dogfooding and staged migrations on Sep 17, so flags and ramps are the next question rather than the first one.
+
+**Say what Sep 17 deliberately left for today**, in one sentence, because it was promised out loud: flags, dark launch, ramps, and the delivery-versus-deployment distinction. Knight Capital was told on Sep 17, so refer back to it rather than retelling it.
+
+TODO: time allocation across arcs, once the two new arcs are written.
 
 > **Transition:** Let's start.
 </aside>
@@ -113,17 +126,423 @@ TODO: time allocation across arcs.
 </Slide>
 
 {/* ============================================ */}
-{/* CONTENT — TODO                              */}
+{/* ARC 1 TODO: CATCHING ERRORS SOONER (LO1)     */}
+{/* Module 14 material: pipeline diagram, CI     */}
+{/* triggers, effective-CI attributes, blame     */}
+{/* attribution, flaky tests, Google TAP.        */}
 {/* ============================================ */}
 
 <Slide>
 
-## TODO: Content
+## TODO: Catching Errors Sooner
 
-Outline only — content slides go here.
+Arc 1 goes here. Source material is in the cover notes.
 
 <aside className="notes">
-TODO
+TODO. This arc owns objective 1 and should end by handing off to the flags material below.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* ARC 2 TODO: TRUNK-BASED DEVELOPMENT          */}
+{/* Module 14's Facebook pre-2016 branch diagram */}
+{/* is the artifact to build this around.        */}
+{/* ============================================ */}
+
+<Slide>
+
+## TODO: Trunk-Based Development
+
+Arc 2 goes here.
+
+<aside className="notes">
+TODO. Objective 3. Module 14's pre-2016 Facebook diagram pairs with the post-2016 story on the CI/CD slide below.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* ==== DRAFTED SLIDES: FLAGS, RAMPS, METRICS ==== */}
+{/* Finished and delivered-quality. Moved on     */}
+{/* Sep 16 because s05 could not hold them.      */}
+{/* Order below is the s05 order; re-sequence    */}
+{/* freely once arcs 1 and 2 exist.              */}
+{/* ============================================ */}
+
+
+
+<Slide>
+
+## Deploy Is Not Release
+
+<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1em', fontSize: '0.64em', marginTop: '0.5em'}}>
+
+<div style={{backgroundColor: 'rgba(100,150,255,0.12)', padding: '0.7em', borderRadius: '8px'}}>
+
+**Deploy**
+
+The code is on the server. Every user is running it.
+
+An engineering event.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.7em', borderRadius: '8px'}}>
+
+**Release**
+
+A user can reach the feature.
+
+A product decision, made per course, changeable in seconds.
+
+</div>
+
+</div>
+
+<div style={{fontSize: '0.6em', textAlign: 'left', marginTop: '0.8em'}}>
+
+In Pawtograder that switch is a row in `classes.features`: a name and a boolean, per course.
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.7em', marginTop: '0.6em', fontWeight: 'bold', color: '#e76f51'}}>
+So a feature can be on for one course and off for the other nine, with one deployed build.
+</p>
+
+<aside className="notes">
+**Everything today depends on this distinction, so make it concrete before it is abstract.** The code for a half-finished feature can be running in production for three weeks while nobody can reach it. Most people arrive assuming those are the same event, because for a desktop application they are.
+
+**`classes.features` is a real table with real rows**, and `MANAGEABLE_COURSE_FEATURES` in `lib/courseFeatures.ts` is the list an instructor sees on the Feature flags page. Anyone who did the instructor role in the ticket hunt has already clicked those switches. Name two real ones so it stops being hypothetical: `gradebook-what-if` defaults off unless a course opts in, and `discord-student-join` defaults off because turning it on would invite every student of every course that has a server configured, which is a change nobody asked for.
+
+**The per-course granularity is the fragment and it is the thing that makes this course possible.** It is why twelve students can merge to a system that ten courses depend on. Their feature is on for CS 4535 and off everywhere else until it has been watched for a while.
+
+**If asked "why not just use branches":** because a branch that lives for three weeks is a merge conflict with a deadline attached, and because a branch cannot be turned off for one course at 4pm without a deploy. That is Sep 23's session and worth deferring rather than answering fully.
+
+> **Transition:** And "deploy" isn't one event either, because this system has four moving parts.
+</aside>
+
+</Slide>
+
+
+<Slide>
+
+## CI, Continuous Delivery, Continuous Deployment
+
+<div style={{fontSize: '0.58em', textAlign: 'left', marginTop: '0.3em'}}>
+
+<div style={{backgroundColor: 'rgba(100,150,255,0.12)', padding: '0.5em', borderRadius: '8px', marginBottom: '0.35em'}}>
+
+**Continuous integration.** Everyone merges to one shared branch often, and every merge is built and tested automatically. That's the CI already running on your pull requests.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.5em', borderRadius: '8px', marginBottom: '0.35em'}}>
+
+**Continuous delivery.** Every commit that passes is *releasable*. Shipping is a decision somebody makes, and a button somebody presses.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(255,180,0,0.15)', padding: '0.5em', borderRadius: '8px'}}>
+
+**Continuous deployment.** Every commit that passes *ships by itself*. No button, no decision, no human in the path.
+
+</div>
+
+</div>
+
+<div style={{display: 'grid', gridTemplateColumns: '1.15fr 1fr', gap: '0.8em', fontSize: '0.56em', marginTop: '0.6em'}}>
+
+<div>
+
+Pawtograder does **continuous delivery**. Changes are promoted to production deliberately, not automatically. The button is a person.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(120,120,120,0.10)', padding: '0.5em', borderRadius: '8px', fontSize: '0.92em'}}>
+
+**Why Facebook can't have a button.** By 2016 they took **1,000+ diffs a day**, so a weekly push carried up to **10,000**. When that breaks, you have 10,000 suspects. They moved to pushing from master every few hours instead.
+
+</div>
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.62em', marginTop: '0.5em', fontWeight: 'bold', color: '#e76f51'}}>
+<strong>Shift left:</strong> same defect, four prices. Your editor costs seconds, CI costs minutes, staging costs an hour, a student at 11pm costs an afternoon and their trust.
+</p>
+
+<aside className="notes">
+**Two of these three sound the same and one letter apart is a genuinely bad naming decision that the industry is stuck with.** Say that out loud, because a student who thinks they misheard will stop listening. Delivery means it *could* ship. Deployment means it *did*.
+
+**The distinction comes down to who decides.** Continuous deployment means no human between a passing test and a real user. That is a statement of enormous confidence in your tests, and it is the right answer for some products and a terrible one for a system holding grades.
+
+**Where Pawtograder sits, and why, in one sentence:** twelve students merging into a platform that ten courses depend on mid-semester is not a place for nobody to be in the path. So a person decides when changes go to production, rather than every passing merge going out by itself.
+
+**Shift left is the fragment and it is the idea that connects this session to the next three.** A type error caught by your editor costs seconds. Caught by CI, a couple of minutes. Caught on staging, an hour. Caught by a student at 11pm the night an assignment is due, it costs an afternoon, a Discord thread, and some amount of their belief that the tool works. Same defect, four prices. Every practice in this part of the course is an attempt to move the catch leftward.
+
+**The Facebook sidebar answers the question this slide provokes, which is "why would anyone want nobody in the path?"** Chuck Rossi was their first release engineer and spent years running exactly the button you are running. By 2016 more than a thousand diffs a day were landing on master, and the weekly push sometimes carried ten thousand of them. The argument has nothing to do with humans being slow. A release containing ten thousand changes has ten thousand suspects when it breaks, and no human coordinating it can tell you which. Pushing fifty at a time gives you fifty suspects. So continuous deployment is a strategy for making failures *attributable*, and it buys that by giving up the gate.
+
+**Then the honest contrast, which is the useful part for them:** Pawtograder takes a handful of changes a week from twelve students, so the gate costs almost nothing and buys a lot. The right answer depends on your rate, not on your sophistication. A student who leaves thinking continuous deployment is simply the more advanced choice has learned the wrong thing.
+
+**Shift left is the fragment and it connects this session to the next two.** Four prices for the same defect, and every practice in this part of the course is an attempt to move the catch leftward.
+
+**This is where end-to-end testing earns a mention, and one sentence is enough.** They already have `gradebook-e2e` running on their column-groups pull requests: it stands up a throwaway Supabase, replays every migration including theirs, seeds the class, and drives the instructor gradebook in a real browser. That is a robot doing the staging pass before staging, and it is the leftmost place the migration failure from minute two can be caught automatically. Say that, say that Sep 24 is the whole session on what those tests can and cannot catch, and move.
+
+**Then name what is coming, because it stops people worrying they missed something.** Sep 23 is the entire session on this: pipelines, trunk-based development, deployment strategies, and where flags actually get evaluated. Today is only the part you need in order to ship a migration next week.
+
+> **Transition:** So the button gets pressed. Who gets the feature first?
+</aside>
+
+</Slide>
+
+
+<Slide>
+
+## Dark Launch, Then Ramp
+
+<div style={{fontSize: '0.62em', textAlign: 'left', marginTop: '0.3em'}}>
+
+<div style={{backgroundColor: 'rgba(100,150,255,0.12)', padding: '0.5em', borderRadius: '8px', marginBottom: '0.4em'}}>
+
+**Dark launch.** Deploy it with the flag **off**. The code is live, nobody can reach it, and you find out whether it breaks the build and the tests before it can break a user.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.5em', borderRadius: '8px', marginBottom: '0.4em'}}>
+
+**Ramp.** Turn it on for a growing fraction, on a schedule you decide. Yourself first, then staff, then one course, then more. `1% · 5% · 25% · 100%`
+
+</div>
+
+<div style={{backgroundColor: 'rgba(255,180,0,0.15)', padding: '0.5em', borderRadius: '8px'}}>
+
+**The cost.** Both paths now exist in production, so both have to work. Your test matrix doubled the moment you added the flag.
+
+</div>
+
+</div>
+
+<aside className="notes">
+**These are the three terms Discussion 2 needs. Say each one out loud and write "ramp" on the board.** Twenty minutes from now they will read a card that says `1% Mon · 5% Tue · 25% Wed 2:00pm` and it has to mean something without explanation.
+
+**The ramp is not a rollout schedule you set and forget.** It is a sequence of decisions, each one made with more evidence than the last. That framing is what the incident cards are about.
+
+**Dogfooding came up two slides ago and this is where it becomes a tactic rather than a virtue.** Putting yourself at the front of the ramp is the cheapest exposure available, because you are the one user who will definitely notice and definitely not file a ticket about it in March.
+
+**The third box is the honest cost and it is the cut candidate if you are behind.** A flag means every test that mattered now matters twice, once with the flag on and once with it off. Teams forget the off path, ship, ramp to 100%, and discover six weeks later that turning the flag back off no longer works, which means the rollback they were relying on is gone. That is worth saying in one sentence even in the compressed version.
+
+**Do not go into how the flag is evaluated or cached.** Sep 23.
+
+> **Transition:** You've ramped to 25%. Errors went up. Did you cause it?
+</aside>
+
+</Slide>
+
+
+<Slide>
+
+## Errors Per Exposed User
+
+<div style={{fontSize: '0.62em', textAlign: 'left'}}>
+
+Raw error counts rise when exposure rises. That tells you nothing. **Divide, then compare across ramp steps.**
+
+</div>
+
+<div style={{fontSize: '0.58em', textAlign: 'left', marginTop: '0.5em'}}>
+
+| Ramp step | Errors | Exposed | Per user | |
+|---|---|---|---|---|
+| 1% | 2 | 20 | 0.10 | |
+| 10% | 19 | 200 | 0.10 | count went up 10x, **this is fine** |
+| 50% | 240 | 1,000 | 0.24 | rate went up 2.4x, **this is not** |
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.7em', marginTop: '0.7em', fontWeight: 'bold', color: '#e76f51'}}>
+A count that tracks exposure is arithmetic. A rate that tracks the ramp is your bug.
+</p>
+
+<aside className="notes">
+**Protect this slide. It is the one thing that makes Discussion 2 answerable rather than a guess.** If Arc 1 has to be compressed, cut the test-matrix box on the previous slide, not this. Everything here is three columns of division and it takes ninety seconds.
+
+**Walk the middle row first, because it is the counter-intuitive one.** Nineteen errors instead of two looks alarming on a dashboard and means nothing has changed. Ten times the users, ten times the errors, same product. A team that pages itself on raw counts during a ramp will page itself every single time.
+
+**Then the bottom row.** 0.24 against a baseline of 0.10. Something about the fiftieth percentile of users differs from the tenth, or the feature degrades under load, or a code path only some users reach is broken. You do not know which yet, and you do not have to in order to act.
+
+**Say what the baseline is for, because it is easy to miss.** The 1% step exists so that the 10% and 50% steps have something to be compared against. A ramp that starts at 50% has no baseline and you cannot tell a regression from the weather.
+
+**The numbers here are deliberately not the numbers on the cards.** Do not let anybody pattern-match the table twenty minutes from now. They have to do their own division.
+
+**If a student asks what counts as "exposed":** users for whom the flag evaluated true and who reached the code path. Counting everybody in an enrolled course inflates the denominator and hides a real regression. That is a good question and a one-sentence answer.
+
+**Foreshadow Oct 1 in one sentence, and do it here rather than at the end.** Every number in that table came from somewhere: an error tracker counting events, and something counting exposed users. That is telemetry, and where it comes from, what logs and metrics and traces each buy you, and how you run an incident are the Operations session on Oct 1. Today you only have to read the numbers. Nobody should leave thinking a dashboard is a thing that exists by default.
+
+> **Transition:** Back to the migration you broke at the start. Here's how it's done safely.
+</aside>
+
+</Slide>
+
+
+{/* ============================================ */}
+{/* DISCUSSION 2 (~5 min working, pairs)         */}
+{/* Objective 3                                  */}
+{/* ============================================ */}
+
+<Slide>
+
+## It's 4:15pm on a Wednesday
+
+<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.7em', fontSize: '0.4em', marginTop: '0.2em'}}>
+
+<div>
+
+**CARD A**
+
+```text
+Flag        gradebook-what-if
+Ramp        1% Mon · 5% Tue · 25% Wed 2:00pm
+
+Sentry      TypeError: Cannot read properties
+            of null (reading 'score')
+            3 events Mon
+            11 events Tue
+            340 events since 2:00pm today
+
+Exposed     ~15 students Mon
+            ~75 students Tue
+            ~380 students now
+
+Affected    students only, 3 courses
+
+Also today  dependency bump deployed 1:50pm
+Due tonight CS 2100 problem set, 11:59pm
+```
+
+</div>
+
+<div>
+
+**CARD B**
+
+```text
+Flag        discord-student-join
+Ramp        5% Mon · 25% Wed 10:00am
+
+Sentry      DiscordAPIError: Missing Access
+            2 events Mon-Tue
+            8 events since 10:00am today
+
+Exposed     ~40 students Mon
+            ~200 students now
+
+Affected    all 8 events from one course,
+            6 students
+
+Also        that course's Discord server
+            changed owner last Thursday
+```
+
+</div>
+
+</div>
+
+<div style={{backgroundColor: 'rgba(231,111,81,0.15)', padding: '0.6em', borderRadius: '8px', fontSize: '0.6em', textAlign: 'left', marginTop: '0.5em'}}>
+
+**5 minutes, in pairs.** One of these is your bug. One isn't.
+
+**Which one, and what number tells you?** I'll take it from every pair.
+
+</div>
+
+<aside className="notes">
+**One question, not four, and that is deliberate.** Asking for too many things in too little time is how a short activity fails. This asks for one judgment and one number, and the comparison between the two cards does the teaching, the same way holding a shipped migration next to your own sketch worked in s03. Hunting is slow; comparing is fast.
+
+**Say one thing before you start the clock, and only one:** both flags are real, Sentry is real, the incidents are invented, so nobody should go looking for these in the dashboard. Then start the clock.
+
+**Do not hint at the arithmetic.** They have had the errors-per-exposed-user slide and it is the only tool they need. If a pair is still adding up raw counts at minute four, ask them what the denominator is and walk away.
+
+**Card A, worked.** 3/15 = 0.20, 11/75 = 0.15, 340/380 = 0.89. The rate roughly quintupled at the 25% step, so this is a regression rather than arithmetic. But there are two candidate causes ten minutes apart: the ramp at 2:00 and a dependency bump at 1:50. Nothing on the card separates them, and nothing on any dashboard would. The move is to roll the flag back to 5%, which takes thirty seconds, and watch. If the rate drops, it was yours. If it does not, it was the bump, and you have lost nothing. Rollback here is the cheapest available experiment rather than a verdict. The problem set due at midnight is what makes guessing expensive.
+
+**Card B, worked.** 2/40 = 0.05, 8/200 = 0.04. Flat. The count grew because exposure grew, which is the middle row of the table they saw twenty minutes ago. And every event comes from one course whose Discord server changed hands last week, which is a configuration problem rather than a code problem. Rolling back would take the feature away from two hundred students to fix something affecting six. Hold the ramp where it is, fix that course, keep going.
+
+**The contrast is the whole exercise.** A room that says both cards are bugs has learned a reflex rather than a method, and the fastest way to find out is to ask which one, rather than asking for a verdict on each.
+
+**For pairs who get there in two minutes, the follow-up is what you do in the next ten minutes**, and it is where Card A gets interesting: you cannot tell whether it was the ramp at 2:00 or the dependency bump at 1:50, so the move is to roll the flag back to 5% and watch, which takes thirty seconds and answers the question. That sets up the next slide, so collect it if anybody offers it.
+
+**Expect, and do not shut down, the pair who wants to act on Card B anyway** on the grounds that the error is real. It is real, and six students cannot use a feature. That is a ticket rather than a rollback, and the distinction is worth thirty seconds if they raise it.
+
+**Circulate with the arithmetic in your head** so you can tell in five seconds whether a pair has divided or not. That is the only thing you are checking.
+
+> **Transition:** Card B first.
+</aside>
+
+</Slide>
+
+
+{/* ============================================ */}
+{/* DEBRIEF 2 (~6 min)                           */}
+{/* ============================================ */}
+
+<Slide>
+
+## The Number That Decided It
+
+<div style={{fontSize: '0.56em', textAlign: 'left', marginTop: '0.3em'}}>
+
+| | 1st step | 2nd step | now | |
+|---|---|---|---|---|
+| **A** | 3/15 = **0.20** | 11/75 = **0.15** | 340/380 = **0.89** | rate jumped |
+| **B** | 2/40 = **0.05** | | 8/200 = **0.04** | rate flat |
+
+</div>
+
+<div style={{fontSize: '0.58em', textAlign: 'left', marginTop: '0.7em'}}>
+
+<div style={{backgroundColor: 'rgba(231,111,81,0.15)', padding: '0.5em', borderRadius: '8px', marginBottom: '0.4em'}}>
+
+**A: roll back to 5%.** Two candidate causes ten minutes apart, and no dashboard can separate them. Rolling back costs thirty seconds and answers the question.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.5em', borderRadius: '8px'}}>
+
+**B: hold and fix the course.** The count grew because exposure grew. Rolling back takes the feature from 200 students to fix a config problem affecting 6.
+
+</div>
+
+</div>
+
+<aside className="notes">
+**Take Card B from all six pairs first, then put the table up.** If most of the room rolled B back, that is the most useful thing to happen today and you should say so rather than moving on politely. The reflex is the thing being corrected.
+
+**The table is six divisions and it should feel obvious once it is on screen.** That is the point: the decision was always available, and what was missing was the habit of dividing.
+
+**Then the sentence that generalizes, and it is the takeaway of the arc:** rolling back is not what you do when you are sure. It is what you do when you are *not* sure and finding out is expensive. In Card A you roll back precisely because you cannot tell. In Card B you hold precisely because you can.
+
+**Somebody will ask what you would actually do about A's dependency bump.** Revert it too, separately, and one at a time. Two changes reverted at once teaches you nothing about either. Worth thirty seconds because it is the same reasoning one level up.
+
+**If you are behind, this is the slide to compress**, not the working block. Put the table up, read the two boxes, move. The room has already done the thinking.
+
+> **Transition:** Which brings us to the thing most people get wrong about rollback.
+</aside>
+
+</Slide>
+
+
+{/* ============================================ */}
+{/* CLOSING ARC TODO: CD vs TDD (LO3)            */}
+{/* Module 14's final content slide.             */}
+{/* ============================================ */}
+
+<Slide>
+
+## TODO: Continuous Delivery Compared With TDD
+
+Closing arc goes here. Hands off to Sep 24.
+
+<aside className="notes">
+TODO. Objective 6, and the natural bridge into the testing session the next day.
 </aside>
 
 </Slide>
