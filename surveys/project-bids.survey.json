@@ -1,0 +1,348 @@
+{
+  "title": "CS 4535: Project Bids",
+  "description": "Due Thu Sep 17, 23:59 ET. Teams and running projects are announced Thu Sep 24, in class.",
+  "showQuestionNumbers": "off",
+  "showProgressBar": "top",
+  "progressBarType": "pages",
+  "checkErrorsMode": "onValueChanged",
+  "widthMode": "responsive",
+  "completedHtml": "<h3>Bid recorded.</h3><p>You can change it any time before Thu Sep 17, 23:59 ET by submitting again. Teams and running projects are announced Thu Sep 24, in class, and the studio phase starts with team charters on Mon Sep 28.</p>",
+  "pages": [
+    {
+      "name": "ranking",
+      "title": "Ranked preferences",
+      "elements": [
+        {
+          "type": "html",
+          "name": "floor_note",
+          "html": "<p>Teams are <strong>3–4 people</strong> and one team owns one project, so only three or four of the seven projects will run. A project needs at least three people who ranked it highly, and below that it doesn't run and its bidders move down their lists. Most of the slate will not run, which is why ranking all seven honestly matters more than making a case for one.</p><p>There is no ordering trick that improves your odds. Misreporting reliably puts a project you don't want somewhere we can legitimately place you on it.</p>"
+        },
+        {
+          "type": "ranking",
+          "name": "preferences",
+          "title": "Rank every project from most to least wanted",
+          "description": "Drag all seven into order. First is most wanted.",
+          "choices": [
+            {
+              "value": "usability",
+              "text": "Usability Strike Force"
+            },
+            {
+              "value": "accessibility",
+              "text": "Accessibility Strike Force"
+            },
+            {
+              "value": "office-hours",
+              "text": "Office Hours Reconceptualization"
+            },
+            {
+              "value": "docusaurus",
+              "text": "Docusaurus Integration"
+            },
+            {
+              "value": "exams",
+              "text": "Paper Exam Generation & Grading"
+            },
+            {
+              "value": "forgejo",
+              "text": "GitHub → Forgejo Migration"
+            },
+            {
+              "value": "coder",
+              "text": "Coder Workspaces Integration"
+            }
+          ],
+          "isRequired": true
+        },
+        {
+          "type": "checkbox",
+          "name": "unhappy_on",
+          "title": "Any project you'd be actively unhappy on?",
+          "description": "More useful for us to know than one more project you'd enjoy. Leave it at \"none\" if that's the honest answer.",
+          "choices": [
+            {
+              "value": "usability",
+              "text": "Usability Strike Force"
+            },
+            {
+              "value": "accessibility",
+              "text": "Accessibility Strike Force"
+            },
+            {
+              "value": "office-hours",
+              "text": "Office Hours Reconceptualization"
+            },
+            {
+              "value": "docusaurus",
+              "text": "Docusaurus Integration"
+            },
+            {
+              "value": "exams",
+              "text": "Paper Exam Generation & Grading"
+            },
+            {
+              "value": "forgejo",
+              "text": "GitHub → Forgejo Migration"
+            },
+            {
+              "value": "coder",
+              "text": "Coder Workspaces Integration"
+            }
+          ],
+          "showNoneItem": true,
+          "noneText": "None of them",
+          "isRequired": true
+        },
+        {
+          "type": "comment",
+          "name": "unhappy_why",
+          "title": "A line each on why",
+          "visibleIf": "{unhappy_on} anyof ['usability', 'accessibility', 'office-hours', 'docusaurus', 'exams', 'forgejo', 'coder']",
+          "isRequired": true,
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "name": "case",
+      "title": "A case for your top two",
+      "description": "A paragraph each. We're reading for one thing: do you understand the problem, and have you touched it? Name a specific behavior, say why that behavior is wrong, and propose a first step that could turn out to be a dead end.",
+      "elements": [
+        {
+          "type": "comment",
+          "name": "case_first",
+          "title": "The case for the project you ranked first",
+          "isRequired": true,
+          "rows": 6,
+          "validators": [
+            {
+              "type": "text",
+              "minLength": 200,
+              "text": "A paragraph. If you're under a couple of hundred characters, you're describing the project instead of a problem inside it."
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "case_second",
+          "title": "The case for the project you ranked second",
+          "isRequired": true,
+          "rows": 6,
+          "validators": [
+            {
+              "type": "text",
+              "minLength": 200,
+              "text": "A paragraph, same as above."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "energy",
+      "title": "Where your energy is",
+      "description": "Not a job title, and not binding. We use it to keep a team from being four of the same person. You should use it to be honest with yourself about what you'll still enjoy in week nine.",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "energy_primary",
+          "title": "Primary",
+          "choices": [
+            {
+              "value": "implementation",
+              "text": "Implementation: you want to be in the code"
+            },
+            {
+              "value": "product",
+              "text": "Product: you want to decide what gets built, on evidence"
+            },
+            {
+              "value": "research-design",
+              "text": "User research & design: you want to talk to users and change what they experience"
+            },
+            {
+              "value": "ops",
+              "text": "Ops & infrastructure: you want the pipelines, the environments, the reliability"
+            },
+            {
+              "value": "coordination",
+              "text": "Coordination: you want to hold the architecture and the seams between teams"
+            }
+          ],
+          "isRequired": true
+        },
+        {
+          "type": "dropdown",
+          "name": "energy_secondary",
+          "title": "Secondary",
+          "choices": [
+            {
+              "value": "implementation",
+              "text": "Implementation: you want to be in the code"
+            },
+            {
+              "value": "product",
+              "text": "Product: you want to decide what gets built, on evidence"
+            },
+            {
+              "value": "research-design",
+              "text": "User research & design: you want to talk to users and change what they experience"
+            },
+            {
+              "value": "ops",
+              "text": "Ops & infrastructure: you want the pipelines, the environments, the reliability"
+            },
+            {
+              "value": "coordination",
+              "text": "Coordination: you want to hold the architecture and the seams between teams"
+            }
+          ],
+          "isRequired": true,
+          "validators": [
+            {
+              "type": "expression",
+              "expression": "{energy_secondary} <> {energy_primary}",
+              "text": "Pick something different from your primary."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "evidence",
+      "title": "Evidence",
+      "description": "Optional. Anything concrete that supports your case: a ticket you filed in the hunt, something you noticed while getting local dev running, a specific thing that went wrong for you as a Pawtograder user, a Discord answer that unstuck somebody. It doesn't have to be code. A bid without evidence is still complete; a bid with one specific, checkable observation is easier to act on.",
+      "elements": [
+        {
+          "type": "paneldynamic",
+          "name": "evidence_items",
+          "title": "Evidence",
+          "panelCount": 0,
+          "minPanelCount": 0,
+          "maxPanelCount": 4,
+          "panelAddText": "Add a piece of evidence",
+          "panelRemoveText": "Remove",
+          "templateTitle": "Evidence {panelIndex}",
+          "templateElements": [
+            {
+              "type": "dropdown",
+              "name": "kind",
+              "title": "What is it?",
+              "choices": [
+                {
+                  "value": "hunt-ticket",
+                  "text": "A ticket I filed in the hunt"
+                },
+                {
+                  "value": "triage",
+                  "text": "A triage verdict I reached"
+                },
+                {
+                  "value": "local-dev",
+                  "text": "Something I hit getting local dev running"
+                },
+                {
+                  "value": "as-a-user",
+                  "text": "Something that went wrong for me as a Pawtograder user"
+                },
+                {
+                  "value": "discord",
+                  "text": "A Discord answer of mine that unstuck somebody"
+                },
+                {
+                  "value": "other",
+                  "text": "Something else"
+                }
+              ],
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "name": "link",
+              "title": "Link, if it has one",
+              "inputType": "url"
+            },
+            {
+              "type": "text",
+              "name": "shows",
+              "title": "What it shows, in one line",
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "proposal",
+      "title": "Proposing a project that isn't on the slate",
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "proposing",
+          "title": "Are you proposing a project that isn't on the slate?",
+          "description": "A proposal has to be better than a slate project that would otherwise have run, and it has to attract two or three other people who rank it highly. Proposals do clear that bar, but it's a competition.",
+          "defaultValue": false
+        },
+        {
+          "type": "panel",
+          "name": "proposal_panel",
+          "visibleIf": "{proposing} = true",
+          "elements": [
+            {
+              "type": "text",
+              "name": "proposal_title",
+              "title": "Give it a name",
+              "isRequired": true
+            },
+            {
+              "type": "comment",
+              "name": "proposal_problem",
+              "title": "The problem, stated as something that happens to somebody",
+              "description": "A bad outcome, not a missing feature. \"There's no bulk export\" is a feature request. \"Graders re-key the same twelve scores every week because there's no bulk export, and two of them have started keeping a private spreadsheet\" is a problem.",
+              "isRequired": true,
+              "rows": 4
+            },
+            {
+              "type": "comment",
+              "name": "proposal_affected",
+              "title": "Who it affects, and roughly how many",
+              "description": "\"Students in intro courses\" is a guess. \"The students in CS 2000 who submit through the web UI instead of git\" is a claim, and claims can be checked.",
+              "isRequired": true,
+              "rows": 3
+            },
+            {
+              "type": "comment",
+              "name": "proposal_evidence",
+              "title": "Evidence it's real",
+              "description": "An open issue, a forum thread, a measurement, a user you talked to. Your own frustration counts if you can describe it precisely enough for somebody else to reproduce.",
+              "isRequired": true,
+              "rows": 3
+            },
+            {
+              "type": "comment",
+              "name": "proposal_shipped",
+              "title": "What shipped looks like by Nov 23",
+              "description": "Feature freeze is a real date. If the honest answer is \"a prototype behind a flag plus a written plan for January,\" write that. It beats an implausible answer, and we'll believe it more.",
+              "isRequired": true,
+              "rows": 3
+            },
+            {
+              "type": "comment",
+              "name": "proposal_team_size",
+              "title": "Why it needs 3–4 people for the eight weeks between Sep 28 and Nov 23",
+              "description": "Some genuinely good ideas are one PR. If yours is, say so, file it as a ticket, and bid on something else.",
+              "isRequired": true,
+              "rows": 3
+            },
+            {
+              "type": "boolean",
+              "name": "proposal_over_first",
+              "title": "Would you take this over the project you ranked first?",
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

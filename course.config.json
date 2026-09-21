@@ -368,7 +368,7 @@
       }
     },
     {
-      "lectureId": "s17-presentations-2",
+      "lectureId": "s17-presentations-1",
       "title": "Student Presentations 1: two readings, two pairs",
       "dates": [
         "2026-10-21"
@@ -377,9 +377,9 @@
         "Reading 1 of 2, assigned from bids on Sep 28",
         "Reading 2 of 2, assigned from bids on Sep 28"
       ],
-      "notes": "Two pairs, one reading each, from the 13-reading list in the reading-presentation handout. Pairs cross project teams. Pre-reads posted 48h ahead.",
+      "notes": "Two pairs, one reading each, from the 13-reading list in the reading-presentation handout. Pre-reads posted 48h ahead.",
       "materials": {
-        "slides": "/lecture-slides/s17-presentations-2"
+        "slides": "/lecture-slides/s17-presentations-1"
       }
     },
     {
@@ -413,7 +413,7 @@
       }
     },
     {
-      "lectureId": "s20-presentations-3",
+      "lectureId": "s20-presentations-2",
       "title": "Student Presentations 2: two readings, two pairs",
       "dates": [
         "2026-10-28"
@@ -422,9 +422,9 @@
         "Reading 1 of 2, assigned from bids on Sep 28",
         "Reading 2 of 2, assigned from bids on Sep 28"
       ],
-      "notes": "Two pairs, one reading each, from the 13-reading list in the reading-presentation handout. Pairs cross project teams. Pre-reads posted 48h ahead.",
+      "notes": "Two pairs, one reading each, from the 13-reading list in the reading-presentation handout. Pre-reads posted 48h ahead.",
       "materials": {
-        "slides": "/lecture-slides/s20-presentations-3"
+        "slides": "/lecture-slides/s20-presentations-2"
       }
     },
     {
@@ -456,7 +456,7 @@
       }
     },
     {
-      "lectureId": "s23-studio-work",
+      "lectureId": "s23-integration-1",
       "title": "Integration Session I: Cross-Team Technical Integration",
       "dates": [
         "2026-11-04"
@@ -469,7 +469,7 @@
       ],
       "notes": "Coupled work — the counterpart to the async sprint. Co-presence is the point.",
       "materials": {
-        "slides": "/lecture-slides/s23-studio-work"
+        "slides": "/lecture-slides/s23-integration-1"
       }
     },
     {
@@ -593,7 +593,7 @@
       }
     },
     {
-      "lectureId": "s32-presentations-4",
+      "lectureId": "s32-presentations-3",
       "title": "Student Presentations 3: two readings, two pairs",
       "dates": [
         "2026-12-02"
@@ -602,9 +602,9 @@
         "Reading 1 of 2, assigned from bids on Sep 28",
         "Reading 2 of 2, assigned from bids on Sep 28"
       ],
-      "notes": "Two pairs, one reading each, from the 13-reading list in the reading-presentation handout. Pairs cross project teams. Pre-reads posted 48h ahead.",
+      "notes": "Two pairs, one reading each, from the 13-reading list in the reading-presentation handout. Pre-reads posted 48h ahead.",
       "materials": {
-        "slides": "/lecture-slides/s32-presentations-4"
+        "slides": "/lecture-slides/s32-presentations-3"
       }
     },
     {
@@ -692,7 +692,7 @@
       "assignedDate": "2026-09-09",
       "dueDate": "2026-09-24",
       "notes": "Rank your top three readings from the list, one sentence each on why, plus the artifact you think you could bring. Off-list proposals allowed; approved or rejected Sep 28.",
-      "url": "/docs/assignments/reading-presentation#the-reading-list"
+      "url": "/docs/assignments/reading-presentation#how-you-get-your-reading"
     },
     {
       "id": "onboarding-column-groups",
@@ -775,7 +775,7 @@
       "type": "reading",
       "assignedDate": "2026-09-28",
       "dueDate": "2026-12-02",
-      "notes": "Two students co-present one reading, two readings per session; co-presenter from outside your project team. Readings come from a fixed 13-item list, tagged by cross-project function. Sessions Oct 21 / Oct 28 / Dec 2; if enrollment runs past twelve, either a fourth session or one group of three, decided Sep 24 once bids are in.",
+      "notes": "Two students co-present one reading, two readings per session. Readings come from a fixed 13-item list, tagged by cross-project function. Sessions Oct 21 / Oct 28 / Dec 2. Thirteen students: five pairs and one group of three, six groups over three sessions, no fourth session.",
       "url": "/docs/assignments/reading-presentation"
     },
     {

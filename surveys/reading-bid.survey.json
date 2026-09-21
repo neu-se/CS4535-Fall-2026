@@ -1,0 +1,222 @@
+{
+  "title": "CS 4535: Reading Bid",
+  "description": "Due Thu Sep 24, 23:59 ET. Pairs, readings and session dates go up Mon Sep 28.",
+  "showQuestionNumbers": "off",
+  "showProgressBar": "top",
+  "progressBarType": "pages",
+  "checkErrorsMode": "onValueChanged",
+  "widthMode": "responsive",
+  "completedHtml": "<h3>Bid recorded.</h3><p>You can change it any time before Thu Sep 24, 23:59 ET by submitting again. Pairs, readings and session dates go up Mon Sep 28, and off-list proposals are approved or rejected the same day.</p>",
+  "pages": [
+    {
+      "name": "ranking",
+      "title": "Your top three readings",
+      "elements": [
+        {
+          "type": "html",
+          "name": "list_note",
+          "html": "<p>The list has <strong>thirteen readings</strong> and six of them get taught: three sessions, two groups in each. The rest are on the list because a reading you cite in a design doc in November does as much for you as one you presented.</p><p>We make the pairing, so rank the readings on what you want to teach, not on what you think is likely to be assigned. The function or learning outcome in brackets is a hint about where to look for your artifact. Any group can take any reading.</p>"
+        },
+        {
+          "type": "ranking",
+          "name": "preferences",
+          "title": "Rank your top three readings",
+          "description": "Drag three of the thirteen into the ranked area. First is the one you most want to teach.",
+          "selectToRankEnabled": true,
+          "selectToRankAreasLayout": "vertical",
+          "selectToRankEmptyRankedAreaText": "Drag three readings here, most wanted first.",
+          "selectToRankEmptyUnrankedAreaText": "No readings left to choose from.",
+          "minSelectedChoices": 3,
+          "maxSelectedChoices": 3,
+          "choices": [
+            {
+              "value": "r1",
+              "text": "R1: An empirical analysis of flaky tests. Luo et al., FSE 2014 (Release and CI)"
+            },
+            {
+              "value": "r2",
+              "text": "R2: Usage, costs, and benefits of continuous integration. Hilton et al., ASE 2016 (Release and CI)"
+            },
+            {
+              "value": "r3",
+              "text": "R3: Expectations, outcomes, and challenges of modern code review. Bacchelli and Bird, ICSE 2013 (LO4)"
+            },
+            {
+              "value": "r4",
+              "text": "R4: Modern code review, a case study at Google. Sadowski et al., ICSE-SEIP 2018 (LO4)"
+            },
+            {
+              "value": "r5",
+              "text": "R5: Continuous deployment at Facebook and OANDA. Savor et al., ICSE 2016 (Release and CI)"
+            },
+            {
+              "value": "r6",
+              "text": "R6: Feature toggles, practitioner practices and a case study. Rahman et al., MSR 2016 (Release and CI)"
+            },
+            {
+              "value": "r7",
+              "text": "R7: Why do internet services fail, and what can be done about it? Oppenheimer et al., USITS 2003 (Observability)"
+            },
+            {
+              "value": "r8",
+              "text": "R8: Performance anti-patterns in ORM-backed applications. Chen et al., ICSE 2014 (LO2, performance)"
+            },
+            {
+              "value": "r9",
+              "text": "R9: Automated detection of accessibility issues with generative AI. He, Huq and Malek, FSE 2025 (Accessibility)"
+            },
+            {
+              "value": "r10",
+              "text": "R10: Software documentation issues unveiled. Aghajani et al., ICSE 2019 (Docs and handoff)"
+            },
+            {
+              "value": "r11",
+              "text": "R11: Copilot usability and perceived productivity. Vaithilingam, Zhang and Glassman, CHI 2022 EA, with Ziegler et al., CACM 2024 (AI research)"
+            },
+            {
+              "value": "r12",
+              "text": "R12: An endless stream of AI slop. Baltes, Cheong and Treude, 2026 (AI research)"
+            },
+            {
+              "value": "r13",
+              "text": "R13: The influence of organizational structure on software quality. Nagappan, Murphy and Basili, ICSE 2008 (LO7)"
+            }
+          ],
+          "isRequired": true,
+          "validators": [
+            {
+              "type": "expression",
+              "expression": "{preferences.length} = 3",
+              "text": "Rank exactly three readings, most wanted first."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "why",
+      "title": "Why, and what you'd bring",
+      "description": "One sentence on each of the three. Then the artifact: something from Pawtograder you think you could bring to show the reading applies to us.",
+      "elements": [
+        {
+          "type": "comment",
+          "name": "why_first",
+          "title": "Your first choice: why that reading?",
+          "isRequired": true,
+          "rows": 2,
+          "validators": [
+            {
+              "type": "text",
+              "maxLength": 300,
+              "text": "One sentence. Past about 300 characters you're making the case rather than naming the reason."
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "why_second",
+          "title": "Your second choice: why that reading?",
+          "isRequired": true,
+          "rows": 2,
+          "validators": [
+            {
+              "type": "text",
+              "maxLength": 300,
+              "text": "One sentence, same as above."
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "why_third",
+          "title": "Your third choice: why that reading?",
+          "isRequired": true,
+          "rows": 2,
+          "validators": [
+            {
+              "type": "text",
+              "maxLength": 300,
+              "text": "One sentence, same as above."
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "artifact_first",
+          "title": "The artifact you think you could bring",
+          "description": "A PR. A diagram of a subsystem. A measurement you took. A test that fails for the reason the paper predicts. A query that shows the phenomenon in our data. Answer for your first choice, and don't worry about being held to it: you're naming a plausible artifact, not committing to one.",
+          "isRequired": true,
+          "rows": 4,
+          "validators": [
+            {
+              "type": "text",
+              "minLength": 60,
+              "text": "Name the thing. \"This reminds me of our gradebook\" is not an artifact."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "offlist",
+      "title": "Proposing a reading that isn't on the list",
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "proposing",
+          "title": "Are you proposing a reading that isn't on the list?",
+          "description": "Same overall process as the project slate. It has to clear the same two bars the list cleared: it reports evidence, and it applies to Pawtograder. Approved or rejected by Mon Sep 28.",
+          "defaultValue": false
+        },
+        {
+          "type": "panel",
+          "name": "proposal_panel",
+          "visibleIf": "{proposing} = true",
+          "elements": [
+            {
+              "type": "text",
+              "name": "proposal_citation",
+              "title": "The paper, with venue and year",
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "name": "proposal_link",
+              "title": "Link or DOI",
+              "inputType": "url"
+            },
+            {
+              "type": "comment",
+              "name": "proposal_result",
+              "title": "What it measured, and how big the result was",
+              "description": "Everything on the list reports evidence, because you're being asked what the result was and how big it was. A position paper gives you nothing to say there.",
+              "isRequired": true,
+              "rows": 3
+            },
+            {
+              "type": "comment",
+              "name": "proposal_artifact",
+              "title": "The artifact you'd bring, in two sentences",
+              "description": "Every slot has to produce an artifact from our codebase. There are wonderful papers that would leave you with nothing to bring to the room.",
+              "isRequired": true,
+              "rows": 3,
+              "validators": [
+                {
+                  "type": "text",
+                  "minLength": 60,
+                  "text": "Two sentences on the artifact, same bar as the on-list question."
+                }
+              ]
+            },
+            {
+              "type": "boolean",
+              "name": "proposal_over_first",
+              "title": "Would you take this over the reading you ranked first?",
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

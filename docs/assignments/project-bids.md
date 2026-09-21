@@ -79,8 +79,8 @@ Proposals are due with your bid, and we'll tell you on Sep 24 whether yours is r
 Demand decides, and it resolves like this:
 
 - A project needs **at least three people who ranked it highly** to run. Below that it doesn't, and its bidders go to their next choice. At this class size that floor will eliminate most of the slate, which is what it's for.
-- A project with more than four gets the four whose bids and skill mix fit best. Everyone else moves down their list. This is the ordinary outcome for the popular projects, and it isn't a judgment about you.
-- Skill mix inside a team beats individual preference. Four implementers with nobody who will talk to a user is a team that ships the wrong thing beautifully.
+- A project with more than four gets the four whose rankings and declared energy fit together best. Everyone else moves down their list. This is the ordinary outcome for the popular projects, and it isn't a judgment about you.
+- A spread of energy inside a team beats individual preference. Four implementers with nobody who will talk to a user is a team that ships the wrong thing beautifully.
 - You hear on **Thu Sep 24, in class.** Not before. We can't resolve any of it until the last bid is in.
 
 Many of you will get your first or second choice, and more of you than usual will not, simply because there are seven projects and only three or four slots. If you land somewhere you didn't rank near the top, come to the first Monday clinic and say so. There is usually something to be done about it in week four and almost nothing to be done about it in week nine.

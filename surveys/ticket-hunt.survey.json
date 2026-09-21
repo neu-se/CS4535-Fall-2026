@@ -1,0 +1,646 @@
+{
+  "title": "CS 4535: The Ticket Hunt",
+  "description": "Due Wed Sep 16, 23:59 ET. File the issues and post the triage comments on GitHub first, then record them here. We dedupe, size and label from this form on Sep 16–17, and what survives becomes the cs4535-first-ticket pool published Thu Sep 17.",
+  "showQuestionNumbers": "off",
+  "showProgressBar": "top",
+  "progressBarType": "pages",
+  "checkErrorsMode": "onValueChanged",
+  "widthMode": "responsive",
+  "completedHtml": "<h3>Recorded.</h3><p>The triage gate runs Sep 16–17. The <code>cs4535-first-ticket</code> pool is published Thu Sep 17, and project bids are due that night at 23:59 ET.</p>",
+  "pages": [
+    {
+      "name": "ticket1",
+      "title": "Ticket 1: the student role",
+      "description": "Pawtograder used as yourself, on the coursework you actually have, in this course or any other.",
+      "elements": [
+        {
+          "type": "text",
+          "name": "t1_url",
+          "title": "Link to the issue you filed",
+          "inputType": "url",
+          "placeholder": "https://github.com/pawtograder/platform/issues/1234",
+          "isRequired": true,
+          "validators": [
+            {
+              "type": "regex",
+              "regex": "^https://github\\.com/pawtograder/platform/issues/[0-9]+([/?#].*)?$",
+              "text": "Paste the full URL of an issue on pawtograder/platform."
+            }
+          ]
+        },
+        {
+          "type": "boolean",
+          "name": "t1_labeled",
+          "title": "The issue carries the cs4535-hunt label",
+          "isRequired": true,
+          "validators": [
+            {
+              "type": "expression",
+              "expression": "{t1_labeled} = true",
+              "text": "Add the cs4535-hunt label to the issue, then check this. We find your work by that label."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "t1_search_terms",
+          "title": "What terms did you search before filing?",
+          "description": "Open and closed issues both. Duplicate filing is the most common way this assignment goes wrong.",
+          "isRequired": true,
+          "placeholder": "e.g. gradebook column group slug, gradebook grouping, column header split"
+        },
+        {
+          "type": "checkbox",
+          "name": "t1_affects",
+          "title": "Who does this affect?",
+          "choices": [
+            {
+              "value": "students",
+              "text": "Students"
+            },
+            {
+              "value": "graders",
+              "text": "Graders and TAs"
+            },
+            {
+              "value": "instructors",
+              "text": "Instructors"
+            },
+            {
+              "value": "contributors",
+              "text": "New contributors"
+            }
+          ],
+          "isRequired": true
+        },
+        {
+          "type": "radiogroup",
+          "name": "t1_scope",
+          "title": "How many of them?",
+          "description": "This is what decides whether anybody picks the ticket up.",
+          "choices": [
+            {
+              "value": "one-odd-setup",
+              "text": "One person with an unusual setup"
+            },
+            {
+              "value": "some-configs",
+              "text": "Some users, under a particular configuration or course setup"
+            },
+            {
+              "value": "whole-course",
+              "text": "Everyone in a course that hits this workflow"
+            },
+            {
+              "value": "everyone",
+              "text": "Everyone using the product"
+            }
+          ],
+          "isRequired": true
+        },
+        {
+          "type": "radiogroup",
+          "name": "t1_where",
+          "title": "Where did you see it?",
+          "choices": [
+            {
+              "value": "production",
+              "text": "Production"
+            },
+            {
+              "value": "staging",
+              "text": "Staging"
+            },
+            {
+              "value": "local",
+              "text": "My seeded local instance"
+            }
+          ],
+          "isRequired": true
+        },
+        {
+          "type": "text",
+          "name": "t1_seed",
+          "title": "What did you seed?",
+          "description": "The seed options you ran, so somebody else can reach the same state.",
+          "visibleIf": "{t1_where} = 'local'",
+          "isRequired": true,
+          "placeholder": "e.g. npm run seed with FIXED_GRADER_EMAIL set to my address"
+        },
+        {
+          "type": "checkbox",
+          "name": "t1_evidence",
+          "title": "What evidence is attached to the issue?",
+          "description": "Something beyond your own account of events.",
+          "choices": [
+            {
+              "value": "screenshot",
+              "text": "Screenshot or screen recording"
+            },
+            {
+              "value": "stack-trace",
+              "text": "Stack trace"
+            },
+            {
+              "value": "log-line",
+              "text": "Log line"
+            },
+            {
+              "value": "failing-response",
+              "text": "Failing request or response"
+            },
+            {
+              "value": "screen-reader",
+              "text": "Screen-reader output"
+            }
+          ],
+          "showOtherItem": true,
+          "otherText": "Something else (say what)",
+          "isRequired": true
+        },
+        {
+          "type": "comment",
+          "name": "t1_why",
+          "title": "One sentence on why it matters",
+          "description": "Whose week is worse for this, and how. Name the mechanism if you found it.",
+          "isRequired": true,
+          "rows": 3,
+          "validators": [
+            {
+              "type": "text",
+              "minLength": 60,
+              "text": "A sentence, not a phrase. Name the role and what the defect costs them."
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "t1_size",
+          "title": "How big is the fix?",
+          "description": "A size estimate is not a commitment, and \"I can't size it\" is a legitimate answer.",
+          "choices": [
+            {
+              "value": "hours",
+              "text": "An hour or two for somebody who knows the area"
+            },
+            {
+              "value": "day-or-two",
+              "text": "A day or two"
+            },
+            {
+              "value": "bigger",
+              "text": "Bigger than that, or it needs a design decision first"
+            },
+            {
+              "value": "cannot-size",
+              "text": "I can't size it, and here's what I'd need"
+            }
+          ],
+          "isRequired": true
+        },
+        {
+          "type": "comment",
+          "name": "t1_cannot_size",
+          "title": "What would you need to size it, and who has it?",
+          "visibleIf": "{t1_size} = 'cannot-size'",
+          "isRequired": true,
+          "rows": 2
+        },
+        {
+          "type": "boolean",
+          "name": "t1_reproduced",
+          "title": "I made this happen myself, and the steps in the issue are the steps I ran",
+          "isRequired": true,
+          "validators": [
+            {
+              "type": "expression",
+              "expression": "{t1_reproduced} = true",
+              "text": "A filed ticket needs a reproduction you performed. If you can't make it happen, it's a hypothesis, and hypotheses go to Discord."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ticket2",
+      "title": "Ticket 2: the role you claimed",
+      "description": "The grader, instructor or new-contributor role, the one you stepped into deliberately and claimed in class on Thu Sep 10.",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "t2_role",
+          "title": "Which role did this ticket come from?",
+          "choices": [
+            {
+              "value": "grader",
+              "text": "Grader: a full grading pass on the seeded instance, including a regrade request end to end"
+            },
+            {
+              "value": "instructor",
+              "text": "Instructor: set something up from nothing, then answer a question you'd actually have"
+            },
+            {
+              "value": "new-contributor",
+              "text": "New contributor: the setup and contribution docs followed literally, in order"
+            }
+          ],
+          "isRequired": true
+        },
+        {
+          "type": "text",
+          "name": "t2_url",
+          "title": "Link to the issue you filed",
+          "inputType": "url",
+          "placeholder": "https://github.com/pawtograder/platform/issues/1234",
+          "isRequired": true,
+          "validators": [
+            {
+              "type": "regex",
+              "regex": "^https://github\\.com/pawtograder/platform/issues/[0-9]+([/?#].*)?$",
+              "text": "Paste the full URL of an issue on pawtograder/platform."
+            }
+          ]
+        },
+        {
+          "type": "boolean",
+          "name": "t2_labeled",
+          "title": "The issue carries the cs4535-hunt label",
+          "isRequired": true,
+          "validators": [
+            {
+              "type": "expression",
+              "expression": "{t2_labeled} = true",
+              "text": "Add the cs4535-hunt label to the issue, then check this. We find your work by that label."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "t2_search_terms",
+          "title": "What terms did you search before filing?",
+          "description": "Open and closed issues both. Duplicate filing is the most common way this assignment goes wrong.",
+          "isRequired": true,
+          "placeholder": "e.g. gradebook column group slug, gradebook grouping, column header split"
+        },
+        {
+          "type": "checkbox",
+          "name": "t2_affects",
+          "title": "Who does this affect?",
+          "choices": [
+            {
+              "value": "students",
+              "text": "Students"
+            },
+            {
+              "value": "graders",
+              "text": "Graders and TAs"
+            },
+            {
+              "value": "instructors",
+              "text": "Instructors"
+            },
+            {
+              "value": "contributors",
+              "text": "New contributors"
+            }
+          ],
+          "isRequired": true
+        },
+        {
+          "type": "radiogroup",
+          "name": "t2_scope",
+          "title": "How many of them?",
+          "description": "This is what decides whether anybody picks the ticket up.",
+          "choices": [
+            {
+              "value": "one-odd-setup",
+              "text": "One person with an unusual setup"
+            },
+            {
+              "value": "some-configs",
+              "text": "Some users, under a particular configuration or course setup"
+            },
+            {
+              "value": "whole-course",
+              "text": "Everyone in a course that hits this workflow"
+            },
+            {
+              "value": "everyone",
+              "text": "Everyone using the product"
+            }
+          ],
+          "isRequired": true
+        },
+        {
+          "type": "radiogroup",
+          "name": "t2_where",
+          "title": "Where did you see it?",
+          "choices": [
+            {
+              "value": "production",
+              "text": "Production"
+            },
+            {
+              "value": "staging",
+              "text": "Staging"
+            },
+            {
+              "value": "local",
+              "text": "My seeded local instance"
+            }
+          ],
+          "isRequired": true
+        },
+        {
+          "type": "text",
+          "name": "t2_seed",
+          "title": "What did you seed?",
+          "description": "The seed options you ran, so somebody else can reach the same state.",
+          "visibleIf": "{t2_where} = 'local'",
+          "isRequired": true,
+          "placeholder": "e.g. npm run seed with FIXED_GRADER_EMAIL set to my address"
+        },
+        {
+          "type": "checkbox",
+          "name": "t2_evidence",
+          "title": "What evidence is attached to the issue?",
+          "description": "Something beyond your own account of events.",
+          "choices": [
+            {
+              "value": "screenshot",
+              "text": "Screenshot or screen recording"
+            },
+            {
+              "value": "stack-trace",
+              "text": "Stack trace"
+            },
+            {
+              "value": "log-line",
+              "text": "Log line"
+            },
+            {
+              "value": "failing-response",
+              "text": "Failing request or response"
+            },
+            {
+              "value": "screen-reader",
+              "text": "Screen-reader output"
+            }
+          ],
+          "showOtherItem": true,
+          "otherText": "Something else (say what)",
+          "isRequired": true
+        },
+        {
+          "type": "comment",
+          "name": "t2_why",
+          "title": "One sentence on why it matters",
+          "description": "Whose week is worse for this, and how. Name the mechanism if you found it.",
+          "isRequired": true,
+          "rows": 3,
+          "validators": [
+            {
+              "type": "text",
+              "minLength": 60,
+              "text": "A sentence, not a phrase. Name the role and what the defect costs them."
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "t2_size",
+          "title": "How big is the fix?",
+          "description": "A size estimate is not a commitment, and \"I can't size it\" is a legitimate answer.",
+          "choices": [
+            {
+              "value": "hours",
+              "text": "An hour or two for somebody who knows the area"
+            },
+            {
+              "value": "day-or-two",
+              "text": "A day or two"
+            },
+            {
+              "value": "bigger",
+              "text": "Bigger than that, or it needs a design decision first"
+            },
+            {
+              "value": "cannot-size",
+              "text": "I can't size it, and here's what I'd need"
+            }
+          ],
+          "isRequired": true
+        },
+        {
+          "type": "comment",
+          "name": "t2_cannot_size",
+          "title": "What would you need to size it, and who has it?",
+          "visibleIf": "{t2_size} = 'cannot-size'",
+          "isRequired": true,
+          "rows": 2
+        },
+        {
+          "type": "boolean",
+          "name": "t2_reproduced",
+          "title": "I made this happen myself, and the steps in the issue are the steps I ran",
+          "isRequired": true,
+          "validators": [
+            {
+              "type": "expression",
+              "expression": "{t2_reproduced} = true",
+              "text": "A filed ticket needs a reproduction you performed. If you can't make it happen, it's a hypothesis, and hypotheses go to Discord."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "triage",
+      "title": "Two items you triage",
+      "description": "Somebody else's records, not your own findings from this week. Each verdict is a comment on the item itself.",
+      "elements": [
+        {
+          "type": "paneldynamic",
+          "name": "triages",
+          "title": "Triage verdicts",
+          "panelCount": 2,
+          "minPanelCount": 2,
+          "maxPanelCount": 2,
+          "allowAddPanel": false,
+          "allowRemovePanel": false,
+          "templateTitle": "Triage {panelIndex}",
+          "templateElements": [
+            {
+              "type": "radiogroup",
+              "name": "source",
+              "title": "Where did the item come from?",
+              "choices": [
+                {
+                  "value": "axe-910",
+                  "text": "An axe finding in issue #910"
+                },
+                {
+                  "value": "todo",
+                  "text": "A TODO comment in the tree"
+                },
+                {
+                  "value": "unlabeled-issue",
+                  "text": "An open issue with no label and no size"
+                }
+              ],
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "name": "item_url",
+              "title": "Link to the item you triaged",
+              "description": "The issue, or a permalink to the line carrying the TODO.",
+              "inputType": "url",
+              "isRequired": true,
+              "validators": [
+                {
+                  "type": "regex",
+                  "regex": "^https://github\\.com/pawtograder/.+",
+                  "text": "Paste a github.com/pawtograder link."
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "name": "comment_url",
+              "title": "Link to your triage comment",
+              "inputType": "url",
+              "isRequired": true,
+              "validators": [
+                {
+                  "type": "regex",
+                  "regex": "^https://github\\.com/pawtograder/.+",
+                  "text": "Paste the permalink to the comment you posted."
+                }
+              ]
+            },
+            {
+              "type": "radiogroup",
+              "name": "verdict",
+              "title": "Your verdict",
+              "choices": [
+                {
+                  "value": "still-real",
+                  "text": "Still real"
+                },
+                {
+                  "value": "no-longer-real",
+                  "text": "No longer real: fixed, obsolete, or a false positive"
+                },
+                {
+                  "value": "undecidable",
+                  "text": "Undecidable without something I don't have"
+                }
+              ],
+              "isRequired": true
+            },
+            {
+              "type": "comment",
+              "name": "reasoning",
+              "title": "How you reached it",
+              "description": "The specifics a reader can check: the commit that introduced the TODO, the ship date of the migration it refers to, the line showing the branch is unreachable, the screen-reader output. \"Still relevant\" earns nothing.",
+              "isRequired": true,
+              "rows": 4,
+              "validators": [
+                {
+                  "type": "text",
+                  "minLength": 80,
+                  "text": "Cite something checkable. This is the part we're grading."
+                }
+              ]
+            },
+            {
+              "type": "radiogroup",
+              "name": "size",
+              "title": "Size, now that it's claimable",
+              "visibleIf": "{panel.verdict} = 'still-real'",
+              "choices": [
+                {
+                  "value": "hours",
+                  "text": "An hour or two for somebody who knows the area"
+                },
+                {
+                  "value": "day-or-two",
+                  "text": "A day or two"
+                },
+                {
+                  "value": "bigger",
+                  "text": "Bigger than that, or it needs a design decision first"
+                },
+                {
+                  "value": "cannot-size",
+                  "text": "I can't size it, and here's what I'd need"
+                }
+              ],
+              "isRequired": true
+            },
+            {
+              "type": "comment",
+              "name": "blocked_on",
+              "title": "What you'd need, and who has it",
+              "visibleIf": "{panel.verdict} = 'undecidable'",
+              "isRequired": true,
+              "rows": 2,
+              "description": "Name it precisely. \"I need to know whether phase 2 is scheduled, and only the instructor knows\" is both correct and useful."
+            },
+            {
+              "type": "boolean",
+              "name": "not_mine",
+              "title": "This is somebody else's record, not something I found this week",
+              "isRequired": true,
+              "validators": [
+                {
+                  "type": "expression",
+                  "expression": "{panel.not_mine} = true",
+                  "text": "A verdict on something you reproduced an hour ago can only come out \"still real.\" Pick an item somebody else recorded."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "wrapup",
+      "title": "The rest of what you found",
+      "description": "Optional, except for the last question. This is where the pool gets its reserve and where we find out whether the assignment was the size we thought it was.",
+      "elements": [
+        {
+          "type": "comment",
+          "name": "unfiled",
+          "title": "Anything you found and didn't file",
+          "description": "Smaller than a ticket, out of scope, or you ran out of week. One line each is fine.",
+          "rows": 4
+        },
+        {
+          "type": "comment",
+          "name": "unreproduced",
+          "title": "Anything you couldn't make happen twice",
+          "description": "Post these in Discord too, where somebody may help you confirm them.",
+          "rows": 3
+        },
+        {
+          "type": "text",
+          "name": "hours",
+          "title": "Roughly how many hours did the whole assignment take you?",
+          "description": "Including setup, the four roles, filing and triage. This is how we size next year's version of the assignment.",
+          "inputType": "number",
+          "isRequired": true,
+          "validators": [
+            {
+              "type": "numeric",
+              "minValue": 0,
+              "maxValue": 60,
+              "text": "Hours, to the nearest hour."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

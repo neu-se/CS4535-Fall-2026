@@ -1,20 +1,20 @@
 ---
 title: "Reading Presentation"
-description: You and one person from another team teach the room a paper, and bring the artifact that proves it applies here
+description: You and a co-presenter teach the room a paper, and bring the artifact that proves it applies here
 sidebar_position: 8
 ---
 
 # Reading Presentation
 
-**Sessions:** Wed Oct 21 · Wed Oct 28 · Wed Dec 2 · **Bid due:** Thu Sep 24 · **Your reading:** assigned with your session date on Mon Sep 28 · **Feeds:** a **Pass** requirement
+**Sessions:** Wed Oct 21 · Wed Oct 28 · Wed Dec 2 · **Bid due:** Thu Sep 24, 23:59 · **Your reading:** assigned with your session date on Mon Sep 28 · **Feeds:** a **Pass** requirement
 
 ## Overview
 
-**Two students co-present one reading. Two readings per session.** Your co-presenter comes from **another** project team. That pairing is deliberate, and it's half the value. You'll have to explain the paper to somebody whose corner of the codebase you don't know, before either of you explains it to the room.
+**Two students co-present one reading. Two readings per session.** We make the pairing once the bids are in. Before either of you explains the paper to the room, you'll have to agree with each other on what it's for.
 
-Twenty minutes of talk per pair, then ten minutes of discussion you run. Two pairs fills the session. You're assessed individually on your half, and jointly on whether the session held together.
+Twenty minutes of talk per group, then ten minutes of discussion you run. Two groups fill the session. You're assessed individually on your share of the talk, and jointly on whether the session held together.
 
-Everyone teaches once. Three sessions at two pairs each seat twelve. The reading is yours to bid for, from [the list below](#the-reading-list).
+Everyone teaches once, in one of three sessions, two groups to a session. The reading is yours to bid for, from [the list below](#the-reading-list).
 
 ## Learning Outcomes
 
@@ -24,7 +24,7 @@ This assignment is where [LO8](/syllabus#grading) is demonstrated. Teaching tech
 
 The list has thirteen readings, and six of them get taught. The rest are here because a reading you cite in a design doc in November does as much for you as one you presented.
 
-Every reading on the list is peer-reviewed empirical work, with two deliberate exceptions noted below. Each one is tagged with the [cross-project function](/syllabus#project-teams-and-cross-project-functions) it belongs to. That tag is a hint about where to look for your artifact, and any pair can take any reading.
+Every reading on the list is peer-reviewed empirical work, with two deliberate exceptions noted below. Most are tagged with the [cross-project function](/syllabus#project-teams-and-cross-project-functions) they belong to. Four sit outside the functions and are tagged with the learning outcome they serve instead. Either way the tag is a hint about where to look for your artifact, and any group can take any reading.
 
 | # | Reading | The claim | Function |
 |---|---|---|---|
@@ -70,9 +70,9 @@ R12 is not peer-reviewed, and R11's first half is a short late-breaking work wit
 
 You bid, the same way you bid for a project.
 
-Rank your **top three** readings by number, one sentence each on why, and name the artifact you think you could bring. If you'd rather teach something off the list, that goes in the bid too. Bids are due **Thu Sep 24**, the day teams are announced. Rank the readings on their own merits. We make the pairing.
+Rank your **top three** readings by number, one sentence each on why, and name the artifact you think you could bring. If you'd rather teach something off the list, that goes in the bid too. Bids are due **Thu Sep 24, 23:59**, the day project teams are announced. Rank the readings on what you want to teach, not on what you think is likely to be assigned.
 
-Pairs, readings, and session dates go up **Mon Sep 28**. Six pairs fill three sessions. If enrollment goes above twelve we'll either add a fourth session or run one group of three, and we'll know which on Sep 24 once bids are in.
+Pairs, readings, and session dates go up **Mon Sep 28**. Thirteen students make six groups: five pairs and one group of three. That fills the three sessions, two groups in each. The group of three presents in the same thirty-minute slot a pair gets, so the third person is a third of the talk rather than an extra ten minutes on the clock.
 
 ## Instructions
 
@@ -105,11 +105,13 @@ A monologue with a question mark at the end is not facilitation.
 
 Write what you want people to have in their head when they walk in: the one claim, why it might be wrong, and the question you're going to open with.
 
+If you're in Session 3, your pre-read is due at 10:30 on **Mon Nov 30**, the morning classes resume after Thanksgiving. Write it before the break.
+
 ## When you're in the audience
 
 The sessions you're not presenting in aren't time off. A substantive contribution in at least two of the three sessions is a **Pass** requirement, and the session you present in counts as one of them. That means a question in the room, or a written response in the thread, that moves the discussion somewhere.
 
-Attendance earns nothing here. Presenting to a room that hasn't read the pre-read and won't argue is a waste of the presenter's two weeks, and you'll be on the other side of that in a few weeks.
+Attendance earns nothing here. Presenting to a room that hasn't read the pre-read and won't argue is a waste of the presenter's two weeks, and everyone in the room presents at some point.
 
 ## Grading Rubric
 
@@ -124,7 +126,7 @@ Delivering your presentation with the pre-read posted on time is a **Pass** requ
 | **Teaching** | The room can explain the core idea afterwards. You decided what to leave out and can say why |
 | **Artifact** | Something concrete from this codebase, brought and shown |
 | **Facilitation** | A question the room could genuinely disagree about, and a discussion you actually managed |
-| **Co-presentation** | One talk with two people in it, not two talks sharing a slot |
+| **Co-presentation** | One talk with everybody in it, not two or three talks sharing a slot |
 | **Pre-read** | One page, 48 hours ahead, useful to somebody who hasn't read the paper |
 | **Audience** | Substantive contribution in at least two of the three sessions |
 
@@ -141,10 +143,8 @@ A summary that walks the paper's section order. Slides that are the abstract in 
 | | |
 |---|---|
 | Reading list published | Wed Sep 9 |
-| Your bid, three readings ranked | Thu Sep 24 |
-| Pairs, readings and session dates assigned | Mon Sep 28 |
-| Session 1 | Wed Oct 21 |
-| Session 2 | Wed Oct 28 |
-| Session 3 | Wed Dec 2 |
-| Your pre-read | 10:30 Monday, 48 hours before your session |
-| Your slides or artifact, committed | within 48 hours after |
+| Your bid, three readings ranked | Thu Sep 24, 23:59 |
+| Pairs, readings, and session dates assigned, and off-list proposals answered | Mon Sep 28 |
+| Session 1 | Wed Oct 21 · pre-read Mon Oct 19, 10:30 · artifact by Fri Oct 23 |
+| Session 2 | Wed Oct 28 · pre-read Mon Oct 26, 10:30 · artifact by Fri Oct 30 |
+| Session 3 | Wed Dec 2 · pre-read Mon Nov 30, 10:30 · artifact by Fri Dec 4 |
