@@ -191,7 +191,8 @@ A group table with no RLS on it. The string-splitting moved from TypeScript into
 | Project bids due | Thu Sep 17, 23:59 |
 | No class (Yom Kippur) | Mon Sep 21 |
 | **Pull request due** | Thu Sep 24, 23:59 |
-| Teams announced | Thu Sep 24 (in class) |
+| Running projects announced | Wed Sep 23 (in class) |
+| Final teams posted | Mon Sep 28 |
 | Studio kickoff; target band assigned | Mon Sep 28 |
 | Target band declared | Thu Oct 1 |
 

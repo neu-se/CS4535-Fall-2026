@@ -1,11 +1,12 @@
 ---
 sidebar_position: 6
 title: "Software Processes & Continuous Delivery"
-image: /img/lectures/s06-continuous-delivery.png
+image: /img/lectures/s06-continuous-delivery.webp
 ---
 
 import RevealJS, { Slide } from '@site/src/components/RevealJS';
 import Img from '@site/src/components/Img';
+import ImageSlide from '@site/src/components/ImageSlide';
 
 <RevealJS transition="slide">
 
@@ -16,28 +17,39 @@ import Img from '@site/src/components/Img';
 <Slide>
 
   <Img
-    src="/img/lectures/s06-continuous-delivery.png"
-    prompt="PLACEHOLDER concept: An assembly line with a stop cord anyone can pull. 8-bit lo-fi pixel art, retro game aesthetic, clean outlines, teal and blue cool tones with warm amber accents, 16:9 landscape. Top banner reads Software Processes & Continuous Delivery. Bottom text reads CS 4535: Software Design and Delivery."
-    alt="TODO: describe the cover image once generated."
+    src="/img/lectures/s06-continuous-delivery.webp"
+    prompt="Concept: 'Ten thousand suspects, or fifty.' 8-bit lo-fi pixel art, retro game aesthetic, clean outlines, 16:9 landscape, split into two halves by a vertical seam. LEFT HALF, drawn in warm amber and red: a single enormous freight container, many times the size of a person, crammed with dozens of small mismatched crates stacked haphazardly inside it, being pushed through a narrow gate by five small pixel engineers straining against it. A calendar on the gate shows one day circled. A red warning lamp sits on top of the container. The engineers look tense. RIGHT HALF, drawn in cool teal and blue: the same gate, but a steady conveyor belt carries a line of small individual crates through it one at a time, evenly spaced, each crate carrying its own small green checkmark. A single relaxed pixel engineer stands beside the belt with one hand resting on a chunky red stop cord that hangs above the line. Above the belt a small row of four lamps shows a ramp climbing: one lit, two lit, three lit, four lit. Top banner reads 'S6: Software Processes and Continuous Delivery'. A tagline below the banner reads 'Ten Thousand Suspects, Or Fifty.' Bottom text reads 'CS 4535: Software Design and Delivery'."
+    alt="Split pixel-art scene. On the left in warm amber, four engineers strain to push one enormous freight container packed with mismatched crates through a gate, a red warning lamp on top. On the right in cool teal, a conveyor carries small crates through the same gate one at a time, each with a green checkmark, while one engineer rests a hand on a stop cord and four lamps above show a ramp climbing. Tagline: Ten Thousand Suspects, Or Fifty."
   />
 
 <aside className="notes">
-**Session:** Wed Sep 23 · Software Processes & Continuous Delivery
+**Session:** Wed Sep 23 · Software Processes & Continuous Delivery · 65 min
 
-**Why this sits here rather than earlier in September.** By now every student has had CI go red on their column-groups pull request, so trunk-based development and pipeline design are answers to something they have already felt rather than abstractions delivered before they opened a PR.
+**Structure, in order: hand back their own work, show them the machine they already used this week, then the process it makes possible, then the switch that makes that process safe, then let them use it.**
+- Reminders (~1 min).
+- The Ticket Hunt, returned (~7 min, three slides). The numbers, a show of hands on where their triage item came from, and four pieces of work worth reading. Grades went out this morning.
+- Title and objectives (~2 min).
+- Arc 1, Catching Errors Sooner (~16 min, six slides, two of them live). The CS 3100 lifecycle diagram turned fast, a show-of-hands vote on a red main, what makes CI worth having, one change per run, a 90-second pair beat on a flaky Playwright assertion, and the category it belongs to.
+- Arc 2, Trunk-Based Development (~8 min, two slides). Facebook before 2016 as the artifact, then what the other model demands of you, ending on the claim that trunk-based is unavailable until you can turn a feature off.
+- Arc 3, Deploy Is Not Release (~10 min, two slides). The distinction, the three continuous-somethings, the post-2016 Facebook numbers, and shift left.
+- Arc 4, Dark Launch, Sentry And Ramps (~10 min, three slides, one live). The vocabulary compressed, a 60-second beat introducing Sentry and what it does not know, then errors per exposed user.
+- Discussion 1, the 4:15pm incident cards (~5 min working, ~6 min debrief).
+- The close, Two Ways To Buy Confidence (~3 min), and up next (~1 min).
 
-**PARTIALLY DRAFTED.** The slides on feature flags, dark launch, ramps and reading an error rate against a ramp are finished and sit below, marked with a banner comment. The arcs around them still need writing.
+**The spine:** every practice in this session is bought with the same coin, which is keeping the number of suspects small. Small batches so a failure points at one change. One change per run so red means something. A flag so a feature can be shipped alone. A ramp so a rate can be compared against itself. By the closing slide, a unit test and a canary are the same move made at two different stages.
+
+**Four live beats, and they are the reason this deck fits at all.** The hands-up on triage provenance, the red-main vote, the flaky pair beat, and the incident cards. Each one replaced slide time rather than being added to it, which is why the passive stretches are now short and unforgiving. If you skip a beat to save time you will finish early and they will remember less.
+
+**This is the session the last three have been deferring to, so collect the debts out loud in the first two minutes.** Sep 17 promised flags, dark launch, ramps and the delivery-versus-deployment distinction, and all four are here. Knight Capital was told on Sep 17; refer back to it, do not retell it.
+
+**Everything in this room happened to them this week.** They pushed branches, watched `gradebook-e2e` run, and most of them watched it go red. Ask rather than tell wherever the slide allows it.
 
 **Topics on the schedule:** CI/CD pipelines, Trunk-based development, Deployment strategies, Feature flags
-**Draw on:** CS 3100 `l22-teams` (CI, PRs, code review in practice) and `l23-oss`.
+**Draw on:** CS 3100 `l22-teams` (CI, PRs, code review in practice) and `l23-oss`. The lifecycle diagram in Arc 1 is the same asset and the same slide title as CS 3100 `l1-intro`, reused deliberately.
 
 **Source for the two objectives this session inherits:** CS 4530, *Module 14: Continuous Development Processes*, Spring 2024, at `https://neu-se.github.io/CS4530-Spring-2024/Slides/Module%2014%20Continuous%20Development.pdf`
 
-**Still to write, and what Module 14 offers for each:**
-- **Catching errors sooner.** The Develop, Build, Test, Deploy, Monitor pipeline; CI triggered by commits and pull requests; a real `test.yml`; attributes of effective CI (do not leave builds broken, run on every change, do not replace pre-commit testing, feedback in minutes); why one change per CI run pinpoints blame; flaky tests against compute resources; CI service models; and Google TAP at 50,000 changes and 4 billion test cases a day with an 11-minute average wait.
-- **Trunk-based development.** Module 14's pre-2016 Facebook diagram is the artifact to build this around: week-long branches, a weekly stabilize branch, a release branch, and the constraint that your change does not go out unless you are there that day to support it. Pair it with the post-2016 push-from-master picture the CI and CD slide below already references.
-- **Continuous delivery compared with test-driven development.** Module 14's closing slide. TDD writes and maintains tests per feature and locates bugs at unit level. Continuous delivery writes and maintains high-level observability metrics, deploys features one at a time, watches for canaries, and writes fewer integration and system tests. It points straight at the testing session the next day.
-- **Available and not yet placed:** infrastructure as code, monitoring tools, the McNamara fallacy on metrics, and Netflix automated rollback on SPS. Infrastructure and observability belong to the Operations session, so take only what this one needs.
+**Module 14 material deliberately not used:** infrastructure as code, monitoring tools, the McNamara fallacy, and Netflix automated rollback on SPS. Infrastructure and observability belong to the Operations session on Oct 1, and the ramp material here already carries as much metrics content as the session can hold.
 
 > **Transition:** Reminders first, then what we're doing today.
 </aside>
@@ -56,6 +68,7 @@ import Img from '@site/src/components/Img';
 
 - **DUE:** Onboarding: Gradebook Column Groups — due Thu Sep 24
 - **DUE:** Reading Bid — due Thu Sep 24
+- **RETURNED:** The Ticket Hunt — grades and written feedback went out this morning
 - **FEEDBACK:** Project Bids — closed Thu Sep 17; feedback coming back shortly
 
 </div>
@@ -63,7 +76,151 @@ import Img from '@site/src/components/Img';
 <aside className="notes">
 Keep this to 60 seconds. Deadlines and returning feedback only — questions about a specific assignment go to clinic or Discord.
 
-> **Transition:** Now, today.
+> **Transition:** Before today: your tickets came back this morning.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* TICKET HUNT RETURNED (~7 min, three slides)  */}
+{/* Grades released this morning. Slide 2 is a   */}
+{/* show of hands before the reveal.             */}
+{/* ============================================ */}
+
+<Slide>
+
+## The Ticket Hunt, Returned
+
+<div style={{fontSize: '0.58em', textAlign: 'left', marginTop: '0.3em'}}>
+
+Grades went out this morning. **26 tickets. Every one of them checked against the repository, not against your form.**
+
+</div>
+
+<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.8em', fontSize: '0.54em', marginTop: '0.6em'}}>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.55em', borderRadius: '8px'}}>
+
+**23 reproduced in full.** 2 partially. 1 did not.
+
+**Zero duplicates** across the whole cohort.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(100,150,255,0.12)', padding: '0.55em', borderRadius: '8px'}}>
+
+**Ten passed. Three come back.**
+
+All four roles covered. Nobody converged on the docs, which is the way this usually fails.
+
+</div>
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.64em', marginTop: '0.6em', fontWeight: 'bold', color: '#e76f51'}}>
+Zero duplicates was the criterion I was least able to check by hand, and the one nobody failed.
+</p>
+
+<aside className="notes">
+**Lead with the fact that every ticket was reproduced, because it changes how the grade reads.** Twenty-six defects, opened one at a time against the repository. Twenty-three came back exactly as described. This was not a pass over the prose in the form.
+
+**"Three come back" and not "three failed", and the difference is the band system, so say it in one sentence.** Not yet means the work returns, not that a grade is recorded. Do not name those three. They have the detail in writing and the room does not need it, and anybody who wants to talk about it has clinic on Monday.
+
+**Put the zero-duplicate result on the fragment.** Thirteen people hunting the same product for a week with no coordination beyond the role claim on Sep 10, and nobody filed the same defect twice. That is the role split working, and it is the argument for why the claiming step existed at all.
+
+**One thing to own out loud, because they will meet it in their own project work.** The triage column of the export was unusable: it came out as `[object Object]` for all thirteen of you, so the triage half was reconstructed from comment history by hand. That is a Pawtograder defect, it is now filed, and it is a good example of a feature that accepts input correctly and fails at the only moment that matters.
+
+**Four of you posted triage as commit comments rather than issue comments**, which is the right place for a verdict on a `TODO` and which no issue search returns. Two of those are among the strongest work in the cohort. Say that, because the students who did it should know it was found and counted.
+
+> **Transition:** One pattern in the triage half is worth more than the grade, and I want to see the room first.
+</aside>
+
+</Slide>
+
+
+<Slide>
+
+## Where Did Your Triage Item Come From?
+
+<div style={{fontSize: '0.58em', textAlign: 'left', marginTop: '0.4em'}}>
+
+**A.** A ticket a classmate filed that same morning
+
+**B.** A `TODO`, an old unlabeled issue, or something from the axe sweep
+
+</div>
+
+<div style={{fontSize: '0.56em', textAlign: 'left', marginTop: '0.8em'}}>
+
+Hands up. Both are legal under the handout. The class split **exactly in half**: 13 verdicts each.
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.64em', marginTop: '0.8em', fontWeight: 'bold', color: '#e76f51'}}>
+Every verdict that was refuted, empty, or exemplary came from B. Nothing in A was wrong, and nothing in A was informative.
+</p>
+
+<aside className="notes">
+**Hands first, fragment second, and do not reverse that order.** The count is the hook. Once the fragment is on screen nobody will admit to A.
+
+**Twelve of the thirteen A verdicts came back "still real", which is exactly what the handout predicted would happen and exactly why the triage half exists.** A ticket filed four hours ago by somebody sitting in this room is still real. You knew that before you opened it, which means the verdict cost you nothing and taught you nothing.
+
+**Be fair about this, because it was legal and they followed the instructions.** The handout said an open issue with no label and no size, and a classmate's fresh ticket satisfies every word of that. The fault is in the handout, not in the students who read it accurately, and the sentence ruling it out is going in for next year. Say that plainly. A room that thinks it is being marked down for something the handout permitted will stop trusting the handouts.
+
+**The generalizable point, and it is the reason this slide is in a session about process:** a check that cannot come back negative is not a check. Twelve verdicts of "still real" on tickets nobody doubted is the same shape as a test suite that has never failed, and you should trust both about equally. That line connects directly to Arc 1, so plant it here.
+
+**If somebody asks which they should have done:** B, and the honest answer for why is that the interesting outcomes only live there. One verdict in B refuted the issue outright. One was empty. Two were the best work in the cohort. That spread is the assignment working.
+
+> **Transition:** So let me show you four that came from B.
+</aside>
+
+</Slide>
+
+
+<Slide>
+
+## Four Worth Reading
+
+<div style={{fontSize: '0.5em', textAlign: 'left', marginTop: '0.3em'}}>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.45em', borderRadius: '8px', marginBottom: '0.3em'}}>
+
+**David, on #911.** Pinned staging at a commit, found a clean checkout fails 2 of 108 Jest suites at import, and that one import error was hiding **5 real assertion failures CI has never run**. Then found the fix already written in an earlier commit, confirmed it isn't an ancestor of staging, and concluded the work left is splitting a PR, not coding.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.45em', borderRadius: '8px', marginBottom: '0.3em'}}>
+
+**Naman, on #910.** Closed an accessibility finding as a **documented false positive**: the commit, the suppression selector, the measured 19.9:1 and 19.06:1 contrast ratios, and an explicit refusal to generalize to the rest of the issue. Then said what the verdict does not cover.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.45em', borderRadius: '8px', marginBottom: '0.3em'}}>
+
+**Adhiraj, on a stale `TODO`.** Started from a comment somebody left months ago and ended at a live defect, with the dead-branch argument worked out line by line, plus an honest note that he never loaded the UI to watch it fail.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.45em', borderRadius: '8px'}}>
+
+**Abhinav, on #1005.** Reproduced a duplicate-question-name bug and found it **worse than reported**: the two questions share input state live, so a required question can submit empty. Traced to one jsonb blob keyed by name.
+
+</div>
+
+</div>
+
+<aside className="notes">
+**These four are public GitHub issues under their own handles, so naming them is naming published work.** Check with each of them if you would rather, but the default here is that good work filed in the open gets credited in the open. Never do the inverse: the three coming back are not named today or ever.
+
+**Read the common shape out loud rather than praising four times.** Every one of these goes past the thing they were asked for. David was asked whether an issue was still real and came back with what work is actually left. Naman was asked to triage a finding and came back with a measurement. Adhiraj started from a note and ended at a defect. Abhinav reproduced a bug and found it worse than its author knew.
+
+**Name the honesty, because it is the part students think loses them marks.** Adhiraj wrote down that he never loaded the UI. Naman wrote down what his verdict does not cover. Both of those raise the value of the work rather than lowering it, and both were written by people who could have left it out.
+
+**One sentence on what this has to do with today, and do not belabor it.** Every one of these answers started with somebody reproducing something instead of reasoning about it, which is the same instinct the entire pipeline automates. That is the bridge into the session.
+
+**If you are behind, this is the slide to compress**, not the hands-up. Put it on screen, read the four names and the four bold phrases, and move.
+
+> **Transition:** Which is what today is about: finding out sooner.
 </aside>
 
 </Slide>
@@ -83,7 +240,11 @@ Keep this to 60 seconds. Deadlines and returning feedback only — questions abo
 </p>
 
 <aside className="notes">
-TODO: framing — why this session, and what it unblocks.
+**Open by naming what they already did this week, because it is the whole argument for the session.** Every person in this room pushed to a branch, watched CI run, and in most cases watched it go red. That is the machinery of this session, and they have already used it without being told what it was for.
+
+**The framing, in one sentence:** on Monday they stop working alone on an assignment and start merging into a repository that ten courses depend on in the middle of a semester, and everything today is about what has to be true for that to be safe.
+
+**What it unblocks, concretely.** After today they know why their branch should live two days rather than two weeks, why the build being red is everybody's problem, and how to put a change in front of one course before it goes in front of ten. Sep 17 gave them environments and promotion. Today gives them the process that runs on top of it.
 
 > **Transition:** Here's what you'll be able to do after today.
 </aside>
@@ -102,9 +263,8 @@ TODO: framing — why this session, and what it unblocks.
 After this session, you'll be able to:
 </p>
 
-<ol style={{fontSize: '0.75em', textAlign: 'left'}}>
-  <li>Describe how continuous development catches errors sooner in the lifecycle</li>
-  <li>Describe the stages of the CI/CD pipeline and what each one protects against</li>
+<ol style={{fontSize: '0.78em', textAlign: 'left'}}>
+  <li>Describe how continuous development catches errors sooner, and what each stage of the pipeline protects against</li>
   <li>Contrast trunk-based development with long-lived feature branches</li>
   <li>Explain what a feature flag separates, and design a ramp for a change</li>
   <li>Tell from a ramp and an error rate whether a release is going badly</li>
@@ -112,13 +272,19 @@ After this session, you'll be able to:
 </ol>
 
 <aside className="notes">
-**Six is too many and will need cutting once the arcs are written.** Objectives 1 and 6 came from Module 14 and bracket the session; 4 and 5 arrived with the slides moved from s05 on Sep 16; 2 and 3 were already here. Likely merge: 2 into 1.
+**Five, after the old 1 and 2 were merged.** They were one idea and Arc 1 teaches them together: the stages, and what catching a defect at each one is worth. Objectives 1 and 5 came from Module 14 and bracket the session; 3 and 4 arrived with the slides moved from s05 on Sep 16.
 
-**Objectives 4 and 5 land on prepared ground.** The room met promotion, environments, dogfooding and staged migrations on Sep 17, so flags and ramps are the next question rather than the first one.
+**Objectives 3 and 4 land on prepared ground.** The room met promotion, environments, dogfooding and staged migrations on Sep 17, so flags and ramps are the next question rather than the first one.
 
 **Say what Sep 17 deliberately left for today**, in one sentence, because it was promised out loud: flags, dark launch, ramps, and the delivery-versus-deployment distinction. Knight Capital was told on Sep 17, so refer back to it rather than retelling it.
 
-TODO: time allocation across arcs, once the two new arcs are written.
+**This deck is full, and it is full because the ticket hunt debrief was added on Sep 22 to a session that was already at 62 minutes.** Reminders 1, hunt 7, title and objectives 2, Arc 1 16, Arc 2 7, Arc 3 8, Arc 4 10, working block and debrief 11, close 3, up next 1. That is 66 against a 65-minute room, so you are starting one minute over and the cuts below are not contingencies. Decide which one you are making before the room fills.
+
+**Cut in this order.** First, the Facebook sidebar on the CI and CD slide gets thirty seconds rather than two minutes, since Arc 2 now tells that story properly (worth 1.5). Second, the four continuous-integration attributes become two boxes read aloud, because the vote before them already motivates the first one (worth 2). Third, the ramp ladder on *Dark Launch* is read rather than discussed (worth 1). Fourth, the lifecycle recall is thirty seconds rather than two minutes (worth 1.5).
+
+**Sentry was added on the morning of delivery and the ramp material paid for it**, on the judgment that a room which has never been shown the error tracker cannot read the incident cards. If that trade turns out wrong in the room, the recovery is to run the cards on the Card B contrast alone and skip the arithmetic walk.
+
+**Do not take it from any of these:** the incident cards and their debrief, errors per exposed user, the hands-up on triage provenance, the red-build vote, the Sentry beat, or the flaky pair beat. Three of those four are the only places the room does anything, and the fourth is the slide that makes the working block answerable.
 
 > **Transition:** Let's start.
 </aside>
@@ -126,41 +292,419 @@ TODO: time allocation across arcs, once the two new arcs are written.
 </Slide>
 
 {/* ============================================ */}
-{/* ARC 1 TODO: CATCHING ERRORS SOONER (LO1)     */}
-{/* Module 14 material: pipeline diagram, CI     */}
-{/* triggers, effective-CI attributes, blame     */}
-{/* attribution, flaky tests, Google TAP.        */}
+{/* ARC 1: CATCHING ERRORS SOONER (~17 min)      */}
+{/* Objective 1. Six slides, two of them live:   */}
+{/* the red-build vote and the flaky-test pair   */}
+{/* beat. Ends by handing off to Arc 2.          */}
 {/* ============================================ */}
 
 <Slide>
 
-## TODO: Catching Errors Sooner
+## Good Process Helps You Design Better Programs
 
-Arc 1 goes here. Source material is in the cover notes.
+  <ImageSlide
+    imageSrc="/img/software_design_process_fall_2025.png"
+    imageAlt="Software design process: Requirements, Design, Implementation, Validation and Operations, each stage feeding forward with feedback flowing backward."
+    imageHeight="50vh"
+    belowText={
+      <p style={{fontSize: '0.75em'}}>
+      "Shift Left" on bugs: find issues faster to reduce the cost of fixing them
+      </p>
+    }
+  />
 
 <aside className="notes">
-TODO. This arc owns objective 1 and should end by handing off to the flags material below.
+**This is the same diagram, and the same slide, they saw in the first week of CS 3100.** Say so. Most of the room can finish the sentence, and the point of putting it back up is not to teach it again but to make one claim about it that was not available to them then.
+
+**Walk it once, quickly, because it is a recall and not a lesson.** Requirements, Design, Implementation, Validation, Operations. Each stage feeds forward and feedback flows backward, and the backward arrows are the part everybody forgets is there.
+
+**Then the claim that makes it this course's diagram rather than that one's.** In CS 3100 this was a picture of a project: you did requirements, then design, then implementation, roughly once, over a semester. Here, every one of those arrows runs several times a week, per change, and the entire apparatus of this session exists to make the loop cheap enough to run at that rate. Same diagram, two orders of magnitude apart in frequency. Continuous delivery is not a different lifecycle. It is this lifecycle, turned fast.
+
+**Shift left is written on the slide and it is the through-line to Arc 3**, so name it and leave it. Their own four prices, from the editor through to a student at 11pm, land on the CI and CD slide later. Here it is only the direction: find it further left and it costs less.
+
+> **Transition:** So let's put you inside that loop on an ordinary Tuesday.
 </aside>
 
 </Slide>
 
 {/* ============================================ */}
-{/* ARC 2 TODO: TRUNK-BASED DEVELOPMENT          */}
-{/* Module 14's Facebook pre-2016 branch diagram */}
-{/* is the artifact to build this around.        */}
+{/* OPENING VOTE: THE RED BUILD (~3 min)         */}
+{/* Show of hands. No technology. The CI slide   */}
+{/* that follows is the reveal.                  */}
 {/* ============================================ */}
 
 <Slide>
 
-## TODO: Trunk-Based Development
+## Staging Has Been Red Since Yesterday
 
-Arc 2 goes here.
+<div style={{fontSize: '0.54em', textAlign: 'left', marginTop: '0.2em'}}>
+
+Real, this week, in the repository you are about to merge into. `e2e-local` has failed on **every push** since PR #1016 landed. It isn't your commit.
+
+</div>
+
+```text
+no-submission-grading-ui.test.tsx:100 › the staff grading route also
+  redirects to Grade for a no-submission assignment
+
+Expected pattern: /\/grade(?:\?.*)?$/
+Received string:  ".../grade/assignments/103/submissions/72"
+```
+
+<div style={{fontSize: '0.54em', textAlign: 'left', marginTop: '0.5em'}}>
+
+**A.** Revert #1016. It broke the build.
+
+**B.** Fix the test. **C.** Fix the app. **D.** Not yours. Keep working on your branch.
+
+</div>
 
 <aside className="notes">
-TODO. Objective 3. Module 14's pre-2016 Facebook diagram pairs with the post-2016 story on the CI/CD slide below.
+**Simultaneous show of hands, fingers on three, exactly as the Alaska vote ran on Sep 17.** Read it, fifteen seconds of quiet, then count down. Say the distribution out loud.
+
+**The room cannot tell B from C from the slide, and that is the design.** Nothing here says whether the test or the app is right. A student who votes B or C confidently has decided something they have no evidence for, and that is worth naming gently when you take answers.
+
+**What actually happened, and hold it until after the vote.** The test was stale and the app was correct. So C is wrong, B is right, and the only way to know is to read the branch history rather than the failure.
+
+**Walk the timeline out loud. It is six beats and it is the best thing in this session, because the process failed in a way that looks like nobody making a mistake.**
+- **Sep 17, 17:21.** The contributor adds the test, in `ff3fcc4f`. It passes. At that moment the staff route really does redirect to `/grade`, so the test is a correct description of the code.
+- **Sep 21, 19:12.** I leave a review comment with a screenshot: submission history is throwing on no-submission assignments, please fix it.
+- **Sep 21, 20:22.** They fix it, in `a242a30b`, by skipping the `/grade` redirect on the staff-prefixed route. This is the right fix. That route has no `grade` sub-page, so redirecting there would 404.
+- **The test is now wrong, and nobody has touched it.** My comment changed the behavior. The test still describes the behavior from four days earlier.
+- **Then the part I want you to sit with.** I ran the end-to-end suite locally on this branch and it passed. I ran it *before that last commit*. My evidence was real and it was true when I collected it, and by the time I approved, the thing I had verified no longer existed.
+- **Sep 22, 00:19.** I approve and merge. Staging is red on every push from then until midnight last night.
+
+**Now say the generalization, and it is the whole reason this slide is here.** Verification has a timestamp. Review is not a read-only operation: asking for a change *changes the thing you verified*, and the more useful your review comment, the more likely it invalidates your own testing. There is no amount of care that fixes this. The only defense is a machine that re-runs everything on every commit, which is the next slide's second bullet, and which in this case was skipped.
+
+**Be fair to the contributor and say so plainly.** They wrote a test, responded correctly to review, and shipped the right behavior. I asked for the change and I did the final verification. If you want somebody to blame for a day of red staging, it is me, and it still would not have helped, because the failure is structural.
+
+**Then the second failure, stacked on the first.** Even with stale human evidence, CI should have caught this on the commit that broke it. It did not run. All four of #1016's end-to-end runs skipped `e2e-local`, because the branch lives in a fork and the job is gated behind a trust check. **A skipped job satisfies a required check.** The merge button was green and the suite had not run.
+
+**So two independent defences failed in the same direction, which is the honest shape of most incidents.** A human verified the wrong version, and the automation that exists precisely to catch that did not execute. Either one alone would have been survivable.
+
+**Let that sit for a second before you move.** Everything in this session so far has been about red meaning something. This is green meaning nothing, which is strictly worse, because nobody investigates green.
+
+**D is the option to come back to.** It is the same D as always: you have not avoided the problem, you have arranged not to see it. Every push after #1016 was red for everybody, so D scales to a team that never finds out.
+
+**If asked why a fork skips it:** running someone else's code against your secrets on your runner is how supply-chain attacks work, so the caution is correct. The defect is that the skip counts as a pass. Say it in one sentence; the fix is a real design question and not this session.
+
+**Point at the attribution, which was free here:** the last green run was the commit immediately before #1016. One change, one suspect, no bisect. That is the next slide, arriving early.
+
+> **Transition:** So what was that red build costing, and who was it costing it to?
 </aside>
 
 </Slide>
+
+<Slide>
+
+## Continuous Integration
+
+<div style={{fontSize: '0.6em', textAlign: 'left', marginTop: '0.3em'}}>
+
+Everyone merges to one shared branch often, and **every change is built and tested automatically**, triggered by the commit and by the pull request.
+
+</div>
+
+<div style={{fontSize: '0.56em', textAlign: 'left', marginTop: '0.6em'}}>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.5em', borderRadius: '8px', marginBottom: '0.35em'}}>
+
+**Never leave the build broken.** A red trunk blocks everybody, not just you. Fixing it outranks whatever you were doing.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(100,150,255,0.12)', padding: '0.5em', borderRadius: '8px', marginBottom: '0.35em'}}>
+
+**Run on every change.** Not nightly, not before a release, and *actually run*: #1016's suite was skipped four times and the merge button stayed green.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(255,180,0,0.15)', padding: '0.5em', borderRadius: '8px', marginBottom: '0.35em'}}>
+
+**It does not replace testing before you push.** CI is the second opinion, not the first.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(120,120,120,0.10)', padding: '0.5em', borderRadius: '8px'}}>
+
+**Feedback in minutes.** A suite that takes an hour gets ignored, worked around, and eventually turned off.
+
+</div>
+
+</div>
+
+<aside className="notes">
+**The four boxes are the ones that are actually contested, so spend the time on the two that sound wrong to a student.**
+
+**"Never leave the build broken" sounds like a manners rule and is not, and they have just watched it fail.** On a shared trunk a red build stops every other person from knowing whether their own change is good, because they cannot tell your failure from theirs. Staging was red from Sep 22 until the small hours of this morning, which is roughly a day in which nobody merging could learn anything from CI. In five days they are all on that repository.
+
+**The second box is where the vote lands, so read it against #1016 explicitly, and connect it to the timeline rather than only to the skip.** "Run on every change" is the rule that exists because human verification goes stale between commits. I tested that branch and then a commit landed after my test. "On every change" is what makes that recoverable, and a job that was skipped does not satisfy it, because the required check did not know the difference. The general form is worth one sentence: a gate that can pass by not running is not a gate, and it is the same failure as the triage verdict that could only come back "still real".
+
+**"It does not replace testing before you push" is the one most likely to be ignored**, especially by anybody who has learned to use CI as a remote test runner. Pushing to find out costs ten minutes per attempt, and the loop that costs ten minutes is the loop you stop using.
+
+**The last box is a real engineering constraint with a real threshold.** Somewhere around ten minutes people stop waiting for the result and start context-switching, and once they have context-switched the feedback has lost most of its value. Their own `gradebook-e2e` is not fast, which is worth admitting out loud rather than pretending the ideal is universal.
+
+**If somebody asks who pays for all this compute:** somebody always does, it is usually invisible, and it is the reason the next slide's numbers are interesting.
+
+> **Transition:** And there is one more attribute, which is worth its own slide because it is the one people design around.
+</aside>
+
+</Slide>
+
+
+<Slide>
+
+## One Change Per Run
+
+<div style={{fontSize: '0.62em', textAlign: 'left', marginTop: '0.3em'}}>
+
+If a run contains **one** change and it fails, you know who broke it.
+
+If a run contains **fifty**, you have fifty suspects and a bisect ahead of you.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(100,150,255,0.12)', padding: '0.6em', borderRadius: '8px', fontSize: '0.56em', textAlign: 'left', marginTop: '0.7em'}}>
+
+**Google's Test Automated Platform**, as of the numbers in the literature: about **50,000 changes a day**, roughly **4 billion test cases a day**, and an average wait of **11 minutes** for a result.
+
+They do not run that because they enjoy it. They run it because a failure has to be attributable to a change, and the only way to keep it attributable at that rate is to test at that rate.
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.66em', marginTop: '0.6em', fontWeight: 'bold', color: '#e76f51'}}>
+Blame attribution isn't about who to be annoyed with. It's the difference between a ten-minute fix and a ten-hour hunt.
+</p>
+
+<aside className="notes">
+**This is the slide that explains why the rest of the session looks the way it does.** Trunk-based development, small batches, and pushing from master every few hours are all downstream of one idea: keep the number of suspects small. Say that here, because Arc 2 will otherwise sound like a preference about branching.
+
+**The Google numbers do their work by being absurd.** Nobody in the room will ever build that, and that is fine. What they should take is the shape of the argument: at fifty thousand changes a day you can either test every change or give up on knowing what broke, and they chose to pay.
+
+**The word "blame" will make somebody uncomfortable and the fragment is the answer.** This is not about finding who to be annoyed with. A failing run that points at one commit is a defect you fix before lunch; the same failure spread across a fifty-commit merge is a day of bisecting. Attribution is a property of the pipeline, not a judgment about a person.
+
+**They have already seen this work, thirty seconds ago.** Finding the culprit for the red staging build took no bisect and no argument: the last green run was the commit immediately before #1016. One change per run bought that, and it cost nothing because the rate is low.
+
+**Connect it to what they are about to do.** Thirteen people merging into one repository is a small enough rate that every pull request can be its own run, so they get attribution for free. They should notice they are getting it for free, because the moment a team stops getting it for free is the moment this stops being obvious.
+
+> **Transition:** All of which assumes a failing test means something failed. Here's one that doesn't.
+</aside>
+
+</Slide>
+
+
+{/* ============================================ */}
+{/* PAIR BEAT (~90 sec working, ~60 sec take)    */}
+{/* The slide after it is the answer.            */}
+{/* ============================================ */}
+
+<Slide>
+
+## Passes Here. Fails In CI. Why?
+
+```ts
+await page.click('text=Add column group');
+await page.waitForTimeout(500);
+expect(await page.locator('.group-row').count()).toBe(3);
+```
+
+<div style={{backgroundColor: 'rgba(231,111,81,0.15)', padding: '0.55em', borderRadius: '8px', fontSize: '0.58em', textAlign: 'left', marginTop: '0.6em'}}>
+
+Green every time on your laptop. Red about **one run in six** in CI, on the same commit.
+
+**90 seconds, with the person next to you.** What's different about CI?
+
+</div>
+
+<aside className="notes">
+**This is their own stack, deliberately.** It is a Playwright assertion of the shape that runs in `gradebook-e2e`, on the feature they have spent two weeks inside. Do not abstract it.
+
+**The answer they should reach: the test waits for the clock rather than for the condition.** Five hundred milliseconds is enough on an idle laptop and is not enough on a shared CI runner that is building three other things, so the assertion sometimes runs before the third row renders. Nothing about the code under test is wrong, and nothing about the test is wrong on the machine it was written on.
+
+**The fix is one line and worth showing with your hands rather than a slide:** wait for the row count to reach three, with a timeout as the failure condition rather than as the strategy. `waitForTimeout` is the smell; waiting for the thing you are asserting on is the fix.
+
+**Take two answers, no more.** Expect "CI is slower" from somebody quickly, which is right and incomplete. Push once: slower is not the problem, *variable* is the problem. A machine that was reliably slow would pass reliably at 500ms or fail reliably, and either is easier to live with than one run in six.
+
+**If a pair says "just raise the timeout to 5000":** ask what happens to the suite's runtime when two hundred tests each pay five seconds, and whether the flake comes back on a bad day anyway. That is the right instinct and the wrong lever, and it is a thirty-second exchange.
+
+**Do not let this run long.** Ninety seconds on the clock, sixty to take it, then the next slide generalizes. The temptation is to turn it into a testing lesson, and tomorrow is the testing session.
+
+> **Transition:** That's one flavor of it. Here's the category.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## When The Suite Lies
+
+<div style={{fontSize: '0.62em', textAlign: 'left', marginTop: '0.3em'}}>
+
+A **flaky test** passes and fails on the same code. Same commit, same machine, different answer.
+
+</div>
+
+<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.8em', fontSize: '0.54em', marginTop: '0.6em'}}>
+
+<div style={{backgroundColor: 'rgba(255,180,0,0.15)', padding: '0.55em', borderRadius: '8px'}}>
+
+**Where it comes from**
+
+Waiting on something async and guessing how long. Two tests sharing state and running in a different order. Concurrency. A clock, a network, a random seed.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(231,111,81,0.15)', padding: '0.55em', borderRadius: '8px'}}>
+
+**What it costs**
+
+Not the compute. The habit. A suite that cries wolf teaches the team to press rerun, and pressing rerun is how a genuine failure gets shipped.
+
+</div>
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.62em', marginTop: '0.7em', fontWeight: 'bold', color: '#e76f51'}}>
+Flaky red says broken when nothing is. A skipped job says fine when nothing was checked. Both are the suite lying.
+</p>
+
+<aside className="notes">
+**The fragment now carries both halves, and #1016 supplied the second one for free.** Flakiness is a false red. A skipped required check is a false green. Students worry about the first and ship on the second, and the second is the one that cost this repository a day.
+
+**Place this immediately after attribution, because it is the thing that dismantles it.** One change per run buys you one suspect, and a flaky test hands the suspicion to an innocent commit. A team that cannot trust red has paid for a pipeline and thrown away the result.
+
+**Ask who has pressed rerun this week and expect most of the hands.** Then ask what they were doing when they pressed it: almost nobody re-reads the failure first. That reflex is the entire cost, and it is cheaper to notice it now, on an assignment, than in November on a shared trunk.
+
+**The order-dependence case is worth thirty seconds because it is invisible.** Two tests that both write to the same seeded course pass in the order you happen to run them and fail when a runner shards them differently. Nothing changed in either test.
+
+**Say where the evidence is and stop.** R1 on the reading list is Luo et al., FSE 2014, which took 201 commits that fixed a flaky test and sorted them by root cause. Async waits, test-order dependence and concurrency accounted for most of them. Somebody in this room may well be teaching that paper in October, so name it, say it is the empirical answer to "which of these actually happens", and hand the rest to them rather than spending it now.
+
+**Do not go into detection or mitigation strategies.** Rerunning, quarantining and deterministic replay are a session of their own and not this one. What they need today is that red is a claim, not a fact.
+
+> **Transition:** So: small batches, attributable failures, a suite you can believe. That is a set of requirements for how code reaches the trunk.
+</aside>
+
+</Slide>
+
+
+{/* ============================================ */}
+{/* ARC 2: TRUNK-BASED DEVELOPMENT (~8 min)      */}
+{/* Objective 2. Two slides. Sets up the         */}
+{/* post-2016 Facebook story on the CI/CD slide  */}
+{/* in Arc 3, so do not spend it here.           */}
+{/* ============================================ */}
+
+<Slide>
+
+## How Facebook Shipped Before 2016
+
+<div style={{fontSize: '0.56em', textAlign: 'left', marginTop: '0.3em'}}>
+
+<div style={{backgroundColor: 'rgba(255,180,0,0.15)', padding: '0.5em', borderRadius: '8px', marginBottom: '0.35em'}}>
+
+**Your branch lived about a week.** You developed on it, alone, while master moved underneath you.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(255,180,0,0.15)', padding: '0.5em', borderRadius: '8px', marginBottom: '0.35em'}}>
+
+**A stabilize branch, weekly.** Everybody's week of work, merged together, then made to work as a set.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(255,180,0,0.15)', padding: '0.5em', borderRadius: '8px', marginBottom: '0.35em'}}>
+
+**A release branch, cut from that.** Whatever survived stabilization went out.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(231,111,81,0.15)', padding: '0.5em', borderRadius: '8px'}}>
+
+**And the rule that gives it away:** your change did not go out unless you were physically there that day to support it.
+
+</div>
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.64em', marginTop: '0.6em', fontWeight: 'bold', color: '#e76f51'}}>
+Read that last rule as a confession: nobody trusted the merge.
+</p>
+
+<aside className="notes">
+**Walk down the four boxes as a week in someone's life rather than as a diagram.** Monday you branch. You work alone for five days while three hundred other people also work alone. Thursday everything is merged into one branch and made to work as a set, which is where the week's real engineering happens and none of it is the feature anybody was building. Friday a release branch is cut.
+
+**The fourth box is the slide.** Ask the room what it implies before you say it. Being required to be present on push day means the organization expected your change to break something in a way only you could fix, and had no cheaper way to find out. Everything else on this slide follows from not being able to tell, in advance, whether a week of somebody's divergence was safe.
+
+**Name the cost in the only currency students feel, which is merge conflict.** A branch that lives a week is a week of divergence. A branch that lives three weeks is a merge conflict with a deadline attached, and at the end of it you are debugging a merge rather than a feature.
+
+**This is a good place to be fair to the old model rather than smug about it.** It worked. Facebook shipped on it for years, and plenty of organizations still do, usually because releasing is genuinely expensive for them: firmware, regulated software, anything with a customer-side install. The model is a rational response to a costly release. What changed is the cost.
+
+**Do not tell the post-2016 story here.** It is a sidebar on the CI and CD slide in a few minutes, with the numbers on it. Leave them wanting it.
+
+> **Transition:** So what does the other model actually require of you?
+</aside>
+
+</Slide>
+
+
+<Slide>
+
+## Trunk-Based Development
+
+<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.8em', fontSize: '0.54em', marginTop: '0.4em'}}>
+
+<div style={{backgroundColor: 'rgba(255,180,0,0.15)', padding: '0.55em', borderRadius: '8px'}}>
+
+**Long-lived branches**
+
+Integration is an event. It happens late, all at once, and it is somebody's job.
+
+Divergence grows all week. Conflicts are found at merge time.
+
+The branch is how unfinished work is hidden.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.55em', borderRadius: '8px'}}>
+
+**Trunk-based**
+
+Integration is continuous. Branches live hours or a day or two, then merge.
+
+Divergence stays small. Conflicts are found while they are still small.
+
+**A flag is how unfinished work is hidden.**
+
+</div>
+
+</div>
+
+<div style={{fontSize: '0.56em', textAlign: 'left', marginTop: '0.7em'}}>
+
+Trunk-based costs you something real: your half-finished feature is now on master, running, in front of nobody.
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.64em', marginTop: '0.5em', fontWeight: 'bold', color: '#e76f51'}}>
+Which only works if shipping the code and showing the feature are two separate acts.
+</p>
+
+<aside className="notes">
+**Read the two columns across rather than down.** Same three questions, two answers: when does integration happen, when do you find the conflict, and what hides the work that is not ready.
+
+**The third row is the hinge of the whole session and the fragment makes it explicit.** Both models have to hide unfinished work somewhere. The old one hides it on a branch, which is why integration hurts. The new one hides it behind a flag, which is why the next arc exists. If the room takes one thing from Arc 2, it is that trunk-based development is not available to you until you can turn a feature off.
+
+**Be honest that trunk-based is not free.** Your unfinished code is running in production. It is being compiled, loaded, and in some cases executed on every request. That is a real cost and it buys you small merges.
+
+**Tie it to the six days in front of them.** From Monday they are merging into a repository that ten courses depend on, in the middle of a semester, with short-lived branches and course-scoped flags. This slide is that arrangement, and it is the same arrangement for the same reasons.
+
+**If somebody asks whether pull requests are a long-lived branch:** a PR open for four hours is trunk-based, one open for three weeks is not, and nothing about the mechanism decides which. Duration is the variable.
+
+> **Transition:** So let's take that apart. Deploying and releasing are not the same event.
+</aside>
+
+</Slide>
+
 
 {/* ============================================ */}
 {/* ==== DRAFTED SLIDES: FLAGS, RAMPS, METRICS ==== */}
@@ -217,7 +761,7 @@ So a feature can be on for one course and off for the other nine, with one deplo
 
 **The per-course granularity is the fragment and it is the thing that makes this course possible.** It is why twelve students can merge to a system that ten courses depend on. Their feature is on for CS 4535 and off everywhere else until it has been watched for a while.
 
-**If asked "why not just use branches":** because a branch that lives for three weeks is a merge conflict with a deadline attached, and because a branch cannot be turned off for one course at 4pm without a deploy. That is Sep 23's session and worth deferring rather than answering fully.
+**If asked "why not just use branches":** they already have the first half of the answer from Arc 2, so hand it back to them. A branch that lives three weeks is a merge conflict with a deadline attached. The part Arc 2 could not give them is the second half: a branch cannot be turned off for one course at 4pm without a deploy, and that is what the rest of this arc is about.
 
 > **Transition:** And "deploy" isn't one event either, because this system has four moving parts.
 </aside>
@@ -278,17 +822,15 @@ Pawtograder does **continuous delivery**. Changes are promoted to production del
 
 **Where Pawtograder sits, and why, in one sentence:** twelve students merging into a platform that ten courses depend on mid-semester is not a place for nobody to be in the path. So a person decides when changes go to production, rather than every passing merge going out by itself.
 
-**Shift left is the fragment and it is the idea that connects this session to the next three.** A type error caught by your editor costs seconds. Caught by CI, a couple of minutes. Caught on staging, an hour. Caught by a student at 11pm the night an assignment is due, it costs an afternoon, a Discord thread, and some amount of their belief that the tool works. Same defect, four prices. Every practice in this part of the course is an attempt to move the catch leftward.
+**Shift left is the fragment, and it is the callback to the lifecycle diagram in Arc 1.** That slide named the direction and left it there. This one puts their own costs on it, which is why Arc 1 deliberately did not spend the prices. A type error caught by your editor costs seconds. Caught by CI, a couple of minutes. Caught on staging, an hour. Caught by a student at 11pm the night an assignment is due, it costs an afternoon, a Discord thread, and some amount of their belief that the tool works. Same defect, four prices. Every practice in this part of the course is an attempt to move the catch leftward.
 
-**The Facebook sidebar answers the question this slide provokes, which is "why would anyone want nobody in the path?"** Chuck Rossi was their first release engineer and spent years running exactly the button you are running. By 2016 more than a thousand diffs a day were landing on master, and the weekly push sometimes carried ten thousand of them. The argument has nothing to do with humans being slow. A release containing ten thousand changes has ten thousand suspects when it breaks, and no human coordinating it can tell you which. Pushing fifty at a time gives you fifty suspects. So continuous deployment is a strategy for making failures *attributable*, and it buys that by giving up the gate.
+**Arc 2 already told the pre-2016 half, so this sidebar is now a payoff rather than a story, and thirty seconds is enough. It is also the first thing to compress if the clock is tight.** It answers the question this slide provokes, which is "why would anyone want nobody in the path?" Chuck Rossi was their first release engineer and spent years running exactly the button you are running. By 2016 more than a thousand diffs a day were landing on master, and the weekly push sometimes carried ten thousand of them. The argument has nothing to do with humans being slow. A release containing ten thousand changes has ten thousand suspects when it breaks, and no human coordinating it can tell you which. Pushing fifty at a time gives you fifty suspects. So continuous deployment is a strategy for making failures *attributable*, and it buys that by giving up the gate.
 
 **Then the honest contrast, which is the useful part for them:** Pawtograder takes a handful of changes a week from twelve students, so the gate costs almost nothing and buys a lot. The right answer depends on your rate, not on your sophistication. A student who leaves thinking continuous deployment is simply the more advanced choice has learned the wrong thing.
 
-**Shift left is the fragment and it connects this session to the next two.** Four prices for the same defect, and every practice in this part of the course is an attempt to move the catch leftward.
-
 **This is where end-to-end testing earns a mention, and one sentence is enough.** They already have `gradebook-e2e` running on their column-groups pull requests: it stands up a throwaway Supabase, replays every migration including theirs, seeds the class, and drives the instructor gradebook in a real browser. That is a robot doing the staging pass before staging, and it is the leftmost place the migration failure from minute two can be caught automatically. Say that, say that Sep 24 is the whole session on what those tests can and cannot catch, and move.
 
-**Then name what is coming, because it stops people worrying they missed something.** Sep 23 is the entire session on this: pipelines, trunk-based development, deployment strategies, and where flags actually get evaluated. Today is only the part you need in order to ship a migration next week.
+**Name what this session is not going to reach, because it stops people worrying they missed something.** Where a flag is actually evaluated and cached, and what that costs on a hot path, is a clinic question rather than a slide. The telemetry underneath the numbers is Oct 1.
 
 > **Transition:** So the button gets pressed. Who gets the feature first?
 </aside>
@@ -310,7 +852,7 @@ Pawtograder does **continuous delivery**. Changes are promoted to production del
 
 <div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.5em', borderRadius: '8px', marginBottom: '0.4em'}}>
 
-**Ramp.** Turn it on for a growing fraction, on a schedule you decide. Yourself first, then staff, then one course, then more. `1% · 5% · 25% · 100%`
+**Ramp.** Turn it on for a growing fraction, on a schedule you decide: yourself, then staff, then one course, then more. `1% · 5% · 25% · 100%`
 
 </div>
 
@@ -323,21 +865,84 @@ Pawtograder does **continuous delivery**. Changes are promoted to production del
 </div>
 
 <aside className="notes">
-**These are the three terms Discussion 2 needs. Say each one out loud and write "ramp" on the board.** Twenty minutes from now they will read a card that says `1% Mon · 5% Tue · 25% Wed 2:00pm` and it has to mean something without explanation.
+**These are the three terms the working block needs. Say each one out loud and write "ramp" on the board.** Twenty minutes from now they will read a card that says `1% Mon · 5% Tue · 25% Wed 2:00pm` and it has to mean something without explanation.
 
 **The ramp is not a rollout schedule you set and forget.** It is a sequence of decisions, each one made with more evidence than the last. That framing is what the incident cards are about.
+
+**Read the ramp ladder, do not dwell on it.** The numbers matter far less than the shape, and the two slides after this one are where the session's observability content now lives. If you are running behind at this point, this is the slide to take it from.
 
 **Dogfooding came up two slides ago and this is where it becomes a tactic rather than a virtue.** Putting yourself at the front of the ramp is the cheapest exposure available, because you are the one user who will definitely notice and definitely not file a ticket about it in March.
 
 **The third box is the honest cost and it is the cut candidate if you are behind.** A flag means every test that mattered now matters twice, once with the flag on and once with it off. Teams forget the off path, ship, ramp to 100%, and discover six weeks later that turning the flag back off no longer works, which means the rollback they were relying on is gone. That is worth saying in one sentence even in the compressed version.
 
-**Do not go into how the flag is evaluated or cached.** Sep 23.
+**Name what a dark launch cannot cover, because PR #1021 is the live counterexample and it takes twenty seconds.** A flag hides application code. It does nothing for a change to the database, the cluster, or the schema. #1021 raises Postgres's `/dev/shm` from 64Mi to 1Gi, and there is no fraction of users you can apply that to: it restarts the primary, so it waits for a maintenance window. When students hit that distinction in their own projects, it is usually a migration, and Sep 17's four-step migration is the technique.
+
+**Do not go into how the flag is evaluated or cached.** It is a clinic question, and the honest answer takes longer than the ramp material it would displace.
 
 > **Transition:** You've ramped to 25%. Errors went up. Did you cause it?
 </aside>
 
 </Slide>
 
+
+{/* ============================================ */}
+{/* OBSERVABILITY BEAT (~4 min, 60 sec working)  */}
+{/* Introduces Sentry. The cards assume it.      */}
+{/* ============================================ */}
+
+<Slide>
+
+## How Would You Know?
+
+<div style={{fontSize: '0.56em', textAlign: 'left', marginTop: '0.2em'}}>
+
+The flag is on for 25%. Somewhere, a student just hit a `TypeError`. **Nothing on your machine will ever tell you that.**
+
+</div>
+
+<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.7em', fontSize: '0.5em', marginTop: '0.5em'}}>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.5em', borderRadius: '8px'}}>
+
+**What we run**
+
+`@sentry/nextjs`, reporting to a **self-hosted Bugsink**. Every event carries the exception, the stack, the **release** (the commit SHA) and the **environment**.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(255,180,0,0.15)', padding: '0.5em', borderRadius: '8px'}}>
+
+**What it won't tell you**
+
+`tracesSampleRate: 0`. It catches what **threw**, not what was **slow**. And it only sees what reaches the client.
+
+</div>
+
+</div>
+
+<div style={{backgroundColor: 'rgba(231,111,81,0.15)', padding: '0.55em', borderRadius: '8px', fontSize: '0.56em', textAlign: 'left', marginTop: '0.55em'}}>
+
+**60 seconds, with the person next to you.** An error shows up. What has to be *attached* to it before you can act?
+
+</div>
+
+<aside className="notes">
+**This slide exists because the cards twenty minutes from now put Sentry output in front of them and nobody has said what Sentry is.** Fix that here, in plain terms: it is a thing that catches exceptions in the browser and on the server and posts them somewhere you can look.
+
+**Two real details worth naming, because they make it concrete rather than a product name.** It is `@sentry/nextjs` pointed at a **self-hosted Bugsink** instance rather than Sentry's cloud, which is why the config says integrations are off. And `release` is set from the commit SHA. Say what that buys: an error is attached to the exact build it came from, which is the only reason "did my deploy cause this" is answerable at all.
+
+**Take the 60 seconds, then collect three or four answers on the board before revealing.** The ones you want: which release, which environment, which user or course, and the stack. The one almost nobody says, and the one the whole next slide is about, is **how many people were exposed**. Sentry does not know that. It counts events, not denominators.
+
+**That gap is the handoff and it should feel like a gap.** An error tracker gives you a numerator and nothing else. Somebody has to supply the denominator, and if nobody does, you are reading raw counts during a ramp, which is the exact mistake the next slide is about.
+
+**The honest limits are the amber box and this room can take them.** Traces are off, so a query that got slow shows up as nothing until it becomes a timeout. And it only sees errors that reach code we instrument, which is precisely how #1021 stayed invisible: Postgres exhausted its shared memory, PostgREST returned 503s, and the database logged nothing at all, because the error surfaced in the client. Two hundred user-facing 503s in a day and the only alert that fired was about a stale Grafana panel.
+
+**One sentence on what today is not.** Where these numbers come from, what logs and metrics and traces each buy you, and how to run an incident is Oct 1. Today they only have to read what is already on the screen.
+
+> **Transition:** So you have a count. During a ramp, a count on its own is a trap.
+</aside>
+
+</Slide>
 
 <Slide>
 
@@ -364,7 +969,7 @@ A count that tracks exposure is arithmetic. A rate that tracks the ramp is your 
 </p>
 
 <aside className="notes">
-**Protect this slide. It is the one thing that makes Discussion 2 answerable rather than a guess.** If Arc 1 has to be compressed, cut the test-matrix box on the previous slide, not this. Everything here is three columns of division and it takes ninety seconds.
+**Protect this slide. It is the one thing that makes the working block answerable rather than a guess.** If Arc 1 has to be compressed, cut the test-matrix box on the previous slide, not this. Everything here is three columns of division and it takes ninety seconds.
 
 **Walk the middle row first, because it is the counter-intuitive one.** Nineteen errors instead of two looks alarming on a dashboard and means nothing has changed. Ten times the users, ten times the errors, same product. A team that pages itself on raw counts during a ramp will page itself every single time.
 
@@ -376,6 +981,8 @@ A count that tracks exposure is arithmetic. A rate that tracks the ramp is your 
 
 **If a student asks what counts as "exposed":** users for whom the flag evaluated true and who reached the code path. Counting everybody in an enrolled course inflates the denominator and hides a real regression. That is a good question and a one-sentence answer.
 
+**There is a live production example of the uneven denominator if you want it, and it is thirty seconds.** PR #1021, open right now, documents 190 user-facing 503s in 24 hours on Khoury prod. They are nowhere near evenly spread: `GET /submissions` took 117 of them. A per-route rate finds that immediately and a global error count buries it under everything that was fine.
+
 **Foreshadow Oct 1 in one sentence, and do it here rather than at the end.** Every number in that table came from somewhere: an error tracker counting events, and something counting exposed users. That is telemetry, and where it comes from, what logs and metrics and traces each buy you, and how you run an incident are the Operations session on Oct 1. Today you only have to read the numbers. Nobody should leave thinking a dashboard is a thing that exists by default.
 
 > **Transition:** Back to the migration you broke at the start. Here's how it's done safely.
@@ -385,8 +992,8 @@ A count that tracks exposure is arithmetic. A rate that tracks the ramp is your 
 
 
 {/* ============================================ */}
-{/* DISCUSSION 2 (~5 min working, pairs)         */}
-{/* Objective 3                                  */}
+{/* DISCUSSION 1 (~5 min working, pairs)         */}
+{/* Objective 4                                  */}
 {/* ============================================ */}
 
 <Slide>
@@ -456,7 +1063,7 @@ Also        that course's Discord server
 </div>
 
 <aside className="notes">
-**One question, not four, and that is deliberate.** Asking for too many things in too little time is how a short activity fails. This asks for one judgment and one number, and the comparison between the two cards does the teaching, the same way holding a shipped migration next to your own sketch worked in s03. Hunting is slow; comparing is fast.
+**Thirteen students, so six pairs and one group of three. One question, not four, and that is deliberate.** Asking for too many things in too little time is how a short activity fails. This asks for one judgment and one number, and the comparison between the two cards does the teaching, the same way holding a shipped migration next to your own sketch worked in s03. Hunting is slow; comparing is fast.
 
 **Say one thing before you start the clock, and only one:** both flags are real, Sentry is real, the incidents are invented, so nobody should go looking for these in the dashboard. Then start the clock.
 
@@ -481,7 +1088,7 @@ Also        that course's Discord server
 
 
 {/* ============================================ */}
-{/* DEBRIEF 2 (~6 min)                           */}
+{/* DEBRIEF 1 (~6 min)                           */}
 {/* ============================================ */}
 
 <Slide>
@@ -514,13 +1121,19 @@ Also        that course's Discord server
 </div>
 
 <aside className="notes">
-**Take Card B from all six pairs first, then put the table up.** If most of the room rolled B back, that is the most useful thing to happen today and you should say so rather than moving on politely. The reflex is the thing being corrected.
+**Take Card B from every group first, then put the table up.** If most of the room rolled B back, that is the most useful thing to happen today and you should say so rather than moving on politely. The reflex is the thing being corrected.
 
 **The table is six divisions and it should feel obvious once it is on screen.** That is the point: the decision was always available, and what was missing was the habit of dividing.
 
 **Then the sentence that generalizes, and it is the takeaway of the arc:** rolling back is not what you do when you are sure. It is what you do when you are *not* sure and finding out is expensive. In Card A you roll back precisely because you cannot tell. In Card B you hold precisely because you can.
 
 **Somebody will ask what you would actually do about A's dependency bump.** Revert it too, separately, and one at a time. Two changes reverted at once teaches you nothing about either. Worth thirty seconds because it is the same reasoning one level up.
+
+**The production version of Card B is open in the repository right now, and it is worth sixty seconds if you have them.** PR #1021: Postgres was running on a 64Mi `/dev/shm`, parallel-query segments filled it, and every time a resize failed PostgREST tore down its entire connection pool. Two hundred and four of those errors in a day, 225 pool rebuilds, 190 student-facing 503s. The only alert that fired was about a frozen Grafana panel, and that panel's query has no parallelism at all: it was a *victim*, over-represented purely because it polls every thirty seconds and was often in flight when a rebuild landed. Its "usual causes" annotation then sent the investigation at three subsystems that were all healthy.
+
+**That is Card B at production scale, and it is the same error in the opposite direction.** In Card B the loud signal was innocent and rolling back would have punished 200 students for a config problem affecting 6. Here the loud signal was innocent and chasing it cost a day while students took 503s. The skill is identical: ask what the denominator is, and ask whether the thing making noise is the thing that is broken.
+
+**Worth knowing, not worth saying today: this is what Game Day 2 on Nov 5 is built from.** Do not spoil it.
 
 **If you are behind, this is the slide to compress**, not the working block. Put the table up, read the two boxes, move. The room has already done the thinking.
 
@@ -531,18 +1144,69 @@ Also        that course's Discord server
 
 
 {/* ============================================ */}
-{/* CLOSING ARC TODO: CD vs TDD (LO3)            */}
-{/* Module 14's final content slide.             */}
+{/* CLOSING ARC: CD vs TDD (~5 min)              */}
+{/* Objective 5. Module 14's final content       */}
+{/* slide. Hands off to Sep 24.                  */}
 {/* ============================================ */}
 
 <Slide>
 
-## TODO: Continuous Delivery Compared With TDD
+## Two Ways To Buy Confidence
 
-Closing arc goes here. Hands off to Sep 24.
+<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.8em', fontSize: '0.52em', marginTop: '0.4em'}}>
+
+<div style={{backgroundColor: 'rgba(100,150,255,0.12)', padding: '0.55em', borderRadius: '8px'}}>
+
+**Test-driven development**
+
+Write and maintain a test per feature.
+
+Bugs are located at the unit level, by a test that names them.
+
+You find out **before** it ships.
+
+Pays in: tests written, and tests kept working.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.55em', borderRadius: '8px'}}>
+
+**Continuous delivery**
+
+Write and maintain high-level metrics.
+
+Bugs are located by a rate that moved, on a feature you shipped alone.
+
+You find out **after** it ships, from a few users.
+
+Pays in: telemetry built, and telemetry kept honest.
+
+</div>
+
+</div>
+
+<div style={{fontSize: '0.56em', textAlign: 'left', marginTop: '0.7em'}}>
+
+Ship one feature at a time and you get the same thing a unit test gives you: **one suspect.**
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.64em', marginTop: '0.5em', fontWeight: 'bold', color: '#e76f51'}}>
+This is a budget rather than a choice. Every team spends on both, and most spend badly by never deciding.
+</p>
 
 <aside className="notes">
-TODO. Objective 6, and the natural bridge into the testing session the next day.
+**Both columns are answers to one question: how do you find out your change is bad?** Put it that way first, because a room that has spent fifty minutes on flags and ramps can leave thinking continuous delivery replaced testing, and it did not.
+
+**The structural similarity is the insight and it is on the slide.** A unit test isolates one behavior so a failure points at one thing. A ramp isolates one feature so a rate points at one thing. Same move, different stage, and once they see that, deploying one feature at a time stops being a rule and starts being obvious.
+
+**The honest version of the trade, which Module 14 makes and is worth repeating:** teams doing heavy continuous delivery tend to write fewer integration and system tests, because a canary tells them faster and cheaper what a slow system test was going to tell them eventually. They do not write fewer unit tests. The thing that gets displaced is the expensive, slow, brittle end of the pyramid.
+
+**The fragment is the takeaway and it should be said plainly.** Both cost real engineering time, forever. A team with excellent tests and no telemetry finds out from a student on Discord. A team with excellent telemetry and no tests spends its life diagnosing in production. The failure mode is not picking wrong, it is never having noticed there was a budget.
+
+**Then hand off, in one sentence, and do not elaborate.** Tomorrow is the other half: what end-to-end, visual acceptance and performance tests can and cannot catch, and what they cost to keep working. Today was the half that watches production. Stop there.
+
+> **Transition:** So, tomorrow.
 </aside>
 
 </Slide>
@@ -559,7 +1223,7 @@ TODO. Objective 6, and the natural bridge into the testing session the next day.
 
 **Thu Sep 24 — Testing: E2E, Visual Acceptance & Performance**
 
-TODO: one-line transition from today into that session.
+Today was the half that watches production. Tomorrow is the half that runs before it: what those tests catch, what they miss, and what they cost to keep working.
 
 </div>
 
@@ -574,6 +1238,66 @@ TODO: one-line transition from today into that session.
 
 <aside className="notes">
 Close on the transition, not the reminders — students should leave knowing what today was for.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* PROJECT SLATE (from the Sep 22 bids)         */}
+{/* ============================================ */}
+
+<Slide>
+
+## Four Projects
+
+<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.6em', fontSize: '0.46em', marginTop: '0.3em', textAlign: 'left'}}>
+
+<div style={{backgroundColor: 'rgba(100,150,255,0.12)', padding: '0.5em', borderRadius: '8px'}}>
+
+**Paper Exams**
+
+Generate, scan and grade paper exams in Pawtograder. Starts from a working pipeline (PR #814) and adds LLM-assisted grading with bring-your-own-key, comments pinned to a spot on the scanned page, and exam variants.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.5em', borderRadius: '8px'}}>
+
+**Cloud Workspaces**
+
+A replacement for GitHub Codespaces: Coder workspaces on a self-hosted Forgejo, in a Kubernetes namespace you run. Target: one intro-course assignment, from repo to running workspace to graded submission.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.5em', borderRadius: '8px'}}>
+
+**Office Hours**
+
+A usability sweep of the help queue, then a user study with students and TAs, then a new Discord integration that builds on the existing staff-side bot.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(100,150,255,0.12)', padding: '0.5em', borderRadius: '8px'}}>
+
+**Usability, Accessibility & Permissions**
+
+Pages where the UI offers an action the database then refuses, accessibility gaps the automated scans skip, and finer-grained staff roles: read-only observers, TAs who can manage grading assignments, TAs who cannot push to solution repos.
+
+</div>
+
+</div>
+
+<div style={{fontSize: '0.5em', textAlign: 'left', marginTop: '0.7em'}}>
+
+**Next:** details and preliminary teams on Discord after class, then discussion in class **Thu Sep 24**, then Discord again, then **final teams Mon Sep 28**
+
+</div>
+
+<aside className="notes">
+**Four projects came out of the bids, and nobody's name goes on this slide.** Preliminary teams go on Discord after class, so people can react in writing before Thursday rather than in front of the room.
+
+**Say what was cut and why, in one line.** Forgejo and Docusaurus had no first-choice votes. Forgejo lives on inside Cloud Workspaces, where it is the git backend rather than a migration. Docusaurus is not running this term.
+
+**Take questions about what a project is, not who is on it.** Team questions go to Discord and Thursday.
 </aside>
 
 </Slide>

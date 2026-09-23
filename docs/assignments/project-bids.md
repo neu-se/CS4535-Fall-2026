@@ -6,7 +6,7 @@ sidebar_position: 2
 
 # Project Bids
 
-**Assigned:** Wed Sep 9 · **Due:** Thu Sep 17, 23:59 · **Teams announced:** Thu Sep 24
+**Assigned:** Wed Sep 9 · **Due:** Thu Sep 17, 23:59 · **Slate announced:** Wed Sep 23 · **Final teams:** Mon Sep 28
 
 ## Overview
 
@@ -14,7 +14,7 @@ A semester is a long time to spend on a problem you don't care about. It's also 
 
 So we don't assign you. You tell us where your energy is, and we resolve the demand.
 
-The bid is also the last cheap moment to change your mind. After Sep 24 you own an area, your teammates are planning around you being in it, and switching costs somebody else their semester.
+The bid is also the last cheap moment to change your mind. After Sep 28 you own an area, your teammates are planning around you being in it, and switching costs somebody else their semester.
 
 ## What You Hand In
 
@@ -60,7 +60,7 @@ A bid without evidence is still complete. A bid with one specific, checkable obs
 
 Teams are **3–4 people**, and **one team owns one project**. So the number of projects that run is set by the size of the room, and in a room this size that number is **three or four out of the seven on the slate.**
 
-Say that plainly, because it changes how you should bid: most of the slate **will not run**. A project you rank first may simply not exist on Sep 24, and that's not a reflection on the project or on you. It means fewer than three people wanted it enough. This is why ranking all seven honestly matters more than making a case for one.
+Say that plainly, because it changes how you should bid: most of the slate **will not run**. A project you rank first may simply not exist on Sep 23, and that's not a reflection on the project or on you. It means fewer than three people wanted it enough. This is why ranking all seven honestly matters more than making a case for one.
 
 You can still propose something that isn't listed. Understand what you're asking, though: a proposal has to be better than a slate project that would otherwise have run, and it has to attract two or three other people who rank it highly. That's a real bar. Proposals do clear it, but it's a competition, not a gap to fill.
 
@@ -72,7 +72,7 @@ A proposal needs five things:
 - What shipped looks like by Nov 23. Feature freeze is a real date. If the honest answer is "a prototype behind a flag plus a written plan for January," write that. It beats an implausible answer, and we'll believe it more.
 - Why it needs 3–4 people for the eight weeks between Sep 28 and feature freeze on Nov 23. Some genuinely good ideas are one PR. If yours is, say so, file it as a ticket, and bid on something else.
 
-Proposals are due with your bid, and we'll tell you on Sep 24 whether yours is running. A proposal that doesn't run isn't wasted. Some become tickets, and the good ones have a way of turning up on next year's slate.
+Proposals are due with your bid, and we'll tell you on Sep 23 whether yours is running. A proposal that doesn't run isn't wasted. Some become tickets, and the good ones have a way of turning up on next year's slate.
 
 ## How bids get resolved
 
@@ -81,7 +81,8 @@ Demand decides, and it resolves like this:
 - A project needs **at least three people who ranked it highly** to run. Below that it doesn't, and its bidders go to their next choice. At this class size that floor will eliminate most of the slate, which is what it's for.
 - A project with more than four gets the four whose rankings and declared energy fit together best. Everyone else moves down their list. This is the ordinary outcome for the popular projects, and it isn't a judgment about you.
 - A spread of energy inside a team beats individual preference. Four implementers with nobody who will talk to a user is a team that ships the wrong thing beautifully.
-- You hear on **Thu Sep 24, in class.** Not before. We can't resolve any of it until the last bid is in.
+- **Which projects run, you hear on Wed Sep 23, in class.** Not before. We can't resolve any of it until the last bid is in.
+- **Which team you are on takes longer, and that is deliberate.** Preliminary teams go up on Discord after that class, we discuss them in class on Thu Sep 24, and the list stays open on Discord after that. **Final teams are posted Mon Sep 28.** If a placement is wrong for you, the days in between are when to say so.
 
 Many of you will get your first or second choice, and more of you than usual will not, simply because there are seven projects and only three or four slots. If you land somewhere you didn't rank near the top, come to the first Monday clinic and say so. There is usually something to be done about it in week four and almost nothing to be done about it in week nine.
 
@@ -109,5 +110,8 @@ It's still required. If no bid arrives by Sep 17, you get placed wherever there'
 |---|---|
 | Slate pitched in class | Wed Sep 9 |
 | Bids and project proposals due | Thu Sep 17, 23:59 |
-| Teams and running projects announced | Thu Sep 24 (in class) |
+| Running projects announced | Wed Sep 23 (in class) |
+| Preliminary teams on Discord | Wed Sep 23, after class |
+| Teams discussed in class | Thu Sep 24 |
+| **Final teams posted** | **Mon Sep 28** |
 | Studio phase begins: team charters | Mon Sep 28 |

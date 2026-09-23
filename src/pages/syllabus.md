@@ -51,7 +51,7 @@ Every session is a lecture, front-loaded so that hands-on work is unblocked as e
 
 In parallel, everyone builds the same thing: first-class **gradebook column groups**, independently, as a pull request that never merges. Everyone solves the same problem independently, and the submissions get compared, so you learn the codebase by cutting one vertical slice through all of it. One scoped **implementation ticket**, shipped end to end through branch, PR, review, merge, and deploy, follows in the studio phase on Oct 15; that one merges.
 
-**Project bids are due Sep 17. Teams are announced Sep 24.**
+**Project bids are due Sep 17. The running projects are announced Sep 23, and final teams Sep 28.**
 
 ### Project Slate
 

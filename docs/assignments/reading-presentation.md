@@ -70,7 +70,7 @@ R12 is not peer-reviewed, and R11's first half is a short late-breaking work wit
 
 You bid, the same way you bid for a project.
 
-Rank your **top three** readings by number, one sentence each on why, and name the artifact you think you could bring. If you'd rather teach something off the list, that goes in the bid too. Bids are due **Thu Sep 24, 23:59**, the day project teams are announced. Rank the readings on what you want to teach, not on what you think is likely to be assigned.
+Rank your **top three** readings by number, one sentence each on why, and name the artifact you think you could bring. If you'd rather teach something off the list, that goes in the bid too. Bids are due **Thu Sep 24, 23:59**. Rank the readings on what you want to teach, not on what you think is likely to be assigned.
 
 Pairs, readings, and session dates go up **Mon Sep 28**. Thirteen students make six groups: five pairs and one group of three. That fills the three sessions, two groups in each. The group of three presents in the same thirty-minute slot a pair gets, so the third person is a third of the talk rather than an extra ten minutes on the clock.
 
