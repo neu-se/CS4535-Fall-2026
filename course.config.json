@@ -212,13 +212,14 @@
     },
     {
       "lectureId": "s07-testing",
-      "title": "Testing: E2E, Visual Acceptance & Performance",
+      "title": "Defense in Depth: Prevent, Test, Detect, Recover",
       "dates": [
         "2026-09-24"
       ],
       "topics": [
-        "Playwright",
-        "Visual acceptance testing",
+        "Defense in depth",
+        "Prevent, test, detect, recover, or accept",
+        "End-to-end and visual acceptance testing",
         "What not to test"
       ],
       "notes": "Column groups due · preliminary teams discussed",

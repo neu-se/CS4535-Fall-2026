@@ -468,7 +468,7 @@ If a run contains **fifty**, you have fifty suspects and a bisect ahead of you.
 
 **Google's Test Automated Platform**, as of the numbers in the literature: about **50,000 changes a day**, roughly **4 billion test cases a day**, and an average wait of **11 minutes** for a result.
 
-They do not run that because they enjoy it. They run it because a failure has to be attributable to a change, and the only way to keep it attributable at that rate is to test at that rate.
+Even Google can't run every test on every change. TAP runs only the tests a change can affect, and batches changes when it's busy. When a batch fails, it splits the batch and reruns each change alone, because a failure has to be attributable to one change.
 
 </div>
 
@@ -479,7 +479,9 @@ Blame attribution isn't about who to be annoyed with. It's the difference betwee
 <aside className="notes">
 **This is the slide that explains why the rest of the session looks the way it does.** Trunk-based development, small batches, and pushing from master every few hours are all downstream of one idea: keep the number of suspects small. Say that here, because Arc 2 will otherwise sound like a preference about branching.
 
-**The Google numbers do their work by being absurd.** Nobody in the room will ever build that, and that is fine. What they should take is the shape of the argument: at fifty thousand changes a day you can either test every change or give up on knowing what broke, and they chose to pay.
+**The Google numbers do their work by being absurd.** Nobody in the room will ever build that, and that is fine. What they should take is the shape of the argument. At fifty thousand changes a day, running every test on every change is unaffordable even for Google, so TAP selects the tests each change affects and batches changes under load. What it will not give up is attribution: a failing batch is split and each change retested alone until one is to blame (Memon et al., "Taming Google-Scale Continuous Testing", ICSE-SEIP 2017).
+
+**If somebody asks how anyone keeps up now that agents write the code:** Facebook and, more recently, Anthropic reached the same answer, choosing which tests run per change instead of running them all. Anthropic's CI volume grew 25x in six months ([Anthropic's post on test impact analysis](https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic)). Every one of them trades "every test runs" for throughput, and all of them keep attribution.
 
 **The word "blame" will make somebody uncomfortable and the fragment is the answer.** This is not about finding who to be annoyed with. A failing run that points at one commit is a defect you fix before lunch; the same failure spread across a fifty-commit merge is a day of bisecting. Attribution is a property of the pipeline, not a judgment about a person.
 
@@ -1221,9 +1223,9 @@ This is a budget rather than a choice. Every team spends on both, and most spend
 
 <div style={{fontSize: '0.85em', textAlign: 'left'}}>
 
-**Thu Sep 24 — Testing: E2E, Visual Acceptance & Performance**
+**Thu Sep 24 — Defense in Depth: Prevent, Test, Detect, Recover**
 
-Today was the half that watches production. Tomorrow is the half that runs before it: what those tests catch, what they miss, and what they cost to keep working.
+Today was the half that watches production. Tomorrow puts it next to everything else you can do about a failure: prevent it, test for it, detect it, recover from it, or accept it. And how to decide which ones a failure deserves.
 
 </div>
 

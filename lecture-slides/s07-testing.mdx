@@ -1,7 +1,7 @@
 ---
 sidebar_position: 7
-title: "Testing: E2E, Visual Acceptance & Performance"
-image: /img/lectures/s07-testing.png
+title: "Defense in Depth: Prevent, Test, Detect, Recover"
+image: /img/lectures/s07-testing.webp
 ---
 
 import RevealJS, { Slide } from '@site/src/components/RevealJS';
@@ -16,36 +16,39 @@ import Img from '@site/src/components/Img';
 <Slide>
 
   <Img
-    src="/img/lectures/s07-testing.png"
-    prompt="PLACEHOLDER concept: A safety net under a trapeze, with holes in it. 8-bit lo-fi pixel art, retro game aesthetic, clean outlines, teal and blue cool tones with warm amber accents, 16:9 landscape. Top banner reads Testing: E2E, Visual Acceptance and Performance. Bottom text reads CS 4535: Software Design and Delivery."
-    alt="TODO: describe the cover image once generated."
+    src="/img/lectures/s07-testing.webp"
+    prompt="Concept: 'Defense in depth: every layer has holes, so you stack them and check each one.' 8-bit lo-fi pixel art, retro game aesthetic, clean outlines, 16:9 landscape. Four large vertical slices of Swiss cheese stand in a row from left to right, viewed from the side, each with a few irregular holes, drawn in cool teal and blue outlines. Each slice has a small label plate at its base: 'PREVENT', 'TEST', 'DETECT', 'RECOVER'. From the far left, a bright warm red-orange beam of light, the hazard, shoots toward the slices. It passes through a hole in the first slice and a hole in the second slice, but the holes in the third slice do not line up, so the beam stops against solid cheese there with a small burst of amber sparks. Nothing reaches the far right. On the far right, a small pixel engineer in a teal hoodie holds a flashlight up to the fourth slice, calmly checking its holes, with a clipboard under one arm. Top banner reads 'S7: Defense in Depth'. A tagline below the banner reads 'Every Layer Has Holes. Check Them.' Bottom text reads 'CS 4535: Software Design and Delivery'."
+    alt="Pixel art of four Swiss cheese slices labeled Prevent, Test, Detect, and Recover. A red hazard beam passes through holes in the first two slices and is stopped by the third. On the right, an engineer with a flashlight checks the holes in the last slice. Tagline: Every Layer Has Holes. Check Them."
   />
 
 <aside className="notes">
-**Session:** Thu Sep 24 · Testing: E2E, Visual Acceptance & Performance
+**Session:** Thu Sep 24 · Defense in Depth: Prevent, Test, Detect, Recover · 65 min
 
-**TODO — outline only.** Fill in the arc, timings and content slides.
+**One spine: green is a claim with a scope. Every example today comes from the column-groups PR they are submitting tonight.** No ops, no infrastructure they have not opened. They spent two weeks inside this feature, so every question today is answerable from their own experience.
 
-**Topics on the schedule:** Playwright, visual acceptance testing, what not to test
+**Structure, and the order is deliberate: the decision first, then the tests.**
+- Reminders and title (~3 min). Objectives (~1 min).
+- **Opening case (~5 min, two slides).** A show-of-hands vote on a real incident where the defenses existed and none of them had been checked. It foreshadows the whole session without naming it.
+- **Before class: print ~8 copies of `/worksheets/cost-and-signal.html`**, one per pair plus spares. They are collected at the end of the debrief.
+- **Arc 1, How Deep Does It Go (~23 min, four slides).** Open discussion of options (3), Prevent first and then layers, revealed one at a time (3), the pair activity (2 setup + 10 working), the debrief (5). Handout at `docs/testing-cost-worksheet.md`.
+- **Arc 2, What Your PR's Tests See (~15 min, four slides).** What `gradebook-e2e` did to their branch, what green does not prove, what an assertion cannot see, and the rule: test what breaks quietly.
+- Up next (~1 min).
 
-**Moved here from Oct 19, and before that from Sep 23.** Sep 23 was too early, because nobody had written anything worth testing. Oct 19 was too late to help the first implementation ticket. This lands on the day column groups is due, which is the first moment they have a concrete hook.
+**That is about 48 of 65, and the slack is deliberate.** Sep 23 was written to exactly 65 and ran over. The debrief is where the room will want to argue, and it should be allowed to.
 
-**The hook: the suite that ran on their own PR.** `gradebook-e2e` brings up a throwaway Supabase, replays every migration including theirs, seeds the class and drives the instructor gradebook in a real browser. It also uploads screenshots of their gradebook, collapsed and expanded, as a build artifact. They have all seen it go red by now. Open one of their runs rather than a toy example.
+**Why the activity comes first.** Test appears in four of the five debrief stacks, so by the time Arc 2 starts they have already decided that testing is the layer for rows A and B. Arc 2 then asks whether the tests they actually have would have caught those rows, which is a sharper question than "here is how E2E works".
 
-**Cut:** k6 / load testing. Jon: won't fit in a 60-minute session. Make it a clinic topic or a self-serve doc, and point the gradebook team at it directly, since they are the ones who need it. The title still says Performance; either drop that word or keep it as the pointer to the doc.
+**The model is Prevent first, then layers.** Prevent is a design-time answer: make the failure impossible. What remains, including whether the prevention holds, gets layers: Test, Detect, Recover. Accept means zero layers, on purpose. Blast radius decides how many layers a failure gets. Every row in the activity is a way a column-groups feature could go wrong, so they can judge blast radius without learning any new part of the stack.
 
-**Two things they have already met**, so build on them rather than introducing them cold:
-- s02 covered what the three CI checks tell you, and that green means it applies, the types match and the table still groups something, not that the design is good.
-- s02 planted the build-time rule: full-suite runs use a prod build on 3001 with `NEXT_PUBLIC_PAWTOGRADER_WEB_URL` exported before the build.
+**Two things they have already met**, so build rather than introduce:
+- The assignment handout says what the CI checks tell you: green means the migration applies, the types match, and the table still groups something, not that the design is good.
+- The handout tells them to download the collapsed/expanded screenshots from the `gradebook-e2e` artifacts. That is the hook for the visual acceptance slide.
 
-**The Argos row from s02's pipeline diagram is the visual-acceptance hook.** Most of them have never seen visual acceptance testing, and s02's notes say it gets its own arc here.
+**k6 and load testing are cut.** Make load testing a clinic topic and point the gradebook team at it directly. **Monitoring is not in this session either**; it is Oct 1. Detect appears today as one layer, not as a topic.
 
-**Timing:** teams are announced in this session and the studio phase starts on the 28th, so this is the last content session before they are building as a team. "What not to test" matters more than usual for that reason.
-**Jon's framing — use the Swiss cheese model as the intro.** This lecture is the *last* layer of swiss cheese. You might get a chance to see something smoldering before it explodes into a burning sun of pain. That's what monitoring is for.
+**Timing note:** preliminary teams went to Discord after yesterday's class; final teams are Mon Sep 28. This is the last content session before they build as a team.
 
-**Draw on:** CS 3100 `l35-safety-reliability` — the Swiss cheese model is already built there, with the layer labels Contracts / Testing / Architecture / Monitoring and the tagline "Every Layer Has Holes." Students who took 3100 have seen it; this reuses the frame and puts monitoring in its place.
-
-**Cover the actual stack:** Sentry (we run Bugsink), Prometheus, Grafana, Loki. Why you want all four, what each one answers. Then the two judgment questions: what do you put in a Sentry context and why does it matter, and what is worth making a metric of?
+**Draw on:** CS 3100 `l35-safety-reliability` for the Swiss cheese model if a student brings it up (the cover uses it), and `l30-pyramid` for students who ask where E2E sits relative to unit tests.
 
 > **Transition:** Reminders first, then what we're doing today.
 </aside>
@@ -62,14 +65,14 @@ import Img from '@site/src/components/Img';
 
 <div style={{fontSize: '0.8em', textAlign: 'left'}}>
 
-- **DUE:** Onboarding: Gradebook Column Groups — due Thu Sep 24
-- **FEEDBACK:** Project Bids — closed Thu Sep 17; feedback coming back shortly
-- **DUE:** Reading Bid — due tonight, Thu Sep 24, 23:59
+- **DUE TONIGHT:** Onboarding: Gradebook Column Groups, Thu Sep 24, 23:59
+- **DUE TONIGHT:** Reading Bid, Thu Sep 24, 23:59
+- **TEAMS:** preliminary teams are on Discord; **final teams Mon Sep 28**
 
 </div>
 
 <aside className="notes">
-Keep this to 60 seconds. Deadlines and returning feedback only — questions about a specific assignment go to clinic or Discord.
+Keep this to 60 seconds. Deadlines and returning feedback only. Questions about a specific assignment go to clinic or Discord.
 
 > **Transition:** Now, today.
 </aside>
@@ -84,14 +87,18 @@ Keep this to 60 seconds. Deadlines and returning feedback only — questions abo
 
 # CS 4535: Software Design & Delivery
 
-## Testing: E2E, Visual Acceptance & Performance
+## Defense in Depth: Prevent, Test, Detect, Recover
 
 <p style={{marginTop: '2em', fontSize: '0.8em', color: '#666'}}>
   &copy;2026 Jonathan Bell, CC-BY-SA
 </p>
 
 <aside className="notes">
-TODO: framing — why this session, and what it unblocks.
+**One sentence of callback to yesterday, no more.** s06 ended on a skipped job that made the merge button green when nothing had been checked: a defense that looked present and was not. Today starts there and widens it.
+
+**What it unblocks, concretely.** By Monday they are adding tests to a suite that ten courses depend on. After today they can look at a way their code could fail and decide how much defense it deserves, read a test run and say what it proves, know why we take screenshots of their gradebook, and defend a decision not to write a test at all. That last one matters most in a studio, and earlier courses rarely cover it.
+
+**Column groups is due tonight**, so most of the room has been inside this suite in the last 48 hours. Use that in Arc 2, and open on the case instead.
 
 > **Transition:** Here's what you'll be able to do after today.
 </aside>
@@ -111,32 +118,523 @@ After this session, you'll be able to:
 </p>
 
 <ol style={{fontSize: '0.75em', textAlign: 'left'}}>
-  <li>Place monitoring as the last layer of defense — the one that catches what testing, review and rollout let through</li>
-  <li>Distinguish what Sentry, Prometheus, Grafana and Loki each answer, and why you want all four</li>
-  <li>Decide what belongs in a Sentry context, and what is worth making a metric</li>
-  <li>Write an alert that would have caught a real past incident</li>
+  <li>For a possible failure, decide whether it can be prevented and which layers belong on top (test, detect, recover), or accept it, and defend the choice by blast radius rather than by likelihood</li>
+  <li>Read a <code>gradebook-e2e</code> run and say what it proves and what it doesn't</li>
+  <li>Explain what visual acceptance testing catches that an assertion cannot</li>
 </ol>
 
 <aside className="notes">
-TODO: time allocation across arcs.
+**Objective 1 is the largest block in the session and it comes first.** Objectives 2 and 3 are about one layer, testing, and what the tests they already have can and cannot see.
 
-> **Transition:** Let's start.
+**Time.** Reminders, title, and objectives 4, opening case 5, Arc 1 twenty-three, Arc 2 fifteen, up next 1. About 48 of 65. Do not fill the buffer in advance; the debrief will use it.
+
+**If you must cut, cut from Arc 2:** shrink "What Ran On Your Pull Request" to a 60-second look at the Actions tab. Never cut the pair activity or the debrief.
+
+> **Transition:** Let's start with a story.
 </aside>
 
 </Slide>
 
 {/* ============================================ */}
-{/* CONTENT — TODO                              */}
+{/* OPENING CASE (~5 min): GitLab, Jan 31 2017   */}
+{/* Sources: about.gitlab.com/blog/2017/02/10/   */}
+{/*   postmortem-of-database-outage-of-january-31 */}
+{/* and .../2017/02/01/gitlab-dot-com-database-  */}
+{/*   incident                                   */}
 {/* ============================================ */}
 
 <Slide>
 
-## TODO: Content
+## Which Defense Would You Add?
 
-Outline only — content slides go here.
+<div style={{fontSize: '0.54em', textAlign: 'left', marginTop: '0.2em'}}>
+
+**January 31, 2017, late at night.** A GitLab engineer is fixing a database replica that has fallen behind. The plan: wipe the replica's data and copy it fresh from the primary. They run the delete command in the wrong terminal. By the time they stop it, **300 GB of production data is gone**.
+
+GitLab has **five** backup and replication systems.
+
+</div>
+
+<div style={{fontSize: '0.54em', textAlign: 'left', marginTop: '0.5em'}}>
+
+**Which one missing defense would have made tonight boring?**
+
+**A.** A guard that blocks deletes on the primary
+
+**B.** More backup copies
+
+**C.** An alert when a backup fails
+
+**D.** A regular drill that restores from a backup
+
+</div>
 
 <aside className="notes">
-TODO
+**Run it exactly as the Alaska vote ran on Sep 17: simultaneous show of hands, fingers on four.** Read the scenario, say "pick one, don't put a hand up yet", fifteen seconds of quiet, then count down. Say the distribution out loud so it exists as a fact.
+
+**Do not name the categories.** A is Prevent, B is more Recover, C is Detect, D is Test applied to Recover. They will get those names in ten minutes, and the vote is better if they choose on instinct now.
+
+**Ask two people who voted differently to say why, one sentence each, and do not adjudicate.** The next slide does.
+
+**Expect A and B to do well.** A because a guard is what engineers are trained to want. B because "back up more" feels like the obvious fix for losing data. B is the one the reveal takes apart.
+
+**On the engineer:** GitLab's own postmortem is blameless, and so is this telling. Nobody is the villain. If somebody asks, the engineer was working late on a real problem, and ran the right command against the wrong server.
+
+> **Transition:** Here's what they had.
+</aside>
+
+</Slide>
+
+
+<Slide>
+
+## Five Backups. None Worked.
+
+<div style={{fontSize: '0.52em', textAlign: 'left', marginTop: '0.2em'}}>
+
+<div style={{backgroundColor: 'rgba(231,111,81,0.15)', padding: '0.5em', borderRadius: '8px', marginBottom: '0.4em'}}>
+
+**Nightly dumps** used the wrong Postgres version. The bucket was **empty**.
+
+**The emails** reporting that failure were being silently rejected. Nobody saw them.
+
+**Cloud disk snapshots** had never been turned on for the database.
+
+**Replication** was already broken. That was what the engineer was fixing.
+
+</div>
+
+<div className="fragment" style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.5em', borderRadius: '8px'}}>
+
+**What saved them:** a snapshot someone had taken **by hand, six hours earlier**, to refresh staging. Six hours of data lost; eighteen hours to copy it back.
+
+</div>
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.6em', marginTop: '0.5em', fontWeight: 'bold', color: '#e76f51'}}>
+B was never the answer. They had five. A defense you haven't tested is a defense you don't have.
+</p>
+
+<aside className="notes">
+**Read the red box one line at a time, pausing after each.** The emails line is the one that gets a laugh: The Detect layer existed, and its alerts were being dropped because of an email-signing setting.
+
+**In GitLab's words,** from the Feb 1 post: out of five backup and replication techniques, "none are working reliably or set up in the first place." From the postmortem, on the root cause: "there was no ownership ... nobody was responsible for testing this procedure." Quote that second one. It is the thesis of the session in their words.
+
+**Be precise about the save, because students will repeat it.** The recovery did come from an LVM snapshot, which is one of the five mechanisms. It worked only because somebody had happened to take one by hand six hours earlier to refresh staging. The scheduled one was a day old. So the honest line is "the save was luck", not "no backup existed".
+
+**Now adjudicate the vote.** B was never the answer: They had five. C would have told them the dumps were empty, if the alert itself had worked, so Detect needs testing too. D is the one that would have made the night boring: A single restore drill finds the empty bucket in the first minute. And A, the guard, is worth having, but ask the room: how would they have known it worked?
+
+**Say the fragment and then leave it.** Do not name Prevent, Test, Detect, and Recover yet. Arc 1 does that, and it works better if they have just watched all four fail together.
+
+**What was lost, if asked:** about six hours of database data, roughly 5,000 projects, 5,000 comments, and 700 new user accounts. Git repositories themselves were not affected.
+
+> **Transition:** Now it's your turn, with something smaller. You've found a way your column-groups feature could go badly wrong.
+</aside>
+
+</Slide>
+
+
+{/* ============================================ */}
+{/* ARC 1: HOW DEEP DOES IT GO (~28 min)         */}
+{/* Objective 1. Discuss 3, layers 3, setup 2,   */}
+{/* pairs 10, debrief 7. Each row is a way       */}
+{/* column groups could go wrong.                */}
+{/* Handout: docs/testing-cost-worksheet.md      */}
+{/* ============================================ */}
+
+<Slide>
+
+## It Could Break. Now What?
+
+<div style={{backgroundColor: 'rgba(231,111,81,0.15)', padding: '0.6em', borderRadius: '8px', fontSize: '0.62em', textAlign: 'left', marginTop: '0.6em'}}>
+
+You've spotted a way your column-groups feature could fail, and it's bad.
+
+**What are your options?** Not just "write a test."
+
+</div>
+
+<aside className="notes">
+**Take answers from the room before showing anything, and write them where everyone can see.** The opening case is still on their minds, so they will have more than "write a test" to offer. The goal is for them to generate most of the five boxes themselves, so the next slide names what they already said.
+
+**What you will hear first is "write a test", probably three times.** Push past it: "Suppose you can't test it. What else?" That usually gets a constraint or validation (Prevent), "we'd notice in production" (Detect), and after the opening case, "have a backup" (Recover).
+
+**Accept almost never comes from the floor, and you want it that way.** If nobody says "do nothing, on purpose", do not supply it yet. Its absence from their list is the setup for the next slide.
+
+**Three minutes, then move.** Don't let it turn into a debate about any one failure; the activity does that.
+
+> **Transition:** Let's name what you said, one at a time.
+</aside>
+
+</Slide>
+
+
+<Slide>
+
+## Prevent First. Then Layers.
+
+<div style={{fontSize: '0.5em', textAlign: 'left', marginTop: '0.3em'}}>
+
+<div className="fragment" style={{backgroundColor: 'rgba(100,150,255,0.14)', padding: '0.5em', borderRadius: '8px', marginBottom: '0.5em'}}>
+
+**Prevent.** Can you design it out? A constraint, a type, a foreign key that refuses the bad state. *Then ask whether the guard holds, because nothing is impossible until you've checked.*
+
+</div>
+
+<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.35em'}}>
+
+<div className="fragment" style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.45em', borderRadius: '8px'}}>
+
+**Test.** It fails before it ships, and that includes the guard.
+
+</div>
+
+<div className="fragment" style={{backgroundColor: 'rgba(255,180,0,0.15)', padding: '0.45em', borderRadius: '8px'}}>
+
+**Detect.** You find out in production, before a user tells you.
+
+</div>
+
+<div className="fragment" style={{backgroundColor: 'rgba(155,93,229,0.12)', padding: '0.45em', borderRadius: '8px'}}>
+
+**Recover.** You can undo it. Backups, restore, a flag you can turn off.
+
+</div>
+
+<div className="fragment" style={{backgroundColor: 'rgba(120,120,120,0.10)', padding: '0.45em', borderRadius: '8px'}}>
+
+**Accept.** None of the above, on purpose, with the reason written down.
+
+</div>
+
+</div>
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.58em', marginTop: '0.5em', fontWeight: 'bold', color: '#e76f51'}}>
+These stack. Blast radius decides how deep the stack goes. Likelihood is the question you reach for first and the least useful.
+</p>
+
+<aside className="notes">
+**Reveal one box at a time and map each to what the room just said.** "Add a constraint" is Prevent. "Write a test" is Test. "We'd see it in Sentry" is Detect. "Roll it back" or "restore from backup" is Recover. Leave Accept for last and ask whether anybody said it. Usually nobody did.
+
+**Prevent sits on its own row because it is a different kind of answer.** It is the one you reach for at design time, and when it works the failure cannot happen at all. But a guard is code too. The `RESTRICT` clause you meant to write and the `CHECK` constraint on the wrong column are both preventions nobody checked. So the question after Prevent is "and how do I know it holds?"
+
+**The four below are layers, not alternatives.** GitLab had Recover five times over and Detect on top of it, and they all failed together, because none had been exercised. A high-blast-radius failure gets several layers, and each layer needs its own evidence that it works: a test of the guard, a restore drill for the backup, an alert that fires when the backup does not run.
+
+**Recover is the one they have not heard named.** Yesterday's flags and ramps are Recover, because turning a flag off undoes the change. Backups, point-in-time restore, and a down migration are Recover for data. A failure is reversible only if somebody built a way to reverse it.
+
+**Accept needs defending immediately or the room will hear "be lazy".** It is a decision with a written reason: the blast radius is small, the failure announces itself, a human can fix it by hand in a minute. "I didn't get to it" is a different sentence. Accept is also the only box that excludes the others: It means zero layers.
+
+**Three minutes, no more.** The boxes are a reference for the activity, not a lecture.
+
+> **Transition:** Five ways your column-groups feature could go wrong. For each one: can you prevent it, and what goes on top?
+</aside>
+
+</Slide>
+
+
+<Slide>
+
+## How Deep Does Each One Go?
+
+<div style={{fontSize: '0.44em', textAlign: 'left', marginTop: '0.2em'}}>
+
+| | What breaks | Blast radius | How would you find out? | Prevent? | **Then** |
+|---|---|---|---|---|---|
+| **A** | The backfill puts a column in the wrong group in one course, and it looks plausible | | | | |
+| **B** | The gradebook is fine on the seed, and crawls for our biggest course (500 students, 400 columns) | | | | |
+| **C** | Two instructors rename the same group within the same second. One rename silently wins | | | | |
+| **D** | Deleting a group deletes its columns, and every student's scores in them | | | | |
+| **E** | Instructors open the new group editor, get confused, and give up. Nothing errors | | | | |
+
+</div>
+
+<div style={{backgroundColor: 'rgba(231,111,81,0.15)', padding: '0.5em', borderRadius: '8px', fontSize: '0.5em', textAlign: 'left', marginTop: '0.4em'}}>
+
+**10 minutes, in pairs.** You built this feature. For each row: can you prevent it, and if so, how? Then tick every layer it deserves: Test, Detect, Recover, or Accept.
+
+**One sheet per pair, in pen. We collect them.** Worksheet and details: [neu-se.github.io/CS4535-Fall-2026/docs/testing-cost-worksheet](https://neu-se.github.io/CS4535-Fall-2026/docs/testing-cost-worksheet)
+
+</div>
+
+<aside className="notes">
+**Hand the printed sheets out while you read the five rows.** One per pair, and say "in pen, inside the boxes" once. The printable is at `/worksheets/cost-and-signal.html`; print about eight for a class of thirteen. Read the five failures, one sentence each, then start the clock.
+
+**Say what happens to the sheets, in two sentences, before they start writing.** They get scanned and become test data for the paper-exam grading project, used inside this course only and never published or shared outside the class. Anybody who would rather theirs were not used should say so and it will not be.
+
+**Then say why, briefly.** One of the projects starting Monday scans paper exams and needs real handwriting and real scan skew. Synthetic data has neither. The class is about to generate the corpus it will then have to grade.
+
+**Row D depends on their own migration.** Whether a group delete cascades depends on the foreign key they chose. Some of them will have written `ON DELETE CASCADE` without thinking about it. Do not point that out during the activity. It has more effect in the debrief.
+
+**Do not hint at the answers.** The rows range from zero layers to all of them, and a pair that discovers that spread for itself has learned the procedure.
+
+**Circulate and read two things.** First, the "how would you find out" column, which is where the thinking is. Second, the Then column: A pair that ticked Accept alongside anything else has contradicted itself, and a pair that ticked everything on every row has not made a decision.
+
+**Collect the sheets at the end of the debrief, not the activity.** Pairs annotate their own rows while the answers go up, and the crossings-out are the most useful handwriting on the page.
+
+> **Transition:** Let's take them in order. Watch how different the stacks are.
+</aside>
+
+</Slide>
+
+
+<Slide>
+
+## Five Failures, Five Stacks
+
+<div style={{fontSize: '0.42em', textAlign: 'left', marginTop: '0.2em'}}>
+
+| | Blast radius | How you'd find out | Prevent? | **Then** |
+|---|---|---|---|---|
+| **A** | Wrong grouping, and nobody can tell | **An instructor, weeks later** | No. A constraint can't know the right group | **Test** · Recover |
+| **B** | **Our biggest customer** can't use the gradebook | From them, loudly, in week 3 | No | **Test** · Detect |
+| **C** | One group has the wrong name. No scores touched | Whoever looks at the header | Not worth it | **Accept** |
+| **D** | **A semester of grades, gone** | Instantly, and too late | **Yes.** `ON DELETE RESTRICT` | **Test the guard** · Detect · **Recover** |
+| **E** | The feature exists and nobody uses it | Only from watching usage | No | **Detect** · Recover |
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.56em', marginTop: '0.5em', fontWeight: 'bold', color: '#e76f51'}}>
+C and D are both rare. C gets one sentence in the PR. D gets every layer there is. Likelihood didn't decide that; blast radius did.
+</p>
+
+<aside className="notes">
+**Walk them in order, about a minute each, then spend what is left on the fragment.**
+
+**A: no Prevent, then Test and Recover.** No constraint can know which group a column belongs in, so it cannot be designed out. A column in the wrong group looks exactly like a column in the right one, so nothing in production will flag it either. That leaves Test: run the old memo and the new backfill over every seeded course and assert they agree. Recover is cheap here, because the backfill can be re-run. Ask who wrote that comparison test, and who wrote it *before* the backfill.
+
+**B: Test and Detect.** CS 2100 is our biggest and most important customer, and its shape is known: 500 students, 400 columns. A failure you can describe in advance is one you can test for, so seed that shape and assert the page loads within a budget. Detect goes on top because real courses will find shapes the seed doesn't have. If a pair wrote only Detect, ask who finds out first. It is the instructor we can least afford to disappoint.
+
+**C: Accept, and nothing else.** It needs two instructors editing the same group's name at the same moment. That essentially never happens, and if it does, the group ends up with one of the two names they typed, somebody renames it, and no grades were touched. Preventing it means optimistic locking or a conflict prompt on a label: version columns, a retry path in the UI, and tests for both, to protect a string anyone can fix in five seconds. Accept here means one sentence in the PR: concurrent renames are last-write-wins.
+
+**D: Prevent, and then everything on top of it.** The guard is one clause: `ON DELETE RESTRICT` or `SET NULL` on the column's group reference. Ask the room to open their own migration and check what they wrote. Some will find `CASCADE`. Give that finding time. It matters more than anything else today. Then the layers: a test that deleting a group cannot delete a score, because the guard is only a guard if it holds. Recover, because the guard will not cover the failure nobody thought of: Supabase's point-in-time restore, and a restore drill so you know it works. Detect: an alert when a backup does not run. This is GitLab, in miniature: The restore drill is the layer they did not have.
+
+**E: Detect, then Recover.** Every assertion passes, because the editor does exactly what you built. What failed is the gap between that and what an instructor expected. You find it by watching usage: how many open the editor, how many save a change, where they stop. Recover is a flag: ship the editor behind one and you can pull it while you redesign.
+
+**Then the fragment, and pause on it.** C and D are equally unlikely, and both start with an instructor editing a group. One gets zero layers; the other gets all of them. Likelihood cannot tell them apart.
+
+> **Transition:** Test showed up in four of those five stacks. So let's look at the tests that already ran on your PR, and what they can and can't see.
+</aside>
+
+</Slide>
+
+
+{/* ============================================ */}
+{/* ARC 2: WHAT YOUR PR'S TESTS SEE (~15 min)    */}
+{/* Objectives 2 and 3. Their own gradebook-e2e  */}
+{/* run, what green claims, what an assertion    */}
+{/* can't see, and the rule.                     */}
+{/* ============================================ */}
+
+<Slide>
+
+## What Ran On Your Pull Request
+
+<div style={{fontSize: '0.56em', textAlign: 'left', marginTop: '0.3em'}}>
+
+Every push to your column-groups branch triggered `gradebook-e2e`. It:
+
+</div>
+
+<div style={{fontSize: '0.54em', textAlign: 'left', marginTop: '0.45em'}}>
+
+<div style={{backgroundColor: 'rgba(100,150,255,0.12)', padding: '0.45em', borderRadius: '8px', marginBottom: '0.3em'}}>
+
+Stands up a **throwaway Supabase**, then replays **every migration**, including yours, in order.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(100,150,255,0.12)', padding: '0.45em', borderRadius: '8px', marginBottom: '0.3em'}}>
+
+Seeds the `cs4535` class: students, assignments, a gradebook with real numbers in it.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.45em', borderRadius: '8px', marginBottom: '0.3em'}}>
+
+Builds the app for **production** and serves it on `:3001`.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.45em', borderRadius: '8px'}}>
+
+Drives the instructor gradebook in a **real browser**, on chromium and webkit, and uploads screenshots.
+
+</div>
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.62em', marginTop: '0.55em', fontWeight: 'bold', color: '#e76f51'}}>
+That is a robot doing the staging pass, before staging, on every push, for free.
+</p>
+
+<aside className="notes">
+**Open an actual run rather than showing this list.** Go to the Actions tab, find a red `gradebook-e2e` on somebody's column-groups PR, and put it on the screen. The list on this slide is what you narrate while the log is up, not a substitute for it. A real run has a duration, a matrix, and an artifacts section, and each is worth pointing out.
+
+**The migration replay is the part that matters most to them this week.** Their PR adds a migration. That migration runs against a database built from every migration that came before it, in order, from scratch. If it only works on the database they happen to have locally, this is where that shows up, and several of them have already met that failure.
+
+**Name the cost honestly, because they have felt it.** This is not fast. It is minutes, not seconds, and yesterday's rule about feedback in minutes is under real pressure here. The reason it is worth it is the fragment: Everything it does is what a careful human would do on staging, done before staging exists.
+
+**The screenshots in the artifacts are the hook for the visual acceptance slide**, so point at them now without explaining them. Their gradebook, collapsed and expanded, captured on every run. Say "we will come back to why those exist" and move.
+
+> **Transition:** So it went green. What did green actually claim?
+</aside>
+
+</Slide>
+
+
+<Slide>
+
+## Your PR Is Green. So What?
+
+<div style={{fontSize: '0.56em', textAlign: 'left', marginTop: '0.3em'}}>
+
+From the column-groups handout:
+
+</div>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.55em', borderRadius: '8px', fontSize: '0.56em', textAlign: 'left', marginTop: '0.4em'}}>
+
+*Green means it applies, the types match, and the table still groups something.*
+
+</div>
+
+<div style={{backgroundColor: 'rgba(231,111,81,0.15)', padding: '0.55em', borderRadius: '8px', fontSize: '0.56em', textAlign: 'left', marginTop: '0.55em'}}>
+
+**90 seconds, with the person next to you.** Your column-groups PR is green.
+
+Name a way your feature could still be broken.
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.6em', marginTop: '0.55em', fontWeight: 'bold', color: '#e76f51'}}>
+Green is a claim with a scope. You are responsible for knowing the scope.
+</p>
+
+<aside className="notes">
+**They wrote the answers to this themselves, so collect them.** Take three or four from the floor and sort them out loud into two piles as they come.
+
+**Pile one: the check did not run, or asserted nothing.** A test that was skipped, a test that counts rows rather than checking which rows, a test that passes because the seed data happens to satisfy it. Yesterday's skipped job is the same thing one level up: silence counted as a pass.
+
+**Pile two: the check ran and could never have seen it.** The backfill put a column in the wrong group in a course the seed does not have. The grouping is right but the header overlaps the first row. It is fine on a 40-column course and unusable on a 400-column one. RLS lets a student in one course read another course's groups. None of those turn `gradebook-e2e` red.
+
+**Then say what green does prove, in one breath:** your migration applies to a database built from scratch, the app boots in a production build, the types match the schema, and the paths the test drove did not throw. That is worth a lot, but it is less than "the feature works."
+
+**That pair of lists is objective 2.** Can they look at a green run and say what it proves?
+
+**Some of these answers are rows from the activity.** The wrong-group backfill is row A, and the 400-column course is row B. Name that when it comes up: those were the rows where Test was the layer, and this is the test that did not cover them.
+
+> **Transition:** Some of those you could write an assertion for. Some you can't write an assertion for at all.
+</aside>
+
+</Slide>
+
+
+<Slide>
+
+## What An Assertion Can't See
+
+<div style={{fontSize: '0.56em', textAlign: 'left', marginTop: '0.3em'}}>
+
+Every one of these passes every assertion you would think to write:
+
+</div>
+
+<div style={{fontSize: '0.52em', textAlign: 'left', marginTop: '0.5em'}}>
+
+<div style={{backgroundColor: 'rgba(255,180,0,0.15)', padding: '0.45em', borderRadius: '8px', marginBottom: '0.3em'}}>
+
+The column group header renders, and sits **on top of** the first row.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(255,180,0,0.15)', padding: '0.45em', borderRadius: '8px', marginBottom: '0.3em'}}>
+
+The text is present, in **gray on a slightly lighter gray**.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(255,180,0,0.15)', padding: '0.45em', borderRadius: '8px', marginBottom: '0.3em'}}>
+
+The table is there, and **four columns wider than the viewport**.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(255,180,0,0.15)', padding: '0.45em', borderRadius: '8px'}}>
+
+Everything renders, and the collapse chevron now points the **wrong way**.
+
+</div>
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.6em', marginTop: '0.55em', fontWeight: 'bold', color: '#e76f51'}}>
+A DOM assertion asks whether it's there. It cannot ask whether it looks right.
+</p>
+
+<aside className="notes">
+**Ask the room how they would assert against each one before you reveal the fragment.** They will get partway on two of them and stall on the others, and the stalling shows why the next idea is needed. You can assert a computed color; you cannot reasonably assert that gray on gray is unreadable. You can assert a width; you cannot enumerate every way a layout can break.
+
+**The third item is real and recent in this codebase**, which is why it is on the list. Wide tables that overflow their container are one of the standing accessibility defects, and their column-groups work touches exactly that area.
+
+**Then say what the alternative is, in one line.** Rather than describing what correct looks like in assertions, you capture what it looked like when it was correct and compare. That is visual acceptance testing, and it is the only technique here that does not require you to predict the failure in advance.
+
+**Say this argument twice.** Every other test in this session catches something you thought of. A screenshot diff catches things nobody thought of, which no assertion-based test can do.
+
+**Then the cost, in two sentences.** Screenshots are fragile: A late-loading font or an avatar that arrives a frame late is a diff, so the suite has to wait for the page to settle before every capture. And a visual test fails when you are *different*, not when you are wrong, so every intentional redesign turns it red and somebody has to approve the diff.
+
+**Point back at the screenshots in their own `gradebook-e2e` artifacts.** Collapsed and expanded, every run. That is this technique, applied to their feature, and it is how the grader looks at their grouping.
+
+> **Transition:** So, which failures are worth a test at all?
+</aside>
+
+</Slide>
+
+
+<Slide>
+
+## Test What Breaks Quietly
+
+<div style={{fontSize: '0.58em', textAlign: 'left', marginTop: '0.4em'}}>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.5em', borderRadius: '8px', marginBottom: '0.35em'}}>
+
+**Worth a test:** wrong numbers, half-applied migrations, permissions that leak, anything where the failure is invisible until it is expensive.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(255,180,0,0.15)', padding: '0.5em', borderRadius: '8px', marginBottom: '0.35em'}}>
+
+**Usually not:** restating a label, asserting on the mock, or anything that fails only when you change it on purpose.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(120,120,120,0.10)', padding: '0.5em', borderRadius: '8px'}}>
+
+**And a test you will not maintain is worse than no test**, because it teaches the team to ignore red.
+
+</div>
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.6em', marginTop: '0.55em', fontWeight: 'bold', color: '#e76f51'}}>
+A loud failure needs no test. It already tells you.
+</p>
+
+<aside className="notes">
+**The fragment compresses the whole session, so pause on it.** If a defect crashes the page on first load, you will find it in thirty seconds without a suite. The tests worth their cost are aimed at failures that look like success: a column in the wrong group, a role that can see one row too many, a backfill that handled four courses out of five. Row A, in other words.
+
+**The gray box connects back to yesterday and should be said explicitly.** A test that fails at random, a skipped spec, and a test nobody updates all end in the same place, which is a team that has learned red does not mean broken. Every test you write is a commitment to keep maintaining it, and writing fewer, better ones is a legitimate engineering decision rather than laziness.
+
+**Then connect it to Monday.** From Monday they own an area and they will be adding tests to a suite other people depend on. The question to ask is "what would have caught this quietly, and is that cheaper than finding out from a student in November".
+
+**This slide is three minutes and it closes the session.** Tie it back to the debrief: A and B were the rows where Test was the right layer, and both break quietly. D's test is a test of the guard, and it is worth writing for the same reason.
+
+**Read the gray box against row C.** A test you will not maintain, a guard for a case that does not matter, and an alert nobody acts on are the same mistake: work that looks like diligence and buys nothing.
+
+> **Transition:** Monday you stop being an individual contributor to an assignment and start being a team.
 </aside>
 
 </Slide>
@@ -151,9 +649,9 @@ TODO
 
 <div style={{fontSize: '0.85em', textAlign: 'left'}}>
 
-**Mon Sep 28 — Studio Kickoff: Team Charters, Backlog & Estimation**
+**Mon Sep 28, Studio Kickoff: Team Charters, Backlog & Estimation**
 
-TODO: one-line transition from today into that session.
+Final teams are posted Monday morning. You stop being one person with an assignment and become four people with an area, a backlog, and a suite you share.
 
 </div>
 
@@ -161,13 +659,13 @@ TODO: one-line transition from today into that session.
 
 **Before then:**
 
-- **Onboarding: Gradebook Column Groups** — due Thu Sep 24
-- **Reading Bid** — due tonight, Thu Sep 24, 23:59
+- **Onboarding: Gradebook Column Groups**, due tonight, Thu Sep 24, 23:59
+- **Reading Bid**, due tonight, Thu Sep 24, 23:59
 
 </div>
 
 <aside className="notes">
-Close on the transition, not the reminders — students should leave knowing what today was for.
+Close on the transition, not the reminders. Students should leave knowing what today was for.
 </aside>
 
 </Slide>
