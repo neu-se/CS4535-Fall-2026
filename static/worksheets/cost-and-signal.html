@@ -1,0 +1,109 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>CS 4535: Cost and Signal Worksheet</title>
+<style>
+  :root { --ink: #111; --rule: #333; --muted: #555; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: Georgia, "Times New Roman", serif;
+    color: var(--ink);
+    margin: 0 auto;
+    padding: 14mm 12mm;
+    max-width: 210mm;
+    background: #fff;
+  }
+  header { border-bottom: 2px solid var(--rule); padding-bottom: 6px; margin-bottom: 10px; }
+  h1 { font-size: 15pt; margin: 0 0 2px; letter-spacing: .01em; }
+  .sub { font-size: 9pt; color: var(--muted); margin: 0; }
+  .names { margin: 10px 0 12px; font-size: 10pt; }
+  .names .line {
+    display: inline-block;
+    border-bottom: 1.5px solid var(--rule);
+    width: 74mm; height: 9mm; vertical-align: bottom; margin-left: 6px;
+  }
+  .howto { font-size: 8.6pt; color: var(--muted); margin: 0 0 10px; line-height: 1.45; }
+  table { border-collapse: collapse; width: 100%; table-layout: fixed; }
+  th, td { border: 1.2px solid var(--rule); vertical-align: top; }
+  th {
+    font-size: 8.4pt; text-align: left; padding: 4px 5px;
+    background: #f2f2f2; font-family: Georgia, serif; font-weight: bold;
+  }
+  td { height: 23mm; padding: 3px 5px; }
+  td.failure { height: 23mm; font-size: 8.8pt; line-height: 1.35; background: #fafafa; }
+  .tag { display: block; font-size: 7.6pt; color: var(--muted); margin-top: 3px; font-style: italic; }
+  .rowid { font-weight: bold; font-size: 11pt; }
+  col.c0 { width: 22%; } col.c1 { width: 19%; } col.c2 { width: 20%; }
+  col.c3 { width: 21%; } col.c4 { width: 18%; }
+  .prevent { font-size: 8pt; color: var(--muted); }
+  .verdict { font-size: 8pt; color: var(--muted); line-height: 1.6; }
+  footer { margin-top: 10px; font-size: 8pt; color: var(--muted); line-height: 1.5; border-top: 1px solid #bbb; padding-top: 6px; }
+  @media print {
+    body { padding: 10mm 10mm; }
+    .noprint { display: none !important; }
+    td { height: 22mm; }
+  }
+  .noprint {
+    margin: 0 0 12px; padding: 7px 9px; border: 1px dashed #999;
+    font-family: system-ui, sans-serif; font-size: 9pt; color: #444; border-radius: 5px;
+  }
+</style>
+
+<p class="noprint"><strong>Print this page.</strong> One sheet per pair, single-sided, 100% scale, no "fit to page". These get scanned, so keep the margins.</p>
+
+<header>
+  <h1>Cost and Signal: Prevent, Then What?</h1>
+  <p class="sub">CS 4535: Software Design &amp; Delivery | Thu Sep 24, 2026</p>
+</header>
+
+<div class="names"><strong>Names:</strong><span class="line"></span><span class="line"></span></div>
+
+<p class="howto">
+  <strong>Write in dark pen, and stay inside the boxes.</strong> For each failure: how bad, how you'd find out, whether you can prevent it, then tick every layer it deserves.
+  Judge these on <em>what breaks</em>, not on how likely it is. You built this feature, so you know enough.
+</p>
+
+<table>
+  <colgroup><col class="c0"><col class="c1"><col class="c2"><col class="c3"><col class="c4"></colgroup>
+  <tr>
+    <th>What breaks</th>
+    <th>Blast radius: how bad? Can you undo it?</th>
+    <th>How would you find out?</th>
+    <th>Prevent? If yes, how?</th>
+    <th>Then (tick all that apply)</th>
+  </tr>
+  <tr>
+    <td class="failure"><span class="rowid">A.</span> The backfill puts a column in the wrong group in one course, and it looks plausible.</td>
+    <td></td><td></td>
+    <td class="prevent">Yes&nbsp;/&nbsp;No</td>
+    <td class="verdict">&#9744; Test<br>&#9744; Detect<br>&#9744; Recover<br>&#9744; Accept</td>
+  </tr>
+  <tr>
+    <td class="failure"><span class="rowid">B.</span> The gradebook is fine on the seed, and crawls for our biggest course: 500 students, 400 columns.</td>
+    <td></td><td></td>
+    <td class="prevent">Yes&nbsp;/&nbsp;No</td>
+    <td class="verdict">&#9744; Test<br>&#9744; Detect<br>&#9744; Recover<br>&#9744; Accept</td>
+  </tr>
+  <tr>
+    <td class="failure"><span class="rowid">C.</span> A new assignment's column can't be filed into its group, because an instructor deleted that group in the same second. The job gives up and waits in a failed-jobs queue.</td>
+    <td></td><td></td>
+    <td class="prevent">Yes&nbsp;/&nbsp;No</td>
+    <td class="verdict">&#9744; Test<br>&#9744; Detect<br>&#9744; Recover<br>&#9744; Accept</td>
+  </tr>
+  <tr>
+    <td class="failure"><span class="rowid">D.</span> Deleting a group deletes its columns, and every student's scores in them.</td>
+    <td></td><td></td>
+    <td class="prevent">Yes&nbsp;/&nbsp;No</td>
+    <td class="verdict">&#9744; Test<br>&#9744; Detect<br>&#9744; Recover<br>&#9744; Accept</td>
+  </tr>
+  <tr>
+    <td class="failure"><span class="rowid">E.</span> Instructors open the new group editor, get confused, and give up. Nothing errors.</td>
+    <td></td><td></td>
+    <td class="prevent">Yes&nbsp;/&nbsp;No</td>
+    <td class="verdict">&#9744; Test<br>&#9744; Detect<br>&#9744; Recover<br>&#9744; Accept</td>
+  </tr>
+</table>
+
+<footer>
+  <strong>10 minutes.</strong> Accept means zero layers, so don't tick it alongside anything else. Be ready to say which row gets the deepest stack, and why.<br>
+  These sheets are collected and scanned. They become test data for the paper-exam grading project, and are used inside this course only. They're never published or shared outside the class. Tell us in the room if you would rather yours were not used.
+</footer>
