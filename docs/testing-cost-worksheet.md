@@ -58,13 +58,13 @@ The `cs4535` seed is one small class. CS 2100 is 500 students and 400 columns, a
 
 > **Why it happens:** a query that is cheap for 40 columns can be expensive for 400, especially if the group lookup runs once per column, or an RLS policy on your new table does extra work per row.
 
-### C. A new column can't be filed into its group, because the group was just deleted
+### C. Two instructors rename the same group at the same moment, and one rename is lost
 
-When an assignment is released, a background job creates its gradebook column and puts it in the right group. If an instructor deletes that exact group in the same second, the job fails. The job isn't lost. It lands in a failed-jobs queue (a *dead-letter queue*) where someone can look at it and retry it by hand.
+Two instructors in the same course both open the group editor and rename the labs group within the same second. Both see their save succeed. The group ends up with whichever name was written last, and nobody is told the other rename was overwritten.
 
-Until then, the new column sits in the gradebook ungrouped. No scores are affected. For this to happen at all, an instructor has to delete a group at the same moment an assignment in it is being released.
+No columns move and no scores are affected. For this to happen at all, two people have to edit the same group's name at the same moment.
 
-> **Why it happens:** the job reads the group, then writes the column. Between those two steps, nothing stops the group from disappearing. Closing that gap means locking, or retry logic that decides what an orphaned column should become.
+> **Why it happens:** each save writes the name without checking whether it changed since the editor loaded it. Closing that gap means optimistic locking (a version number checked on every write) and a way to show the conflict to whoever lost.
 
 ### D. Deleting a group deletes its columns, and every student's scores in them
 
