@@ -1,0 +1,858 @@
+---
+sidebar_position: 8
+title: "Studio Kickoff: Team Charters, Backlog & Estimation"
+image: /img/lectures/s08-studio-kickoff.png
+---
+
+import RevealJS, { Slide } from '@site/src/components/RevealJS';
+import Img from '@site/src/components/Img';
+
+<RevealJS transition="slide">
+
+{/* ============================================ */}
+{/* COVER IMAGE */}
+{/* ============================================ */}
+
+<Slide>
+
+  <Img
+    src="/img/lectures/s08-studio-kickoff.png"
+    prompt="Concept: 'Agree on the rules at base camp, then send scouts into the fog before you promise a route.' 8-bit lo-fi pixel art, retro game aesthetic, clean outlines, 16:9 landscape. The scene is a retro strategy-game map seen from slightly above. The LEFT third is a small, warmly lit base camp in amber and orange: four pixel crews of three or four people each stand around a wooden signboard, and one person in each crew is signing a scroll pinned to it, while others lean in and point at it. The RIGHT two thirds of the map is mostly covered in soft gray fog of war, with only a few cool teal and blue tiles revealed. From the camp, four small scouts with lanterns walk out along separate paths into the fog, each lantern revealing a small circle of teal terrain around them: one finds a river crossing, one finds a cliff, one finds a bridge, one finds a sign that reads 'dead end'. Top banner reads 'S8: Studio Kickoff'. A tagline below the banner reads 'Agree First. Then Scout the Fog.' Bottom text reads 'CS 4535: Software Design and Delivery'."
+    alt="Pixel art strategy map. On the left, four small crews gather at a warmly lit base camp and sign a scroll on a signboard. On the right, most of the map is covered in fog, and four scouts with lanterns walk into it, each revealing a small patch of terrain: a river, a cliff, a bridge, and a dead end. Tagline: Agree First. Then Scout the Fog."
+  />
+
+<aside className="notes">
+**Session:** Mon Sep 28 · Studio Kickoff: Team Charters, Backlog & Estimation · 65 min
+
+**One spine: you are about to spend two weeks apart, so today you agree on how you'll work and find out what you don't know.** The charter covers the first half. Backlog and estimation cover the second half, and they end on the claim that the tickets you can't estimate are your sprint objectives. The spike menu slides close the loop.
+
+**Structure. Three equal arcs, and there is no slack in this one.**
+- Reminders, title, objectives (~3 min).
+- **Arc 0, Teams (~5 min, two slides).** Final teams, Team Workspace open on laptops, reading pairs.
+- **Arc 1, Charter (~16 min, four slides).** Why a charter, weak vs strong rule, the three scenarios, then teams draft sections 3, 5, and 7 and swap for a stress test.
+- **Arc 2, Backlog (~16 min, four slides).** Pitch to tickets, what makes a ticket claimable, the spike as a ticket type, then teams break their own pitch into 6–8 tickets.
+- **Arc 3, Estimation (~16 min, four slides).** Relative size, planning poker on their own tickets, the spread as data, when estimation is theater.
+- **Spike menus (~6 min, five slides).** One per team, then "pick by Thursday".
+- Up next (~1 min).
+
+**If you're running long, cut the spike menu slides to one sentence each.** The full menu is at `/docs/assignments/async-sprint-menu`, and teams have until Thursday.
+
+**Before class:**
+- Pawtograder groups for the **Team Workspace** assignment are created from the final list, and the template repo (vault: `cs4535/team-workspace-template/`) is attached.
+- Final teams are posted on Discord this morning. **Student names are not on these slides.** The site is public.
+- Bring a stack of index cards: four per team for the stress test, plus planning-poker decks (or tell them to use their phones: 1, 2, 3, 5, 8, 13, ?).
+
+**Handouts they need open:** [Team Workspace & Charter](/docs/assignments/team-charter), [Async Sprint](/docs/assignments/async-sprint), [Spike menu](/docs/assignments/async-sprint-menu).
+
+> **Transition:** Reminders first, then what we're doing today.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* REMINDERS */}
+{/* ============================================ */}
+
+<Slide>
+
+## Reminders
+
+<div style={{fontSize: '0.8em', textAlign: 'left'}}>
+
+- **FEEDBACK:** Onboarding: Gradebook Column Groups, closed Thu Sep 24; feedback coming back shortly
+- **RELEASED:** Team Workspace & Charter, due Thu Oct 1
+- **RELEASED:** Declare Your Target Band, due Thu Oct 1
+- **RELEASED:** Reading Presentation, pairs and dates assigned today; sessions Oct 21, Oct 28, Dec 2
+- **NEXT:** Async Sprint runs Fri Oct 2 – Tue Oct 13; objectives ratified Thursday
+
+</div>
+
+<aside className="notes">
+Keep this to 60 seconds. Deadlines and returning feedback only. Questions about a specific assignment go to clinic or Discord.
+
+Thursday is heavy: the band declaration, the charter, and ratified sprint objectives all land the same day. Say so now so nobody discovers it Wednesday night.
+
+> **Transition:** Now, today.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* TITLE */}
+{/* ============================================ */}
+
+<Slide>
+
+# CS 4535: Software Design & Delivery
+
+## Studio Kickoff: Team Charters, Backlog & Estimation
+
+<p style={{marginTop: '2em', fontSize: '0.8em', color: '#666'}}>
+  &copy;2026 Jonathan Bell, CC-BY-SA
+</p>
+
+<aside className="notes">
+Until today everything they did was individual: one ticket hunt, one column-groups PR. From today they own an area as a team, and in four days they scatter for two weeks while the instructor is away. Whatever the team hasn't agreed on by Thursday gets decided by whoever happens to be online.
+
+> **Transition:** Here's what you'll be able to do after today.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* LEARNING OBJECTIVES */}
+{/* ============================================ */}
+
+<Slide>
+
+## Learning Objectives
+
+<p style={{fontSize: '0.85em', textAlign: 'left'}}>
+After this session, you'll be able to:
+</p>
+
+<ol style={{fontSize: '0.75em', textAlign: 'left'}}>
+  <li>Write a team charter that will survive a disagreement</li>
+  <li>Break a vague backlog into scoped, claimable tickets</li>
+  <li>Estimate work in an unfamiliar codebase, and know when estimation is theater</li>
+  <li>Name and ratify your individual objective for the async sprint</li>
+</ol>
+
+<aside className="notes">
+Roughly equal time on the first three. The fourth happens Thursday, but they leave today with a shortlist.
+
+> **Transition:** First, who you're working with.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* ARC 0: TEAMS                                */}
+{/* ============================================ */}
+
+<Slide>
+
+## Four Teams, Four Areas
+
+<div style={{fontSize: '0.6em', textAlign: 'left', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5em'}}>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.5em', borderRadius: '8px'}}>
+
+**Paper Exams** (3)
+
+Generate, scan, and grade paper exams in Pawtograder. First milestone: PR #814 green and merged.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(100,150,255,0.14)', padding: '0.5em', borderRadius: '8px'}}>
+
+**Cloud Workspaces** (4)
+
+Forgejo repo, Coder workspace, graded push. One intro assignment end to end.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(255,180,0,0.15)', padding: '0.5em', borderRadius: '8px'}}>
+
+**Office Hours** (3)
+
+Usability sweep, user study, then one Discord integration the study picks.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(155,93,229,0.12)', padding: '0.5em', borderRadius: '8px'}}>
+
+**Usability, Accessibility & Permissions** (3)
+
+System-wide audit and user research, then finer-grained staff roles.
+
+</div>
+
+</div>
+
+<div style={{fontSize: '0.55em', textAlign: 'left', marginTop: '0.6em'}}>
+
+**Right now:** open the **Team Workspace** assignment in Pawtograder. Check your teammates. Clone the repo.
+
+</div>
+
+<aside className="notes">
+**The names are on Discord.** Point at the pinned post.
+
+**Give them two minutes with laptops open.** Walk the room. Anyone who can't see the assignment or sees the wrong group gets fixed now, because everything in the next two weeks gets committed to that repo. If Pawtograder is having a bad morning, they can draft the charter in a shared doc and commit it later.
+
+**Say the one structural point:** there's no team fork of the platform. All four teams work on staging, behind course feature flags, with a demo class each. The Team Workspace repo is only for the charter and `notes/`.
+
+> **Transition:** One more pairing to announce.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## Reading Pairs and Cross-Project Functions
+
+<div style={{fontSize: '0.6em', textAlign: 'left'}}>
+
+**Reading presentations.** Pairs, readings, and session dates are on Discord. Sessions: Oct 21 · Oct 28 · Dec 2.
+
+**Cross-project functions.** Each teammate takes a **different** function. Write it in section 1 of your charter.
+
+| Function | Owns |
+|---|---|
+| Release and CI | Actions pipelines, migration discipline, staging → production |
+| Accessibility | WCAG defects, axe findings, `a11y-judge` |
+| Observability | Sentry, dashboards, game-day response |
+| Docs and handoff | `mintlify-docs`, ops playbooks, `docs/` |
+| AI research | `CLAUDE.md`, `AGENTS.md`, evidence about agents |
+
+</div>
+
+<aside className="notes">
+**TODO before class:** post the reading pairs and dates on Discord. The config says they are assigned today.
+
+**Functions.** Thirteen people, five functions, so two or three per function across the class. A team of three leaves two functions uncovered, and that's fine: the rule is that no two teammates share one. If two teams both leave Observability empty, rebalance on Thursday.
+
+Don't relitigate the matrix-organization failure modes here. They read them in the syllabus. One sentence: "Divided loyalty starts the first week your project and your function want different things. Section 5 of the charter is where you decide what happens then."
+
+> **Transition:** So, the charter.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* ARC 1: CHARTER                              */}
+{/* ============================================ */}
+
+<Slide>
+
+## A Charter Is For Week Nine
+
+<div style={{fontSize: '0.58em', textAlign: 'left'}}>
+
+It's the set of agreements you make **now**, while everyone still likes each other, about what happens when somebody doesn't.
+
+The syllabus sends every teammate grievance through it first.
+
+</div>
+
+<div className="fragment" style={{fontSize: '0.56em', textAlign: 'left', marginTop: '0.5em', backgroundColor: 'rgba(231,111,81,0.15)', padding: '0.5em', borderRadius: '8px'}}>
+
+"We'll communicate openly and respect each other's time."
+
+</div>
+
+<div className="fragment" style={{fontSize: '0.56em', textAlign: 'left', marginTop: '0.4em', backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.5em', borderRadius: '8px'}}>
+
+"A PR with no review after 48 hours gets pinged in the team channel. After 72, the author can ask any other team's member to review."
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.6em', marginTop: '0.5em', fontWeight: 'bold', color: '#e76f51'}}>
+The test: could you point at it during an argument and settle something?
+</p>
+
+<aside className="notes">
+**Ask before revealing the second box:** "Your teammate's PR has sat for four days. Does the first sentence tell you what to do?" It doesn't. Everyone agrees with it, which is why it can't settle anything.
+
+**The second one names a time, a place, and a consequence.** Someone outside the team could tell whether it was followed. That's the bar for sections 3, 5, and 7.
+
+**Why this matters more here than in most courses:** they're about to spend two weeks apart with no instructor in the room. Oct 5, 7, and 8 are async. Whatever isn't written down gets decided by whoever is online.
+
+> **Transition:** Eight sections. Three of them are the ones that matter.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## Eight Sections
+
+<div style={{fontSize: '0.56em', textAlign: 'left'}}>
+
+1. **Who's on the team**: energy, function, hours you can't be reached
+2. **What we're shipping by Nov 23**: in your words, plus a first milestone
+3. **How we talk**: which channel, where a decision counts as made, response time
+4. **When we meet**: both sync points **booked**, summary authors named
+5. **How we decide**: who owns what, what goes to the team, what happens on a split
+6. **Definition of done for a PR**: the checklist, plus one line only your project needs
+7. **When it goes wrong**: three scenarios, answered in writing
+8. **Sprint objectives**: filled in **Thursday**
+
+</div>
+
+<p style={{fontSize: '0.55em', textAlign: 'left', marginTop: '0.5em'}}>
+Under two pages. Every teammate commits to it. Due Thu Oct 1.
+</p>
+
+<aside className="notes">
+**Point at 3, 5, and 7.** Those are the ones they'll draft in the room today, because they need everyone there. 1, 2, 4, and 6 can be done in the channel tonight.
+
+**Section 4 is concrete:** sync point 1 on Oct 6 or 7, sync point 2 by Mon Oct 12. Book them today, while they're all in the room with calendars open.
+
+**Section 6:** the First Implementation Ticket already has an end-to-end checklist. Tell them to start from it and add one line that exists because of what their project is. Paper Exams might require a scanned-page fixture. Permissions might require a test that runs as each affected role.
+
+> **Transition:** Here are the three scenarios for section 7. They come up every semester.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## Three Things That Will Happen
+
+<div style={{fontSize: '0.58em', textAlign: 'left'}}>
+
+<div style={{backgroundColor: 'rgba(255,180,0,0.15)', padding: '0.45em', borderRadius: '8px', marginBottom: '0.4em'}}>
+
+**A.** A teammate misses two standups in a row and doesn't answer in the channel.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(255,180,0,0.15)', padding: '0.45em', borderRadius: '8px', marginBottom: '0.4em'}}>
+
+**B.** A PR has waited three days for review. The author's deadline is tomorrow.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(255,180,0,0.15)', padding: '0.45em', borderRadius: '8px'}}>
+
+**C.** Two of you disagree on an approach, and both approaches would work.
+
+</div>
+
+</div>
+
+<p style={{fontSize: '0.56em', textAlign: 'left', marginTop: '0.5em'}}>
+For each: <strong>who</strong> does <strong>what</strong>, by <strong>when</strong>, and at what point it comes to clinic.
+</p>
+
+<aside className="notes">
+**A** is the one they least want to write down, and the one that comes up most. The async sprint makes it likelier, since a missed Discord standup is easy to miss. The charter should say who reaches out, how, and when it stops being a team matter.
+
+**B** is about review load. It will happen during the First Implementation Ticket window, Oct 15–29, when everyone's PR lands in the same week.
+
+**C** is the interesting one. Both approaches work, so there's no right answer to find, only a decision rule. "The owner decides" and "whoever has to maintain it decides" are both fine answers. "We discuss until we agree" isn't a rule.
+
+> **Transition:** Draft them now.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## Draft, Then Swap
+
+<div style={{fontSize: '0.6em', textAlign: 'left'}}>
+
+**10 min, in your team.** Draft sections 3, 5, and 7 in `charter.md`. Book both sync points (section 4).
+
+**4 min, swap.** Hand your section 7 to the team next to you. They pick one scenario and try to find the gap. Where does your rule stop telling someone what to do?
+
+**1 min.** Fix the gap they found.
+
+</div>
+
+<p style={{fontSize: '0.55em', textAlign: 'left', marginTop: '0.6em', color: '#666'}}>
+Finish the rest by Thursday. Everyone commits.
+</p>
+
+<aside className="notes">
+**Pairings for the swap:** Exams with Office Hours, Workspaces with Usability/Permissions. Adjust to the room.
+
+**What to listen for while walking the room:**
+- "We'll talk about it." Ask: who starts the conversation, and when?
+- A decision rule that's unanimous consensus. Ask what happens when it's one against two.
+- Sync points described as "early next week." Ask them to open a calendar.
+
+**The swap works best if the reviewing team plays the teammate who didn't follow the rule.** "I didn't see the ping. It was in the wrong channel." Does the charter say which channel?
+
+**Don't debrief as a whole room.** One sentence from one team if there's something good, then move on. The time goes to Arc 2.
+
+> **Transition:** You've agreed how you'll work. Now, what are you working on?
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* ARC 2: BACKLOG                              */}
+{/* ============================================ */}
+
+<Slide>
+
+## From a Pitch to a Backlog
+
+<div style={{fontSize: '0.56em', textAlign: 'left', backgroundColor: 'rgba(120,120,120,0.10)', padding: '0.5em', borderRadius: '8px'}}>
+
+"Make the office-hours queue something students and TAs trust."
+
+</div>
+
+<div className="fragment" style={{fontSize: '0.54em', textAlign: 'left', marginTop: '0.5em'}}>
+
+Nobody can claim that. Break it down:
+
+- **Epic:** queue state students can trust
+- **Story:** a student's queue position updates when the person ahead of them is picked up
+- **Tickets:**
+  - failing E2E test that pins the bug
+  - fix the position count in `useActiveHelpRequest`
+  - realtime update without refresh
+  - what does a student see when their TA gets reassigned?
+
+</div>
+
+<aside className="notes">
+**Use a project none of them is on as the worked example, or at least not their own.** This one is Office Hours because it's concrete and everyone has used an office-hours queue.
+
+**Reveal the breakdown and ask the room which ticket could be claimed tomorrow.** The E2E test and the fix, yes. The realtime one depends on where the update gets lost, which nobody knows yet. The last one is a question, not a ticket.
+
+**That last one is the setup for two slides from now.** A ticket that's really a question is a spike.
+
+> **Transition:** So what makes a ticket claimable?
+</aside>
+
+</Slide>
+
+<Slide>
+
+## A Claimable Ticket
+
+<div style={{fontSize: '0.58em', textAlign: 'left'}}>
+
+<div className="fragment" style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.45em', borderRadius: '8px', marginBottom: '0.4em'}}>
+
+**One owner.** One person can start it tomorrow without waiting on anyone.
+
+</div>
+
+<div className="fragment" style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.45em', borderRadius: '8px', marginBottom: '0.4em'}}>
+
+**A vertical slice.** It changes something a user or a test can see. "Add the table" isn't a slice. "A TA can see a request's wait time" is.
+
+</div>
+
+<div className="fragment" style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.45em', borderRadius: '8px', marginBottom: '0.4em'}}>
+
+**Checkable done.** Someone else can tell whether it's finished. That's your definition of done plus acceptance criteria.
+
+</div>
+
+<div className="fragment" style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.45em', borderRadius: '8px'}}>
+
+**Small.** Mergeable inside the window you have. The first ticket gets two weeks, with Game Day 1 in the middle.
+
+</div>
+
+</div>
+
+<aside className="notes">
+**This is INVEST with the parts that matter here.** If anyone knows INVEST, name it and move on. Independent, Valuable, Estimable, Small, Testable. Estimable is the one left out on purpose. It's the next arc.
+
+**Vertical slice is the one teams get wrong.** The instinct in a new codebase is to go by layer: migration first, then RLS, then the hook, then the UI. Four tickets, and none of them is demoable until the last one lands. A slice goes through all the layers thinly.
+
+**Small:** remind them of the First Implementation Ticket timeline. Pick by Oct 19, merge by Oct 29, Game Day 1 on Oct 22. Four working days is how you open the PR at midnight.
+
+> **Transition:** Now, the tickets you can't write acceptance criteria for.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## When You Can't Write the Ticket Yet
+
+<div style={{fontSize: '0.58em', textAlign: 'left'}}>
+
+Some backlog items are questions:
+
+- *Where does the queue update get lost between the database and the browser?*
+- *How tightly is repo creation tied to GitHub?*
+- *Does PR #814's e2e job pass at all?*
+
+</div>
+
+<div className="fragment" style={{fontSize: '0.56em', textAlign: 'left', marginTop: '0.5em', backgroundColor: 'rgba(100,150,255,0.14)', padding: '0.5em', borderRadius: '8px'}}>
+
+A **spike** is a ticket whose output is an answer. It has a **timebox**, and it has a **question**. When the timebox runs out, you write down what you know, even if the answer is "worse than we thought."
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.6em', marginTop: '0.5em', fontWeight: 'bold', color: '#e76f51'}}>
+Your async sprint is a two-week spike, one per person.
+</p>
+
+<aside className="notes">
+**The async sprint handout uses five shapes: trace, spike, reproduction, research, practice.** They're all spikes in this sense, since the output of each is knowledge. The handout's narrower "spike" means prototyping the risky part.
+
+**The rule that makes a spike useful: the question has to change the plan.** If every possible answer leads to the same next step, it isn't worth two weeks. Ask the room for an example of a spike that would be a waste. Something like "read all of the gradebook code" has no question and changes nothing.
+
+**One example from each of three teams**, so every team sees itself. The fourth team gets its own in the spike menu slides.
+
+> **Transition:** Try it on your own project.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## Your Pitch, Your Backlog
+
+<div style={{fontSize: '0.6em', textAlign: 'left'}}>
+
+**12 min, in your team.** Start from your slate blurb.
+
+1. Write **6–8 tickets**, as GitHub-style titles with one line of acceptance criteria each
+2. Mark each: **claimable now**, or **question first**
+3. For each "question first": what's the question, and which answer would change your plan?
+
+</div>
+
+<p style={{fontSize: '0.55em', textAlign: 'left', marginTop: '0.6em', color: '#666'}}>
+Keep the list. The next arc estimates it, and the question-first ones are your sprint candidates.
+</p>
+
+<aside className="notes">
+**Where they write it:** a scratch file in the Team Workspace repo is fine, and so is paper. It doesn't have to be real GitHub issues yet.
+
+**What to listen for:**
+- Horizontal tickets ("set up the schema"). Ask what a user sees when it's done.
+- Tickets that are really epics ("implement LLM grading"). Ask for the smallest version someone could demo.
+- Teams where every ticket is claimable. In a codebase they've known for three weeks, that's overconfidence. Push on it.
+- Teams where every ticket is a question. Fine for Cloud Workspaces, whose first job is the GitHub coupling map. For others, ask which one they'd bet on.
+
+**Watch the clock hard.** At 12 minutes, stop them even if they're mid-list. Four to five tickets each is enough for the estimation arc.
+
+> **Transition:** You have a list. How big is each thing on it?
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* ARC 3: ESTIMATION                           */}
+{/* ============================================ */}
+
+<Slide>
+
+## Story Points Are Relative
+
+<div style={{fontSize: '0.58em', textAlign: 'left'}}>
+
+You're bad at "how many hours." Everyone is. You're much better at **"is this bigger than that?"**
+
+- Pick one small, well-understood ticket. Call it a **2**.
+- Size everything else against it: **1, 2, 3, 5, 8, 13**
+- The gaps grow on purpose. Nobody can tell a 9 from a 10.
+- **?** means "I can't size this." That's a real answer.
+
+</div>
+
+<div className="fragment" style={{fontSize: '0.54em', textAlign: 'left', marginTop: '0.5em', backgroundColor: 'rgba(100,150,255,0.14)', padding: '0.5em', borderRadius: '8px'}}>
+
+Points turn into a schedule through **velocity**: how many points this team actually finishes in a sprint. You measure it, and it takes a few sprints to settle.
+
+</div>
+
+<aside className="notes">
+**The anchor matters more than the scale.** If they pick "fix the typo in the toast message" as a 2, everything else inflates. Pick something they'd each expect to finish in a day or two.
+
+**Points are size, which covers effort plus complexity plus risk.** A ticket that's small but touches RLS might be a 5, because a mistake there costs more to find.
+
+**Velocity is the point of the whole system,** and it's also what they don't have. Hold that thought. It's the setup for the theater slide.
+
+> **Transition:** Let's size the tickets you just wrote.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## Planning Poker
+
+<div style={{fontSize: '0.6em', textAlign: 'left'}}>
+
+**10 min, in your team.** Take 3–4 tickets from your list.
+
+1. Read the ticket aloud. Anyone can ask a clarifying question.
+2. Everyone picks a card **privately**: 1, 2, 3, 5, 8, 13, ?
+3. Reveal at once.
+4. **Highest and lowest explain.** Then vote again, once.
+
+</div>
+
+<p style={{fontSize: '0.55em', textAlign: 'left', marginTop: '0.6em'}}>
+Write down the first-round spread for each ticket, along with the final number.
+</p>
+
+<aside className="notes">
+**Private and simultaneous is the whole mechanism.** It's the same move as the show-of-hands votes earlier in the term: without it, everyone anchors on whoever speaks first, usually the most confident person, who isn't always the best informed.
+
+**Hand out cards or tell them to hold up fingers.** Phones work: type the number, flip at once.
+
+**"Highest and lowest explain" is where the value is.** The 2 and the 13 usually aren't disagreeing about effort. One of them knows something. "It's a 2, the hook already has the data." "It's a 13, the hook reads stale data from the realtime cache." That conversation is the output. The number is a byproduct.
+
+**Walk the room.** Look for a ticket where the spread is 2 to 13 and write it down. You'll use it on the next slide.
+
+> **Transition:** Let's look at the spreads.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## The Spread Is the Data
+
+<div style={{fontSize: '0.58em', textAlign: 'left'}}>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.45em', borderRadius: '8px', marginBottom: '0.4em'}}>
+
+**Tight spread** (3, 3, 5): you understand the ticket the same way. Write the number down and move on.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(255,180,0,0.15)', padding: '0.45em', borderRadius: '8px', marginBottom: '0.4em'}}>
+
+**Wide spread** (2, 13): one of you knows something. Find out what, then vote again.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(231,111,81,0.15)', padding: '0.45em', borderRadius: '8px'}}>
+
+**Wide spread after the second vote, or any ?**: nobody knows. You can't estimate this ticket. It's a spike.
+
+</div>
+
+</div>
+
+<aside className="notes">
+**Ask two teams for their widest spread.** Have the high and the low each say their reason in one sentence. Use the one you wrote down while walking the room if nobody volunteers.
+
+**The red box is the connection to Arc 2.** The "question first" tickets from the backlog exercise should be the same ones that came out with ? or a wide spread here. If a team marked something "claimable" in Arc 2 and it came out 2-to-13 here, that's a useful surprise. Say so.
+
+> **Transition:** So when is all of this worth doing?
+</aside>
+
+</Slide>
+
+<Slide>
+
+## When Estimation Is Theater
+
+<div style={{fontSize: '0.56em', textAlign: 'left'}}>
+
+Points are worth it when you have **velocity history**, a **codebase you know**, and a **schedule that depends on the number**.
+
+Right now you have none of the three:
+
+- no velocity, since this team has never finished a sprint
+- a codebase you met three weeks ago
+- an async sprint where nothing needs to merge
+
+</div>
+
+<div className="fragment" style={{fontSize: '0.56em', textAlign: 'left', marginTop: '0.5em', backgroundColor: 'rgba(100,150,255,0.14)', padding: '0.5em', borderRadius: '8px'}}>
+
+**So for the next two weeks:** don't point your spikes. **Timebox** them. After Oct 15, when you're picking implementation tickets, poker earns its keep.
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.6em', marginTop: '0.5em', fontWeight: 'bold', color: '#e76f51'}}>
+The conversation was worth having. The numbers weren't worth writing down yet.
+</p>
+
+<aside className="notes">
+**This is learning objective 3's second half.** Estimation that produces a number nobody uses, on work nobody understands, for a schedule that doesn't depend on it, is ceremony. The poker round was still worth it for the "highest and lowest explain" conversation, which surfaced what the team doesn't know.
+
+**If someone pushes back** that their co-op pointed everything: ask whether anyone looked at the points afterward. Often the answer is that a manager did, to fill a sprint, and the team knew the numbers were made up. That's the theater. It works where the team has a history the numbers can be checked against.
+
+**Bring it back at Demo Day 1 (Oct 15)**, when they pick the First Implementation Ticket. By then each of them will know one corner of their area well, and they can estimate it for real.
+
+> **Transition:** The tickets you couldn't size are the ones you pick from. Here's a starting menu for each team.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* SPIKE MENUS                                 */}
+{/* ============================================ */}
+
+<Slide>
+
+## Spike Menu: Paper Exams
+
+<div style={{fontSize: '0.52em', textAlign: 'left', backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.5em', borderRadius: '8px'}}>
+
+Milestone 1 is #814, so someone is on it from day one.
+
+- **E2, #814's E2E locally** (reproduction): which specs still fail after merging staging, and why?
+- **E3, #814's P1 findings** (reproduction): reproduce each one and write its regression test
+- **E4, page codes** (spike): can a printed code survive a real copier scan?
+- **E6/E7, where BYOK lives** (research / spike): which provider layer, and where does a course's key live?
+
+</div>
+
+<p style={{fontSize: '0.5em', textAlign: 'left', marginTop: '0.5em', color: '#666'}}>
+Full menu, with where to start: /docs/assignments/async-sprint-menu
+</p>
+
+<aside className="notes">
+**Say the two surprises out loud:** #814 also carries in-app quizzes and survey auto-credit, and the P1 findings are in the survey code. Its E2E job runs under staging's workflow file, and staging never sets the fake vision provider, so part of the fix has to land on staging first. That's a good cross-team conversation with whoever holds Release and CI.
+
+**One person does the rebase.** E2 and E3 overlap on the survey migration.
+
+> **Transition:** Cloud Workspaces.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## Spike Menu: Cloud Workspaces
+
+<div style={{fontSize: '0.52em', textAlign: 'left', backgroundColor: 'rgba(100,150,255,0.14)', padding: '0.5em', borderRadius: '8px'}}>
+
+There's no Codespaces code to replace. The coupling map is repos, webhooks, identity, and grading, in a 5,000-line `GitHubWrapper.ts`.
+
+- **W7, Forgejo + Coder in your namespace** (spike): SSO → repo → workspace: what breaks?
+- **W3, Forgejo Actions as the grader** (research): can grading keep GitHub's OIDC trust step, or does submission auth need a redesign?
+- **W4, auth and identity** (trace): is a second provider a column or a refactor?
+- **W5 or W8, permission sync or #981** (trace / reproduction): how do permissions reach repos, and why does "ready" lie?
+
+</div>
+
+<p style={{fontSize: '0.5em', textAlign: 'left', marginTop: '0.5em', color: '#666'}}>
+Full menu, with where to start: /docs/assignments/async-sprint-menu
+</p>
+
+<aside className="notes">
+**Four people, four slices of the coupling map.** Split `GitHubWrapper.ts` by function so nobody traces `getOctoKit` twice.
+
+**W3 is the biggest branch in their plan.** If a Forgejo Actions job can't present a token that `autograder-create-submission` can verify, submission auth gets redesigned. One person owns that question.
+
+**W5 is shared with the permissions team** (their U4): "TAs who can't push to solution repos" is decided in GitHub team sync code, which RLS never sees.
+
+> **Transition:** Office Hours.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## Spike Menu: Office Hours
+
+<div style={{fontSize: '0.52em', textAlign: 'left', backgroundColor: 'rgba(255,180,0,0.15)', padding: '0.5em', borderRadius: '8px'}}>
+
+Three people, three needs before the study: a baseline number, the realtime path, and a protocol.
+
+- **O1, time to resolution** (spike): what can the existing tables measure, and how far can you trust it?
+- **O2, queue update to browser** (trace): every "only updates on refresh" bug runs through this path
+- **O7, interview protocol** (research): 20 minutes, student and TA variants, recruitment plan
+- **O4, queue position test** (practice): a failing E2E test that becomes your first ticket
+
+</div>
+
+<p style={{fontSize: '0.5em', textAlign: 'left', marginTop: '0.5em', color: '#666'}}>
+Full menu, with where to start: /docs/assignments/async-sprint-menu
+</p>
+
+<aside className="notes">
+**The caveat on O1 is worth saying:** `resolved_at` is set from the browser's clock, so whoever clicks resolve with a wrong system clock skews the data. That's exactly the kind of thing the one-pager should find.
+
+**Discord privacy work (O5, O6) can wait** for the implementation tickets on Oct 15. Removing student emails from bot posts is a prerequisite for any new Discord feature, so it'll be first in line then.
+
+> **Transition:** And the fourth team.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## Spike Menu: Usability, Accessibility & Permissions
+
+<div style={{fontSize: '0.52em', textAlign: 'left', backgroundColor: 'rgba(155,93,229,0.12)', padding: '0.5em', borderRadius: '8px'}}>
+
+Your Ticket Hunt found a pattern: the UI lets you start something the backend refuses (#983, #996, #1010).
+
+- **U1, one grader action, UI to RLS** (trace): what check runs at each layer, and where do they disagree?
+- **U2, drift inventory** (spike): sample one area: UI looser, stricter, or matching?
+- **U6, axe on SurveyJS** (practice): what does axe find once the survey widget stops being excluded?
+- **U8, user-research protocol** (research): which tasks, who, and what consent script?
+
+</div>
+
+<p style={{fontSize: '0.5em', textAlign: 'left', marginTop: '0.5em', color: '#666'}}>
+Full menu, with where to start: /docs/assignments/async-sprint-menu
+</p>
+
+<aside className="notes">
+**There are three layers of role checks:** UI hooks, RLS helpers, and edge-function asserts in `HandlerUtils.ts`. U2 should sample all three in one area.
+
+**For whoever is choosing between the accessibility and permissions tracks:** U6 shows fastest how big the SurveyJS gap is. If it turns up many serious violations, that's the track. Otherwise U2 feeds the second-half build most directly.
+
+**Give each person a different issue from the #983/#996/#1010 cluster.**
+
+> **Transition:** How to choose.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## Pick By Thursday
+
+<div style={{fontSize: '0.6em', textAlign: 'left'}}>
+
+- **One objective each.** Where two overlap, split them cleanly or pick one.
+- **The question has to change your plan.** If every answer leads to the same next step, pick something else.
+- **Your own is fine** if your team ratifies it.
+- **Think about Oct 15.** Your First Implementation Ticket comes out of what you learn.
+
+</div>
+
+<p style={{fontSize: '0.55em', textAlign: 'left', marginTop: '0.6em'}}>
+Thursday, end of class: each person writes one line in section 8 of the charter. Shape, objective, question. The team ratifies.
+</p>
+
+<aside className="notes">
+**Tie it back to Arc 3:** the tickets that came out of poker with a ? or a 2-to-13 spread should be on this shortlist. If a team's poker surfaced a question that isn't on the menu, that's a better objective than anything we wrote.
+
+> **Transition:** Wednesday: user research.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* UP NEXT */}
+{/* ============================================ */}
+
+<Slide>
+
+## Up Next
+
+<div style={{fontSize: '0.85em', textAlign: 'left'}}>
+
+**Wed Sep 30, User Research & Product Thinking**
+
+Two of the four teams have a user study on their plan. Wednesday is how you run one that tells you something you didn't already believe.
+
+</div>
+
+<div style={{fontSize: '0.75em', textAlign: 'left', marginTop: '1em'}}>
+
+**Before Thursday:**
+
+- **Team Workspace & Charter**: sections 1–7 committed; section 8 in class Thursday
+- **Declare Your Target Band**, due Thu Oct 1
+- **Pick your sprint objective** from the menu, or bring your own
+
+</div>
+
+<aside className="notes">
+Close on the transition, not the reminders. Students should leave knowing what today was for: they agreed on how they'll work, and they know what they don't know.
+
+> **Transition:** Wednesday: user research.
+</aside>
+
+</Slide>
+
+</RevealJS>

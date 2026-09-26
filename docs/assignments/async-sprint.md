@@ -43,9 +43,9 @@ Commit to **one** objective in your team's area and produce an evidence artifact
 | **Research** | Read the source or docs for something your project depends on. Write what applies to us and what doesn't |
 | **Practice** | Work through Playwright, k6, or RLS properly, and land one small real use of it |
 
-**Deliverable:** one page or less, plus a link to whatever you made. Commit it to your team repo under `notes/`, where it survives, rather than dropping it in a DM or a chat message.
+**Deliverable:** one page or less, plus a link to whatever you made. Commit it under `notes/` in your [Team Workspace](./team-charter.md) repo, where it survives and your teammates can find it. A DM or a chat message is gone by Checkpoint 1.
 
-Your team ratifies your objective on Thu Oct 1, in the last class session before the sprint starts. Five minutes of agreement protects two weeks of work from being irrelevant.
+Your team ratifies your objective on Thu Oct 1, in the last class session before the sprint starts, and records it in section 8 of your [charter](./team-charter.md). Five minutes of agreement protects two weeks of work from being irrelevant. The [spike menu](./async-sprint-menu.md) lists candidates for each project.
 
 ### 2. Two team sync points
 
@@ -86,7 +86,7 @@ This is assessed on process. The artifact and both standups are Pass requirement
 | **Cadence** | At least 4 substantive contributions per week, on at least 3 distinct days |
 | **Standups** | Both posts, on time, in format, with links |
 | **Sync points** | Both held, both summarized within 24 hours, rotating author, "what changed" answered |
-| **Artifact** | Committed to the team repo by Tue Oct 13 |
+| **Artifact** | Committed to `notes/` in the Team Workspace repo by Tue Oct 13 |
 
 A **contribution** is a commit, a PR opened or updated, a substantive review comment, an issue comment that moves something forward, a committed note, or a standup/sync summary. We count substance rather than volume. Twelve whitespace commits is not twelve contributions.
 

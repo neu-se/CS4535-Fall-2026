@@ -714,6 +714,15 @@
       "notes": "Changeable in either direction through Thu 12/3, no penalty."
     },
     {
+      "id": "team-charter",
+      "title": "Team Workspace & Charter",
+      "type": "project",
+      "assignedDate": "2026-09-28",
+      "dueDate": "2026-10-01",
+      "notes": "Team assignment. Pawtograder group repo holds charter.md and notes/. Sections 1\u20137 drafted in class Mon 9/28; section 8 (sprint objectives) filled when objectives are ratified Thu 10/1. Not banded, required; read at Checkpoint 1.",
+      "url": "/docs/assignments/team-charter"
+    },
+    {
       "id": "drill-zero",
       "title": "Drill Zero — Async Triage Log (pass/fail)",
       "type": "homework",
@@ -727,7 +736,7 @@
       "type": "project",
       "assignedDate": "2026-10-01",
       "dueDate": "2026-10-13",
-      "notes": "Process requirements: cadence, standup #1 in Discord Mon 10/5 and standup #2 in the room Wed 10/14, two team sync points with rotating written summaries. The individual objective is one investigation in your team's area, in one of five shapes (trace, spike, reproduction, research, practice); the artifact is a page plus a link, committed to the team repo.",
+      "notes": "Process requirements: cadence, standup #1 in Discord Mon 10/5 and standup #2 in the room Wed 10/14, two team sync points with rotating written summaries. The individual objective is one investigation in your team's area, in one of five shapes (trace, spike, reproduction, research, practice); the artifact is a page plus a link, committed to notes/ in the Team Workspace repo. Candidate objectives per project: /docs/assignments/async-sprint-menu",
       "url": "/docs/assignments/async-sprint"
     },
     {
