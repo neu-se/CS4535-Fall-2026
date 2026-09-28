@@ -371,15 +371,15 @@
     },
     {
       "lectureId": "s17-presentations-1",
-      "title": "Student Presentations 1: two readings, two pairs",
+      "title": "Student Presentations 1: two readings, two groups",
       "dates": [
         "2026-10-21"
       ],
       "topics": [
-        "Reading 1 of 2, assigned from bids on Sep 28",
-        "Reading 2 of 2, assigned from bids on Sep 28"
+        "R4: Code review at Google (Sadowski et al., ICSE-SEIP 2018) · Abhinav, Aryan and Colin",
+        "R1: Flaky tests (Luo et al., FSE 2014) · Ali and Rishi"
       ],
-      "notes": "Two pairs, one reading each, from the 13-reading list in the reading-presentation handout. Pre-reads posted 48h ahead.",
+      "notes": "A group of three and a pair, one reading each, from the 13-reading list in the reading-presentation handout. Pre-reads posted 48h ahead.",
       "materials": {
         "slides": "/lecture-slides/s17-presentations-1"
       }
@@ -421,8 +421,8 @@
         "2026-10-28"
       ],
       "topics": [
-        "Reading 1 of 2, assigned from bids on Sep 28",
-        "Reading 2 of 2, assigned from bids on Sep 28"
+        "R12: An endless stream of AI slop (Baltes, Cheong and Treude, 2026) · Naman and Zhirui",
+        "R11: Copilot usability and perceived productivity (Vaithilingam et al., CHI 2022 EA; Ziegler et al., CACM 2024) · Bohan and Som"
       ],
       "notes": "Two pairs, one reading each, from the 13-reading list in the reading-presentation handout. Pre-reads posted 48h ahead.",
       "materials": {
@@ -601,8 +601,8 @@
         "2026-12-02"
       ],
       "topics": [
-        "Reading 1 of 2, assigned from bids on Sep 28",
-        "Reading 2 of 2, assigned from bids on Sep 28"
+        "R9: GenAI accessibility checking (He, Huq and Malek, FSE 2025) · David and Lina",
+        "R8: ORM performance anti-patterns (Chen et al., ICSE 2014) · Nour and Adhiraj"
       ],
       "notes": "Two pairs, one reading each, from the 13-reading list in the reading-presentation handout. Pre-reads posted 48h ahead.",
       "materials": {
