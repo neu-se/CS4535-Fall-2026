@@ -190,7 +190,7 @@ All eight outcomes at minimum standard. This is the comprehensive band, and a st
 - First implementation ticket merged, deployed, and verified running **(LO3)**
 - At least 6 substantive code reviews across the term, at least 2 outside your own team **(LO4)**
 - You answer review on your own PRs, with no thread left dead. Judged as a habit across the term rather than per comment **(LO4)**
-- Drill Zero triage log + all 3 game-day postmortems **(LO5)**
+- All 3 game-day postmortems, each naming an action you took during the response **(LO5)**
 - Your merged work carries tests where the change warrants them, and a flag when user-visible work is unfinished **(LO5)**
 - At least one user-visible change shipped in your team's project area **(LO6)**
 - A user study of your team's project area with at least five real users, which you helped plan, run, or analyze, and whose findings are written up in your team repo by Checkpoint 3 (Dec 3). It can study the current system, a prototype, or your shipped change **(LO6)**

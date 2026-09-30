@@ -46,7 +46,7 @@ Pick by Mon Oct 19. You have two weeks, Game Day 1 lands in the middle of them o
 
 The checklist below is not ceremony. Every line on it corresponds to something that has broken a deploy on this codebase.
 
-1. **A branch**, cut from current `main`, and pushed to `pawtograder/platform` itself. A pull request from a fork gets the lint lane and nothing else, because the end-to-end job runs PR code on the project's own machines and won't do that for a fork. [Local Development](../local-dev.md) covers what CI does with your PR, along with the commands to run the same checks locally first.
+1. **A branch**, cut from current `main`, pushed either to `pawtograder/platform` itself or to your fork. Both get the full CI run, including the end-to-end tests, as long as you have write access to the platform. A branch in the repo also gets a preview deploy automatically; a fork PR gets one when someone adds the `preview` label. [Local Development](../local-dev.md) covers what CI does with your PR, along with the commands to run the same checks locally first.
 2. **A PR description** that says what changed, why, and how you tested it. If a reader has to open the diff to find out what the PR does, the description isn't finished.
 3. **Tests where the change warrants them.** A bug fix gets a test that fails without the fix. That case is not negotiable, because it is the only proof you fixed the thing you think you fixed. Other changes should say in the PR what they test and what they deliberately don't.
 4. **CI green before you request review.** Asking somebody to review a red PR spends their attention on your build.

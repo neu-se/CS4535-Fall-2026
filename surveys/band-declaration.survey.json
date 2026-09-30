@@ -1,0 +1,163 @@
+{
+  "title": "CS 4535: Declare Your Target Band",
+  "description": "Due Thu Oct 1, 23:59 ET. Change it in either direction through Thu Dec 3 by submitting again, with no penalty.",
+  "showQuestionNumbers": "off",
+  "checkErrorsMode": "onValueChanged",
+  "widthMode": "responsive",
+  "completedHtml": "<h3>Band declared.</h3><p>You can change it any time through Thu Dec 3 by submitting again. Checkpoint 1 on Wed Oct 14 reads your work against the band and options you chose here, and tells you whether you're on track.</p>",
+  "pages": [
+    {
+      "name": "band",
+      "elements": [
+        {
+          "type": "html",
+          "name": "band_note",
+          "html": "<p>Declare the band you want, not the one you're confident of. Declaring Distinction now and finishing at Credit costs you nothing that finishing at Credit would have cost anyway. If you're running ahead of your declared band, we'll tell you to raise it.</p><p>The requirements for each band are in the <a href=\"https://neu-se.github.io/CS4535-Fall-2026/syllabus#letter-grade-requirements\" target=\"_blank\">syllabus</a>. Each band includes everything in the band below it.</p>"
+        },
+        {
+          "type": "radiogroup",
+          "name": "band",
+          "title": "Which band are you working toward?",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "pass",
+              "text": "Pass (B): trusted to contribute under review"
+            },
+            {
+              "value": "credit",
+              "text": "Credit (A−): trusted to exercise judgment, not just execute"
+            },
+            {
+              "value": "distinction",
+              "text": "Distinction (A): trusted to own what ships"
+            },
+            {
+              "value": "high_distinction",
+              "text": "High Distinction (A, plus what a reference letter can say): trusted to extend the system"
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "name": "distinction_options",
+          "title": "Which Distinction requirements are you aiming for?",
+          "description": "Distinction needs four of the five. Pick four, or all five if you're going for every one.",
+          "visibleIf": "{band} anyof ['distinction', 'high_distinction']",
+          "isRequired": true,
+          "minSelectedChoices": 4,
+          "choices": [
+            {
+              "value": "d_feature",
+              "text": "A feature owned end to end, through deployed and monitored"
+            },
+            {
+              "value": "d_design",
+              "text": "A design decision documented and defended in review, with the tradeoff named"
+            },
+            {
+              "value": "d_function",
+              "text": "Work delivered through your cross-project function, outside your own project area"
+            },
+            {
+              "value": "d_users",
+              "text": "Evidence about users, gathered and then acted on"
+            },
+            {
+              "value": "d_checklist",
+              "text": "A code review checklist entry you proposed, with its citation and what it would have caught"
+            }
+          ],
+          "validators": [
+            {
+              "type": "expression",
+              "expression": "{distinction_options.length} >= 4",
+              "text": "Distinction needs four of the five. Pick at least four."
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "d_feature_artifact",
+          "title": "Feature end to end: which feature, as far as you know today?",
+          "description": "Optional. One line. It's fine if this changes.",
+          "visibleIf": "{distinction_options} contains 'd_feature'",
+          "rows": 2
+        },
+        {
+          "type": "comment",
+          "name": "d_design_artifact",
+          "title": "Design decision: which decision do you expect to be the one?",
+          "description": "Optional. One line.",
+          "visibleIf": "{distinction_options} contains 'd_design'",
+          "rows": 2
+        },
+        {
+          "type": "comment",
+          "name": "d_function_artifact",
+          "title": "Cross-project function: what do you expect to deliver through it?",
+          "description": "Optional. One line.",
+          "visibleIf": "{distinction_options} contains 'd_function'",
+          "rows": 2
+        },
+        {
+          "type": "comment",
+          "name": "d_users_artifact",
+          "title": "Evidence about users: what kind, and from whom?",
+          "description": "Optional. One line. What counts depends on your project, and Checkpoint 1 is where we settle it.",
+          "visibleIf": "{distinction_options} contains 'd_users'",
+          "rows": 2
+        },
+        {
+          "type": "comment",
+          "name": "d_checklist_artifact",
+          "title": "Checklist entry: what failure do you have in mind?",
+          "description": "Optional. One line.",
+          "visibleIf": "{distinction_options} contains 'd_checklist'",
+          "rows": 2
+        },
+        {
+          "type": "radiogroup",
+          "name": "hd_option",
+          "title": "Which High Distinction requirement are you aiming for?",
+          "description": "High Distinction needs one of the four.",
+          "visibleIf": "{band} = 'high_distinction'",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "hd_handoff",
+              "text": "Something in the January 2027 handoff that another course depends on, with the ops playbook to run it"
+            },
+            {
+              "value": "hd_subsystem",
+              "text": "A subsystem or tool the maintainers keep after you leave"
+            },
+            {
+              "value": "hd_measurement",
+              "text": "A measurement that settled a question the team was answering by assumption"
+            },
+            {
+              "value": "hd_person",
+              "text": "Somebody else made more capable, to the point that they now do unsupervised what they needed you for"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "hd_artifact",
+          "title": "What do you have in mind?",
+          "description": "Optional. One or two lines.",
+          "visibleIf": "{band} = 'high_distinction'",
+          "rows": 2
+        },
+        {
+          "type": "comment",
+          "name": "constraints",
+          "title": "Anything we should know when we read your work against this band?",
+          "description": "Optional. For example, a co-op interview week, or a reason you're choosing a lower band than you'd like.",
+          "rows": 3
+        }
+      ]
+    }
+  ]
+}

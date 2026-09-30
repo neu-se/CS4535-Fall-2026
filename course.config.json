@@ -260,20 +260,19 @@
       }
     },
     {
-      "lectureId": "s10-talk-iac",
-      "title": "Tech Talk: Operations — IaC, Observability & Incident Response",
+      "lectureId": "s10-studio-sprint",
+      "title": "Studio: Finish the Study Plan, Ratify the Sprint",
       "dates": [
         "2026-10-01"
       ],
       "topics": [
-        "Environments as code",
-        "Declared vs. actual: configuration drift",
-        "Logs, metrics, traces",
-        "Detection, triage, mitigation, postmortem"
+        "Finish and swap the user study plan",
+        "How the async sprint runs",
+        "Ratify sprint objectives; declare your target band"
       ],
-      "notes": "Instructor-led · declare your target band · leave with a sprint plan for Oct 2–13",
+      "notes": "Last in-person session before the async sprint · objectives ratified · band declared",
       "materials": {
-        "slides": "/lecture-slides/s10-talk-iac"
+        "slides": "/lecture-slides/s10-studio-sprint"
       }
     },
     {
@@ -294,7 +293,7 @@
     },
     {
       "lectureId": "s12-async-agents",
-      "title": "Async Tech Talk: Agents & Workflows (recorded)",
+      "title": "Async Activity: Agents & Workflows",
       "dates": [
         "2026-10-07"
       ],
@@ -304,25 +303,24 @@
         "Human-as-coordinator pattern",
         "GitHub + Obsidian as shared context"
       ],
-      "notes": "ASYNC — watch by Fri 10/9, then one question or observation in the Discord thread.",
+      "notes": "ASYNC — activity posted in Discord that morning; your post in its thread by Fri 10/9.",
       "materials": {
         "slides": "/lecture-slides/s12-async-agents"
       }
     },
     {
-      "lectureId": "s13-drill-zero",
-      "title": "Drill Zero: Async Triage (pass/fail)",
+      "lectureId": "s13-async-sync",
+      "title": "Async: Team Meeting 1 (no class)",
       "dates": [
         "2026-10-08"
       ],
       "topics": [
-        "A broken preview stack, no warning",
-        "Detect → triage → mitigate on your own time",
-        "Written triage log: what you saw, what you tried, what fixed it"
+        "Team meeting 1, held in class time",
+        "Written summary in your team's Discord channel within 24 hours"
       ],
-      "notes": "ASYNC — no meeting. Low stakes, pass/fail. Primes the Oct 22 game day. Triage log due Fri 10/9.",
+      "notes": "ASYNC — no class. Attendance = being named as present in your team's meeting 1 summary.",
       "materials": {
-        "slides": "/lecture-slides/s13-drill-zero"
+        "slides": "/lecture-slides/s13-async-sync"
       }
     },
     {
@@ -356,17 +354,20 @@
       }
     },
     {
-      "lectureId": "s16-standup",
-      "title": "Standup + Clinic",
+      "lectureId": "s16-talk-ops",
+      "title": "Tech Talk: Operations — IaC, Observability & Incident Response",
       "dates": [
         "2026-10-19"
       ],
       "topics": [
-        "All-hands standup",
-        "Team consultation slots"
+        "Environments as code",
+        "Declared vs. actual: configuration drift",
+        "Logs, metrics, traces",
+        "Detection, triage, mitigation, postmortem"
       ],
+      "notes": "Instructor-led · three days before Game Day 1 · standup moves to a Discord post that morning",
       "materials": {
-        "slides": "/lecture-slides/s16-standup"
+        "slides": "/lecture-slides/s16-talk-ops"
       }
     },
     {
@@ -723,20 +724,12 @@
       "url": "/docs/assignments/team-charter"
     },
     {
-      "id": "drill-zero",
-      "title": "Drill Zero — Async Triage Log (pass/fail)",
-      "type": "homework",
-      "assignedDate": "2026-10-08",
-      "dueDate": "2026-10-09",
-      "notes": "Pass/fail. A credible triage log passes even if you never fixed it — saying what you ruled out and how is the point."
-    },
-    {
       "id": "gap-sprint",
       "title": "Async Sprint: Focused Learning + Team Sync (Oct 2–13)",
       "type": "project",
       "assignedDate": "2026-10-01",
       "dueDate": "2026-10-13",
-      "notes": "Process requirements: cadence, standup #1 in Discord Mon 10/5 and standup #2 in the room Wed 10/14, two team sync points with rotating written summaries. The individual objective is one investigation in your team's area, in one of five shapes (trace, spike, reproduction, research, practice); the artifact is a page plus a link, committed to notes/ in the Team Workspace repo. Candidate objectives per project: /docs/assignments/async-sprint-menu",
+      "notes": "Process requirements: cadence, standup #1 in Discord Mon 10/5 and standup #2 in the room Wed 10/14, two team meetings (Thu 10/8 in class time, and Fri 10/9 to Mon 10/12) with rotating written summaries. The individual objective is one investigation in your team's area, in one of five shapes (trace, spike, reproduction, research, practice); the artifact is a page plus a link, committed to notes/ in the Team Workspace repo. Candidate objectives per project: /docs/assignments/async-sprint-menu",
       "url": "/docs/assignments/async-sprint"
     },
     {
@@ -744,8 +737,9 @@
       "title": "Checkpoint 1",
       "type": "project",
       "assignedDate": "2026-10-01",
-      "dueDate": "2026-10-14",
-      "notes": "Written per-student judgment: on track for your declared band — yes or no, and why."
+      "dueDate": "2026-10-13",
+      "notes": "Survey in Pawtograder, due with the sprint artifact. Written per-student judgment returned by Mon Oct 19: on track for your declared band, yes or no, and why.",
+      "url": "/docs/assignments/checkpoints"
     },
     {
       "id": "first-implementation",
@@ -795,7 +789,7 @@
       "type": "project",
       "assignedDate": "2026-10-22",
       "dueDate": "2026-12-03",
-      "notes": "One postmortem per game day, due within 48h of each"
+      "notes": "One postmortem per game day, due within 48h of each. Each postmortem names an action each team member took during the response."
     },
     {
       "id": "checkpoint-3",

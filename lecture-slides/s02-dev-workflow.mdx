@@ -492,7 +492,7 @@ Run <code>npm run format</code> before you commit. CI rejects unformatted code, 
 </p>
 
 <p className="fragment" style={{fontSize: '0.7em', marginTop: '0.6em'}}>
-Branch <strong>in the repo</strong>, not in a fork. The E2E lane won't run for a fork PR.
+Get <strong>write access</strong> to the platform. With it, your PR gets the full CI run from a branch in the repo or from a fork.
 </p>
 
 <aside className="notes">
@@ -502,7 +502,7 @@ Branch <strong>in the repo</strong>, not in a fork. The E2E lane won't run for a
 
 **The first fragment is the single most useful sentence in this session.** Say it twice. It's the number one cause of a red first PR.
 
-**The second fragment is why the push-access list matters.** The E2E workflow uses `pull_request_target` and gates on whether the head branch lives in `pawtograder/platform`, because that job executes PR code on the project's own runners. A fork PR gets lint and nothing else. Don't teach the security reasoning today, just the rule: branch in the repo, and get push access if you don't have it.
+**The second fragment is why the write-access list matters.** The CI workflows use `pull_request_target` and a shared trust gate (`_trust-gate.yml`) that checks whether the PR's author, fork owner, and pusher all have write access, because the jobs execute PR code on the project's own runners. Write access comes through the `pawtograder-contributors` team. Without it, a maintainer has to approve each run. Branches in the repo also get a preview deploy automatically; fork PRs need the `preview` label. Don't teach the security reasoning today, just the rule: get write access.
 
 > **Transition:** CI is the cheap part of review. Humans are the expensive part.
 </aside>

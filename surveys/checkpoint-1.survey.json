@@ -1,0 +1,425 @@
+{
+ "title": "CS 4535: Checkpoint 1",
+ "description": "Due Tue Oct 13, 23:59 ET. Judgment returned by Mon Oct 19.",
+ "showQuestionNumbers": "off",
+ "checkErrorsMode": "onValueChanged",
+ "widthMode": "responsive",
+ "completedHtml": "<h3>Checkpoint 1 submitted.</h3><p>Your team's review and your individual feedback come back by Mon Oct 19. Standup #2 is in the room on Wed Oct 14.</p>",
+ "pages": [
+  {
+   "name": "checkpoint",
+   "elements": [
+    {
+     "type": "html",
+     "name": "intro",
+     "html": "<p>About 15 minutes if your work is committed. Link things rather than describing them. We read this alongside your team's review and send back a written judgment by Mon Oct 19: on track or not, and why. See <a href=\"https://neu-se.github.io/CS4535-Fall-2026/docs/assignments/checkpoints\" target=\"_blank\">Project Milestones &amp; Checkpoints</a>.</p>"
+    },
+    {
+     "type": "text",
+     "name": "sprint_artifact",
+     "title": "Link to your async sprint artifact in notes/",
+     "inputType": "url",
+     "isRequired": true,
+     "validators": [
+      {
+       "type": "regex",
+       "regex": "^https?://",
+       "text": "Paste a full link to the file in your team repo."
+      }
+     ]
+    },
+    {
+     "type": "comment",
+     "name": "sprint_use",
+     "title": "In one sentence: what can a teammate do with it?",
+     "isRequired": true,
+     "rows": 2
+    },
+    {
+     "type": "comment",
+     "name": "reviews",
+     "title": "Links to the code reviews you've written so far",
+     "description": "One per line. Mark any that were outside your team. Pass needs six across the term, at least two outside your team.",
+     "rows": 4
+    },
+    {
+     "type": "radiogroup",
+     "name": "study_timing",
+     "title": "When does your team's user study run?",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "early",
+       "text": "Early: as a sprint objective or right after it"
+      },
+      {
+       "value": "mid",
+       "text": "Mid-project, on a prototype (Oct 14 to Nov 5)"
+      },
+      {
+       "value": "late",
+       "text": "Late, on what we shipped (before Nov 18)"
+      },
+      {
+       "value": "undecided",
+       "text": "We haven't decided"
+      }
+     ]
+    },
+    {
+     "type": "comment",
+     "name": "study_role",
+     "title": "What's your part in it?",
+     "description": "Planning, recruiting, running sessions, or analysis. One or two sentences.",
+     "isRequired": true,
+     "rows": 2
+    },
+    {
+     "type": "radiogroup",
+     "name": "band",
+     "title": "Which band are you working toward?",
+     "description": "If this is different from your declaration, resubmit the band declaration too.",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "pass",
+       "text": "Pass"
+      },
+      {
+       "value": "credit",
+       "text": "Credit"
+      },
+      {
+       "value": "distinction",
+       "text": "Distinction"
+      },
+      {
+       "value": "high_distinction",
+       "text": "High Distinction"
+      }
+     ]
+    },
+    {
+     "type": "radiogroup",
+     "name": "c_adr_status",
+     "title": "Credit: an ADR or design note recording alternatives you rejected, which a teammate acted on",
+     "visibleIf": "{band} anyof ['credit','distinction','high_distinction']",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "not_started",
+       "text": "Not started"
+      },
+      {
+       "value": "planned",
+       "text": "Planned: I know what it will be"
+      },
+      {
+       "value": "in_progress",
+       "text": "In progress"
+      },
+      {
+       "value": "done",
+       "text": "Done"
+      }
+     ],
+     "colCount": 4
+    },
+    {
+     "type": "comment",
+     "name": "c_adr_artifact",
+     "title": "Which artifact, and a link if there is one",
+     "visibleIf": "{band} anyof ['credit','distinction','high_distinction']",
+     "rows": 2
+    },
+    {
+     "type": "radiogroup",
+     "name": "c_reviews_status",
+     "title": "Credit: at least 3 reviews where your comment changed the code",
+     "visibleIf": "{band} anyof ['credit','distinction','high_distinction']",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "not_started",
+       "text": "Not started"
+      },
+      {
+       "value": "planned",
+       "text": "Planned: I know what it will be"
+      },
+      {
+       "value": "in_progress",
+       "text": "In progress"
+      },
+      {
+       "value": "done",
+       "text": "Done"
+      }
+     ],
+     "colCount": 4
+    },
+    {
+     "type": "comment",
+     "name": "c_reviews_artifact",
+     "title": "Which artifact, and a link if there is one",
+     "visibleIf": "{band} anyof ['credit','distinction','high_distinction']",
+     "rows": 2
+    },
+    {
+     "type": "radiogroup",
+     "name": "c_incident_status",
+     "title": "Credit: one incident you triaged rather than watched",
+     "visibleIf": "{band} anyof ['credit','distinction','high_distinction']",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "not_started",
+       "text": "Not started"
+      },
+      {
+       "value": "planned",
+       "text": "Planned: I know what it will be"
+      },
+      {
+       "value": "in_progress",
+       "text": "In progress"
+      },
+      {
+       "value": "done",
+       "text": "Done"
+      }
+     ],
+     "colCount": 4
+    },
+    {
+     "type": "comment",
+     "name": "c_incident_artifact",
+     "title": "Which artifact, and a link if there is one",
+     "visibleIf": "{band} anyof ['credit','distinction','high_distinction']",
+     "rows": 2,
+     "description": "Game Day 1 is Oct 22, so \"planned\" is fine here."
+    },
+    {
+     "type": "checkbox",
+     "name": "distinction_options",
+     "title": "Which Distinction requirements are you aiming for?",
+     "description": "Four of the five.",
+     "visibleIf": "{band} anyof ['distinction','high_distinction']",
+     "isRequired": true,
+     "minSelectedChoices": 4,
+     "choices": [
+      {
+       "value": "d_feature",
+       "text": "A feature owned end to end, through deployed and monitored"
+      },
+      {
+       "value": "d_design",
+       "text": "A design decision documented and defended in review"
+      },
+      {
+       "value": "d_function",
+       "text": "Work delivered through your cross-project function"
+      },
+      {
+       "value": "d_users",
+       "text": "Evidence about users, gathered and then acted on"
+      },
+      {
+       "value": "d_checklist",
+       "text": "A code review checklist entry you proposed"
+      }
+     ],
+     "validators": [
+      {
+       "type": "expression",
+       "expression": "{distinction_options.length} >= 4",
+       "text": "Distinction needs four of the five."
+      }
+     ]
+    },
+    {
+     "type": "radiogroup",
+     "name": "d_feature_status",
+     "title": "Feature end to end: where does it stand?",
+     "visibleIf": "{distinction_options} contains 'd_feature'",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "not_started",
+       "text": "Not started"
+      },
+      {
+       "value": "planned",
+       "text": "Planned: I know what it will be"
+      },
+      {
+       "value": "in_progress",
+       "text": "In progress"
+      },
+      {
+       "value": "done",
+       "text": "Done"
+      }
+     ],
+     "colCount": 4
+    },
+    {
+     "type": "comment",
+     "name": "d_feature_artifact",
+     "title": "Which artifact, and a link if there is one",
+     "visibleIf": "{distinction_options} contains 'd_feature'",
+     "rows": 2
+    },
+    {
+     "type": "radiogroup",
+     "name": "d_design_status",
+     "title": "Design decision: where does it stand?",
+     "visibleIf": "{distinction_options} contains 'd_design'",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "not_started",
+       "text": "Not started"
+      },
+      {
+       "value": "planned",
+       "text": "Planned: I know what it will be"
+      },
+      {
+       "value": "in_progress",
+       "text": "In progress"
+      },
+      {
+       "value": "done",
+       "text": "Done"
+      }
+     ],
+     "colCount": 4
+    },
+    {
+     "type": "comment",
+     "name": "d_design_artifact",
+     "title": "Which artifact, and a link if there is one",
+     "visibleIf": "{distinction_options} contains 'd_design'",
+     "rows": 2
+    },
+    {
+     "type": "radiogroup",
+     "name": "d_function_status",
+     "title": "Cross-project function: where does it stand?",
+     "visibleIf": "{distinction_options} contains 'd_function'",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "not_started",
+       "text": "Not started"
+      },
+      {
+       "value": "planned",
+       "text": "Planned: I know what it will be"
+      },
+      {
+       "value": "in_progress",
+       "text": "In progress"
+      },
+      {
+       "value": "done",
+       "text": "Done"
+      }
+     ],
+     "colCount": 4
+    },
+    {
+     "type": "comment",
+     "name": "d_function_artifact",
+     "title": "Which artifact, and a link if there is one",
+     "visibleIf": "{distinction_options} contains 'd_function'",
+     "rows": 2
+    },
+    {
+     "type": "radiogroup",
+     "name": "d_users_status",
+     "title": "Evidence about users: where does it stand?",
+     "visibleIf": "{distinction_options} contains 'd_users'",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "not_started",
+       "text": "Not started"
+      },
+      {
+       "value": "planned",
+       "text": "Planned: I know what it will be"
+      },
+      {
+       "value": "in_progress",
+       "text": "In progress"
+      },
+      {
+       "value": "done",
+       "text": "Done"
+      }
+     ],
+     "colCount": 4
+    },
+    {
+     "type": "comment",
+     "name": "d_users_artifact",
+     "title": "Which artifact, and a link if there is one",
+     "visibleIf": "{distinction_options} contains 'd_users'",
+     "rows": 2,
+     "description": "This can build on your team's user study. Say what you'd act on."
+    },
+    {
+     "type": "radiogroup",
+     "name": "d_checklist_status",
+     "title": "Checklist entry: where does it stand?",
+     "visibleIf": "{distinction_options} contains 'd_checklist'",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "not_started",
+       "text": "Not started"
+      },
+      {
+       "value": "planned",
+       "text": "Planned: I know what it will be"
+      },
+      {
+       "value": "in_progress",
+       "text": "In progress"
+      },
+      {
+       "value": "done",
+       "text": "Done"
+      }
+     ],
+     "colCount": 4
+    },
+    {
+     "type": "comment",
+     "name": "d_checklist_artifact",
+     "title": "Which artifact, and a link if there is one",
+     "visibleIf": "{distinction_options} contains 'd_checklist'",
+     "rows": 2
+    },
+    {
+     "type": "comment",
+     "name": "hd_plan",
+     "title": "High Distinction: your option, and who or what it's for",
+     "visibleIf": "{band} = 'high_distinction'",
+     "isRequired": true,
+     "rows": 3
+    },
+    {
+     "type": "comment",
+     "name": "risk",
+     "title": "What's the biggest risk to your part of the project, and what would help?",
+     "description": "One or two sentences.",
+     "isRequired": true,
+     "rows": 3
+    }
+   ]
+  }
+ ]
+}

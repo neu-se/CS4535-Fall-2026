@@ -9,8 +9,10 @@ under version control alongside the handout that describes them.
 | `ticket-hunt.survey.json` | [The Ticket Hunt](../docs/assignments/ticket-hunt.md) | Wed Sep 9 | Wed Sep 16, 23:59 ET |
 | `project-bids.survey.json` | [Project Bids](../docs/assignments/project-bids.md) | Wed Sep 9 | Thu Sep 17, 23:59 ET |
 | `reading-bid.survey.json` | [Reading Presentation](../docs/assignments/reading-presentation.md#how-you-get-your-reading) | Wed Sep 9 | Thu Sep 24, 23:59 ET |
+| `band-declaration.survey.json` | [Declaring a target band](../src/pages/syllabus.md#declaring-a-target-band) | Mon Sep 28 | Thu Oct 1, 23:59 ET; resubmit through Thu Dec 3 |
+| `checkpoint-1.survey.json` | [Checkpoints](../docs/assignments/checkpoints.md) | Thu Oct 1 | Tue Oct 13, 23:59 ET |
 
-All three were checked against `survey-core` 3.0.3: the JSON loads, every declared question type
+The first three were checked against `survey-core` 3.0.3: the JSON loads, every declared question type
 survives the round trip, all `visibleIf` and validator expressions parse, and the conditionals and
 validators behave as intended (bad URLs rejected, unchecked attestations blocking, panel-scoped
 conditions independent per panel, the reading bid accepting exactly three ranked readings and
@@ -18,7 +20,7 @@ rejecting two or four).
 
 ## What the definitions assume
 
-- **Identity comes from Pawtograder.** None of the three asks for a name or an email.
+- **Identity comes from Pawtograder.** None of them asks for a name or an email.
 - **Resubmission is how a bid changes.** Both bid handouts tell students they can change their
   minds until the deadline, Sep 17 for projects and Sep 24 for readings, which means the platform
   has to keep the latest response per student.
@@ -53,3 +55,13 @@ rejecting two or four).
 - **`artifact_first` asks only about the first choice**, and says in its description that naming an
   artifact isn't a commitment to bringing that one. Ask for all three and most of the answers will
   be padding.
+
+## The band declaration
+
+`band-declaration.survey.json` was checked against `survey-core` 3.0.3 as well. It asks for the band and, at Distinction or above, which of the five Distinction requirements the student is aiming for (at least four, enforced by `minSelectedChoices` and an `expression` validator). At High Distinction it also asks which one of the four options. Each chosen option reveals an optional one-line "first artifact" box. Checkpoint 1 reads against the options, which is why the survey asks for more than the letter.
+
+A declaration changes by resubmission through Thu Dec 3, so the platform has to keep the latest response per student, as with the bids.
+
+## Checkpoint 1
+
+`checkpoint-1.survey.json` was checked against `survey-core` 3.0.3: it loads, the Credit questions appear only at Credit or above, the Distinction questions only at Distinction or above and only for the options chosen, the four-of-five rule is enforced, and the sprint-artifact field rejects anything that isn't a full link. It asks for the band again because a student may have changed it since Oct 1.

@@ -31,6 +31,15 @@ Final teams are posted Mon Sep 28, and we create the Pawtograder groups from tha
 
 If the group is wrong, or you can't see the assignment, say so in class or on Discord that day. Everything in the next two weeks gets committed here.
 
+**Where things live:**
+
+| What | Where | Who can see it |
+|---|---|---|
+| Code, branches, PRs, reviews | [`pawtograder/platform`](https://github.com/pawtograder/platform) | Public |
+| Tickets ready for someone to claim | Issues on `pawtograder/platform`, with your team's label, on your team's [board](https://github.com/orgs/pawtograder/projects) | Issues public; boards visible to org members |
+| Charter, early backlog, sprint artifacts, study plans and study data | Your Team Workspace repo | Your team and course staff |
+| Standups, meeting summaries, day-to-day talk | Your team's Discord channel | The course |
+
 ### 2. Write `charter.md`
 
 Write the sections below in order. The template has the headings. Keep the whole thing under two pages, short enough that your team will reread it when a disagreement comes up.
@@ -41,7 +50,7 @@ Write the sections below in order. The template has the headings. Keep the whole
 
 **3. How we talk.** Which channel is for what, and where a decision counts as made. A decision made in a DM doesn't exist for the teammate who wasn't in it, so name the place decisions get written down: the team channel, an issue, or an ADR. Then the response time you owe each other on a weekday, and what you do when someone blows past it.
 
-**4. When we meet.** Book both async-sprint sync points now, with a date, time, and place or link: one on Oct 6 or 7, one by Mon Oct 12. Say who writes each summary, since the author has to rotate. Add a recurring weekly slot for after the sprint.
+**4. When we meet.** Book both async-sprint team meetings now, with a place or link: meeting 1 is Thu Oct 8 in our usual class time, and meeting 2 is any time from Fri Oct 9 to Mon Oct 12, with a date and time. Say who writes each summary, since the author has to rotate. Add a recurring weekly slot for after the sprint.
 
 **5. How we decide.** Who decides what. Most teams split decisions by ownership. The person who owns a piece of work decides inside it, and anything that crosses owners or can't be undone cheaply goes to the team. Say what happens when the team splits two against two, or one against two, and what gets written up as an ADR.
 
@@ -54,7 +63,7 @@ Write the sections below in order. The template has the headings. Keep the whole
 
 For each one: who does what, by when, and at what point it comes to us at clinic. "We'd talk about it" isn't an answer. Say who starts that conversation, and what happens if it doesn't fix anything.
 
-**8. Sprint objectives.** Leave this blank until Thu Oct 1. At the end of that class, each person writes one line: their objective, its shape (trace, spike, reproduction, research, or practice), and the question it answers. The team ratifies the set. The [spike menu](./async-sprint-menu.md) has candidates for each project, and your own is fine if the team agrees to it.
+**8. Sprint objectives.** Leave this blank until Thu Oct 1. At the end of that class, each person writes their objective, its shape (trace, spike, research, or practice), what they'll be able to explain afterward that they can't explain today, and the question it answers. The team ratifies the set. The [spike menu](./async-sprint-menu.md) has candidates for each project, and your own is fine if the team agrees to it.
 
 ### 3. Commit it
 
@@ -68,13 +77,13 @@ Use an agent to explore your project's corner of the codebase, check what an iss
 
 ## Grading Rubric
 
-The charter isn't banded, but it's required. It's read at Checkpoint 1 along with your sync summaries. When a grievance comes to us, the first thing we ask is what the charter says.
+The charter isn't banded, but it's required. It's read at Checkpoint 1 along with your team meeting summaries. When a grievance comes to us, the first thing we ask is what the charter says.
 
 | Expectation | Standard |
 |---|---|
 | **Complete** | All eight sections present, and section 8 filled in by the end of Thu Oct 1 |
 | **Specific** | Sections 3, 5, and 7 name people, times, and places. Someone outside the team could tell whether a rule was followed |
-| **Booked** | Both sync points have a date and time, and a named author for each summary |
+| **Booked** | Both team meetings have a time, and a named author for each summary |
 | **Shared** | Every teammate has a commit to `charter.md` |
 
 ### What strong looks like
@@ -83,7 +92,7 @@ A charter that settles something. The "when it goes wrong" answers have a first 
 
 ### What weak looks like
 
-"We value open communication and mutual respect." Sync points described as "TBD, probably early in the week." A definition of done that says "tests pass." Every commit from one person.
+"We value open communication and mutual respect." Team meetings described as "TBD, probably early in the week." A definition of done that says "tests pass." Every commit from one person.
 
 ## Submission
 

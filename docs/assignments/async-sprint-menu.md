@@ -26,8 +26,8 @@ Milestone 1 is getting PR #814 green and merged, so at least one of you should b
 | # | Objective | Shape | The question |
 |---|---|---|---|
 | E1 | Scan to grader | Trace | What happens between "upload PDF" and a grader seeing crops of each answer? |
-| E2 | #814's E2E, locally | Reproduction | After merging staging, which of the specs that failed on Sep 2 still fail with the fake vision provider, and why? |
-| E3 | #814's P1 findings | Reproduction | Can each of the three P1 bot findings be reproduced on a local stack, and what's the regression test for each? |
+| E2 | #814's E2E, locally | Trace | After merging staging, which of the specs that failed on Sep 2 still fail with the fake vision provider, and why? |
+| E3 | #814's P1 findings | Practice | Can each of the three P1 bot findings be reproduced on a local stack, and what's the regression test for each? |
 | E4 | Page codes | Spike | Can a printed page code be decoded from a real copier scan reliably enough to replace fixed-count page splitting? |
 | E5 | Region alignment | Research | Do normalized answer regions survive the skew, scale, and offset of real scans? |
 | E6 | Where BYOK grading lives | Research | Should LLM-assisted grading reuse the llm-hint model factory or the exam worker's provider layer? |
@@ -60,7 +60,7 @@ There's no Codespaces code in the platform to replace, so the workspace half is 
 | W5 | Permission sync | Trace | How do team and collaborator permissions reach student and solution repos? |
 | W6 | One click in Coder | Research | What does "one click from Pawtograder" mean in Coder: API call or deep link, and how do repo credentials get in? |
 | W7 | Forgejo + Coder in the namespace | Spike | Does SSO → Forgejo repo → Coder workspace work in your namespace, and what breaks? |
-| W8 | "Ready" before it's usable (#981) | Reproduction | Why does a repo show as ready before the student can access it? |
+| W8 | "Ready" before it's usable (#981) | Trace | Why does a repo show as ready before the student can access it? |
 | W9 | Repo status smoke test | Practice (Playwright) | Can you build the harness your readiness checks will run in? |
 
 **Where to start:**
@@ -83,7 +83,7 @@ Three people means three objectives, and the project has three needs before the 
 |---|---|---|---|
 | O1 | Time to resolution | Spike | Can wait and resolution times per queue be measured from the tables that exist, and how far can the numbers be trusted? |
 | O2 | Queue update to browser | Trace | When a TA changes a request's status, what path does the change take to the student's screen? |
-| O3 | Resolve doesn't sync (#1003) | Reproduction | Does #1003 reproduce reliably, and at which step of O2's path is the update lost? |
+| O3 | Resolve doesn't sync (#1003) | Trace | Does #1003 reproduce reliably, and at which step of O2's path is the update lost? |
 | O4 | Queue position test | Practice (Playwright) | Can you write a failing E2E test for "position doesn't move while people ahead are being helped"? |
 | O5 | What the bot posts | Trace | Which personal data leaves Pawtograder in a help-request message, and where is each field attached? |
 | O6 | Staff-only queue channels | Spike | What permission overwrites does a new office-hours channel need, and can you check them against the mock Discord server? |
@@ -107,13 +107,13 @@ Also open in this area: #1000 (the help-request form's loading state is hardcode
 
 ## Usability, Accessibility & Permissions
 
-Most of these share the Ticket Hunt's "UI lets you start it, backend refuses" cluster (#983, #996, #1010). Give each person a different issue so nobody redoes someone else's reproduction. If you're choosing between the accessibility and permissions tracks, U6 is the fastest way to find out how big the SurveyJS gap is, and U2 feeds the second-half roles build most directly.
+Most of these share the Ticket Hunt's "UI lets you start it, backend refuses" cluster (#983, #996, #1010). Give each person a different issue so nobody redoes someone else's trace. If you're choosing between the accessibility and permissions tracks, U6 is the fastest way to find out how big the SurveyJS gap is, and U2 feeds the second-half roles build most directly.
 
 | # | Objective | Shape | The question |
 |---|---|---|---|
 | U1 | One grader action, UI to RLS | Trace | For "grader creates an assignment" (#983), what check runs at each layer, and where do they disagree? |
 | U2 | Drift inventory | Spike | For each UI role gate in a sampled area, does the backend enforce the same thing: match, UI looser, or UI stricter? |
-| U3 | UI allows, backend refuses | Reproduction | For #996 and #1010, which exact exception or policy is hit, and what did the UI show first? |
+| U3 | UI allows, backend refuses | Trace | For #996 and #1010, which exact exception or policy is hit, and what did the UI show first? |
 | U4 | Who can push to solution repos | Trace | How does a grader end up able to push to a solution repo, and is that gate in RLS or on GitHub? |
 | U5 | Prior art for roles | Research | How do #930, #41, and existing LMS roles divide capabilities, and which of those fit a small per-course capability set? |
 | U6 | axe on SurveyJS | Practice (Playwright) | What does axe find once the SurveyJS subtree stops being excluded? Land one scan that covers it. |

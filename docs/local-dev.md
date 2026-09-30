@@ -274,7 +274,7 @@ Run `npm run format` before every commit. Unformatted code is the most common re
 
 Opening a PR runs the lint lane, which is `npm run lint`, the Jest tests, the Deno function tests, and a Helm chart render check. It also builds your branch and deploys an ephemeral preview of the whole stack, then comments the URL on the PR.
 
-The end-to-end lane, which is Playwright plus Argos visual snapshots, is gated on trust. It runs for branches pushed to `pawtograder/platform` itself and not for pull requests from forks, because that job checks out and executes the PR's code on the project's own runners. So work on a branch in the repo, and ask for push access if you don't have it yet. A fork PR is a PR nobody can fully check.
+The end-to-end lane, which is Playwright plus Argos visual snapshots, is gated on trust, because it checks out and executes the PR's code on the project's own runners. Trust means write access to `pawtograder/platform`, which you get through the `pawtograder-contributors` team; ask if you don't have it yet. With write access, a PR gets the full run whether its branch is in the repo or in your fork. Without it, a maintainer has to approve each run first. The one difference between the two: a branch in the repo gets a preview deploy automatically, and a fork PR gets one only when someone adds the `preview` label.
 
 Argos uploads snapshots only from CI, so running Playwright locally never touches the visual baseline.
 
