@@ -1,0 +1,574 @@
+---
+sidebar_position: 9
+title: "User Research & Product Thinking"
+image: /img/lectures/s09-user-research.webp
+---
+
+import RevealJS, { Slide } from '@site/src/components/RevealJS';
+import Img from '@site/src/components/Img';
+
+<RevealJS transition="slide">
+
+{/* ============================================ */}
+{/* COVER IMAGE */}
+{/* ============================================ */}
+
+<Slide>
+
+  <Img
+    src="/img/lectures/s09-user-research.webp"
+    prompt="Concept: 'Desire paths: the path people actually walk tells you more than the one you planned.' 8-bit lo-fi pixel art, retro game aesthetic, clean outlines, 16:9 landscape. A simple, uncluttered campus lawn seen from slightly above, sunny, drawn in cool teal and blue with green grass. There are exactly two doors: one on a building at the far LEFT edge and one on a building at the far RIGHT edge, both at the same height in the middle of the frame. Both paths start at the left door and end at the right door. PATH ONE is a neat paved path of gray stone that leaves the left door, swoops far down toward the bottom of the frame in a wide U-shaped detour, and comes back up to the right door; nobody is on it. PATH TWO is a worn dirt trail in warm amber and brown that runs in a perfectly straight horizontal line directly from the left door to the right door, across the grass, clearly the shortcut. Five small pixel students with backpacks are walking along the straight dirt trail. Inside the bowl of the U, in the lower middle, three pixel developers stand beside a rolled-out blueprint that shows the U-shaped path, one taking notes on a clipboard, all three looking up at the dirt trail with raised eyebrows, surprised but interested. Top banner reads 'S9: User Research & Product Thinking'. A tagline below the banner reads 'Watch Where They Walk.' Bottom text reads 'CS 4535: Software Design and Delivery'."
+    alt="Pixel art of a campus lawn with two doors, one on each side. A paved path between them takes a wide U-shaped detour and is empty. A worn dirt trail runs straight from one door to the other, and five students walk along it. Three developers beside a blueprint of the paved path watch the trail, taking notes. Tagline: Watch Where They Walk."
+  />
+
+<aside className="notes">
+**Session:** Wed Sep 30 · User Research & Product Thinking · 65 min
+
+**One spine: every team's plan rests on guesses about people, and today each team finds its riskiest guess and plans how to check it.** Two thirds of the session is teams working on their own project. The talking in the middle is short and is built from what the teams just wrote.
+
+**Structure. Work first, because the room fills slowly.** Students arrive over the first five to ten minutes, so nothing that everyone needs to hear happens before minute 15.
+- **Part 1 (~15 min, one slide).** The "Start Now" slide is up as people walk in. Teams open `user-research.md` in their team repo and list their users, the jobs those users are trying to get done, and their assumptions, marked evidence or guess. Late arrivals join their team.
+- **Discussion (~18 min, seven slides).** Title and objectives (1). Each team reads out its starred guess (4). Three short ideas, each introduced with a team's own example (7). Prototyping (2). The new study requirement and when to run it (4).
+- **Part 2 (~22 min, one slide).** Each team plans a five-person study of its starred guess, then swaps with its paired team for a five-minute critique.
+- **Close (~8 min, three slides).** From a finding to a ticket (2), picking a sprint objective (3), which Monday didn't reach, then Up Next.
+
+**That is about 63 of 65, and it's tight.** If the discussion runs long, shorten the three idea slides, not the requirement slide or Part 2. The slack goes to Part 2, which will want it.
+
+**Before class:**
+- Push `user-research.md` to the handout repo (`neu-cs4535/fa26-handout-team`) and make sure the sync PR reached all four team repos. If a team can't find the file, they merge the "Sync handout updates" PR and pull.
+- The swap pairs are Office Hours with Usability, and Paper Exams with Cloud Workspaces. The two research-heavy teams critique each other, and so do the two build-heavy ones.
+
+**How this connects to their sprint.** Office Hours and Usability both have a research spike on the menu (O7, interview protocol; U8, user-research protocol). Part 2 is a first draft of that spike, done a day before objectives are ratified. Paper Exams and Cloud Workspaces have no research spike, but they do have users, and the useful outcome for them is naming the assumption that would sink the project if it's wrong.
+
+**What this session leaves out on purpose:** personas, journey maps, survey design, formal synthesis methods such as affinity diagrams, and research ethics review. Synthesis matters once they have data, which is after the sprint.
+
+> **Transition:** The "Start Now" slide stays up until about minute 15.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* PART 1 (~15 min), up as people arrive        */}
+{/* ============================================ */}
+
+<Slide>
+
+## Start Now
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.6em', borderRadius: '8px', fontSize: '0.6em', textAlign: 'left'}}>
+
+**Sit with your team.** Open **`user-research.md`** in your team repo. If it isn't there, merge the "Sync handout updates" PR and pull.
+
+**Do Part 1 with whoever's here.** Commit and push as you go. About 15 minutes.
+
+1. Who does your project affect, and what are they trying to get done?
+2. What are you assuming about them? Mark each one **evidence** or **guess**.
+3. Put a star on the guess that would hurt most if it's wrong.
+
+</div>
+
+<div style={{fontSize: '0.5em', textAlign: 'left', marginTop: '0.8em'}}>
+
+**Due Thu Oct 1:** Team Workspace & Charter · Declare Your Target Band · pick your sprint objective from the [spike menu](https://neu-se.github.io/CS4535-Fall-2026/docs/assignments/async-sprint-menu)
+
+</div>
+
+<aside className="notes">
+**Put this up before anyone arrives and leave it up.** Say it out loud to each team as they settle, not to the room: open the file, start Part 1, get the late arrivals to add to it rather than start over.
+
+**Walk the room and read the assumption tables.** Two things to push on:
+- **"Evidence" that is really their own experience.** Being a student is evidence about students. It is not evidence about TAs with a full queue or instructors grading 200 exams. Ask: "Who told you that, and about which specific time?"
+- **Jobs written as features.** "Students want a live queue board" is a feature. "Students want to know whether it's worth walking over" is the job. Ask what the person is trying to get done.
+
+**Note one good example from each team as you go.** The discussion uses their examples, not the slide's.
+
+**Deadlines are on this slide because there's no separate reminders slide.** Mention them once at the start of the discussion.
+
+> **Transition:** At about minute 15, call the room together.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* DISCUSSION (~15 min)                         */}
+{/* ============================================ */}
+
+<Slide>
+
+# CS 4535: Software Design & Delivery
+
+## User Research & Product Thinking
+
+<p style={{marginTop: '2em', fontSize: '0.8em', color: '#666'}}>
+  &copy;2026 Jonathan Bell, CC-BY-SA
+</p>
+
+<aside className="notes">
+**One sentence of framing, then straight to the objectives.** Every team's plan is built on guesses about people they haven't watched. Today they found their riskiest guess; the rest of the session is about how to check it cheaply before they build on it.
+
+**Say the deadlines once:** charter and band declaration are due tomorrow, and sprint objectives get ratified in tomorrow's session.
+
+> **Transition:** Here's what you'll be able to do after today.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## Learning Objectives
+
+<p style={{fontSize: '0.85em', textAlign: 'left'}}>
+After this session, you'll be able to:
+</p>
+
+<ol style={{fontSize: '0.75em', textAlign: 'left'}}>
+  <li>Name the people your project affects, and tell which of your beliefs about them are evidence and which are guesses</li>
+  <li>Write study questions that ask about what people did, not what they would do</li>
+  <li>Plan a five-person study whose result could change your plan</li>
+</ol>
+
+<aside className="notes">
+**Objective 1 is Part 1, objective 3 is Part 2, and objective 2 is the discussion in between.**
+
+**Time.** Part 1 fifteen, discussion eighteen, Part 2 twenty-two, close eight. About 63 of 65.
+
+**If you're running long, cut the discussion, not Part 2.** The three idea slides can shrink to one sentence each, because the handout has the same rules written down.
+
+> **Transition:** Let's hear what you're guessing about.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## Your Riskiest Guess
+
+<div style={{backgroundColor: 'rgba(231,111,81,0.15)', padding: '0.6em', borderRadius: '8px', fontSize: '0.62em', textAlign: 'left', marginTop: '0.6em'}}>
+
+**One person per team, 30 seconds.**
+
+Read out your starred assumption. Is it evidence or a guess? If it's wrong, what happens to your plan?
+
+</div>
+
+<aside className="notes">
+**Four teams, two minutes, then a minute of reaction. Keep it to four.** Write the four guesses where the room can see them.
+
+**Listen for the three ideas that come next, and use their words to introduce each one.**
+- A guess backed by "we asked people and they said they'd love it" is the first idea: what people say versus what they do.
+- A guess backed by "we're students, we know" is the second idea: they are one kind of user.
+- A team that says "we'd need a big survey to know" sets up the third idea: five people is enough to start.
+
+**Don't correct a guess yet.** The point of reading them out is that everyone hears four plans resting on things nobody has checked.
+
+> **Transition:** Here's the first trap in how you'd check them.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## What They Say, What They Do
+
+<div style={{fontSize: '0.56em', textAlign: 'left', marginTop: '0.3em'}}>
+
+<div style={{backgroundColor: 'rgba(255,180,0,0.15)', padding: '0.5em', borderRadius: '8px', marginBottom: '0.4em'}}>
+
+**"Would you use a live queue board?"** Everyone says yes. It costs nothing to say yes.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.5em', borderRadius: '8px'}}>
+
+**"The last time you went to office hours, how did you decide when to go?"** Now you hear what they actually did, including the parts they'd never think to mention.
+
+</div>
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.6em', marginTop: '0.6em', fontWeight: 'bold', color: '#e76f51'}}>
+Ask about a specific time in the past, or watch them do the task. Opinions about the future are free.
+</p>
+
+<aside className="notes">
+**Open with a team's own example if you heard one.** If a team wrote "students want X" as evidence because somebody said so, use that.
+
+**The mechanism in one sentence:** a question about the future asks people to predict themselves, and people are bad at it and polite about it. A question about a specific past time asks them to remember, which is much more reliable, and it surfaces the workarounds they have stopped noticing.
+
+**Name the source if anybody wants more:** Rob Fitzpatrick's *The Mom Test* is a short book built entirely on this rule.
+
+**Two minutes, no more.**
+
+> **Transition:** The second trap is thinking you already know.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## You're One Kind of User
+
+<div style={{fontSize: '0.56em', textAlign: 'left', marginTop: '0.3em'}}>
+
+You've used Pawtograder as students. That makes you evidence about students.
+
+It doesn't make you evidence about:
+
+<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.4em', marginTop: '0.4em'}}>
+
+<div style={{backgroundColor: 'rgba(100,150,255,0.12)', padding: '0.45em', borderRadius: '8px'}}>
+
+A TA at 8pm with 40 people in the queue
+
+</div>
+
+<div style={{backgroundColor: 'rgba(100,150,255,0.12)', padding: '0.45em', borderRadius: '8px'}}>
+
+An instructor grading 200 scanned exams
+
+</div>
+
+<div style={{backgroundColor: 'rgba(100,150,255,0.12)', padding: '0.45em', borderRadius: '8px'}}>
+
+A student using a screen reader
+
+</div>
+
+<div style={{backgroundColor: 'rgba(100,150,255,0.12)', padding: '0.45em', borderRadius: '8px'}}>
+
+An intro student who has never opened a terminal
+
+</div>
+
+</div>
+
+</div>
+
+<aside className="notes">
+**Point at the Part 1 tables.** Most teams will have listed three or four roles and written confident assumptions about all of them, backed by their own experience as students. Ask each team which role on their list they have actually been.
+
+**The four boxes are one per team, in the same order as the swap pairs:** Office Hours, Paper Exams, Usability, Cloud Workspaces. Don't say so; let each team spot its own.
+
+**Some of them are TAs, and that counts.** A student who has TA'd for a course is evidence about TAs, for that course. Say so, because it tells a team who to ask first.
+
+**Two minutes.**
+
+> **Transition:** The last trap is thinking you need a big study to find out.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## Five Is Enough to Start
+
+<div style={{fontSize: '0.56em', textAlign: 'left', marginTop: '0.3em'}}>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.5em', borderRadius: '8px', marginBottom: '0.4em'}}>
+
+**Five people, in the right role, doing a real task.** Most of the problems that stop people show up within the first few sessions.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(100,150,255,0.12)', padding: '0.5em', borderRadius: '8px', marginBottom: '0.4em'}}>
+
+**Ask them to think out loud.** Then keep quiet and don't help. The moment you help is the moment you stop learning.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(120,120,120,0.10)', padding: '0.5em', borderRadius: '8px'}}>
+
+**You're finding problems, not measuring them.** Five people can't tell you what percentage of TAs will use a feature. They can tell you where it breaks.
+
+</div>
+
+</div>
+
+<aside className="notes">
+**The source, if asked:** Jakob Nielsen's 2000 article "Why You Only Need to Test with 5 Users". The argument is about usability problems in one design, and it says to run several small rounds rather than one big one. It is not a claim about surveys or statistics, and the third box is there so nobody leaves thinking it is.
+
+**The "don't help" rule is the one they'll break.** Every developer who watches someone struggle with their UI wants to point. Tell them it's normal, and that the struggle is the data.
+
+**Two minutes, then straight into Part 2.**
+
+> **Transition:** You don't need working code to run one.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## Study It Before You Build It
+
+<div style={{fontSize: '0.56em', textAlign: 'left', marginTop: '0.3em'}}>
+
+<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.4em'}}>
+
+<div style={{backgroundColor: 'rgba(255,180,0,0.15)', padding: '0.5em', borderRadius: '8px'}}>
+
+**Paper or whiteboard sketch.** Minutes to make. Good for "do they understand what this screen is for?"
+
+</div>
+
+<div style={{backgroundColor: 'rgba(100,150,255,0.12)', padding: '0.5em', borderRadius: '8px'}}>
+
+**Clickable mockup.** An hour or two. Good for "can they find it, and do they click where you expect?"
+
+</div>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.5em', borderRadius: '8px'}}>
+
+**A flagged build on staging.** Real data, real flow, hidden from everyone else. Good for "does it hold up in a real task?"
+
+</div>
+
+<div style={{backgroundColor: 'rgba(155,93,229,0.12)', padding: '0.5em', borderRadius: '8px'}}>
+
+**A person behind the curtain.** You do by hand what the software would do. Good for "is this worth automating at all?"
+
+</div>
+
+</div>
+
+</div>
+
+<p className="fragment" style={{fontSize: '0.58em', marginTop: '0.5em', fontWeight: 'bold', color: '#e76f51'}}>
+Use the cheapest prototype that can still prove your starred guess wrong.
+</p>
+
+<aside className="notes">
+**Two minutes, and tie each box to a team if you can.**
+- **Sketch:** Office Hours could sketch a queue status view on paper and ask a student what it tells them.
+- **Mockup:** Usability could mock a permissions screen and watch an instructor try to give a TA grading rights without solution-repo access.
+- **Flagged build:** every team already works behind course feature flags on staging, so this is nearly free once something exists.
+- **Person behind the curtain:** Paper Exams could hand-grade a few scans and present the result as if an LLM had suggested it, to see whether TAs trust a suggestion before anybody builds the provider layer. The name for this is a Wizard of Oz study.
+
+**The fragment is the rule.** A prototype only has to be real enough to test the one guess. Anything more is building the feature before you know whether it's the right one.
+
+> **Transition:** Which leads to when your team should run its study.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## Everyone Runs a Study. When Is Up to You.
+
+<div style={{fontSize: '0.54em', textAlign: 'left', marginTop: '0.2em'}}>
+
+**New Pass requirement:** a study of your project area with at least five real users, written up in your team repo by Checkpoint 3 (Dec 3).
+
+<div className="fragment" style={{backgroundColor: 'rgba(255,180,0,0.15)', padding: '0.45em', borderRadius: '8px', margin: '0.4em 0 0.3em'}}>
+
+**Early, as a sprint objective (Oct 2–13).** The study decides what you build. *Likely: Office Hours, Usability.*
+
+</div>
+
+<div className="fragment" style={{backgroundColor: 'rgba(100,150,255,0.12)', padding: '0.45em', borderRadius: '8px', marginBottom: '0.3em'}}>
+
+**Mid-project, on a prototype (Oct 14 – Nov 5).** You have a design and no code yet.
+
+</div>
+
+<div className="fragment" style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.45em', borderRadius: '8px'}}>
+
+**Late, on what you shipped (before Nov 18).** The study checks whether it worked. *Likely: Paper Exams, Cloud Workspaces.*
+
+</div>
+
+</div>
+
+<aside className="notes">
+**Say the requirement first and plainly, because it's new.** It's now in the Pass list in the syllabus, under LO6. Every student needs to have helped plan, run, or analyze it, which a team of three or four can share.
+
+**Why it's Pass and not optional:** LO6 is "decide from evidence about real users rather than assertion", and before today the only Pass item for it was shipping a user-visible change. Shipping without ever watching a user is exactly the assertion LO6 is about.
+
+**The three timings follow from what the study is for.**
+- **Early:** the study decides what to build. Office Hours and Usability both pitched a study before building, and O7 and U8 on the spike menu are protocols for exactly that. A team can run the first sessions inside the sprint if recruiting is approved in time.
+- **Mid:** a prototype test before committing to a design. Any team can do this.
+- **Late:** the study checks whether the change worked. Paper Exams and Cloud Workspaces are building infrastructure first, so their natural study is a real instructor grading real scans, or a real intro student opening a workspace, after the thing exists. Remind them that a late study needs a baseline, which means running the same tasks on today's system now.
+
+**Late is not "later, maybe".** Feature freeze is Nov 18, and a study that runs after that can't change anything.
+
+**Recruiting goes through you.** Say so, and say why: these are TAs and students in other courses.
+
+> **Transition:** Now plan yours.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* PART 2 (~22 min)                             */}
+{/* ============================================ */}
+
+<Slide>
+
+## Part 2: A Study That Could Prove You Wrong
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.6em', borderRadius: '8px', fontSize: '0.58em', textAlign: 'left'}}>
+
+**In `user-research.md`, about 17 minutes.** Plan a study of your starred guess:
+
+- What you want to learn, in one sentence
+- **When:** early, mid-project on a prototype, or late on what you shipped
+- **Who:** five people in the right role, and how you'd reach them
+- **Three or four tasks, or "the last time you..." questions**
+- What you'd watch for
+- **What result would change your plan**
+
+Don't contact anyone yet. Bring this plan to tomorrow's session.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(231,111,81,0.15)', padding: '0.5em', borderRadius: '8px', fontSize: '0.55em', textAlign: 'left', marginTop: '0.5em'}}>
+
+**Last 5 minutes: swap.** Office Hours with Usability, Paper Exams with Cloud Workspaces. Find one leading question and one assumption their study doesn't test.
+
+</div>
+
+<aside className="notes">
+**Put a visible timer up: 17 minutes, then 5 for the swap.**
+
+**Circulate and read the question list.** The most common problems, in order:
+- **Questions about the future.** "Would you use...", "How likely are you to..." Send them back to the first idea.
+- **Questions that describe the solution.** "Would a status board help you decide when to go?" has already told them the answer.
+- **No stopping rule.** A plan without a "what would change our plan" line will confirm whatever the team already believes. Ask them to write down the result that would make them change course before they collect anything.
+
+**Paper Exams and Cloud Workspaces may say their users are unreachable.** They aren't: you teach courses with instructors and TAs, and every student in this room has been an intro student. Help them name five real people.
+
+**For the swap, the reviewing team writes in the other team's file.** That leaves a record, and it forces a pull and a merge, which is fine practice.
+
+**Don't make them contact anyone.** Recruiting TAs and students from other courses goes through you, and the plans get ratified tomorrow along with sprint objectives.
+
+> **Transition:** One last thing: what to do with what you find.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* CLOSE (~5 min)                               */}
+{/* ============================================ */}
+
+<Slide>
+
+## From a Finding to a Ticket
+
+<div style={{fontSize: '0.58em', textAlign: 'left', marginTop: '0.3em'}}>
+
+| | |
+|---|---|
+| **What we saw** | One specific observation, not an opinion |
+| **Who, and how many** | "4 of 5 TAs" |
+| **What it cost them** | Time, errors, a workaround, giving up |
+| **The change we suggest** | |
+| **How we'd know it worked** | The same task, run again after the change |
+
+</div>
+
+<aside className="notes">
+**This is also at the bottom of the handout, so keep it to two minutes.**
+
+**The point of the format is the first two rows.** A ticket that says "users find the queue confusing" can't be acted on or checked. A ticket that says "4 of 5 TAs scrolled past the oldest request because the list sorts by name" can be fixed, and the fix can be tested by running the same task again.
+
+**Connect it to s08.** A claimable ticket needed a way to know it's done. For a research finding, that's the last row.
+
+> **Transition:** Before you go: your sprint objective.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## Pick Your Sprint Objective by Tomorrow
+
+<div style={{fontSize: '0.54em', textAlign: 'left', marginTop: '0.2em'}}>
+
+**One objective each, ratified by your team in tomorrow's session**, then written into section 8 of your charter. The sprint runs Fri Oct 2 to Tue Oct 13.
+
+<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.35em', margin: '0.4em 0'}}>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.4em', borderRadius: '8px'}}>
+
+[**Paper Exams**](https://neu-se.github.io/CS4535-Fall-2026/docs/assignments/async-sprint-menu#paper-exams): E1 to E9
+
+</div>
+
+<div style={{backgroundColor: 'rgba(100,150,255,0.14)', padding: '0.4em', borderRadius: '8px'}}>
+
+[**Cloud Workspaces**](https://neu-se.github.io/CS4535-Fall-2026/docs/assignments/async-sprint-menu#cloud-workspaces): W1 to W9
+
+</div>
+
+<div style={{backgroundColor: 'rgba(255,180,0,0.15)', padding: '0.4em', borderRadius: '8px'}}>
+
+[**Office Hours**](https://neu-se.github.io/CS4535-Fall-2026/docs/assignments/async-sprint-menu#office-hours): O1 to O9
+
+</div>
+
+<div style={{backgroundColor: 'rgba(155,93,229,0.12)', padding: '0.4em', borderRadius: '8px'}}>
+
+[**Usability, Accessibility & Permissions**](https://neu-se.github.io/CS4535-Fall-2026/docs/assignments/async-sprint-menu#usability-accessibility--permissions): U1 to U9
+
+</div>
+
+</div>
+
+- **One person per objective.** If two overlap, split them cleanly or pick one.
+- **The answer has to be able to change your plan.** If every answer leads to the same next step, pick another.
+- **Your own objective is fine** if your team agrees to it tomorrow.
+- **Today's study plan can be your objective.** O7 and U8 are research spikes, and Part 2 is a first draft of either.
+
+</div>
+
+<p style={{fontSize: '0.45em', textAlign: 'left', marginTop: '0.4em'}}>
+Deliverables and rubric: <a href="https://neu-se.github.io/CS4535-Fall-2026/docs/assignments/async-sprint">neu-se.github.io/CS4535-Fall-2026/docs/assignments/async-sprint</a>
+</p>
+
+<aside className="notes">
+**Monday ran out of time before this, so give it three full minutes.** Most teams haven't read the menu closely, and tomorrow is when objectives get ratified.
+
+**Walk the four rules, then say what to do tonight.** Each person reads their team's section of the menu, picks one objective, and checks that nobody else on the team picked an overlapping one. Tomorrow the team ratifies them and writes them into section 8 of the charter.
+
+**Point Paper Exams and Cloud Workspaces at the "change your plan" rule.** Their menus are mostly traces and reproductions, which is right, but a trace whose answer wouldn't change what they build first is a trace to skip.
+
+**If anybody asks what the artifact is:** one page in `notes/`, plus a link to whatever they made, due Tue Oct 13. The Async Sprint handout has the rubric.
+
+> **Transition:** Tomorrow, operations.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* UP NEXT */}
+{/* ============================================ */}
+
+<Slide>
+
+## Up Next
+
+<div style={{fontSize: '0.85em', textAlign: 'left'}}>
+
+**Thu Oct 1: Operations, IaC, Observability & Incident Response**
+
+Sprint objectives get ratified. Bring your study plan if your objective is research.
+
+</div>
+
+<div style={{fontSize: '0.75em', textAlign: 'left', marginTop: '1em'}}>
+
+**Due Thu Oct 1:**
+
+- **Team Workspace & Charter**
+- **Declare Your Target Band**
+- **Your sprint objective**, picked from the [spike menu](https://neu-se.github.io/CS4535-Fall-2026/docs/assignments/async-sprint-menu) and ratified in class
+- **Async Sprint** starts Fri Oct 2, runs through Tue Oct 13
+
+</div>
+
+<aside className="notes">
+Close on the transition, not the reminders. Students should leave with a starred guess and a plan to check it in their team repo.
+</aside>
+
+</Slide>
+
+</RevealJS>

@@ -193,6 +193,7 @@ All eight outcomes at minimum standard. This is the comprehensive band, and a st
 - Drill Zero triage log + all 3 game-day postmortems **(LO5)**
 - Your merged work carries tests where the change warrants them, and a flag when user-visible work is unfinished **(LO5)**
 - At least one user-visible change shipped in your team's project area **(LO6)**
+- A user study of your team's project area with at least five real users, which you helped plan, run, or analyze, and whose findings are written up in your team repo by Checkpoint 3 (Dec 3). It can study the current system, a prototype, or your shipped change **(LO6)**
 - Async sprint artifact committed; standup #1 posted and standup #2 delivered in the room on Oct 14 **(LO7)**
 - Reading presentation delivered with a co-presenter, pre-read posted 48h ahead, plus a substantive contribution in at least two of the three sessions **(LO8)**
 - Checkpoints 1–3 submitted
