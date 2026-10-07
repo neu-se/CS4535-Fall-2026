@@ -148,6 +148,8 @@ Reviewing is a great use of an agent. Point it at a subsystem you've never seen 
 
 What doesn't work is **pasting an agent's review as your review.** Two reasons, and the first is practical: it's obvious. Generated reviews comment on every file at the same depth, flag the same five generic things, and never say *"this contradicts what we decided in #841"*, because the agent doesn't know your team decided anything.
 
+The second reason is that you answer for every review you post. Whether you wrote it or an agent drafted it, a review counts only if you're ready to answer questions about it at a demo day: why you flagged what you flagged, and what you checked before approving. A finding you can't explain in the room isn't yours.
+
 The standard is a review only you could have written. You have the context an agent doesn't: the argument in Monday's clinic, the incident on Oct 22, the ticket you triaged in week one. Use it.
 
 ## Grading Rubric

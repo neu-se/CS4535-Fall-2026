@@ -1,0 +1,713 @@
+---
+sidebar_position: 12
+title: "Async Activity: Agents & Workflows"
+image: /img/lectures/s12-async-agents.webp
+---
+
+import RevealJS, { Slide } from '@site/src/components/RevealJS';
+import Img from '@site/src/components/Img';
+
+<RevealJS transition="slide">
+
+{/* ============================================ */}
+{/* COVER IMAGE */}
+{/* ============================================ */}
+
+<Slide>
+
+  <Img
+    src="/img/lectures/s12-async-agents.webp"
+    prompt="Concept: 'Stay within what you can judge.' 8-bit lo-fi pixel art, retro game aesthetic, clean outlines, 16:9 landscape. Split scene. On the LEFT, in warm amber and orange, a tireless little pixel robot at a desk has printed a towering, teetering stack of paper that reaches out of frame, and a worried pixel developer stands at its base holding a single sheet, unable to see the top. On the RIGHT, in cool teal and blue, the same robot hands a short, neat stack of pages to a calm pixel developer who reads it with a magnifying glass at a lamp-lit desk; a green checkmark floats above the stack. A terminal window glows on the right-hand desk. Top banner reads 'S12: Agents & Workflows'. Tagline under the banner reads 'Stay Within What You Can Judge'. Bottom text reads 'CS 4535: Software Design and Delivery'."
+    alt="Pixel art split scene. On the left, a robot has printed a paper stack too tall for a worried developer to read. On the right, the same robot hands a short stack to a developer reading it with a magnifying glass, under a green checkmark."
+  />
+
+<aside className="notes">
+**Session:** Wed Oct 7 · Async Activity: Agents & Workflows · class time, no meeting
+
+**This deck is self-paced.** It goes out in Discord on the morning of Oct 7 with the [handout](https://neu-se.github.io/CS4535-Fall-2026/docs/assignments/agents-activity). Students work through it on their own during class time. Jon is at OOPSLA/ISSTA.
+
+**One spine: stay within what you can judge.** Everyone does the same activity on a different part of the platform: the six-step workflow from CS 3100, with an agent analyzing a real flow while the student walks the same flow by hand. Class time covers steps 1 to 3. Steps 4 to 6 start the First Implementation Ticket, on the student's own schedule.
+
+**Arc:**
+- Why: issue to reviewed PR, #1050, and what you can judge (4 slides)
+- Setup: checklist, ways in, the permissions warning (3 slides)
+- Steps 1 to 3 in class, with the grading interface example (5 slides)
+- Steps 4 to 6 later, and keeping an agent running (3 slides)
+- What to hand in (1 slide)
+
+> **Transition:** Reminders first.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* REMINDERS */}
+{/* ============================================ */}
+
+<Slide>
+
+## Reminders
+
+<div style={{fontSize: '0.8em', textAlign: 'left'}}>
+
+- **TODAY:** your participation writeup and post, by **Fri Oct 9**
+- **DUE:** Async sprint artifact, in `notes/`, Tue Oct 13
+- **DUE:** Checkpoint 1 survey, Tue Oct 13
+- **Thu Oct 8:** team meeting 1, in class time
+
+</div>
+
+<aside className="notes">
+Deadlines only. Questions about the sprint go to your team channel or a clinic slot.
+
+> **Transition:** Now, today.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* TITLE */}
+{/* ============================================ */}
+
+<Slide>
+
+# CS 4535: Software Design & Delivery
+
+## Async Activity: Agents & Workflows
+
+<p style={{marginTop: '2em', fontSize: '0.8em', color: '#666'}}>
+  &copy;2026 Jonathan Bell, CC-BY-SA
+</p>
+
+<aside className="notes">
+**One sentence:** today you point an agent at a real flow in the platform, walk the same flow yourself, and decide which of its findings you'd stand behind.
+
+> **Transition:** Here's what you'll be able to do after today.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* LEARNING OBJECTIVES */}
+{/* ============================================ */}
+
+<Slide>
+
+## Learning Objectives
+
+<p style={{fontSize: '0.85em', textAlign: 'left'}}>
+After this session, you'll be able to:
+</p>
+
+<ol style={{fontSize: '0.7em', textAlign: 'left'}}>
+  <li>Work through the six-step workflow from CS 3100 on a real flow in the platform</li>
+  <li>Tell evidence from guesses in an agent's usability analysis</li>
+  <li>Size what you delegate to what you can judge, and scope the rest into a ticket</li>
+  <li>Keep an agent working unattended with <code>/goal</code> and <code>tmux</code></li>
+  <li>Review agent output with <code>/code-review</code>, and answer for a PR that an agent wrote</li>
+</ol>
+
+<aside className="notes">
+**Objectives 1 and 2 are today's class time.** Objectives 3 to 5 are where the First Implementation Ticket starts, whenever the student picks it up.
+
+> **Transition:** The workflow first.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* WHY: ISSUE TO REVIEWED PR                    */}
+{/* ============================================ */}
+
+<Slide>
+
+## Issue to Reviewed PR
+
+<div style={{fontSize: '0.6em', textAlign: 'left'}}>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.6em', borderRadius: '8px', marginBottom: '0.5em', textAlign: 'center', fontSize: '1.2em'}}>
+
+**Issue**, then **goal**, then the agent works, then **review**, then **merge**
+
+</div>
+
+The teams behind Cursor, Devin, Claude Code, Codex, and PostHog are all working toward automating this path. The tools will keep changing. The workflow is the same in all of them. Someone states the goal, an agent does the work, and a person reviews the result and answers for it.
+
+<div style={{backgroundColor: 'rgba(100,150,255,0.14)', padding: '0.5em', borderRadius: '8px', marginTop: '0.5em'}}>
+
+**Where the platform goes next.** Once the bug reporter in #1050 merges, an agent running in a sandbox can watch Sentry for bug reports and open fixes on its own. Every one of those fixes still needs a person to review it before it merges.
+
+</div>
+
+</div>
+
+<aside className="notes">
+**The more of this path is automated, the more the review step matters.** When an agent opens fixes on its own, the person who approves the merge is the one who answers for it.
+
+> **Transition:** So how much should you hand to an agent?
+</aside>
+
+</Slide>
+
+<Slide>
+
+## Delegate Only What You Can Review
+
+<div style={{fontSize: '0.56em', textAlign: 'left'}}>
+
+[**PR #1050**](https://github.com/pawtograder/platform/pull/1050): the bug reporter with redacted session replay. About **37,000 lines** in **297 files**, written by Jon's agent from Jon's design spec.
+
+<div style={{display: 'flex', gap: '0.8em', marginTop: '0.4em'}}>
+
+<div style={{flex: 1, backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.5em', borderRadius: '8px'}}>
+
+**Why Jon could delegate it.** Record-and-replay systems are his research area. He can judge whether the result is right.
+
+**What the agent did well.** Its "Needs a human" section lists what it couldn't verify, such as 92 privacy classifications it was unsure about.
+
+</div>
+
+<div style={{flex: 1, backgroundColor: 'rgba(231,111,81,0.15)', padding: '0.5em', borderRadius: '8px'}}>
+
+**Why it hasn't merged.** Jon hasn't reviewed it yet. Until someone does, nobody can vouch for it.
+
+**The review bot's answer:** "Review skipped: 291 files exceed the limit of 100."
+
+</div>
+
+</div>
+
+</div>
+
+<aside className="notes">
+**Be candid that this is Jon's PR and Jon's open debt.** The lesson is that writing code is no longer the slow part. Reviewing it is, and only someone who could have written the code can review it.
+
+**Course AI policy, same idea:** you're responsible for everything you ship, regardless of who or what wrote it.
+
+> **Transition:** Which raises the question of what you can judge.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## What You Can Judge
+
+<Img src="/img/agents-activity/judgement-curve.svg" alt="As distance from your expertise grows, what you can produce with AI stays high. What you can produce without AI falls off first, then your judgement of code, and your judgement of the product much later. Above the product judgement curve is work you can make but can't judge." style={{width: '82%'}} />
+
+<aside className="notes">
+**Read the graph left to right.** Near your own code, you can judge what you make. Moving away from your expertise, what you can produce with AI barely drops, but what you can judge does.
+
+**The orange zone is the problem.** You can make it, but you can't judge it, so someone else has to: your reviewers and maintainers. #1050's review bot giving up at 291 files is what that looks like. Expectations also rise to absorb the extra output.
+
+**There are two judgement curves, not one.** That's the hopeful part, and it's the next slide.
+
+> **Transition:** Your product judgement reaches much farther than your code judgement.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## Stay Within What You Can Judge
+
+<div style={{fontSize: '0.56em', textAlign: 'left'}}>
+
+<div style={{display: 'flex', gap: '0.8em'}}>
+
+<div style={{flex: 1, backgroundColor: 'rgba(27,175,122,0.13)', padding: '0.5em', borderRadius: '8px'}}>
+
+**Product judgement reaches far.** You're a user. You can see a user ID where a name belongs, or a tab that forgets where you were, without reading any code. Your team's `user-research.md` says whose jobs matter. So the agent's analysis can range widely.
+
+</div>
+
+<div style={{flex: 1, backgroundColor: 'rgba(42,120,214,0.13)', padding: '0.5em', borderRadius: '8px'}}>
+
+**Code judgement falls off sooner.** In a subsystem you've never read, you can't tell a correct change from a plausible one. So the PR has to be small enough to read line by line.
+
+</div>
+
+</div>
+
+<div style={{backgroundColor: 'rgba(231,111,81,0.15)', padding: '0.5em', borderRadius: '8px', marginTop: '0.5em'}}>
+
+**Don't make other people pay for your AI use.** If you hand people AI-generated text you haven't read, they do the reading for you. Read Christian Kästner's ["Stop externalizing the cost of your AI use to me"](https://thelastsoftwareengineer.substack.com/p/stop-externalizing-the-cost-of-your) before you post anything an agent wrote.
+
+</div>
+
+</div>
+
+<aside className="notes">
+**Two things follow for review.** "The tests pass" is pass-or-fail. Nobody has good measures yet for whether a change is minimal, keeps the code's design intact, or is easy to extend. Those are what your review checks, and a `/goal` evaluator doesn't.
+
+**And reviewers need layers.** "Please read this summary of my changes" is already too much. A short summary, the parts that matter to each audience, and underneath, the code and the agent's transcript. The grading interface report later in this deck is close to that.
+
+> **Transition:** What everyone does today.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* THE SIX STEPS                                */}
+{/* ============================================ */}
+
+<Slide>
+
+## Today: The Six-Step Workflow
+
+<div style={{fontSize: '0.5em', textAlign: 'left'}}>
+
+Everyone does the same activity, on a different part of the platform, using the [six-step workflow from CS 3100](https://neu-pdi.github.io/CS3100-Spring-2026/lecture-slides/l13-ai-coding-assistants) (Kam et al.).
+
+| Step | What you do | When |
+|---|---|---|
+| **1. Identify** | Pick a flow from your team's `user-research.md`, or an XL pool ticket. Claim it in the thread | Class, 5 min |
+| **2. Engage** | The agent analyzes the flow and takes screenshots. You walk the same flow by hand | Class, ~25 min |
+| **3. Evaluate** | Compare its report with your notes. Mark each finding evidence or guess | Class, 10 min |
+| **4. Calibrate** | Turn what holds up into an XL ticket, scoped into PRs you can review | When you start your ticket |
+| **5. Tweak** | `/goal` builds the first PR and leaves a demo running. You click through it | When you start your ticket |
+| **6. Finalize** | `/code-review` your own PR and write its description | When you start your ticket |
+
+</div>
+
+<p style={{fontSize: '0.55em', textAlign: 'left', marginTop: '0.5em'}}>
+<strong>Class time is steps 1 to 3.</strong> Steps 4 to 6 aren't due this week. They're where your project work and your First Implementation Ticket start.
+</p>
+
+<aside className="notes">
+**The six steps are Identify, Engage, Evaluate, Calibrate, Tweak, Finalize,** from Kam et al.'s study of how expert developers work with AI, which CS 3100 taught in L13 and Lab 6.
+
+**Steps 4 to 6 feed the First Implementation Ticket,** assigned Oct 15 and merged by Oct 29. Pick by Mon Oct 19. An own-project ticket needs its XL scope agreed with Jon on the issue by then.
+
+> **Transition:** Setup, which should already be done.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* SETUP                                        */}
+{/* ============================================ */}
+
+<Slide>
+
+## Setup (before Wednesday)
+
+<div style={{fontSize: '0.5em', textAlign: 'left'}}>
+
+1. Open your workspace at **work.ripley.cloud** and start `tmux new -s agent`
+2. `claude`, then `/login` with your NEU **premium** seat. No seat yet? [claude.northeastern.edu/claude-premium](https://claude.northeastern.edu/claude-premium/)
+3. Install `gh`, then `gh auth login` and `gh auth setup-git`
+4. Clone `pawtograder/platform`. Push branches **to the repo**, not a fork, so CI and the preview run
+5. `claude --dangerously-skip-permissions`, or auto mode if you're unsure (two slides ahead)
+6. Ask Claude to bring up the local stack from `AGENTS.md`, `npm run seed`, and leave a prod build on port 3000
+7. Forward ports 3000 and 54321 to your laptop, and log in as a seeded user
+
+</div>
+
+<p style={{fontSize: '0.48em', textAlign: 'left', marginTop: '0.5em', color: '#666'}}>
+<strong>Optional, if that was all easy:</strong> try <a href="https://neu-se.github.io/CS4535-Fall-2026/docs/local-dev#session-capture">Entire</a>, which records each agent session next to its commit. Tell us in your post whether it was worth it.
+</p>
+
+<aside className="notes">
+**Step 6 is the first delegation, and it's one students can review:** either they can log in and see the seeded class, or they can't.
+
+**Entire is optional this week.** If a student tries it, `entire status` has to show `neu-cs4535/fa26-entire-checkpoints`. The platform repo is public, and a misconfigured Entire pushes transcripts wherever you push code. Whether to ask everyone to use it is a class discussion.
+
+> **Transition:** There are several ways into the workspace.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## Ways Into Your Workspace
+
+<div style={{fontSize: '0.5em', textAlign: 'left'}}>
+
+| Way in | How |
+|---|---|
+| **Terminal in the browser** | The terminal button on your workspace page. Works from a phone browser too |
+| **VS Code in the browser** | The VS Code button on your workspace page, if it shows one |
+| **VS Code on your laptop** | The VS Code Desktop button. It forwards ports for you |
+| **SSH** | `coder config-ssh` once, then `ssh coder.<workspace>` |
+
+**Port forwarding** from your laptop, with the Coder CLI:
+
+```bash
+coder login https://work.ripley.cloud
+coder port-forward <workspace> --tcp 3000,54321
+```
+
+Then open **localhost:3000**. Forward both: your browser talks to Supabase on 54321 directly.
+
+</div>
+
+<aside className="notes">
+**Use whichever is comfortable, and switch any time.** Run Claude inside `tmux`, then attach from any of these with `tmux attach -t agent`. Jon checks on his agents through `tmux` over SSH from his phone.
+
+**Remote Control isn't available on NEU's Claude seats,** so `tmux` is how you check in from somewhere else.
+
+**Same port numbers matter:** the prod build has `http://localhost:3000` built in. With SSH: `ssh -L 3000:localhost:3000 -L 54321:localhost:54321 coder.<workspace>`.
+
+> **Transition:** Before you skip permissions, know what you're skipping.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## "Dangerously" Skip Permissions
+
+<div style={{fontSize: '0.52em', textAlign: 'left'}}>
+
+<div style={{backgroundColor: 'rgba(231,111,81,0.15)', padding: '0.5em', borderRadius: '8px', marginBottom: '0.4em'}}>
+
+**The flag runs every command without asking.** Your workspace is an isolated container you can rebuild, so the damage stays inside it. Don't use the flag on your laptop. **Your GitHub login leaves the container:** the agent can push, force-push, and comment on the public repo as you.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.5em', borderRadius: '8px', marginBottom: '0.4em'}}>
+
+**Unsure? Use auto mode.** Shift+Tab until the status line shows it. Routine actions run without asking, so `/goal` still works unattended, and a classifier blocks risky ones such as a force-push.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(100,150,255,0.14)', padding: '0.5em', borderRadius: '8px'}}>
+
+**Agents can go further than anyone planned.** In a July 2026 evaluation, over a thousand agents coordinated, tampered with their transcripts, and broke into Hugging Face's production systems. One [analysis](https://www.greaterwrong.com/posts/HsijShdRdAg5sPKnF/an-unexamined-cause-of-the-openai-hugging-face-hacking) blames a pass-or-fail score: "Once an agent's transcript guarantees failure, further misconduct *cannot make its score any worse*."
+
+</div>
+
+</div>
+
+<aside className="notes">
+**The connection to this activity:** a `/goal` condition is pass-or-fail too. An agent that can't make the tests pass honestly might weaken the tests instead. That's one more reason to read the diff.
+
+**The analysis is by Knox, Booth, and Christian.**
+
+> **Transition:** Step 1.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* STEPS 1-3 (CLASS TIME)                       */}
+{/* ============================================ */}
+
+<Slide>
+
+## Step 1: Identify
+
+<div style={{fontSize: '0.56em', textAlign: 'left'}}>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.5em', borderRadius: '8px', marginBottom: '0.4em'}}>
+
+**From your project.** Open your team's `user-research.md`. Pick a flow that serves one of the jobs in it, ideally one that touches your starred guess. Name the roles that use it, and **one concrete bug** in it.
+
+</div>
+
+<div style={{backgroundColor: 'rgba(100,150,255,0.14)', padding: '0.5em', borderRadius: '8px', marginBottom: '0.4em'}}>
+
+**Or from the pool.** If nothing in your area fits, claim a ticket marked **XL** in the `cs4535-first-ticket` pool. It names the bug and the flow for you.
+
+</div>
+
+**Claim it in the activity's Discord thread** first, e.g. "office hours, the TA's view of the queue." Two PRs that change the same screen in different ways waste both reviews.
+
+</div>
+
+<aside className="notes">
+**Why one concrete bug:** the agent's analysis is easier to check when you already know one thing it should find.
+
+**Collisions:** if someone already claimed the flow, pick a different role or flow, or agree on a split.
+
+> **Transition:** Step 2: hand it to the agent.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## Step 2: Engage
+
+<div style={{fontSize: '0.5em', textAlign: 'left'}}>
+
+<div style={{backgroundColor: 'rgba(120,120,120,0.10)', padding: '0.5em', borderRadius: '8px', marginBottom: '0.4em', fontFamily: 'monospace'}}>
+
+Analyze &lt;the flow&gt; in Pawtograder, from the point of view of &lt;roles&gt;. Use the seeded class and take screenshots of the key steps; save them in ~/analysis/. We need to improve usability, and fix at least this bug: &lt;the bug&gt;. Consider all the variants of the flow: &lt;variants&gt;. &lt;What makes the flow painful&gt;. Recommend changes, most important first. Don't change any code yet: we'll discuss the ticket scope for a PR first.
+
+</div>
+
+For a pool ticket, start with "Read issue #N and reproduce it."
+
+<div style={{backgroundColor: 'rgba(255,180,0,0.15)', padding: '0.5em', borderRadius: '8px', marginTop: '0.4em'}}>
+
+**It takes about 25 minutes. Don't wait for it.** Walk the same flow yourself, as each role, and write down what's slow, confusing, or broken **before you read anything the agent wrote**. Keep the list.
+
+</div>
+
+</div>
+
+<aside className="notes">
+**"Don't change any code yet" matters.** It makes the agent stop at a proposal, so step 4 can happen.
+
+**The student's own list is the point of the waiting time.** The reflection compares it with the agent's report, and that only works if the list was written first.
+
+> **Transition:** Here's what one of these reports looks like.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## Example: The Grading Interface Report
+
+<div style={{display: 'flex', gap: '0.8em', fontSize: '0.5em', textAlign: 'left', alignItems: 'flex-start'}}>
+
+<div style={{flex: 1}}>
+
+Jon's prompt asked about the grading interface and one bug: a grader's name shows as a UUID. [Read the report](https://neu-se.github.io/CS4535-Fall-2026/examples/grading-interface-review/index.html).
+
+- **It shows its evidence:** a screenshot and a `file:line` per finding
+- **It separates what it saw from what it read in code,** and lists its caveats
+- **It found more than it was asked to:** every other staff member sees no assignee at all
+- **It leaves product decisions to a person:** five questions to settle
+
+</div>
+
+<div style={{flex: 1}}>
+
+<Img src="/examples/grading-interface-review/img/05-bug-assigned-to-uuid.png" alt="The Review Task box shows Assigned to followed by a UUID instead of the grader's name" style={{width: '100%'}} />
+
+<p style={{fontSize: '0.85em', color: '#666', marginTop: '0.4em'}}>The bug, as the agent captured it. The report's other screenshots show what every other staff member sees: no assignee at all.</p>
+
+</div>
+
+</div>
+
+<aside className="notes">
+**This came back after about 25 minutes, with permissions bypassed.** It's a good report to practice evaluating because every claim in it is checkable.
+
+**The deeper finding:** the one-line fix only helps the person who already knows the answer, because the box only ever shows the viewer their own assignment.
+
+> **Transition:** Even a careful report needs checking.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## Step 3: Evaluate
+
+<div style={{fontSize: '0.5em', textAlign: 'left'}}>
+
+**Check each finding against the app, not the agent's description of it.** Then mark it **evidence** (you can see it) or **guess** (what people want or feel).
+
+| The report says | Check it by driving the app locally |
+|---|---|
+| The box shows a UUID | Log in as the grader. One click |
+| The two Complete buttons write different tables | Click each, then look in Supabase Studio. It came from reading code |
+| "Next" follows submission ID | With six seeded students, can this data even show the difference? |
+| A grader can complete someone else's review | Bug or feature? The agent can't know. (Feature: graders split rubric parts) |
+| The Survey tab is "the screen the grader actually wants" | A guess about graders. Ask a TA |
+
+</div>
+
+<p style={{fontSize: '0.5em', textAlign: 'left', marginTop: '0.4em'}}>
+Also ask what it didn't cover: keyboard only, a screen reader, a class of 200.
+</p>
+
+<aside className="notes">
+**The agent isn't a user,** not even one kind of user, the way the students are. Guesses go to the team's user study, not straight into code.
+
+**This is where participation ends.** Students who stop here write up their reflection.
+
+> **Transition:** Steps 4 to 6, whenever you start your ticket.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* STEPS 4-6 (LATER)                            */}
+{/* ============================================ */}
+
+<Slide>
+
+## Step 4: Calibrate (not due this week)
+
+<div style={{fontSize: '0.52em', textAlign: 'left'}}>
+
+Jon's whole reply to the grading report:
+
+<div style={{backgroundColor: 'rgba(120,120,120,0.10)', padding: '0.5em', borderRadius: '8px', margin: '0.3em 0 0.5em'}}>
+
+"Tier 1. Keep in URL. Completing moves you to next automatically. Next follows same as the dropdown menu and the 'next' button shown for review assignments. Graders can complete each other reviews (relevant when there are multiple assignments for different rubric parts of one submission)."
+
+</div>
+
+It picks a scope, answers each open question in a line, overrules the agent once, and uses something the agent couldn't have known.
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.5em', borderRadius: '8px', marginTop: '0.4em'}}>
+
+**Your turn:** write what held up as an issue, in the s09 finding-to-ticket format. Make it an **XL** ticket for your First Implementation Ticket, planned as a **stack of PRs you can each review**.
+
+</div>
+
+</div>
+
+<aside className="notes">
+**Tier 1 split for someone who isn't Jon:** (1) assignee name shown to every staff member, (2) tab kept in the URL, (3) one completion control that moves to the next submission, (4) Survey as the default tab on survey-only assignments. Each is its own PR.
+
+**XL means:** a pool ticket marked XL, or an own-project scope agreed with Jon on the issue by Mon Oct 19.
+
+> **Transition:** Then build the first PR in the stack.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## Steps 5 and 6: Tweak and Finalize
+
+<div style={{fontSize: '0.5em', textAlign: 'left'}}>
+
+<div style={{backgroundColor: 'rgba(120,120,120,0.10)', padding: '0.5em', borderRadius: '8px', marginBottom: '0.4em', fontFamily: 'monospace'}}>
+
+/goal implement &lt;the first PR in your stack&gt; on this branch, with tests, committing as you go. Then leave a prod build running on port 3000 with a seeded class that demonstrates the fix, and post the login email and password for each role in the chat.
+
+</div>
+
+**Tweak:** open the demo through your port forward and click through it as each role. When something's off, tell Claude what to change, or edit the code yourself.
+
+**Finalize:** open a draft PR, then:
+
+1. `/code-review` your own PR, scoped to code you can judge
+2. Decide which findings are real: reproduce it, point to the line, or throw it out
+3. Write the description yourself, including what you still can't vouch for
+
+</div>
+
+<aside className="notes">
+**Nothing merges to `staging` until Oct 14,** so drafts are fine.
+
+**When reviewing someone else's PR,** `/code-review --comment` posts as you. A review counts only if you're ready to answer questions about it at a demo day.
+
+**Bonus:** a walkthrough video, dragged into the PR description in the browser. We haven't automated that part yet.
+
+> **Transition:** How to keep an agent working while you're away.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## Keep It Running
+
+<div style={{display: 'flex', gap: '0.8em', fontSize: '0.5em', textAlign: 'left'}}>
+
+<div style={{flex: 1}}>
+
+| | |
+|---|---|
+| `/goal <what you want>` | Start |
+| `/goal` | Status: time, turns, tokens, latest reason |
+| `/goal clear` | Stop |
+| `tmux new -s agent` | Start a session |
+| `Ctrl-b` `d` | Detach. Claude keeps going |
+| `tmux attach -t agent` | Come back, from anywhere |
+
+</div>
+
+<div style={{flex: 1, backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.5em', borderRadius: '8px'}}>
+
+**Use the five-hour limit to your advantage.** Your usage limit resets every five hours, and the time you're away is free agent time. Before you stop for the day, start a big `/goal` in `tmux`. When you come back, you have a fresh limit and, with luck, finished work. Spend your time on reviewing it.
+
+</div>
+
+</div>
+
+<aside className="notes">
+**A goal pauses at the usage limit** and resumes when it resets.
+
+**Pick a goal you'll be able to review when you get back.** Same rule as everywhere else.
+
+**The workspace stays up for 14 days.** What should an agent be allowed to do with two weeks? That's open for discussion in the thread and in class on Oct 14.
+
+> **Transition:** What to hand in.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* SUBMISSION                                   */}
+{/* ============================================ */}
+
+<Slide>
+
+## What to Hand In (by Fri Oct 9)
+
+<div style={{fontSize: '0.52em', textAlign: 'left'}}>
+
+<div style={{backgroundColor: 'rgba(42,157,143,0.12)', padding: '0.5em', borderRadius: '8px', marginBottom: '0.4em'}}>
+
+**Participation:** commit to `notes/<handle>-agents/` in your Team Workspace repo: your `/export` transcript, the agent's report, your own list from step 2, and a one-page reflection **in your own words**:
+
+- Did the agent help, compared with your own walkthrough? Did it find things you missed, miss things you found, or mostly write down what you'd noticed but hadn't written down?
+- Which findings were evidence, and which were guesses?
+- What did it get wrong, and how did you find out?
+
+</div>
+
+Then post in the thread: your flow (or pool ticket), the bug, and links.
+
+<div style={{backgroundColor: 'rgba(100,150,255,0.14)', padding: '0.5em', borderRadius: '8px', marginTop: '0.4em'}}>
+
+**Steps 4 to 6** are graded as your [First Implementation Ticket](https://neu-se.github.io/CS4535-Fall-2026/docs/assignments/first-implementation-ticket): picked by Oct 19, merged and verified by Oct 29.
+
+</div>
+
+</div>
+
+<aside className="notes">
+**The reflection is the one thing students don't use AI for,** per the course AI policy.
+
+**Their own list is what makes the comparison honest.** Without it, the agent's report shapes what they think they noticed.
+
+> **Transition:** What's next.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* UP NEXT */}
+{/* ============================================ */}
+
+<Slide>
+
+## Up Next
+
+<div style={{fontSize: '0.85em', textAlign: 'left'}}>
+
+**Thu Oct 8, Async: Team Meeting 1 (no class)**
+
+Bring what your agent found to the meeting. Does it change your team's plan?
+
+</div>
+
+<div style={{fontSize: '0.75em', textAlign: 'left', marginTop: '1em'}}>
+
+**Before then:**
+
+- **Participation writeup**, due Fri Oct 9
+- **Async sprint artifact**, due Tue Oct 13
+- **Checkpoint 1 survey**, due Tue Oct 13
+
+</div>
+
+<aside className="notes">
+Close on the transition, not the reminders. Students should leave with an agent report, their own list, and a sense of which findings they'd stand behind.
+</aside>
+
+</Slide>
+
+</RevealJS>

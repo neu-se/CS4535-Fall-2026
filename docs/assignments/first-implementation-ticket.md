@@ -27,26 +27,26 @@ By completing this assignment, you will:
 
 ## Picking one
 
-Bigger than a single-file fix, much smaller than your project. Two tests that work:
+Steps 4 to 6 of the [Agents Activity](./agents-activity.md) on Oct 7 are a good way to start scoping this ticket. It has to be **XL**: either a pool ticket marked XL, or a ticket from your own project with a scope that's just as large, agreed with Jon on the issue by Mon Oct 19. Plan it as a stacked series of PRs that you can each review line by line. Two tests that work for each PR in the stack:
 
 - It touches more than one layer. A UI change and the query behind it. An edge function and the schema it reads. A CI workflow and the test it runs. If it lives in one file in one layer, it is too small for this.
 - You can say what "done" looks like in one sentence, and that sentence mentions a user. If you can't, you don't understand the ticket yet, which is fine on Oct 15 and a problem by Oct 19.
 
-Where to look: the **`cs4535-first-ticket` pool**, published Sep 17 and built by the class during [the ticket hunt](./ticket-hunt.md). You may not claim a ticket you filed yourself; reading code somebody else chose, and understanding a problem as somebody else described it, is the point.
+Where to look: the **`cs4535-first-ticket` pool**, published Sep 17 and built by the class during [the ticket hunt](./ticket-hunt.md). You may not claim a pool ticket you filed yourself; reading code somebody else chose, and understanding a problem as somebody else described it, is the point. A ticket you filed from your own Agents Activity analysis is the exception, because Jon agreed its scope with you.
 
-If nothing in the pool suits, the open issue list is fair game, as is something you tripped over while building column groups.
+If nothing in the pool suits, another open issue, or something you tripped over while building column groups, counts the same way a ticket from your own project does: if Jon agrees it's XL.
 
 ### Start from your spike
 
-You spent the async sprint investigating one thing in your team's area. That artifact is where this ticket should come from: you now know something about your project that you did not know on Oct 1, and the useful version of this assignment is shipping the change your own investigation says is worth making.
+You spent the async sprint investigating one thing in your team's area. That artifact, together with your Agents Activity analysis, is where this ticket should come from: you now know something about your project that you did not know on Oct 1, and the useful version of this assignment is shipping the change your own investigation says is worth making.
 
-Pick by Mon Oct 19. You have two weeks, Game Day 1 lands in the middle of them on Oct 22, and a ticket chosen on Oct 24 gets four working days. Four days is how you end up opening the PR at midnight on the 28th.
+Pick by Mon Oct 19, including getting an own-project scope agreed. You have two weeks, Game Day 1 lands in the middle of them on Oct 22, and a ticket chosen on Oct 24 gets four working days. Four days is how you end up opening the PR at midnight on the 28th.
 
 ## What end to end means
 
 The checklist below is not ceremony. Every line on it corresponds to something that has broken a deploy on this codebase.
 
-1. **A branch**, cut from current `main`, pushed either to `pawtograder/platform` itself or to your fork. Both get the full CI run, including the end-to-end tests, as long as you have write access to the platform. A branch in the repo also gets a preview deploy automatically; a fork PR gets one when someone adds the `preview` label. [Local Development](../local-dev.md) covers what CI does with your PR, along with the commands to run the same checks locally first.
+1. **A branch**, cut from current `staging`, pushed either to `pawtograder/platform` itself or to your fork. Both get the full CI run, including the end-to-end tests, as long as you have write access to the platform. A branch in the repo also gets a preview deploy automatically; a fork PR gets one when someone adds the `preview` label. [Local Development](../local-dev.md) covers what CI does with your PR, along with the commands to run the same checks locally first.
 2. **A PR description** that says what changed, why, and how you tested it. If a reader has to open the diff to find out what the PR does, the description isn't finished.
 3. **Tests where the change warrants them.** A bug fix gets a test that fails without the fix. That case is not negotiable, because it is the only proof you fixed the thing you think you fixed. Other changes should say in the PR what they test and what they deliberately don't.
 4. **CI green before you request review.** Asking somebody to review a red PR spends their attention on your build.

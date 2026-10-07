@@ -1,0 +1,246 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Grading Interface Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<style>
+:root{
+  --ground:#F6F7F5; --surface:#FFFFFF; --ink:#18211D; --muted:#56635D; --rule:#DCE1DD;
+  --accent:#1E6A4C; --accent-soft:#E3F0E9;
+  --bug:#B42318; --bug-soft:#FCEBE9; --warn:#8A5A00; --warn-soft:#FBF1DC; --info:#2A5C8A; --info-soft:#E6EEF6;
+  --code-bg:#EEF1EE;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --ground:#121715; --surface:#1A201D; --ink:#E4EAE6; --muted:#9AA7A0; --rule:#2E3833;
+    --accent:#6CC39C; --accent-soft:#1D3229;
+    --bug:#F28B80; --bug-soft:#3A1F1C; --warn:#E3B55A; --warn-soft:#352A14; --info:#8DB8E3; --info-soft:#1C2A38;
+    --code-bg:#232B27;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#121715; --surface:#1A201D; --ink:#E4EAE6; --muted:#9AA7A0; --rule:#2E3833;
+  --accent:#6CC39C; --accent-soft:#1D3229;
+  --bug:#F28B80; --bug-soft:#3A1F1C; --warn:#E3B55A; --warn-soft:#352A14; --info:#8DB8E3; --info-soft:#1C2A38;
+  --code-bg:#232B27;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font:16px/1.6 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;padding-inline:16px;padding-block:40px 80px}
+.wrap{max-width:1080px;margin:0 auto}
+.prose{max-width:720px}
+h1,h2,h3{text-wrap:balance;line-height:1.2;margin:0}
+h1{font-size:2.1rem;font-weight:700;letter-spacing:-.01em}
+h2{font-size:1.45rem;font-weight:600;margin-top:56px;padding-top:20px;border-top:1px solid var(--rule)}
+h3{font-size:1.1rem;font-weight:600;margin-top:32px}
+p{margin:12px 0}
+.eyebrow{font-size:.75rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);font-weight:600}
+.lede{font-size:1.1rem;color:var(--muted);max-width:720px}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;font-size:.86em;background:var(--code-bg);padding:1px 5px;border-radius:4px;overflow-wrap:anywhere}
+a{color:var(--accent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.meta{display:flex;flex-wrap:wrap;gap:8px 24px;font-size:.88rem;color:var(--muted);margin-top:16px}
+.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:28px}
+.summary div{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:14px 16px}
+.summary b{display:block;font-size:.95rem;margin-bottom:4px}
+.summary span{font-size:.9rem;color:var(--muted)}
+figure{margin:20px 0 8px;background:var(--surface);border:1px solid var(--rule);border-radius:8px;overflow:hidden}
+figure img{display:block;width:100%;height:auto;border-bottom:1px solid var(--rule)}
+figure.narrow{max-width:440px}
+figcaption{font-size:.88rem;color:var(--muted);padding:10px 14px}
+figcaption b{color:var(--ink);font-weight:600}
+.pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.pair figure{margin:12px 0 0}
+.tag{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:2px 8px;border-radius:999px;vertical-align:2px;margin-right:6px}
+.t-bug{background:var(--bug-soft);color:var(--bug)}
+.t-high{background:var(--warn-soft);color:var(--warn)}
+.t-med{background:var(--info-soft);color:var(--info)}
+.t-low{background:var(--code-bg);color:var(--muted)}
+.callout{background:var(--bug-soft);border-radius:8px;padding:14px 18px;margin:16px 0}
+.callout p{margin:6px 0}
+.tablewrap{overflow-x:auto;margin-top:16px;border:1px solid var(--rule);border-radius:8px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:.92rem}
+th,td{text-align:left;vertical-align:top;padding:10px 14px;border-bottom:1px solid var(--rule)}
+th{font-size:.75rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:600;background:var(--ground)}
+tr:last-child td{border-bottom:0}
+td:first-child{white-space:nowrap}
+ol.steps,ul.items{padding-left:22px;margin:12px 0}
+ol.steps li,ul.items li{margin:8px 0}
+.scope{display:grid;gap:16px;margin-top:16px}
+.tier{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:6px 20px 14px}
+.tier h3{margin-top:14px}
+.tier.must{border-color:var(--accent);box-shadow:inset 3px 0 0 var(--accent)}
+.q{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:12px 18px;margin:10px 0}
+.q b{display:block}
+.q p{margin:4px 0;color:var(--muted);font-size:.93rem}
+.small{font-size:.88rem;color:var(--muted)}
+</style>
+
+<div class="wrap">
+  <div class="eyebrow">Pawtograder · grading interface · usability review</div>
+  <h1>Grading 20 submissions in a row</h1>
+  <p class="lede">A walkthrough of the grader-facing submission view as it ships on <code>staging</code> (146759be). It covers three roles: a grader with assigned reviews, a grader with nothing assigned, and an instructor. It ends with a proposed scope for one larger PR.</p>
+  <div class="meta">
+    <span>Captured 2026-10-03 on a fresh local stack (433/433 migrations, production build)</span>
+    <span>Seeded: 6 students, 2 graders, 1 instructor; one code assignment and one survey-only (<code>no_submission</code>) assignment</span>
+  </div>
+
+  <div class="summary">
+    <div><b>1 confirmed bug</b><span>The Review Task box shows the assignee's profile UUID. Anyone else viewing the submission sees no assignee at all.</span></div>
+    <div><b>Tab is never remembered</b><span>"Next Incomplete" always opens Files, or Grade on survey-only assignments. Each submission costs at least one extra click.</span></div>
+    <div><b>Completing doesn't advance</b><span>There are two "Complete" buttons that write different records. Only one of them offers "Complete + Next", and part-scoped graders can't see that one.</span></div>
+    <div><b>Rubric starts below the fold</b><span>On a 1600×1000 screen, the "Grading Rubric" heading sits at about y=970. The grader scrolls on every submission.</span></div>
+  </div>
+
+  <h2>The bug: "Assigned to: &lt;uuid&gt;"</h2>
+  <div class="prose">
+    <figure class="narrow">
+      <img src="img/05-bug-assigned-to-uuid.png" alt="Review Task box reading 'Assigned to: faa75f9b-d160-43ae-90b4-a39b0f363c4a'" width="390" height="100">
+      <figcaption><b>Grader Gary's own review.</b> <code>layout.tsx:2175</code> renders <code>reviewAssignment.assignee_profile_id</code> directly.</figcaption>
+    </figure>
+    <p>Replacing the UUID with a name is a one-line change: <code>&lt;PersonName uid=… showAvatar={false} /&gt;</code>. That component is already imported in the file and already used by the review toolbar. The one-line fix only fixes the case where the line matters least, though:</p>
+    <ul class="items">
+      <li><b>Assigned grader.</b> The box only renders for the active review assignment, which <code>useMyReviewAssignments</code> filters to the viewer's own. So the name it shows is always the viewer's own.</li>
+      <li><b>Another grader, or an instructor.</b> The box doesn't render at all. If an instructor opens a link with someone else's <code>?review_assignment_id</code>, the param is stripped. Nothing on the page says the submission belongs to Gary (screenshot below).</li>
+      <li><b>Assignment dashboard.</b> The "Grader" column is <code>gradername</code>, which is <em>who completed</em> the review (<code>completerprofile.name</code> in the submissions view). It stays blank until the review is done. The dashboard has no column for who is <em>assigned</em>.</li>
+    </ul>
+    <p>The fix for all three: load every review assignment on the submission for staff viewers, and render a line like "Assigned to Gary Grader (you) · due Oct 5", "Assigned to Gary Grader · due Oct 5", or "Not assigned". The same source can drive an "Assigned grader" column on the dashboard.</p>
+  </div>
+  <div class="pair">
+    <figure>
+      <img src="img/17-unassigned-grader-on-someone-elses-assigned-submission.png" alt="Grader Grace viewing Alan Turing's submission with no assignee shown" width="1600" height="1000" loading="lazy">
+      <figcaption><b>Grace, with nothing assigned, opens Alan's submission.</b> It's assigned to Gary, but the page doesn't say so. She also gets a working "Complete Review" button.</figcaption>
+    </figure>
+    <figure>
+      <img src="img/14-unassigned-grader-assignment-landing.png" alt="Assignment dashboard with an empty Grader column for all six students" width="1600" height="1520" loading="lazy">
+      <figcaption><b>Assignment dashboard.</b> Five of the six submissions are assigned to Gary, yet the Grader column is empty because it shows the completer.</figcaption>
+    </figure>
+  </div>
+
+  <h2>Walkthrough: grader with assigned reviews</h2>
+  <div class="prose">
+    <p>This is the path Gary takes to grade his five assigned submissions. One of them is scoped to a single rubric part.</p>
+  </div>
+  <figure>
+    <img src="img/02-grader-assigned-to-me-table.png" alt="Grading assigned to me table listing five students" width="1600" height="1000" loading="lazy">
+    <figcaption><b>Entry: "Grading assigned to me".</b> Rows are sorted by due date. Each row is an <code>onClick</code>, not a link, so middle-click, open-in-new-tab and keyboard focus don't work. Clicking a row opens the submission root with <code>?review_assignment_id</code>.</figcaption>
+  </figure>
+  <figure>
+    <img src="img/03-grader-submission-default-tab.png" alt="Submission view defaulting to Autograder Detail with the rubric sidebar" width="1600" height="1000" loading="lazy">
+    <figcaption><b>Landing tab: Autograder Detail.</b> Graders default to Results when there is autograder output, otherwise Files. In the sidebar, the review task, score, actions, automated checks, active-rubric strip and descriptions toggle all come before the rubric. "Grading Rubric" starts at the bottom edge of the screen. The review due date appears twice before the rubric and a third time under it.</figcaption>
+  </figure>
+  <div class="pair">
+    <figure>
+      <img src="img/11-grader-complete-review-assignment-popover.png" alt="Complete Review Assignment popover listing missing required checks; a second Complete Review button sits in the sidebar" width="1600" height="1000" loading="lazy">
+      <figcaption><b>Two "Complete" buttons.</b> "Complete Review Assignment" (top) writes <code>review_assignments.completed_at</code>. "Complete Review" (sidebar) writes <code>submission_reviews.completed_at</code>. Only the sidebar button has "Complete + Next", and the sidebar button is hidden from graders whose assignment is scoped to rubric parts.</figcaption>
+    </figure>
+    <figure>
+      <img src="img/13-grader-after-next-incomplete-lands-on-files.png" alt="After Next Incomplete the grader is on the Files tab of the next submission" width="1600" height="1000" loading="lazy">
+      <figcaption><b>"Next Incomplete" from Autograder Detail lands on Files.</b> <code>useNextIncompleteReview</code> hard-codes <code>/files</code>, and so do the dropdown and selector in <code>assignment-grading-toolbar.tsx</code>. The order follows submission ID, not the order in the table the grader started from. There is no Previous.</figcaption>
+    </figure>
+  </div>
+  <div class="pair">
+    <figure>
+      <img src="img/06-grader-grade-tab.png" alt="Grade tab showing the student-facing ledger with 'Your grade hasn't been released yet'" width="1600" height="1380" loading="lazy">
+      <figcaption><b>The "Grade" tab is the student's view.</b> For a grader it reads "Your grade for this assignment hasn't been released yet", and there's no rubric to grade with. On survey-only assignments, the same tab label <em>is</em> the editable rubric.</figcaption>
+    </figure>
+    <figure>
+      <img src="img/08-grader-part-restricted-review.png" alt="Part-scoped review with View + Grade Full Rubric and no Submission Review Actions" width="1600" height="1000" loading="lazy">
+      <figcaption><b>Part-scoped review.</b> The banner names the part and offers "View + Grade Full Rubric". The sidebar has no "Complete Review", so these graders never get "Complete + Next".</figcaption>
+    </figure>
+  </div>
+
+  <h2>Walkthrough: survey-only assignment</h2>
+  <div class="prose">
+    <p>This walkthrough uses a <code>no_submission</code> assignment with a linked survey. The grader's job is to read each student's answers and fill in the rubric.</p>
+  </div>
+  <div class="pair">
+    <figure>
+      <img src="img/23-survey-submission-lands-on-grade.png" alt="Survey-only submission opens on Grade with a full-width rubric" width="1600" height="1000" loading="lazy">
+      <figcaption><b>Every submission opens on Grade.</b> The rubric fills the full width, with no survey answers in view.</figcaption>
+    </figure>
+    <figure>
+      <img src="img/24-survey-tab-content.png" alt="Survey tab showing the student's answers with the rubric sidebar on the right" width="1600" height="1000" loading="lazy">
+      <figcaption><b>The Survey tab has everything needed to grade:</b> the answers on the left and the editable rubric on the right. This is the screen the grader actually wants.</figcaption>
+    </figure>
+  </div>
+  <figure>
+    <img src="img/25-survey-next-submission-back-on-grade.png" alt="After Next Incomplete the grader is back on the Grade tab" width="1600" height="1000" loading="lazy">
+    <figcaption><b>"Next Incomplete" from the Survey tab returns to Grade</b> (<code>/submissions/32/grade?review_assignment_id=28</code>). With 20 students, that's 20 extra clicks plus the scroll back to the answers.</figcaption>
+  </figure>
+
+  <h2>Walkthrough: instructor</h2>
+  <figure>
+    <img src="img/19-instructor-reviews-page.png" alt="Instructor Grading Progress Dashboard listing Gary Grader with 5 pending" width="1600" height="1000" loading="lazy">
+    <figcaption><b>Grading Assignments page.</b> Per-TA counts are correct here (Gary: 5 pending). The submission page and the assignment dashboard don't connect back to this information.</figcaption>
+  </figure>
+
+  <h2>All findings</h2>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Severity</th><th>Finding</th><th>Where</th></tr></thead>
+      <tbody>
+        <tr><td><span class="tag t-bug">Bug</span></td><td>Shows "Assigned to: &lt;uuid&gt;". Other staff see no assignee at all.</td><td><code>submissions/[id]/layout.tsx:2175</code></td></tr>
+        <tr><td><span class="tag t-high">High</span></td><td>Cross-submission navigation always forces <code>/files</code> and drops the current tab. No tab memory exists.</td><td><code>hooks/useNextIncompleteReview.ts:51</code>, <code>assignment-grading-toolbar.tsx:167,296</code></td></tr>
+        <tr><td><span class="tag t-high">High</span></td><td>Survey-linked <code>no_submission</code> assignments default to Grade instead of Survey.</td><td><code>layout.tsx:2283</code>, <code>submissions/[id]/page.tsx:28</code></td></tr>
+        <tr><td><span class="tag t-high">High</span></td><td>Two completion buttons write different tables. "Complete + Next" only exists on the sidebar button, which part-scoped graders don't see. "Complete Review Assignment" stays on the page.</td><td><code>submission-review-toolbar.tsx:368–423, 430–619</code>; <code>layout.tsx:1825</code></td></tr>
+        <tr><td><span class="tag t-high">High</span></td><td>The rubric starts at the bottom of a 1000px-tall screen, under five blocks of status.</td><td><code>RubricView</code>, <code>layout.tsx:2165–2228</code></td></tr>
+        <tr><td><span class="tag t-med">Medium</span></td><td>For staff, "Grade" is the read-only student ledger with student-facing copy. On no-submission assignments, the same label is the editable rubric.</td><td><code>grade/page.tsx</code>, <code>layout.tsx:2624</code></td></tr>
+        <tr><td><span class="tag t-med">Medium</span></td><td>"Next" follows submission ID, while the table sorts by due date and the dropdown labels by name. There is no Previous.</td><td><code>useNextIncompleteReview.ts:40–43</code></td></tr>
+        <tr><td><span class="tag t-med">Medium</span></td><td>No keyboard shortcuts for next/previous submission, complete, or switching tabs. Today's j/k and n/p only work inside Files.</td><td><code>files/page.tsx:1665–1719</code></td></tr>
+        <tr><td><span class="tag t-med">Medium</span></td><td>The dashboard's "Grader" column shows the completer, so assignments are invisible until they're done.</td><td><code>assignmentsTable.tsx:727</code></td></tr>
+        <tr><td><span class="tag t-low">Low</span></td><td>The review due date appears 3 times (banner, Review Task box, rubric header).</td><td><code>layout.tsx:2176</code>, toolbar</td></tr>
+        <tr><td><span class="tag t-low">Low</span></td><td>"Assigned to me" rows aren't links (no new tab, no keyboard focus).</td><td><code>reviewAssignmentsTable.tsx:250</code></td></tr>
+        <tr><td><span class="tag t-low">Low</span></td><td>An auto-picked <code>review_assignment_id</code> adds a <code>router.replace</code> hop on each load.</td><td><code>useSubmissionReview.tsx:84–147</code></td></tr>
+        <tr><td><span class="tag t-low">Low · from code only</span></td><td>The <code>/course/…/grade/…</code> staff route has a footer link to a route that doesn't exist and a Survey tab with no page. I didn't exercise this in the browser.</td><td><code>grade/…/layout-client.tsx:13</code>, <code>layout.tsx:2606</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Proposed scope for the PR</h2>
+  <div class="prose"><p>This is grouped so the first tier can ship on its own if the PR gets too big. Every item in the first tier removes a per-submission click or fixes wrong information.</p></div>
+  <div class="scope">
+    <div class="tier must">
+      <h3>Tier 1: the 20-in-a-row loop</h3>
+      <ol class="steps">
+        <li><b>Assignee shown to every staff viewer, by name.</b> Show "(you)", another grader's name, or "Not assigned", with due date and status. Covers the bug and both flows (assigned and unassigned).</li>
+        <li><b>Remember the sub-tab per assignment.</b> Save the last tab used for that assignment, and have every cross-submission link use it: Next Incomplete, the dropdown, the selector, Complete + Next, and the table rows. If the next submission doesn't have that tab, fall back to the default.</li>
+        <li><b>Survey becomes the default tab</b> on <code>no_submission</code> assignments that have a linked survey, both for the first visit and for the canonicalizing redirect.</li>
+        <li><b>One completion control with "Complete + Next".</b> Available on the review-assignment button too, so part-scoped graders get it.</li>
+        <li><b>Previous / Next in the toolbar</b>, using the same order as the "Assigned to me" table.</li>
+      </ol>
+    </div>
+    <div class="tier">
+      <h3>Tier 2: less scrolling, clearer labels</h3>
+      <ul class="items">
+        <li>Move the rubric to the top of the sidebar. Put the review task in the toolbar banner (one due date), and collapse automated checks by default.</li>
+        <li>For staff, rename the Grade tab to something like "Student view", or make it the editable rubric, consistent with no-submission assignments.</li>
+        <li>Keyboard shortcuts: next/previous submission, complete + next, and switching tabs (<code>?</code> help already exists).</li>
+        <li>Add an "Assigned grader" column on the assignment dashboard, next to the completer column.</li>
+      </ul>
+    </div>
+    <div class="tier">
+      <h3>Out of scope: separate tickets</h3>
+      <ul class="items">
+        <li>Fix the staff <code>/grade/…</code> route's broken links and Survey tab.</li>
+        <li>Make "Assigned to me" rows real links.</li>
+        <li>Remove the <code>review_assignment_id</code> redirect hop.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Questions to settle before building</h2>
+  <div class="q"><b>Where should tab memory live?</b><p>Options are localStorage per (assignment, user), or the URL (carry the current sub-page on every navigation link). The URL is simpler and survives a shared link. localStorage also covers "come back tomorrow". I'd do both: the URL first, localStorage as the fallback.</p></div>
+  <div class="q"><b>Should the memory be per assignment or global?</b><p>Per assignment avoids carrying "Survey" onto a code assignment that has no survey tab. A global setting would be wrong on mixed assignment types.</p></div>
+  <div class="q"><b>Should completing auto-advance?</b><p>One option is to make "Complete + Next" the primary action and "Complete" secondary. The other is a per-user preference.</p></div>
+  <div class="q"><b>What should "Next" follow?</b><p>The table order (due date, then name), submission ID as today, or a fixed order chosen when grading starts?</p></div>
+  <div class="q"><b>Should an unassigned grader be able to complete someone else's review?</b><p>Today Grace gets a working "Complete Review" on Gary's submission. Should showing the assignee come with a warning, or with a restriction?</p></div>
+
+  <h2>Method and caveats</h2>
+  <div class="prose small">
+    <p>I took the screenshots with a temporary Playwright script against a production build on <code>localhost:3001</code>, with the e2e harness's visual-test masking turned off. The masking replaces the "Assigned to" line with a placeholder, which is why existing visual tests never caught the UUID. The survey-only submissions were seeded with the pre-baked submission helper, so they show autograder checks that a real manual submission wouldn't have. The Grade/Survey tab behaviour doesn't depend on that. Code references point to <code>staging</code> at 146759be.</p>
+  </div>
+</div>
+
+</body></html>

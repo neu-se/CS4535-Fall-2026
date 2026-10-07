@@ -298,12 +298,12 @@
         "2026-10-07"
       ],
       "topics": [
-        "Context and sub-agents",
-        "Directed goals",
-        "Human-as-coordinator pattern",
-        "GitHub + Obsidian as shared context"
+        "Issue to reviewed PR",
+        "Stay within what you can judge",
+        "The six-step workflow on a real flow",
+        "/goal and tmux for background agents"
       ],
-      "notes": "ASYNC — activity posted in Discord that morning; your post in its thread by Fri 10/9.",
+      "notes": "ASYNC — activity posted in Discord that morning; your post in its thread by Fri 10/9. Handout: /docs/assignments/agents-activity",
       "materials": {
         "slides": "/lecture-slides/s12-async-agents"
       }
@@ -731,6 +731,15 @@
       "dueDate": "2026-10-13",
       "notes": "Process requirements: cadence, standup #1 in Discord Mon 10/5 and standup #2 in the room Wed 10/14, two team meetings (Thu 10/8 in class time, and Fri 10/9 to Mon 10/12) with rotating written summaries. The individual objective is one investigation in your team's area, in one of five shapes (trace, spike, reproduction, research, practice); the artifact is a page plus a link, committed to notes/ in the Team Workspace repo. Candidate objectives per project: /docs/assignments/async-sprint-menu",
       "url": "/docs/assignments/async-sprint"
+    },
+    {
+      "id": "agents-activity",
+      "title": "Agents Activity: Issue to Reviewed PR",
+      "type": "homework",
+      "assignedDate": "2026-10-07",
+      "dueDate": "2026-10-09",
+      "notes": "Participation for the Oct 7 async session: the six-step workflow on a real flow, steps 1 to 3 in class time. Writeup (transcript, agent report, your own list, reflection) committed to notes/ by Fri 10/9. Steps 4 to 6 start the First Implementation Ticket.",
+      "url": "/docs/assignments/agents-activity"
     },
     {
       "id": "checkpoint-1",
