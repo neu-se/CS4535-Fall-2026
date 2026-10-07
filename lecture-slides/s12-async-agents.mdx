@@ -295,7 +295,7 @@ Everyone does the same activity, on a different part of the platform, using the 
 <div style={{fontSize: '0.5em', textAlign: 'left'}}>
 
 1. Open your workspace at **work.ripley.cloud** and start `tmux new -s agent`
-2. `claude`, then `/login` with your NEU **premium** seat. No seat yet? [claude.northeastern.edu/claude-premium](https://claude.northeastern.edu/claude-premium/)
+2. `claude`, then `/login` with your NEU **premium** seat. Not installed? `curl -fsSL https://claude.ai/install.sh | bash`. No seat yet? [claude.northeastern.edu/claude-premium](https://claude.northeastern.edu/claude-premium/)
 3. Install `gh`, then `gh auth login` and `gh auth setup-git`
 4. Clone `pawtograder/platform`. Push branches **to the repo**, not a fork, so CI and the preview run
 5. `claude --dangerously-skip-permissions`, or auto mode if you're unsure (two slides ahead)
@@ -303,6 +303,10 @@ Everyone does the same activity, on a different part of the platform, using the 
 7. Forward ports 3000 and 54321 to your laptop, and log in as a seeded user
 
 </div>
+
+<p style={{fontSize: '0.48em', textAlign: 'left', marginTop: '0.5em'}}>
+<strong>Workspace too fussy?</strong> Use your own machine with the <a href="https://neu-se.github.io/CS4535-Fall-2026/docs/local-dev">Local Development</a> guide and auto mode, and say what happened in your reflection.
+</p>
 
 <p style={{fontSize: '0.48em', textAlign: 'left', marginTop: '0.5em', color: '#666'}}>
 <strong>Optional, if that was all easy:</strong> try <a href="https://neu-se.github.io/CS4535-Fall-2026/docs/local-dev#session-capture">Entire</a>, which records each agent session next to its commit. Tell us in your post whether it was worth it.
@@ -615,6 +619,7 @@ It picks a scope, answers each open question in a line, overrules the agent once
 | `tmux new -s agent` | Start a session |
 | `Ctrl-b` `d` | Detach. Claude keeps going |
 | `tmux attach -t agent` | Come back, from anywhere |
+| `claude --resume` | Session gone? Pick up a past conversation |
 
 </div>
 
@@ -656,6 +661,7 @@ It picks a scope, answers each open question in a line, overrules the agent once
 - Is this the same process you used in the ticket hunt? How did it compare?
 - Which findings were evidence, and which were guesses?
 - What did it get wrong, and how did you find out?
+- Coder workspace or your own machine? What got in the way?
 
 </div>
 

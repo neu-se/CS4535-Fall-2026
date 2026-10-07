@@ -61,8 +61,10 @@ Everyone does the same activity, on a different part of the platform. You'll use
 
 Do this before Wednesday. Starting the local stack for the first time takes a while, and class time goes to steps 1 to 3.
 
+**If the Coder workspace is too fussy, use your own machine instead,** following [Local Development](../local-dev.md). On your own machine, use auto mode, not `--dangerously-skip-permissions` (see the warning below). Either way, say in your reflection what happened with the workspace, so we can fix it for everyone.
+
 1. Open your workspace at [work.ripley.cloud](https://work.ripley.cloud), in whichever way you're comfortable with (see [Ways into your workspace](#ways-into-your-workspace) below), and start `tmux` (see [Keep it running](#keep-it-running)). Everything else happens inside it.
-2. Log in to Claude Code with your NEU premium seat: run `claude`, then `/login`. If you don't have a premium seat yet, request one at [claude.northeastern.edu/claude-premium](https://claude.northeastern.edu/claude-premium/) before Wednesday.
+2. Log in to Claude Code with your NEU premium seat: run `claude`, then `/login`. If `claude` isn't found, install it first with `curl -fsSL https://claude.ai/install.sh | bash`, then open a new terminal. If you don't have a premium seat yet, request one at [claude.northeastern.edu/claude-premium](https://claude.northeastern.edu/claude-premium/) before Wednesday.
 3. Install the GitHub CLI ([cli.github.com](https://cli.github.com)), then run `gh auth login` and `gh auth setup-git`. The second command lets plain `git push` use the same login.
 4. Clone [`pawtograder/platform`](https://github.com/pawtograder/platform). Push branches to the repo itself, not to a fork, because only branches in the repo get the full CI run and a preview deploy without a maintainer approving it. If you can't push, ask to be added to `pawtograder-contributors`.
 5. Start Claude Code with `claude --dangerously-skip-permissions`, or in auto mode if you're unsure. Read the warning below first.
@@ -257,6 +259,8 @@ Your workspace stays up for 14 days, but a session in a closed browser tab doesn
 | `tmux attach -t agent` | Reattaches later, from any terminal |
 | `tmux ls` | Lists your sessions |
 
+If the `tmux` session is gone, for example because the workspace restarted, your conversation isn't. Run `claude --resume` to pick a past session from a list, or `claude --continue` to reopen the most recent one. An active `/goal` comes back with it.
+
 The goal pauses if you reach your Claude usage limit, and it resumes when the limit resets.
 
 **Use the usage limit to your advantage.** Your Claude seat has a usage limit that resets every five hours. Usage you don't spend before it resets is gone, so the time you're away is free agent time. Before you stop for the day, start a big `/goal` in `tmux`, such as the next PR in your stack. It works while you're in class or asleep, and when you come back you'll have a fresh usage limit and, with luck, finished work waiting. Then spend your own time on the part the agent can't do: reviewing what it made. Pick a goal you'll be able to review when you get back, the same rule as everywhere else in this activity.
@@ -282,7 +286,7 @@ This activity isn't a separate assignment. It counts in two places:
 
 | | What counts | Graded by |
 |---|---|---|
-| **Participation for Oct 7** | Your writeup showing that you tried this with Claude Code in your Coder workspace, through step 3 (see [Submission](#submission)) | Submitted by Fri Oct 9 |
+| **Participation for Oct 7** | Your writeup showing that you tried this with Claude Code, in your Coder workspace or on your own machine, through step 3 (see [Submission](#submission)) | Submitted by Fri Oct 9 |
 | **Your First Implementation Ticket** | The XL ticket you scoped in step 4, built as the stack of PRs you planned, merged, deployed, and verified by Oct 29 | The [First Implementation Ticket](./first-implementation-ticket.md) rubric |
 
 Steps 4 to 6 are where that ticket starts, on your own schedule. Nothing is due for them this week, and draft PRs can't merge until Oct 14 anyway.
@@ -300,6 +304,7 @@ By **Fri Oct 9**, commit these to `notes/<github-handle>-agents/` in your [Team 
   - Which recommendations were evidence and which were guesses?
   - What did the agent get wrong, and how did you find out?
   - What would you delegate differently next time?
+  - **Your setup:** did you use the Coder workspace or your own machine? What got in the way?
 
 Then post in the activity's Discord thread: your flow and role (or pool ticket), the bug you named, and links to your notes, plus your issue and draft PR if you made them.
 
