@@ -126,14 +126,13 @@ Some XL tickets are a **group** of related issues. Every issue in a group carrie
 | Instructors can see who has finished their self-review | #1052, #929 |
 | An extension grades work the student already pushed | #467 |
 | Manually graded assignments show Pending, not 0 | #994, #1057, #1001 |
-| The quick start gets a new contributor to a logged-in local app | #1004, #991 |
-| Tests and type checks tell the truth on a clean checkout | #1012, #993 |
+| A new contributor's clean checkout works: quick start, tests, and type checks | #1004, #991, #1012, #993 |
 | Course settings update live without the expensive database watcher | #1026 |
 | Survey answers are never lost | #977, #1005, #1013, #1002 |
 
-Claim a group by commenting on its first issue, and take all of its issues.
+To claim a group, post it in the Discord thread (see below), then comment on its first issue. You take all of its issues.
 
-Claim your flow and role, or your pool ticket, in the activity's Discord thread before you start, e.g. "office hours, the TA's view of the queue." If someone has already claimed it, pick a different role or a different flow, or agree with them on how you'll split it. Two PRs that change the same screen in different ways waste both reviews.
+**Claim it in the activity's Discord thread before you start,** whether it's a flow and role ("office hours, the TA's view of the queue") or a pool ticket ("XL: survey answers are never lost, #977"). Read the thread first, and keep an eye on it afterwards. **Don't take something someone else has already claimed.** Two people on the same issue, or two PRs that change the same screen in different ways, waste both people's work and both reviews. Pick a different flow, role, or ticket instead. The only exception is if the pool runs out, and then we'll say so in the thread. If your plans change, post that you're releasing your claim, so someone else can take it.
 
 ### Step 2: Engage
 
@@ -233,7 +232,7 @@ Each piece has to be something you can stand behind. Say which job in your `user
 
 ### Step 5: Tweak
 
-Start a goal for the first PR in your stack, on a branch named `agents/<handle>/<slug>` from `staging`:
+Start a goal for the first PR in your stack. First create a branch from `staging` named `agents/` plus your GitHub username plus a few words naming the change, e.g. `agents/jdoe/assignee-name-for-staff`. Then:
 
 > /goal implement `<the changes you picked>` on this branch, with tests, committing as you go. Then leave a prod build running on port 3000 with a seeded class that demonstrates the fix, and post the login email and password for each role in the chat.
 
@@ -297,6 +296,7 @@ By **Fri Oct 9**, commit these to `notes/<github-handle>-agents/` in your [Team 
 - **Your own list** from your walkthrough in step 2.
 - **Your reflection,** about a page, in your own words. Under the [AI policy](/syllabus#ai-policy), reflection is the one thing you don't use AI for. Answer these:
   - **Compared with your own walkthrough,** did the agent help? Put your list from step 2 next to its report. Did it find things you missed? Did it miss things you found? Or did it mostly write down things you'd noticed but hadn't taken the time to write down?
+  - **Compared with the ticket hunt:** is this the same process you used to find and file tickets in September, or a different one? How did it compare: what did the agent make easier, and what did it make harder or skip?
   - Which recommendations were evidence and which were guesses?
   - What did the agent get wrong, and how did you find out?
   - What would you delegate differently next time?
