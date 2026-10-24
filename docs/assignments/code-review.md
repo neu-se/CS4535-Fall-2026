@@ -83,7 +83,7 @@ Names that say what the thing is. No commented-out code. A comment wherever the 
 *`supabase/functions/autograder-create-regression-test-run/index.ts:88`, "TODO update the submission status to failed."* A handler that returns early and leaves a submission marked in-progress is a student staring at a spinner forever. The happy path is the easy half.
 
 **5. Would this failure be visible to anyone?**
-*Seeded by the CI failure that ran for twenty hours without logging a single error anywhere, which is also Game Day 1.* Does anything log, alert, or tell the user? A silent failure is strictly worse than a loud one, and with 117 `no-console` suppressions in the tree, "it prints something" is not the same as "somebody will see it."
+*Seeded by the CI failure that ran for twenty hours without logging a single error anywhere.* Does anything log, alert, or tell the user? A silent failure is strictly worse than a loud one, and with 117 `no-console` suppressions in the tree, "it prints something" is not the same as "somebody will see it."
 
 **6. Does the second delivery of this event do what the first one did?**
 *`supabase/functions/_shared/ChimeWrapper.ts:221`, "This could race for two users trying to join the meeting concurrently."* Realtime events and webhooks arrive twice. Ask what happens when they do.
@@ -196,5 +196,5 @@ Eleven approvals reading "LGTM." A review record that touches only your own team
 | First PRs to review: onboarding column groups | Thu Sep 17 |
 | Escalation: peer review first, instructor when the change touches RLS, a migration, auth or the autograder | Thu Sep 17 |
 | Weekly cadence expected from | Mon Sep 28 |
-| Review in the room: integration sessions | Wed Nov 4 · Mon Nov 16 |
+| Review in the room: integration sessions | Mon Nov 2 · Mon Nov 16 |
 | Last day reviews count | Mon Dec 7 |

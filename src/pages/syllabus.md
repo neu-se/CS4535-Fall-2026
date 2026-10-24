@@ -67,7 +67,7 @@ Teams own their project areas. The week settles into a rhythm:
 
 | Day | Format |
 |-----|--------|
-| **Monday** | Standup + clinic: a short all-hands standup, then teams sign up for consultation slots on specific blockers, architectural questions, or design tradeoffs. |
+| **Monday** | Standup + clinic. Each person posts a written standup in their team's Discord channel by 10:30, and the room is open for clinic: consultation slots on specific blockers, architectural questions, or design tradeoffs. Mondays with an integration session (Nov 2, Nov 16) or hardening triage (Nov 30) meet in the room. |
 | **Wednesday** | A tech talk, or two pairs teaching an assigned reading to the room. |
 | **Thursday** | Team work session, demo day, or game day. |
 
@@ -76,6 +76,7 @@ Punctuating that rhythm:
 - Demo days, roughly every two weeks. Live product, real environment, five minutes per team plus questions.
 - Two game days, which are incident drills, on Oct 22 and Nov 5.
 - Integration sessions, where cross-team coupling gets resolved in the room rather than over three days of messages.
+- A panel watch party on Nov 4: *Human in the Loop: Expectations in the Agentic AI Era*, streamed live in our room, with a worksheet.
 - The async sprint, Oct 2–13, while the instructor is at OOPSLA/ISSTA. Three sessions run asynchronously and you leave Oct 1 with a plan. Read the [participation](#participation) rules for what counts as attendance in that window.
 
 **Feature freeze is Nov 23.** Nothing new lands after it.
@@ -142,7 +143,7 @@ Illness, family emergency, religious observance, a job interview, a conference, 
 
 ### Async sessions
 
-Three sessions in October run asynchronously while the instructor is traveling. For those, participation *is* the written artifact, whether that's the standup post, the discussion thread, or the triage log. Not posting is an absence, marked the same as an empty chair.
+Three sessions in October run asynchronously while the instructor is traveling, and so do the Monday standups on Oct 26 and Nov 9. For those, participation *is* the written artifact, whether that's the standup post, the discussion thread, or the triage log. Not posting is an absence, marked the same as an empty chair. Clinic on those Mondays is optional: come if you have something to bring.
 
 ### If you can't meet the floor
 

@@ -1,0 +1,204 @@
+---
+sidebar_position: 22
+title: "Standup + Integration Session I"
+image: /img/lectures/s22-standup.png
+---
+
+import RevealJS, { Slide } from '@site/src/components/RevealJS';
+import Img from '@site/src/components/Img';
+
+<RevealJS transition="slide">
+
+{/* ============================================ */}
+{/* COVER IMAGE */}
+{/* ============================================ */}
+
+<Slide>
+
+  <Img
+    src="/img/lectures/s22-standup.png"
+    prompt="PLACEHOLDER concept: Six teams, one codebase, one set of migrations, everyone at the same table. 8-bit lo-fi pixel art, retro game aesthetic, clean outlines, teal and blue cool tones with warm amber accents, 16:9 landscape. Top banner reads Standup + Integration Session I. Bottom text reads CS 4535: Software Design and Delivery."
+    alt="TODO: describe the cover image once generated."
+  />
+
+<aside className="notes">
+**Session:** Mon Nov 2 · Standup + Integration Session I
+
+**Format.** In the room, everyone. Integration Session I moved here from Wed Nov 4, which is now the panel watch party. The standup is still a post in each team's Discord channel by 10:30, so the session time goes to integration.
+
+**Before 10:30:** read every post and every Code Review 1 review that has come in. List the cross-team collisions they find: two migrations touching the same table, flags that interact, PRs editing the same shared files. That list is today's agenda.
+
+**TODO: integration arc outline only.** Fill in the timings and content slides.
+
+> **Transition:** Reminders first, then the post, then integration.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* REMINDERS */}
+{/* ============================================ */}
+
+<Slide>
+
+## Reminders
+
+<div style={{fontSize: '0.8em', textAlign: 'left'}}>
+
+- **DUE 10:30 today:** Code Review 1 reviews, links submitted in Pawtograder
+- **DUE within 48 hours of each review:** your response to it
+- **DUE Wed Nov 4:** First Implementation Ticket merged and verified in your team's demo class
+- **DUE Thu Nov 5:** Checkpoint 2 survey
+
+</div>
+
+<aside className="notes">
+Keep this to 60 seconds. Deadlines and returning feedback only.
+
+> **Transition:** Now, today.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* TITLE */}
+{/* ============================================ */}
+
+<Slide>
+
+# CS 4535: Software Design & Delivery
+
+## Standup + Integration Session I
+
+<p style={{marginTop: '2em', fontSize: '0.8em', color: '#666'}}>
+  &copy;2026 Jonathan Bell, CC-BY-SA
+</p>
+
+<aside className="notes">
+**Why today.** Reviews were due at 10:30, and a cross-team review is where a collision with another team's work shows up first. The ticket has to merge and be verified by Wednesday, and Jon merges only after both reviews are addressed. When two first-ticket stacks conflict, both teams settle it in the room, before either stack merges.
+
+> **Transition:** Here's what you'll be able to do after today.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* LEARNING OBJECTIVES */}
+{/* ============================================ */}
+
+<Slide>
+
+## Learning Objectives
+
+<p style={{fontSize: '0.85em', textAlign: 'left'}}>
+After this session, you'll be able to:
+</p>
+
+<ol style={{fontSize: '0.75em', textAlign: 'left'}}>
+  <li>Write a standup post that's useful to someone who wasn't there</li>
+  <li>Name a blocker with a specific ask attached</li>
+  <li>Answer a code review with a change or with evidence</li>
+  <li>Identify where your team's work is coupled to another team's</li>
+  <li>Resolve a shared migration or interacting feature flag in the room</li>
+  <li>Agree on an interface contract and write it down</li>
+</ol>
+
+<aside className="notes">
+There's no talk. The first three objectives are met by the post and the review threads, the rest by the integration session.
+
+> **Transition:** The post.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* THE POST                                     */}
+{/* ============================================ */}
+
+<Slide>
+
+## The Post: by 10:30, in your team's channel
+
+<div style={{fontSize: '0.75em', textAlign: 'left'}}>
+
+- **Done:** what you finished since the last standup, with links
+- **Blocked:** what's in your way, and *the specific thing you need from someone*. "Nothing" is fine if it's true
+- **Next:** what you'll do before the next standup
+- **Today:** if an assigned review hasn't arrived, say so in your post
+
+The post is your attendance. "Still working on it" doesn't meet the format: a teammate who reads it should know what you did and what you need.
+
+</div>
+
+<aside className="notes">
+Same three questions as the async sprint. Scan every post for a missing review. Each one is either a reviewer to chase today or a PR that meets the requirement on the date it was ready.
+
+> **Transition:** Then integration.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* INTEGRATION                                  */}
+{/* ============================================ */}
+
+<Slide>
+
+## Integration Session I
+
+<div style={{fontSize: '0.75em', textAlign: 'left'}}>
+
+Everyone in the room, failures on screen:
+
+- **Shared schema:** two migrations touching the same table, or numbered to collide
+- **Flags:** one team's flag changes what another team's feature sees
+- **Shared files:** stacks that will conflict on merge or rebase
+
+Leave with each collision either resolved or assigned an owner and a date, written on the issue.
+
+</div>
+
+<aside className="notes">
+TODO: arc and timings. Start from the collision list built before class.
+
+**First priority: cross-team merge conflicts.** When a first-ticket stack can't merge by Wednesday because of another team's stack, get both owners at the same screen, agree on the merge order, and write it on both issues. A stack that has to shrink to merge gets its scoped-down version agreed on the issue now, in writing.
+
+**Second priority: review disagreements.** Review threads where the author disagrees with the reviewer come next. Disagreement backed by evidence is the goal, so help them make the argument without settling it for them.
+
+> **Transition:** Close on what's next.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* UP NEXT */}
+{/* ============================================ */}
+
+<Slide>
+
+## Up Next
+
+<div style={{fontSize: '0.85em', textAlign: 'left'}}>
+
+**Wed Nov 4: Panel Watch Party: Human in the Loop.** We watch the panel livestream together, in the room.
+
+Then **Thu Nov 5: Game Day 2: Pawtograder Is Slow**, in your own workspace, in the same format as Game Day 1.
+
+</div>
+
+<div style={{fontSize: '0.75em', textAlign: 'left', marginTop: '1em'}}>
+
+**Before then:**
+
+- Answer both reviews within 48 hours
+- First ticket merged and verified by Wednesday, with the post in your team channel
+
+</div>
+
+<aside className="notes">
+Close on the transition, not the reminders. Students should leave knowing what today was for.
+</aside>
+
+</Slide>
+
+</RevealJS>

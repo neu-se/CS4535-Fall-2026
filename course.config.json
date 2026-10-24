@@ -374,49 +374,50 @@
     },
     {
       "lectureId": "s17-presentations-1",
-      "title": "Reading Presentations 1: Code Review at Google · Flaky Tests",
+      "title": "Reading Presentations 1: Code Review at Google",
       "dates": [
         "2026-10-21"
       ],
       "topics": [
         "R4: Code review at Google (Sadowski et al., ICSE-SEIP 2018) · Abhinav, Aryan and Colin",
-        "R1: Flaky tests (Luo et al., FSE 2014) · Ali and Rishi"
+        "Pair-and-share: code review in 2026–2027, when an agent wrote the diff"
       ],
-      "notes": "A group of three and a pair, one reading each, from the 13-reading list in the reading-presentation handout. Pre-reads posted 48h ahead. Running order: R4 first, then R1, which leads into Game Day 1 the next day. 30 minutes each: 20 of talk, 10 of discussion.",
+      "notes": "R4 runs 30 minutes: 20 of talk, 10 of discussion. Then cross-team pairs work through what review is for when agents write much of the code, ending with the norms for Code Review 1 on Oct 29.",
       "materials": {
         "slides": "pathname:///reading-presentations/r4-code-review-at-google/slides.pdf"
       }
     },
     {
       "lectureId": "s18-game-day-1",
-      "title": "Game Day 1: The Queue Nobody Drains (telegraphed)",
+      "title": "Game Day 1: Wrong Grades",
       "dates": [
         "2026-10-22"
       ],
       "topics": [
         "Detect → triage → mitigate → postmortem",
-        "Grade edits that never reach the totals",
-        "A missing consumer looks like silence",
-        "Alerting on the age of the oldest message"
+        "Your own workspace: psql and the code, no dashboards",
+        "A failure that produces no error anywhere",
+        "An AI-drafted postmortem, critiqued on paper"
       ],
-      "notes": "Announced in advance; instructor narrates the response",
+      "notes": "Announced in advance. Every student gets their own Coder workspace running a local Pawtograder with an incident already in it; pairs, half the room agents-first. The postmortem is drafted with Claude Code and critiqued on paper in class, so nothing is due afterwards.",
       "materials": {
         "slides": "/lecture-slides/s18-game-day-1"
       }
     },
     {
       "lectureId": "s19-standup",
-      "title": "Standup + Clinic",
+      "title": "Written Standup + Clinic",
       "dates": [
         "2026-10-26"
       ],
       "topics": [
-        "All-hands standup",
-        "Team consultation slots"
+        "Written standup in your team's Discord channel by 10:30",
+        "Clinic in the room: bring a blocker or book a slot"
       ],
       "materials": {
         "slides": "/lecture-slides/s19-standup"
-      }
+      },
+      "notes": "Standup is a Discord post; attendance = your post by 10:30. Clinic is optional. Your team's GitHub Project board is linked in the post."
     },
     {
       "lectureId": "s20-presentations-2",
@@ -446,64 +447,70 @@
     },
     {
       "lectureId": "s22-standup",
-      "title": "Standup + Clinic",
+      "title": "Standup + Integration Session I",
       "dates": [
         "2026-11-02"
       ],
       "topics": [
-        "All-hands standup",
-        "Team consultation slots"
-      ],
-      "materials": {
-        "slides": "/lecture-slides/s22-standup"
-      }
-    },
-    {
-      "lectureId": "s23-integration-1",
-      "title": "Integration Session I: Cross-Team Technical Integration",
-      "dates": [
-        "2026-11-04"
-      ],
-      "topics": [
+        "Written standup in your team's Discord channel by 10:30",
         "Shared schema and migration collisions",
         "Flag interactions across teams",
         "Merge and rebase conflicts on shared files",
         "Everyone in the room, failures on screen"
       ],
-      "notes": "Coupled work — the counterpart to the async sprint. Co-presence is the point.",
       "materials": {
-        "slides": "/lecture-slides/s23-integration-1"
+        "slides": "/lecture-slides/s22-standup"
+      },
+      "notes": "In the room. Moved from Wed 11/4 for the panel watch party. Code Review 1 is due at 10:30, so the cross-team conflicts those reviews find are worked through in the room the same morning. The standup is still a Discord post by 10:30."
+    },
+    {
+      "lectureId": "s23-panel-watch",
+      "title": "Panel Watch Party: Human in the Loop",
+      "dates": [
+        "2026-11-04"
+      ],
+      "topics": [
+        "Livestream of the panel \"Human in the Loop: Expectations in the Agentic AI Era\" (10:30–11:30, Snell 160)",
+        "Panelists: Jay Aslam (Northeastern), Drew Glaser (MathWorks), Dan Mantoni (Analog Devices), Alexander Wyglinski (WPI)",
+        "Which fundamentals matter more when an AI system writes the first draft",
+        "Worksheet, completed during the panel"
+      ],
+      "notes": "We watch the livestream together in Behrakis 030. The panel ends at 11:30, five minutes before class does.",
+      "materials": {
+        "slides": "/lecture-slides/s23-panel-watch"
       }
     },
     {
       "lectureId": "s24-game-day-2",
-      "title": "Game Day 2: The Dashboard Lies",
+      "title": "Game Day 2: Pawtograder Is Slow",
       "dates": [
         "2026-11-05"
       ],
       "topics": [
-        "Pods dying while monitoring stays green",
-        "Broken observability path",
-        "Write the alert that should have existed"
+        "A performance incident with no errors",
+        "Finding the slow query from inside the database",
+        "Fix it, then prove the fix with a measurement",
+        "An AI-drafted postmortem, critiqued on paper"
       ],
-      "notes": "Fault injected into each team's own demo class · checkpoint 2",
+      "notes": "Same format as Game Day 1: own Coder workspace, pairs, postmortem drafted with AI and critiqued on paper in class · Checkpoint 2 due tonight",
       "materials": {
         "slides": "/lecture-slides/s24-game-day-2"
       }
     },
     {
       "lectureId": "s25-standup",
-      "title": "Standup + Clinic",
+      "title": "Written Standup + Clinic",
       "dates": [
         "2026-11-09"
       ],
       "topics": [
-        "All-hands standup",
-        "Team consultation slots"
+        "Written standup in your team's Discord channel by 10:30",
+        "Clinic in the room: bring a blocker or book a slot"
       ],
       "materials": {
         "slides": "/lecture-slides/s25-standup"
-      }
+      },
+      "notes": "Standup is a Discord post; attendance = your post by 10:30. Clinic is optional."
     },
     {
       "lectureId": "s26-demo-day-3",
@@ -752,7 +759,7 @@
       "type": "homework",
       "assignedDate": "2026-10-15",
       "dueDate": "2026-11-04",
-      "notes": "Assigned at Demo Day 1. Default is a ticket from your own project; an XL pool ticket claimed in the Agents Activity carries over. Scope agreed by Mon 10/19. Review-ready by Thu 10/29 and demoed from the preview deploy at Demo Day 2. Reviewed through Code Review 1, merged by Jon, and verified in your team's demo class by Wed 11/4.",
+      "notes": "Assigned at Demo Day 1. Default is a ticket from your own project; an XL pool ticket claimed in the Agents Activity carries over. Scope agreed by Mon 10/19. One owner per ticket: combining related small tickets is fine, a team merger is not. Review-ready by Thu 10/29 and demoed from the preview deploy at Demo Day 2. Reviewed through Code Review 1, merged by Jon, and verified in your team's demo class by Wed 11/4.",
       "url": "/docs/assignments/first-implementation-ticket"
     },
     {
@@ -812,8 +819,9 @@
       "title": "Game Day Postmortems (2)",
       "type": "project",
       "assignedDate": "2026-10-22",
-      "dueDate": "2026-12-03",
-      "notes": "Two postmortems, one for Game Day 1 (Oct 22) and one for Game Day 2 (Nov 5), each due within 48h of its game day. Each postmortem names an action each team member took during the response."
+      "dueDate": "2026-11-05",
+      "notes": "Done in class at each game day (Oct 22, Nov 5): a paper worksheet before and after an AI-drafted postmortem. Nothing is due afterwards. Each postmortem names an action you took during the response.",
+      "url": "/docs/assignments/game-day-postmortems"
     },
     {
       "id": "checkpoint-3",
