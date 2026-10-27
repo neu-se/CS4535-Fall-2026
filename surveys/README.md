@@ -12,6 +12,9 @@ under version control alongside the handout that describes them.
 | `band-declaration.survey.json` | [Declaring a target band](../src/pages/syllabus.md#declaring-a-target-band) | Mon Sep 28 | Thu Oct 1, 23:59 ET; resubmit through Thu Dec 3 |
 | `checkpoint-1.survey.json` | [Checkpoints](../docs/assignments/checkpoints.md) | Thu Oct 1 | Tue Oct 13, 23:59 ET |
 | `checkpoint-2.survey.json` | [Checkpoints](../docs/assignments/checkpoints.md) | Wed Oct 14 | Thu Nov 5, 23:59 ET |
+| `first-ticket.survey.json` | [First Implementation Ticket](../docs/assignments/first-implementation-ticket.md) | Mon Oct 19 | Mon Oct 19, 23:59 ET |
+| `first-ticket-review-ready.survey.json` | [First Implementation Ticket](../docs/assignments/first-implementation-ticket.md) | Mon Oct 26 | Thu Oct 29, 10:30 ET |
+| `code-review-1.survey.json` | [Code Review 1](../docs/assignments/code-review.md#code-review-1) | Thu Oct 29 | Mon Nov 2, 10:30 ET |
 
 The first three were checked against `survey-core` 3.0.3: the JSON loads, every declared question type
 survives the round trip, all `visibleIf` and validator expressions parse, and the conditionals and

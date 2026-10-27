@@ -1,0 +1,442 @@
+# Team Workspace & Charter: grading rubric
+#
+# Import:  pawtograder rubrics import -c 636 -a team -f rubrics/team-charter.rubric.yml --dry-run
+# then re-run without --dry-run. Once comments exist, export the live rubric first and copy
+# these names and descriptions onto it, so the check ids survive (see README.md).
+#
+# Every name and description below is shown to students. Grader instructions live here only.
+#
+# Grading:
+# - Status is the only scored part, and the assignment is worth 1 point. Pick exactly one check.
+#   Accepted needs all four Expectations Met. "Accepted, revise by Oct 13" is for a real draft
+#   with gaps, and it keeps the point. Not yet is for sections that are missing, empty, or
+#   deferred, and it needs a comment naming them.
+# - Expectations: apply Met or Needs work on each of the four criteria. Needs work on Complete,
+#   Specific, or Shared needs a comment. No points.
+# - Notes: tick what applies, with a comment where the check requires one. Students see only the
+#   ticked checks. "Worth keeping" is for strengths.
+# - Write the explanation of what to revise in the overall comment. The revise check points
+#   students there.
+# - Shared: merge commits made through the GitHub UI don't count on their own.
+#
+# Ordinals and null-valued properties are omitted for the reasons given in README.md.
+
+name: Team Workspace & Charter
+description: >-
+  Your charter isn't banded, but it's required. This review says whether it's on track and what to change.
+  Post section 8 and both meeting bookings by Mon Oct 5, and everything else with your sprint artifacts
+  by Tue Oct 13. We reread the charter at Checkpoint 1 on Oct 14.
+cap_score_to_assignment_points: true
+is_private: false
+review_round: grading-review
+parts:
+- name: Status
+  description: >-
+    Whether your charter is on track to meet the requirement. Status is the only part with points.
+  criteria:
+  - name: Status
+    description: >-
+      Accepted means the charter meets all four expectations below. Accepted, revise by Oct 13 means
+      it's a real draft with gaps to fix. Not yet means one or more sections are missing, empty, or
+      deferred.
+    total_points: 1
+    is_additive: true
+    is_deduction_only: false
+    min_checks_per_submission: 1
+    max_checks_per_submission: 1
+    checks:
+    - name: Accepted
+      description: >-
+        Your charter meets all four expectations. Keep it current, and when you change a rule, say why
+        in the commit message.
+      points: 1
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: always
+    - name: Accepted, revise by Oct 13
+      description: >-
+        Your charter is a real draft that needs revision. The overall comment says what to revise and
+        by when: section 8 and both meeting bookings by Mon Oct 5, and everything else by Tue Oct 13
+        with your sprint artifacts. We reread it at Checkpoint 1, and an unrevised draft drops to Not
+        yet.
+      points: 1
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: always
+    - name: Not yet
+      description: >-
+        One or more sections are missing, empty, or deferred, and the comment names them. Post section
+        8 by Mon Oct 5, and the rest by Tue Oct 13 with your sprint artifacts.
+      points: 0
+      is_annotation: false
+      is_comment_required: true
+      is_required: false
+      student_visibility: always
+- name: Expectations
+  description: >-
+    The four expectations from the handout's grading table. Each one says Met or Needs work, and a Needs
+    work comes with what to fix. These carry no points.
+  criteria:
+  - name: Complete
+    description: >-
+      All eight sections are filled in. Section 2 ends with a first milestone and a date. Section 8
+      has one objective per person, each with its shape, what that person will be able to explain afterward,
+      and the question it answers.
+    total_points: 0
+    is_additive: true
+    is_deduction_only: false
+    min_checks_per_submission: 1
+    max_checks_per_submission: 1
+    checks:
+    - name: Met
+      description: >-
+        Every section is filled in, with a dated milestone and one objective per person.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: always
+    - name: Needs work
+      description: The comment names what's missing.
+      points: 0
+      is_annotation: false
+      is_comment_required: true
+      is_required: false
+      student_visibility: always
+  - name: Specific
+    description: >-
+      Someone outside your team could tell whether each rule in sections 3, 5, and 7 was followed. Section
+      3 says where a decision counts as made and how fast you answer each other. Section 5 says what
+      happens on a split. Each situation in section 7 says who acts first (a name, a role, or "the other
+      two"), by when, and when it comes to clinic.
+    total_points: 0
+    is_additive: true
+    is_deduction_only: false
+    min_checks_per_submission: 1
+    max_checks_per_submission: 1
+    checks:
+    - name: Met
+      description: >-
+        Someone outside your team could check every rule in sections 3, 5, and 7.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: always
+    - name: Needs work
+      description: >-
+        At least one rule couldn't settle an argument yet. The comment names the rules that couldn't.
+      points: 0
+      is_annotation: false
+      is_comment_required: true
+      is_required: false
+      student_visibility: always
+  - name: Booked
+    description: >-
+      Both sprint meetings have a date, a time, and a place or link, each with a named summary author,
+      and the author rotates. Meeting 1 can be any time up to Thu Oct 8, when class time is set aside
+      for it. Meeting 2 is between Fri Oct 9 and Tue Oct 13, so you can review what each person found
+      before the artifacts are due. There's also a weekly slot for after the sprint.
+    total_points: 0
+    is_additive: true
+    is_deduction_only: false
+    min_checks_per_submission: 1
+    max_checks_per_submission: 1
+    checks:
+    - name: Met
+      description: >-
+        Both meetings are booked, the second between Oct 9 and Oct 13, each with an author, plus a weekly
+        slot.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: always
+    - name: Needs work
+      description: >-
+        The comment names what's missing: a meeting, an author, the weekly slot, or a meeting 2 between
+        Oct 9 and Oct 13.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: always
+  - name: Shared
+    description: >-
+      Every teammate has at least one commit to charter.md. Merging someone else's pull request in the
+      GitHub UI doesn't count on its own.
+    total_points: 0
+    is_additive: true
+    is_deduction_only: false
+    min_checks_per_submission: 1
+    max_checks_per_submission: 1
+    checks:
+    - name: Met
+      description: Every teammate has a commit to charter.md.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: always
+    - name: Needs work
+      description: The comment names who doesn't have one yet.
+      points: 0
+      is_annotation: false
+      is_comment_required: true
+      is_required: false
+      student_visibility: always
+- name: Notes
+  description: >-
+    Specific things we noticed in your charter: what to fix, and what's working. These carry no points.
+  criteria:
+  - name: Team and goal (sections 1, 2)
+    description: 'Sections 1 and 2: who''s on the team and what you''re shipping.'
+    total_points: 0
+    is_additive: true
+    is_deduction_only: false
+    checks:
+    - name: Section 1 has placeholders
+      description: >-
+        Section 1 still has "TBD", "primary", "N/A", or a broken table row. Fill in each person's bid
+        energies, a different cross-project function for each person, and real unavailable hours.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: Energies are work areas, not bid energies
+      description: >-
+        Section 1 asks for the primary and secondary energy each person named in their bid (i.e., implementation,
+        product, coordination, ops, or research and design). What each person is working on belongs
+        in section 8 or on your board.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: GitHub handle doesn't match the account
+      description: >-
+        A GitHub handle in section 1 doesn't match the account that commits. The comment says which
+        one.
+      points: 0
+      is_annotation: false
+      is_comment_required: true
+      is_required: false
+      student_visibility: if_applied
+    - name: No first milestone with a date
+      description: >-
+        Section 2 should end with a first milestone and its date. A milestone you can check by Checkpoint
+        1 on Oct 14 is the most useful kind.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: No out of scope line
+      description: >-
+        Name at least one thing you're choosing not to build. Without that line, you find out in November
+        what didn't fit.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+  - name: Agreements (sections 3, 5, 7)
+    description: >-
+      Sections 3, 5, and 7: the rules you'll point to when something goes wrong.
+    total_points: 0
+    is_additive: true
+    is_deduction_only: false
+    checks:
+    - name: Decisions live where staff can't see them
+      description: >-
+        Logistics can live in iMessage, a group text, or a private doc. Decisions need to be written
+        where your whole team and course staff can read them: your team Discord channel, an issue, or
+        an ADR in your repo. If a disagreement comes to us, that record is what we read.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: No response time, or no consequence for missing it
+      description: >-
+        Say how fast you owe each other an answer on a weekday, and what happens when someone misses
+        it.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: '"We" where a name belongs'
+      description: >-
+        "We" works when who acts depends on who went quiet. When a step needs an owner, such as making
+        a decision, name the person or role.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: No point where it comes to clinic
+      description: >-
+        Each situation in section 7 needs a point where it comes to clinic: after how long, or after
+        which step didn't work.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: Split rule doesn't decide anything
+      description: >-
+        "Mutual agreement" or "compromise" doesn't say what happens when you can't agree. Say who breaks
+        a tie, or what you do while the question is open.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: An agent settles disagreements
+      description: >-
+        A pro and con list from an agent is fine input, but it can't break a tie, because nobody on
+        the team is accountable for what it said.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: Sections 5–7 read as generated
+      description: >-
+        The AI policy asks your team to write sections 5 through 7 yourselves. The comment says
+        what reads as generated. Bring it to clinic. If each of you can explain each rule and stands
+        by it, that settles it.
+      points: 0
+      is_annotation: false
+      is_comment_required: true
+      is_required: false
+      student_visibility: if_applied
+  - name: Meetings and objectives (sections 4, 8)
+    description: 'Sections 4 and 8: your meetings and sprint objectives.'
+    total_points: 0
+    is_additive: true
+    is_deduction_only: false
+    checks:
+    - name: '"Team" as summary author'
+      description: >-
+        When the whole team is the author, nobody writes the summary. Name one author per meeting, and
+        rotate.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: No meeting between Oct 9 and Oct 13
+      description: >-
+        Meet as often as you like, but your second booked meeting needs to fall between Fri Oct 9 and
+        Tue Oct 13, so you can review what each person found before the artifacts are due. Oct 10–12
+        is a holiday weekend, so Friday or Tuesday is usually easiest.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: Objectives are team-level, not per person
+      description: >-
+        Each person needs their own objective, so each of you has something to explain on Oct 13. Split
+        a shared goal into one investigation per person.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: Objective rows with no owner
+      description: Put a name on every row in section 8.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: Missing "what I'll be able to explain afterward"
+      description: >-
+        Each objective needs a line that starts "Afterward I'll be able to explain". That sentence is
+        how you'll know the sprint worked, and your artifact is checked against it.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+  - name: Definition of done (section 6)
+    description: 'Section 6: what has to be true before you approve a PR.'
+    total_points: 0
+    is_additive: true
+    is_deduction_only: false
+    checks:
+    - name: '"Tests pass" level'
+      description: >-
+        Start from the First Implementation Ticket checklist: a PR description, a test that fails without
+        the fix for bugs, CI green before review, a rollback sentence, and staging checked after merge.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: Nothing specific to this project
+      description: >-
+        Add at least one line that exists because of what you're building, such as a test that runs
+        as each affected role, or a fixture that goes through the whole pipeline.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+  - name: Worth keeping
+    description: What's working in your charter.
+    total_points: 0
+    is_additive: true
+    is_deduction_only: false
+    checks:
+    - name: Project-specific definition of done
+      description: >-
+        Your definition of done has lines that only make sense for your project. Keep holding reviews
+        to them.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: Escalation path anyone could follow
+      description: >-
+        Section 7 says who acts, by when, and when it comes to clinic. Someone outside your team could
+        tell whether it was followed.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: A sharp objective
+      description: >-
+        One of your sprint objectives asks a question whose answer will change your plan. The comment
+        names it.
+      points: 0
+      is_annotation: false
+      is_comment_required: true
+      is_required: false
+      student_visibility: if_applied
+    - name: A concrete first milestone
+      description: >-
+        Your milestone is something a person does by hand, end to end, by a date, so anyone can check
+        whether it happened.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: Tickets lay out how each answer changes the plan
+      description: >-
+        Your ticket slate says what each open question decides. Bring those questions to clinic, and
+        we'll answer them.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied

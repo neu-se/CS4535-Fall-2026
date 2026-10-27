@@ -438,12 +438,12 @@
         "2026-10-29"
       ],
       "topics": [
-        "All teams demo on the live product"
+        "Each team walks through its project board and every member's first-ticket PR"
       ],
       "materials": {
         "slides": "/lecture-slides/s21-demo-day-2"
       },
-      "notes": "First implementation tickets demoed review-ready from preview deploys. Code Review 1 assigned. Promotion to production"
+      "notes": "First implementation tickets review-ready. Each team walks through its board and every member's PR: what it changes, how it's tested, its rollback sentence. Running it live is optional. Code Review 1 assigned. Promotion to production"
     },
     {
       "lectureId": "s22-standup",
@@ -535,9 +535,10 @@
       "topics": [
         "All-hands standup",
         "Cross-team integration ahead of the 11/23 freeze",
-        "What still has to land together"
+        "What still has to merge together",
+        "Review defense 1: one of your reviews, picked on the spot, defended without an agent"
       ],
-      "notes": "Last integration point before feature freeze",
+      "notes": "Last integration point before feature freeze. Review defense 1: Jon picks one review per student and puts the thread on the projector; laptops closed, no agent, about two minutes each on the change requested and why it matters to the product",
       "materials": {
         "slides": "/lecture-slides/s27-standup"
       }
@@ -636,12 +637,13 @@
       "topics": [
         "Semester retrospective",
         "Writing the Learning Summary Report",
-        "Reflection prompts"
+        "Reflection prompts",
+        "Review defense 2: same format as Nov 16"
       ],
       "materials": {
         "slides": "/lecture-slides/s34-retro"
       },
-      "notes": "Semester retrospective · Learning Summary Report workshop"
+      "notes": "Semester retrospective · Learning Summary Report workshop · Review defense 2, same format as Nov 16; the last day reviews count. A failed Dec 7 defense is made up at Final Demos (Dec 9 or 10) with a different review"
     },
     {
       "lectureId": "s35-final-demos-1",
@@ -759,7 +761,7 @@
       "type": "homework",
       "assignedDate": "2026-10-15",
       "dueDate": "2026-11-04",
-      "notes": "Assigned at Demo Day 1. Default is a ticket from your own project; an XL pool ticket claimed in the Agents Activity carries over. Scope agreed by Mon 10/19. One owner per ticket: combining related small tickets is fine, a team merger is not. Review-ready by Thu 10/29 and demoed from the preview deploy at Demo Day 2. Reviewed through Code Review 1, merged by Jon, and verified in your team's demo class by Wed 11/4.",
+      "notes": "Assigned at Demo Day 1. Default is a ticket from your own project; an XL pool ticket claimed in the Agents Activity carries over. Scope agreed by Mon 10/19. One owner per ticket: combining related small tickets is fine, a team merger is not. Review-ready by Thu 10/29 and walked through at Demo Day 2. Reviewed through Code Review 1 and merged by Jon by Wed 11/4.",
       "url": "/docs/assignments/first-implementation-ticket"
     },
     {
@@ -787,11 +789,11 @@
       "type": "project",
       "assignedDate": "2026-10-14",
       "dueDate": "2026-11-05",
-      "notes": "Written per-student judgment: on track for your declared band — yes or no, and why."
+      "notes": "Written per-student judgment: on track for your declared band or not, and why, plus the grade we realistically see you getting from here. The survey asks for your own assessment of each LO and the grade you realistically expect."
     },
     {
       "id": "feature-freeze",
-      "title": "Feature Freeze — flags set, ops playbooks drafted",
+      "title": "Feature Freeze (flags set, ops playbooks drafted)",
       "type": "project",
       "assignedDate": "2026-11-18",
       "dueDate": "2026-11-23"
@@ -802,7 +804,7 @@
       "type": "project",
       "assignedDate": "2026-09-17",
       "dueDate": "2026-12-10",
-      "notes": "Continuous, from GitHub history; nothing to submit. Pass: at least 6 substantive reviews, at least 2 outside your project area, and every comment on your own PRs answered within 48h. Credit: 3 reviews where your comment changed the code. Distinction: an accepted entry on the checklist.",
+      "notes": "Continuous, from GitHub history; nothing to submit. Pass: at least 6 substantive reviews, at least 2 outside your team, each starting with an Agent line and defensible in person (review defenses Mon 11/16 and Mon 12/7), and every comment on your own PRs answered within 48h. Credit: 3 reviews where your comment changed the code. One Distinction option: a checklist entry you proposed.",
       "url": "/docs/assignments/code-review"
     },
     {
@@ -813,15 +815,6 @@
       "dueDate": "2026-12-02",
       "notes": "Two students co-present one reading, two readings per session. Readings come from a fixed 13-item list, tagged by cross-project function. Sessions Oct 21 / Oct 28 / Dec 2. Thirteen students: five pairs and one group of three, six groups over three sessions, no fourth session.",
       "url": "/docs/assignments/reading-presentation"
-    },
-    {
-      "id": "game-day-postmortems",
-      "title": "Game Day Postmortems (2)",
-      "type": "project",
-      "assignedDate": "2026-10-22",
-      "dueDate": "2026-11-05",
-      "notes": "Done in class at each game day (Oct 22, Nov 5): a paper worksheet before and after an AI-drafted postmortem. Nothing is due afterwards. Each postmortem names an action you took during the response.",
-      "url": "/docs/assignments/game-day-postmortems"
     },
     {
       "id": "checkpoint-3",

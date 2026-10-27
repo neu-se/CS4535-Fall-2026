@@ -67,7 +67,7 @@ Each list below is a place to begin. It isn't a quota, and you're free to add to
 - [#1022](https://github.com/pawtograder/platform/issues/1022): the standby Postgres has no exporter, so its metrics are invisible
 - [#1032](https://github.com/pawtograder/platform/issues/1032): the OpenTelemetry proposal. Read it and comment with what it would and wouldn't let us see
 - Sentry: unassigned errors in any team's area. Route each one to the team that owns it
-- **Game days.** Game Day 1 is Thu Oct 22. When it starts, you're who the room asks what the dashboards show. Spend half an hour before then learning where they are
+- **Game days.** Game Day 1 is Thu Oct 22. Everyone works in their own workspace with `psql` and the code, and there are no dashboards, so afterwards, work out which dashboard or alert would have caught the fault. Bring that to Checkpoint 2. Game Day 2 is Nov 5, in the same format
 
 ### AI research
 
@@ -107,7 +107,7 @@ You can ask to swap until standup on Wed Oct 14. Message Jon on Discord with the
 | Roster posted on Discord | Sat Oct 10 |
 | Swap requests | Wed Oct 14, by standup |
 | Kickoff in class | Wed Oct 14 |
-| Game Day 1, Observability's first response | Thu Oct 22 |
+| Game Day 1 | Thu Oct 22 |
 | Checkpoint 2: links | Thu Nov 5 |
 | Ops playbook template ready (Docs and handoff) | Mon Nov 16 |
 | Checkpoint 3: links | Thu Dec 3 |

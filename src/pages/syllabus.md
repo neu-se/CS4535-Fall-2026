@@ -188,10 +188,10 @@ All eight outcomes at minimum standard. This is the comprehensive band, and a st
 
 - Ticket hunt: two tickets filed, two items triaged, by Sep 16 **(LO1, LO2)**
 - Onboarding column-groups submission at **Pass level or above**: schema, RLS, and a backfill, with the gradebook reading groups from real data, plus your statement of the requirement and the qualities you traded **(LO1, LO2)**
-- First implementation ticket merged, deployed, and verified running **(LO3)**
-- At least 6 substantive code reviews across the term, at least 2 outside your own team **(LO4)**
+- First implementation ticket merged and deployed **(LO3)**
+- At least 6 substantive code reviews across the term, at least 2 outside your own team, each one you can defend in person if we pick it on Nov 16 or Dec 7 **(LO4)**
 - You answer review on your own PRs, with no thread left dead. Judged as a habit across the term rather than per comment **(LO4)**
-- Both game-day postmortems, for Game Days 1 and 2, each naming an action you took during the response **(LO5)**
+- Game Days 1 and 2, with an action you took during each response **(LO5)**
 - Your merged work carries tests where the change warrants them, and a flag when user-visible work is unfinished **(LO5)**
 - At least one user-visible change shipped in your team's project area **(LO6)**
 - A user study of your team's project area with at least five real users, which you helped plan, run, or analyze, and whose findings are written up in your team repo by Checkpoint 3 (Dec 3). It can study the current system, a prototype, or your shipped change **(LO6)**

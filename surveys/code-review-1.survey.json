@@ -1,0 +1,101 @@
+{
+  "title": "CS 4535: Code Review 1",
+  "description": "Due Mon Nov 2, 10:30 ET, before class. About 5 minutes once your reviews are posted.",
+  "showQuestionNumbers": "off",
+  "checkErrorsMode": "onValueChanged",
+  "widthMode": "responsive",
+  "completedHtml": "<h3>Submitted.</h3><p>The authors answer your reviews within 48 hours, so keep an eye on both threads. Bring any cross-team conflicts your reviews found to Integration Session I on Mon Nov 2.</p>",
+  "pages": [
+    {
+      "name": "reviews",
+      "elements": [
+        {
+          "type": "html",
+          "name": "intro",
+          "html": "<p>Your reviews are on GitHub, and this survey is where we find them. You were requested as a reviewer on two stacks: one a teammate's and one from another team. Link the review you submitted on every PR in each stack. Each one starts with an Agent line. See <a href=\"https://neu-se.github.io/CS4535-Fall-2026/docs/assignments/code-review#code-review-1\" target=\"_blank\">Code Review 1</a>.</p>"
+        },
+        {
+          "type": "panel",
+          "name": "teammate",
+          "title": "Stack 1: your teammate's",
+          "description": "From your own team.",
+          "elements": [
+            {
+              "type": "text",
+              "name": "teammate_stack",
+              "title": "Link to the stack's issue, or to its last PR",
+              "inputType": "url",
+              "isRequired": true,
+              "validators": [
+                {
+                  "type": "regex",
+                  "regex": "^https://github\\.com/pawtograder/platform/(issues|pull)/\\d+",
+                  "text": "Paste the full link to an issue or PR on pawtograder/platform, such as https://github.com/pawtograder/platform/issues/977"
+                }
+              ]
+            },
+            {
+              "type": "comment",
+              "name": "teammate_reviews",
+              "title": "Links to your GitHub reviews, one per line",
+              "rows": 4,
+              "isRequired": true,
+              "description": "One for each PR in the stack. On the PR, open the three-dot menu on your review and choose Copy link. The link ends in #pullrequestreview- and a number.",
+              "validators": [
+                {
+                  "type": "regex",
+                  "regex": "^(\\s*https://github\\.com/pawtograder/platform/pull/\\d+#pullrequestreview-\\d+\\s*)+$",
+                  "text": "One review link per line, such as https://github.com/pawtograder/platform/pull/1090#pullrequestreview-3412345678. A comment link (#issuecomment-) isn't a submitted review."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "panel",
+          "name": "outside",
+          "title": "Stack 2: from another team",
+          "description": "This one counts toward the two reviews outside your team.",
+          "elements": [
+            {
+              "type": "text",
+              "name": "outside_stack",
+              "title": "Link to the stack's issue, or to its last PR",
+              "inputType": "url",
+              "isRequired": true,
+              "validators": [
+                {
+                  "type": "regex",
+                  "regex": "^https://github\\.com/pawtograder/platform/(issues|pull)/\\d+",
+                  "text": "Paste the full link to an issue or PR on pawtograder/platform, such as https://github.com/pawtograder/platform/issues/977"
+                }
+              ]
+            },
+            {
+              "type": "comment",
+              "name": "outside_reviews",
+              "title": "Links to your GitHub reviews, one per line",
+              "rows": 4,
+              "isRequired": true,
+              "description": "One for each PR in the stack. On the PR, open the three-dot menu on your review and choose Copy link. The link ends in #pullrequestreview- and a number.",
+              "validators": [
+                {
+                  "type": "regex",
+                  "regex": "^(\\s*https://github\\.com/pawtograder/platform/pull/\\d+#pullrequestreview-\\d+\\s*)+$",
+                  "text": "One review link per line, such as https://github.com/pawtograder/platform/pull/1090#pullrequestreview-3412345678. A comment link (#issuecomment-) isn't a submitted review."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "blockers",
+          "title": "Anything that got in the way?",
+          "rows": 2,
+          "description": "Optional. A stack that wasn't review-ready, a review request that never arrived, or a PR that changed while you were reading it."
+        }
+      ]
+    }
+  ]
+}

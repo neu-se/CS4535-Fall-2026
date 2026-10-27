@@ -1,200 +1,206 @@
 ---
 title: "Code Review"
-description: Continuous. Review supplies requirements at every band, and there is nobody below you to catch what you miss
+description: Continuous, Sep 17 – Dec 7. Six substantive reviews, two outside your team, each one yours to defend in person, and every thread on your own PRs answered. Code Review 1 is due Mon Nov 2
 sidebar_position: 7
 ---
 
 # Code Review
 
-**Runs:** Sep 17 – Dec 10, continuously · **Feeds:** requirements at **every band**, see the [bands](/syllabus#letter-grade-requirements)
-
-:::warning Draft
-This handout is a draft and will change before the semester begins.
-:::
+**Runs:** Sep 17 – Dec 7, continuously · **Code Review 1 due:** Mon Nov 2, 10:30 · **Feeds:** Pass (LO4), Credit, and one Distinction option. See the [bands](/syllabus#letter-grade-requirements)
 
 ## Overview
 
-There is no TA in this course. A pull request in Pawtograder gets read by a classmate, and then, if it touches something architectural or risky, by the instructor.
-
-Which means that in this course, peer review is the real review.
-
-Over fifteen hundred people use this product every week, and in January the number goes up and the users are more courses than the eight running this term, and none of them have any idea who you are. Review is the last cheap place to catch a mistake. After review, catching it costs an incident.
+There is no TA in this course. A pull request on Pawtograder gets read by a classmate, and then by Jon if it touches RLS, a migration, auth or the autograder. Peer review is the real review here. Over fifteen hundred people use this product every week, and in January that number goes up. Review is the last cheap place to catch a mistake. After merge, the usual way to find it is an incident.
 
 ## Learning Outcomes
 
-By reviewing continuously through the term, you will:
+- **Review others' work substantively, and respond to review** on your own PRs ([LO4](/syllabus#learning-outcomes))
+- **Collaborate on a shared codebase** by reading code outside your own team's area ([LO7](/syllabus#learning-outcomes))
 
-- **Review others' work substantively, and respond to review** on your own PRs within 48 hours ([LO4](/syllabus#grading))
-- **Collaborate on a shared codebase** by reading outside your own project area, where what you learn about a subsystem counts as much as what you catch in it ([LO7](/syllabus#grading))
+## What you have to do
 
-## What a review is actually for
+1. **Write at least six substantive reviews by Mon Dec 7.** [What counts as a review](#what-counts-as-a-review) is below. Every one starts with an [Agent line](#accountability) and meets the rules for [what you answer for](#accountability).
+2. **Make at least two of the six [outside your team](#outside-your-team).**
+3. **Answer every review thread on your own PRs within 48 hours.** "I need a day on this one" counts as an answer.
+4. **Do [Code Review 1](#code-review-1)** between Thu Oct 29 and Mon Nov 2. It gives you two of the six, and one of the two outside your team.
+5. **[Defend a review in person](#review-defense)** on Mon Nov 16 and again on Mon Dec 7. Jon picks which one. By Nov 16, at least one of your reviews has to ask for a change.
+6. **Keep a list of links to your reviews.** Checkpoints 2 and 3 ask for it, and so does the Learning Summary Report.
 
-A review does four things, none of them gatekeeping. They matter roughly in this order:
+That's Pass. For **Credit**, at least three of your reviews have to [change the code](#grading). One of the five **Distinction** options is a [checklist entry](#adding-an-entry) you propose.
 
-1. **Catches what the author couldn't see.** They've been staring at it for four hours. You have fresh eyes for twenty minutes. That asymmetry is the entire value.
-2. **Spreads knowledge.** After you review the gradebook query layer, two people understand it. This is why reviewing outside your own area carries its own requirement.
-3. **Creates a written record of why.** The thread on a PR is where "we considered X and rejected it because Y" gets preserved. Six months from now that thread is the only reason anyone knows.
-4. **Sets the bar.** Whatever you let through becomes the standard. Approving a PR with no tests is a vote about what this codebase is.
+One review a week gets you to six without a scramble in December. If there's nothing to review, ask in Discord and we'll point you at an open PR. Some of those are PRs we opened ourselves.
 
-Note that "finding bugs" is only part of the first one. A review that finds no bugs and teaches you a subsystem was still worth doing.
+## What counts as a review {#what-counts-as-a-review}
 
-## Reviewing: what to look at, in order
+**One review is one PR, or one stack of PRs you review together.** You read the whole change and submit a GitHub review on it: Comment, Request changes, or Approve. When the author pushes changes and you look again, that's still the same review. It doesn't add to your count.
 
-Twenty minutes, spent in this order, gets most of the value. Stop when you run out of time. A partial review posted today beats a thorough one posted right at the deadline.
+**It has to be on GitHub, on the PR.** Feedback in Discord or a DM doesn't count. We can't see it, and neither can the next person who wonders why the code looks the way it does.
 
-**1. Does the PR do what its description says?**
-
-Read the description first, then the diff. The most common real problem in a PR is that it quietly does two things, one of which nobody asked for. Outright bugs are rarer. Say so: *"the description covers the query fix, but this also changes the default sort order. Is that intended?"*
-
-**2. Would this break in production?**
-
-This is the question [the checklist](#the-checklist) exists to answer, so work the entries that apply. The one judgment to make for yourself is **blast radius**. Is this on a path all 1,500 users touch, or a settings page three instructors use? Both are fine, but they warrant different scrutiny, and no checklist knows which one you're looking at.
-
-**3. Is there a test that would have caught the thing this fixes?**
-
-The question is narrower than "are there tests." A bug fix whose test passes *before* the fix is applied is a test-shaped object that tests nothing. If you can't tell, ask the author to show you the test failing.
-
-**4. What happens when this turns out to be wrong?**
-
-Every PR should be revertible or flagged. As a reviewer you check that the author's rollback sentence exists and could actually be executed by somebody who has never seen the code. "Revert the commit" is fine if it's true; it often isn't once a migration is involved.
-
-**5. Will the next person understand it?**
-
-Names that say what the thing is. No commented-out code. A comment wherever the *why* isn't recoverable from the *what*.
-
-**What not to spend your review on:** formatting (prettier owns it, and CI runs `prettier --check`), naming that is merely different from what you'd have picked, and anything you'd preface with "personally I would have." You have twenty minutes; spend them on the four things above.
-
-## The checklist {#the-checklist}
-
-**This is a list of ways Pawtograder has actually broken,** rather than a list of good practice. Good practice is generic, and a generic checklist produces generic reviews. Every entry cites the thing that put it there.
-
-**Work the entries that apply to the diff in front of you and ignore the rest.** A list this long does not mean a comment per entry. A two-line CSS change touches none of them, and a review that answers all of them anyway is the exact failure this format exists to avoid.
-
-**1. Does this query trust the client to filter rows that RLS should be enforcing?**
-*A `.eq("class_id", ...)` in a component is a convenience. The boundary is in Postgres.* The highest-consequence bug class in this codebase, and the one that hides best. The diff looks correct, the page renders correctly, and the data is exposed anyway. Covered in the Architecture II session on Sep 14.
-
-**2. If this effect's dependency array is incomplete, what stale value does it capture?**
-*15 `react-hooks/exhaustive-deps` suppressions are live in the tree, two of them in the gradebook.* The lint rule is not being pedantic. Each suppression is a hook closing over a value it promised to watch. Ask what the user sees when it goes stale.
-
-**3. Does this migration have a down path, and does that path work on rows that already exist?**
-*See `docs/operations/rollback.md`.* "Revert the commit" stops being true the moment a migration is involved. If there is no down path, that's allowed, but it has to be said out loud in the PR rather than discovered during an incident.
-
-**4. On the failure path, does state end up consistent?**
-*`supabase/functions/autograder-create-regression-test-run/index.ts:88`, "TODO update the submission status to failed."* A handler that returns early and leaves a submission marked in-progress is a student staring at a spinner forever. The happy path is the easy half.
-
-**5. Would this failure be visible to anyone?**
-*Seeded by the CI failure that ran for twenty hours without logging a single error anywhere.* Does anything log, alert, or tell the user? A silent failure is strictly worse than a loud one, and with 117 `no-console` suppressions in the tree, "it prints something" is not the same as "somebody will see it."
-
-**6. Does the second delivery of this event do what the first one did?**
-*`supabase/functions/_shared/ChimeWrapper.ts:221`, "This could race for two users trying to join the meeting concurrently."* Realtime events and webhooks arrive twice. Ask what happens when they do.
-
-**7. Does every date in this diff go through the course's timezone?**
-*`supabase/functions/assignment-group-approve-request/index.ts:34`, "TODO timezones."* Deadlines are the thing this product exists to enforce. A date formatted in the server's zone is an off-by-one-day for anyone outside Eastern, and it surfaces as a grade dispute rather than as a bug report.
-
-**8. Can this be operated without a mouse, and does it announce what it is?**
-*In [#913](https://github.com/pawtograder/platform/issues/913), all three survey radio options announce as "checked," so a screen-reader user cannot tell what they selected.* There are 12 open accessibility issues and 88 findings awaiting triage. For some of our users, a control with no accessible name is a control that does not exist.
-
-### Adding an entry
-
-The checklist is meant to grow. By December it should be longer than this, and the additions should come from you.
-
-An entry is three things: **a question**, **a citation**, and **one sentence on what it would have caught**. The citation is an incident, a PR, an issue, or a line of code. Open a PR against this file.
-
-The bar is that it has to have actually happened *here*. "Watch out for N+1 queries" is not an entry. "The gradebook did an N+1 on the submissions join, here is the PR that fixed it, and here is what the page load looked like before" is.
-
-**A proposed entry counts as [cross-team contribution](#cross-team-contribution).** It is one of the cheapest ways to earn in that category and by far the most durable. In January the next cohort inherits this page, and a document that records how a system fails is the most expensive kind of knowledge to reacquire.
-
-Every game day postmortem should end by asking whether it produced one.
-
-## What "substantive" means
-
-You are graded on the quality of the feedback, not the count of comments. Five categories count, and each one has to be earned:
+**It has to be substantive.** At least one comment has to be the kind in the left column, or the approval has to say what you checked:
 
 | Substantive | Not substantive |
 |---|---|
 | "This throws if `submission` is null, which happens for a group assignment with no submitter: here's the row that does it." | "Might want to null-check this." |
 | "This contradicts the decision in #841 to validate expressions strictly. Was that reconsidered?" | "Are you sure about this approach?" |
 | "The test doesn't cover the resubmission window closing mid-request, which is the case that broke last time." | "Could use more tests." |
-| "Why does this need a new provider rather than reading the existing `TimeZoneProvider`?" | "Seems complicated." |
+| "Why does this need a new provider when `TimeZoneProvider` already exists?" | "Seems complicated." |
+| "These four snapshot tests break on any markup change and would never have caught a bug we've had. Can we keep only the one that checks the button is disabled after the deadline?" | "Nice, lots of tests." |
 | "Approving: I read the migration and the down path, and it's clean." | "LGTM" |
 
-That last row matters, because an approval can be substantive. Saying what you actually checked is useful and it's honest; it also means that when you approve something you didn't read, that's visible too.
+A review that finds no bugs can still be substantive. If it says what you read and what you checked, it counts.
+
+## Outside your team {#outside-your-team}
+
+Two of your six have to be outside your team. A review counts as outside your team if either of these is true:
+
+- **Somebody on another team wrote the PR.** PRs that we open count too.
+- **You did it through your [cross-project function](./cross-project-functions.md).** For example, Release and CI reviewing a workflow change, or Accessibility reviewing a new form.
+
+When you list your reviews at a checkpoint, mark the ones outside your team with **(outside)**.
+
+The PRs nobody wants to read are worth the most here: CI config, migrations, the seed script. After you review another team's query layer, two people understand it, and the second one isn't on the team that owns it.
+
+## Code Review 1 {#code-review-1}
+
+**Assigned:** Thu Oct 29, at Demo Day 2 · **Due:** Mon Nov 2, 10:30, before class
+
+This is the first assigned round. Every first implementation ticket gets two reviewers: one teammate and one from another team.
+
+1. **Watch for two review requests on GitHub.** Jon requests you as a reviewer on two stacks, one a teammate's and one from another team, and GitHub notifies you.
+2. **Review each stack on GitHub.** Read every PR in the stack, work the [checklist entries](#the-checklist) that apply, and submit a GitHub review on each PR. Start each one with an [Agent line](#accountability).
+3. **Link your reviews in the Code Review 1 survey** on Pawtograder by 10:30 on Mon Nov 2.
+4. **Come to the Integration Session on Mon Nov 2.** The cross-team conflicts your reviews turn up get worked through in the room that morning.
+
+The authors answer within 48 hours. Jon merges once both reviews are addressed, and every ticket has to be merged by Wed Nov 4. If your review comes in late, the author's ticket gets blocked.
+
+Code Review 1 counts as two of your six reviews, and one of the two outside your team. If a comment of yours changes the code, it also counts toward Credit. Code Review 1 reviews can be picked for the [defense](#review-defense) on Nov 16.
+
+## How to review
+
+Spend about twenty minutes, and look at these in order. Stop when you run out of time. A partial review posted today does more good than a thorough one posted after the merge.
+
+**1. Does the PR do what its description says?** Read the description first, then the diff. The most common real problem is a PR that does two things, one of which nobody asked for and the description doesn't mention. *"The description covers the query fix, but this also changes the default sort order. Is that intended?"*
+
+**2. Does everything in this diff need to exist?** Agents add whatever looks thorough. Ask one for a fix and you can get the fix plus tests that assert what the code already does, a metric nobody will look at, an alert with an invented threshold, a retry around a call that can't fail, and a flag on a change nobody will need to roll back. Each one looks responsible, and each one is something a person now has to maintain. A test that breaks on every refactor and has never caught a bug costs time on every PR after this one. An alert that fires for nothing teaches people to ignore alerts. For each addition the description doesn't explain, ask what it protects against, who would act on it, and what it costs to keep. If nobody has an answer, ask for it to be removed: *"This alert fires when queue depth passes 50. Who gets it, and what do they do? If nobody, let's drop it."* An agent reviewer will rarely flag this, because to an agent more tests and more monitoring always look like more safety. Seeing the cost takes someone who knows the product and will still be maintaining it next month.
+
+**3. Would this break in production?** Work the [checklist](#the-checklist) entries that apply. The one call you have to make yourself is **blast radius**. Is this on a path all 1,500 users touch, or a settings page three instructors use? Both are fine, but they need different scrutiny.
+
+**4. Is there a test that would have caught the thing this fixes?** A bug-fix test that passes *before* the fix is applied tests nothing. If you can't tell, ask the author to show you the test failing.
+
+**5. What happens when this turns out to be wrong?** Every PR needs a rollback sentence. Check that it exists and that somebody who has never seen the code could follow it. "Revert the commit" stops being true once a migration is involved.
+
+**6. Will the next person understand it?** Names say what things are, there's no commented-out code, and there's a comment wherever the *why* isn't obvious from the *what*.
+
+**Skip** formatting (Prettier owns it, and CI runs `prettier --check`), names that are only different from the ones you'd have picked, and anything you'd start with "personally I would have."
+
+## The checklist {#the-checklist}
+
+**Every entry is a way Pawtograder has actually broken,** and each one cites the thing that put it there. Work the entries that apply to the diff in front of you and ignore the rest. A two-line CSS change touches none of them, and a review that answers all eight anyway is a review nobody can use.
+
+**1. Does this query trust the client to filter rows that RLS should be enforcing?**
+*A `.eq("class_id", ...)` in a component is a convenience. The boundary is in Postgres.* This is the highest-consequence bug class in this codebase, and the hardest to spot. The diff looks right, the page renders, and the data is exposed anyway. Covered in the Architecture II session on Sep 14.
+
+**2. If this effect's dependency array is incomplete, what stale value does it capture?**
+*15 `react-hooks/exhaustive-deps` suppressions are live in the tree, two of them in the gradebook.* Each suppression is a hook that uses a value missing from its dependency array. Ask what the user sees when it goes stale.
+
+**3. Does this migration have a down path, and does that path work on rows that already exist?**
+*See `docs/operations/rollback.md`.* If there's no down path, that's allowed, but the PR has to say so.
+
+**4. On the failure path, does state end up consistent?**
+*`supabase/functions/autograder-create-regression-test-run/index.ts:88`, "TODO update the submission status to failed."* A handler that returns early and leaves a submission marked in-progress shows a student a spinner that never stops.
+
+**5. Would this failure be visible to anyone?**
+*Seeded by the CI failure that ran for twenty hours without logging a single error anywhere.* Does anything log, alert, or tell the user? With 117 `no-console` suppressions in the tree, "it prints something" is not the same as "somebody will see it." The answer is a person who sees it and can act. Another log line or another alert nobody owns doesn't count, and adds to [the cost](#how-to-review) of keeping the code.
+
+**6. Does the second delivery of this event do what the first one did?**
+*`supabase/functions/_shared/ChimeWrapper.ts:221`, "This could race for two users trying to join the meeting concurrently."* Realtime events and webhooks arrive twice. Ask what happens when they do.
+
+**7. Does every date in this diff go through the course's timezone?**
+*`supabase/functions/assignment-group-approve-request/index.ts:34`, "TODO timezones."* A date formatted in the server's zone is off by a day for anyone outside Eastern, and it shows up as a grade dispute instead of a bug report.
+
+**8. Can this be operated without a mouse, and does it announce what it is?**
+*In [#913](https://github.com/pawtograder/platform/issues/913), all three survey radio options announce as "checked," so a screen-reader user cannot tell what they selected.* For some of our users, a control with no accessible name can't be found or used.
+
+### Adding an entry {#adding-an-entry}
+
+The checklist should be longer by December, and the new entries should come from you. Proposing one is one of the five Distinction options.
+
+An entry is three things: **a question**, **a citation**, and **one sentence on what it would have caught**. The citation is an incident, a PR, an issue, or a line of code, and it has to have happened *here*. "The gradebook did an N+1 on the submissions join, here is the PR that fixed it, and here is what the page load looked like before" is an entry. "Watch out for N+1 queries" has no citation, so it isn't one. Open a PR against this file.
 
 ## Receiving review
 
-The easiest requirement in the course to meet, and the easiest to throw away.
+- **Answer every thread within 48 hours.** The clock counts weekdays and pauses over university holidays. We judge it as a habit across the term. One lapse you flagged and cleared is fine, but a pattern of silence counts against you.
+- **Disagree with evidence.** A reviewer has twenty minutes of context, and sometimes they're wrong. Bring a test, a line of code, or a link to the decision.
+- **Resolve a thread only when you've addressed it.** Resolving one you didn't address hides the disagreement.
+- **Don't force-push over an open conversation.** The comments detach and nobody can reconstruct what was discussed. The [syllabus](/syllabus#academic-integrity) lists this under academic integrity.
 
-- Answer every thread within 48 hours, even if the answer is "I need a day on this one." Silence reads as avoidance whether or not you meant it that way.
-- Disagreement is expected. A reviewer is a person with twenty minutes of context, and sometimes they're wrong. Argue with evidence, not assertion. Bring a test, a line of code, or a link to the decision.
-- Resolving a thread is a claim that you addressed it. Resolving one you didn't is worse than leaving it open, because it hides the disagreement instead of recording it.
-- Do not force-push over an open conversation. The comments detach, the history goes, and there is no way for anyone to reconstruct what was discussed. This is the one behavior in this handout that is a genuine problem rather than a rough edge. The [syllabus](/syllabus) lists it under academic integrity for exactly that reason.
+What we look for is whether the PR got better because somebody reviewed it. Sometimes it correctly didn't, because the reviewer was wrong and the author showed why. That's a good outcome too.
 
-The thing we're looking for is simple: did the PR get better because somebody reviewed it? Sometimes the answer is "no, and correctly so, because the reviewer was wrong and the author showed why." That's a good outcome too.
+## AI Policy: what you answer for {#accountability}
 
-## Cross-team contribution {#cross-team-contribution}
+Use an agent as much as you like to read code and look for problems. Point it at a subsystem you've never seen and ask what it does before you review a change to it. But a review is a set of claims made under your name, and every claim is yours. Every review follows these rules:
 
-With three or four teams in a room this small, "cross-team" mostly means **outside your own project area**:
+1. **Start every review with an Agent line,** from Code Review 1 (Oct 29) on. Reviews you wrote before then count as they stand. Say what an agent did and what you checked yourself: *"Agent: explained the recalculation path. Findings 1 and 3 came from `/code-review`, and I reproduced both."* If you didn't use one, write *"Agent: none."* A review without this line doesn't count.
+2. **Post a finding as fact only if you've verified it.** Verified means you reproduced it, or you can point to the line, row, or test that proves it. Anything else goes up as a question: *"Is this reachable when the group has no submitter?"* A question costs the author a minute. A wrong claim stated as fact makes them prove a negative. `/code-review --comment` posts every finding under your name, so this rule covers everything it posts.
+3. **Say what you checked.** Name what you read, what you ran, and what you didn't check. Include at least one thing you did beyond reading the diff: you ran the branch in your Coder workspace, ran the test before and after the fix, ran the query, or tied the change to a decision your team made or an incident you saw.
+4. **Be ready to defend it in person,** without an agent. See [Review defense](#review-defense).
 
-- Reviewing a PR from another team, especially the ones nobody wants to read, such as CI config, migrations, and the seed script.
-- Answering a question in Discord that somebody would otherwise have spent an afternoon on.
-- Fixing shared infrastructure. The person who fixes the flaky test that everybody had been silently re-running is doing exactly the work this requirement is for, and it will never look like a feature.
-- Writing something down. A note in `docs/` that saves the next person the search you just did, or an entry on [the checklist](#the-checklist).
+**A review with a wrong finding you didn't verify doesn't count,** whatever else is in it. Being wrong after you checked is fine, and the review still counts.
 
-This category rewards a specific instinct: noticing that a problem is everybody's and therefore nobody's, and picking it up.
+Generated reviews are easy to spot. They comment on every file at the same depth, flag the same generic things, and never say *"this contradicts what we decided in #841,"* because the agent doesn't know your team decided anything. A pasted review fails rules 2 and 3 by itself.
 
-## AI Policy
+### Review defense {#review-defense}
 
-Reviewing is a great use of an agent. Point it at a subsystem you've never seen and ask what it does before you review a change to it. That's exactly the workflow we want you to build.
+**When:** Mon Nov 16 (Integration Session II) and Mon Dec 7 (Retro and Learning Summary Workshop), in the room.
 
-What doesn't work is **pasting an agent's review as your review.** Two reasons, and the first is practical: it's obvious. Generated reviews comment on every file at the same depth, flag the same five generic things, and never say *"this contradicts what we decided in #841"*, because the agent doesn't know your team decided anything.
+Jon picks one of your reviews on the spot, from any you've written so far, and puts the thread on the projector. Your laptop is closed and there's no agent. In about two minutes, you answer three questions:
 
-The second reason is that you answer for every review you post. Whether you wrote it or an agent drafted it, a review counts only if you're ready to answer questions about it at a demo day: why you flagged what you flagged, and what you checked before approving. A finding you can't explain in the room isn't yours.
+1. What change did you ask for?
+2. Why does it matter to the product, either to a user or to the next person who maintains this code?
+3. How do you know the problem is real?
 
-The standard is a review only you could have written. You have the context an agent doesn't: the argument in Monday's clinic, the incident on Oct 22, the ticket you triaged in week one. Use it.
+Then the author, or anyone in the room, asks one question.
 
-## Grading Rubric
+The defense is always of a **requested change**. Asking for something to be removed counts, and it's often the easiest kind to defend: Say what it would cost to keep. Approvals still count toward your six, but they can't be defended, so by Nov 16 at least one of your reviews has to ask for a change.
 
-Continuous, from GitHub history. There is nothing to submit. The artifact is your review record, and you link it in the Learning Summary Report.
+If you can't defend the review, it doesn't count toward the six or toward Credit, and the next pick comes from your other reviews. Any review can be picked, so post only reviews you could stand up and defend.
 
-Review supplies requirements at all four bands rather than forming a band of its own:
+- **No requested change by Nov 16** counts as a failed defense. Write one before Dec 7 and defend it then.
+- **A failed defense on Dec 7** can be made up at Final Demos (Wed Dec 9 or Thu Dec 10), by defending a different review Jon picks. That's the last chance, because no new reviews count after Dec 7.
+- **If you miss a defense day,** come to office hours within a week and defend a review Jon picks. A Dec 7 make-up has to happen by Dec 10. Nov 16 is an integration session, so missing it without arranging it in advance also [counts as two absences](/syllabus#participation).
 
-| Band | What review has to show |
-|---|---|
-| **Pass** | At least 6 substantive reviews, 2 of them outside your own team; every comment on your own PRs answered within 48 hours |
-| **Credit** | At least 3 reviews where your comment changed the code |
-| **Distinction** | A checklist entry you proposed on [the checklist](#the-checklist), with its citation; review and help delivered through your cross-project function |
-| **High Distinction** | You made somebody else more capable. Review is where that usually happens first |
+## Grading {#grading}
 
-**What "changed the code" means.** A comment of yours, and then a commit on that branch, or a follow-up issue the author opened and linked, that exists because of it. "Good catch, I'll do it in a follow-up" plus the linked issue counts. A change you argued for and lost does not — but bring it to a checkpoint, because a record of three well-argued disagreements that went the other way is evidence we will take.
+Continuous, from GitHub. There's nothing to submit except the Code Review 1 links. You link your reviews at Checkpoints 2 and 3, and the written judgment that comes back says whether they count. If you want to know sooner whether a particular review counted, ask.
 
-**If the PRs are not there.** The requirement is on your effort, not on your classmates' cadence. Ask in Discord when you need something to review and we will point you at an open PR, including ones we open. A requirement you could not meet because the supply failed is not held against you. What is held against you is discovering the shortfall in December.
+| Band | Requirement | What we check |
+|---|---|---|
+| **Pass** | At least 6 substantive reviews, 2 of them outside your team | The links you give at checkpoints, read on GitHub |
+| **Pass** | Review on your own PRs answered, no thread left dead | The threads on your PRs, across the term |
+| **Pass** | Every review meets [what you answer for](#accountability), and you can defend the one we pick | The Agent line on each review, and the [defense](#review-defense) on Nov 16 and Dec 7 |
+| **Credit** | At least 3 reviews where your comment changed the code | The comment, then the commit or linked issue that followed it |
+| **Distinction**, one of five options | A checklist entry you proposed, with its citation | Your PR against this file |
 
-**The 48-hour clock** counts weekdays and pauses over university holidays and Fall Break. It is judged on your record across the term rather than on a single thread. The failure mode is a pattern of silence rather than one lapse you flagged and cleared.
+**What "changed the code" means.** You left a comment, and then a commit on that branch or a follow-up issue the author opened and linked exists because of it. "Good catch, I'll do it in a follow-up" plus the linked issue counts. A change you argued for and lost doesn't count. Bring it to a checkpoint anyway, because three well-argued disagreements that went the other way are evidence we'll take.
 
-**You do not have to guess where you stand.** Your running count is one of the things checkpoints 1–3 (Oct 14, Nov 5, Dec 3) report back to you. If you want to know earlier whether a specific review landed as substantive, ask. The answer is cheap in October and useless in December.
-
-| Expectation | Standard |
-|---|---|
-| **Reviews given** | The floor is 6 substantive reviews, 2 of them outside your project area. A review a week from Sep 28 is the cadence that gets you there without a December scramble. A review you were asked for is returned within 48 hours |
-| **Review depth** | Works the checklist entries that apply, in your own words. Formatting-only reviews earn nothing, and neither does answering every entry on a diff that touches none of them |
-| **Reviews received** | Every thread answered within 48 hours; disagreement argued with evidence; no force-push over an open conversation; resolved means addressed |
-| **Cross-team** | Review and help outside your area; shared-infrastructure fixes; Discord answers that unblock somebody; notes and accepted checklist entries that save the next person a search |
-| **Authorship** | A review only you could have written. Agent-assisted reading, human judgment |
+**If there aren't enough PRs.** The requirement is on your effort. Ask in Discord and we'll find you one. If you couldn't meet the requirement because there was nothing to review, we won't hold it against you. We will hold it against you if you first notice the shortfall in December.
 
 ### What strong looks like
 
-You blocked a PR because the migration had no working down path, and the author was glad you did. You reviewed the CI change nobody wanted to read. You caught a query that trusted the client to filter rows RLS should have enforced, which is the highest-value catch available in this codebase. You disagreed with a reviewer, produced a failing test that proved your point, and the design changed. You said "you're right, I was wrong" in a public thread. After Game Day 2 you added a checklist entry naming the metric that stayed green while the pods died.
+You blocked a PR because the migration had no working down path, and the author was glad you did. You reviewed the CI change nobody wanted to read. You caught a query that trusted the client to filter rows RLS should have enforced. You asked for three agent-written tests and an alert to be deleted because nobody would ever act on them, and the author agreed. You disagreed with a reviewer, produced a failing test that proved your point, and the design changed. You said "you're right, I was wrong" in a public thread. On Nov 16 you stood at the projector and explained, from memory, why the change you asked for mattered to the students who'd hit it.
 
 ### What weak looks like
 
-Eleven approvals reading "LGTM." A review record that touches only your own team. Comments exclusively about formatting that prettier already enforces. A thread marked resolved with nothing changed. A force-push that made a conversation disappear. Reviews that arrive four days after they were requested, on a PR that had already been merged out of impatience. A review that answers every checklist question on a two-line CSS change. A review that is visibly generated: uniform depth, generic findings, no knowledge of anything this team has ever decided.
+Six approvals reading "LGTM." An approval that praises a PR for its test count. Every review on your own team's PRs. Comments only about formatting Prettier already enforces. A thread marked resolved with nothing changed. A review that shows up after the PR merged. A review that answers every checklist question on a two-line CSS change. A review that is visibly generated: uniform depth, generic findings, no knowledge of anything this team has decided. Findings from `/code-review` posted as fact, unchecked, with an Agent line that says nothing about verifying them.
 
 ## Milestones
 
 | | |
 |---|---|
 | First PRs to review: onboarding column groups | Thu Sep 17 |
-| Escalation: peer review first, instructor when the change touches RLS, a migration, auth or the autograder | Thu Sep 17 |
-| Weekly cadence expected from | Mon Sep 28 |
-| Review in the room: integration sessions | Mon Nov 2 · Mon Nov 16 |
-| Last day reviews count | Mon Dec 7 |
+| Code Review 1 assigned, at Demo Day 2 | Thu Oct 29 |
+| Code Review 1 due, then Integration Session I | Mon Nov 2, 10:30 |
+| Checkpoint 2: your review links so far | Thu Nov 5 |
+| Integration Session II, review defense 1 | Mon Nov 16 |
+| Checkpoint 3: your review links so far | Thu Dec 3 |
+| Review defense 2, then the last day reviews count | Mon Dec 7 |
