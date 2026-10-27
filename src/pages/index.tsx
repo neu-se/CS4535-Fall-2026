@@ -27,17 +27,6 @@ Style: pixel art, 16-bit retro aesthetic, detailed but readable at small sizes. 
             Professional Practicum Capstone &middot; AI &amp; Open Source &middot; Fall 2026 &middot; MWR 10:30–11:35 AM
           </p>
 
-          <div style={{
-            background: 'var(--ifm-color-info-contrast-background)',
-            border: '1px solid var(--ifm-color-info-dark)',
-            borderRadius: '8px',
-            padding: '0.75rem 1.25rem',
-            marginBottom: '1.5rem',
-            lineHeight: 1.6,
-          }}>
-            <strong>A preliminary schedule is now posted.</strong> Session topics, game days and assignment dates are drafts and will change before September — but the shape of the semester is there. <Link to="/schedule"><strong>See the schedule →</strong></Link>
-          </div>
-
           <p style={{ lineHeight: 1.7, color: 'var(--ifm-color-emphasis-800)' }}>
             When you join a company, you'll be working on a product that predates you. Lots of features. Lots of code. Lots of technical debt. Some teams struggle under that weight — barely satisfying their users, burning through resources. But the best teams find ways to make a codebase better than they found it, ship features that users didn't know they needed, and turn inherited complexity into a platform for something new. The difference isn't luck — it's skill. This course teaches you that skill.
           </p>
