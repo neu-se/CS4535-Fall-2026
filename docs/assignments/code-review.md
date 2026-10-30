@@ -1,12 +1,12 @@
 ---
 title: "Code Review"
-description: Continuous, Sep 17 – Dec 7. Six substantive reviews, two outside your team, each one yours to defend in person, and every thread on your own PRs answered. Code Review 1 is due Mon Nov 2
+description: Continuous, Sep 17 – Dec 7. Six substantive reviews, two outside your team, each one yours to defend in person, and every thread on your own PRs answered. Code Review 1 is due Mon Nov 2 at 11:59pm
 sidebar_position: 7
 ---
 
 # Code Review
 
-**Runs:** Sep 17 – Dec 7, continuously · **Code Review 1 due:** Mon Nov 2, 10:30 · **Feeds:** Pass (LO4), Credit, and one Distinction option. See the [bands](/syllabus#letter-grade-requirements)
+**Runs:** Sep 17 – Dec 7, continuously · **Code Review 1 due:** Mon Nov 2, 11:59pm · **Feeds:** Pass (LO4), Credit, and one Distinction option. See the [bands](/syllabus#letter-grade-requirements)
 
 ## Overview
 
@@ -22,7 +22,7 @@ There is no TA in this course. A pull request on Pawtograder gets read by a clas
 1. **Write at least six substantive reviews by Mon Dec 7.** [What counts as a review](#what-counts-as-a-review) is below. Every one starts with an [Agent line](#accountability) and meets the rules for [what you answer for](#accountability).
 2. **Make at least two of the six [outside your team](#outside-your-team).**
 3. **Answer every review thread on your own PRs within 48 hours.** "I need a day on this one" counts as an answer.
-4. **Do [Code Review 1](#code-review-1)** between Thu Oct 29 and Mon Nov 2. It gives you two of the six, and one of the two outside your team.
+4. **Do [Code Review 1](#code-review-1)** between Fri Oct 30 and Mon Nov 2. It gives you two of the six, and one of the two outside your team.
 5. **[Defend a review in person](#review-defense)** on Mon Nov 16 and again on Mon Dec 7. Jon picks which one. By Nov 16, at least one of your reviews has to ask for a change.
 6. **Keep a list of links to your reviews.** Checkpoints 2 and 3 ask for it, and so does the Learning Summary Report.
 
@@ -62,16 +62,16 @@ The PRs nobody wants to read are worth the most here: CI config, migrations, the
 
 ## Code Review 1 {#code-review-1}
 
-**Assigned:** Thu Oct 29, at Demo Day 2 · **Due:** Mon Nov 2, 10:30, before class
+**Assigned:** Fri Oct 30 · **Due:** Mon Nov 2, 11:59pm
 
 This is the first assigned round. Every first implementation ticket gets two reviewers: one teammate and one from another team.
 
 1. **Watch for two review requests on GitHub.** Jon requests you as a reviewer on two stacks, one a teammate's and one from another team, and GitHub notifies you.
 2. **Review each stack on GitHub.** Read every PR in the stack, work the [checklist entries](#the-checklist) that apply, and submit a GitHub review on each PR. Start each one with an [Agent line](#accountability).
-3. **Link your reviews in the Code Review 1 survey** on Pawtograder by 10:30 on Mon Nov 2.
-4. **Come to the Integration Session on Mon Nov 2.** The cross-team conflicts your reviews turn up get worked through in the room that morning.
+3. **Link your reviews in the Code Review 1 survey** on Pawtograder by 11:59pm on Mon Nov 2.
+4. **Bring your reviews to class on Mon Nov 2.** Integration Session I is review working time. The authors are in the room, so when something in the diff isn't clear, ask them, and bring any conflict with another team's stack to Jon there.
 
-The authors answer within 48 hours. Jon merges once both reviews are addressed, and every ticket has to be merged by Wed Nov 4. If your review comes in late, the author's ticket gets blocked.
+The authors answer by Tue Nov 3 at 11:59pm. Jon merges once both reviews are addressed, and every ticket has to be merged by Wed Nov 4. If your review comes in late, the author's ticket gets blocked.
 
 Code Review 1 counts as two of your six reviews, and one of the two outside your team. If a comment of yours changes the code, it also counts toward Credit. Code Review 1 reviews can be picked for the [defense](#review-defense) on Nov 16.
 
@@ -140,7 +140,7 @@ What we look for is whether the PR got better because somebody reviewed it. Some
 
 Use an agent as much as you like to read code and look for problems. Point it at a subsystem you've never seen and ask what it does before you review a change to it. But a review is a set of claims made under your name, and every claim is yours. Every review follows these rules:
 
-1. **Start every review with an Agent line,** from Code Review 1 (Oct 29) on. Reviews you wrote before then count as they stand. Say what an agent did and what you checked yourself: *"Agent: explained the recalculation path. Findings 1 and 3 came from `/code-review`, and I reproduced both."* If you didn't use one, write *"Agent: none."* A review without this line doesn't count.
+1. **Start every review with an Agent line,** from Code Review 1 (Oct 30) on. Reviews you wrote before then count as they stand. Say what an agent did and what you checked yourself: *"Agent: explained the recalculation path. Findings 1 and 3 came from `/code-review`, and I reproduced both."* If you didn't use one, write *"Agent: none."* A review without this line doesn't count.
 2. **Post a finding as fact only if you've verified it.** Verified means you reproduced it, or you can point to the line, row, or test that proves it. Anything else goes up as a question: *"Is this reachable when the group has no submitter?"* A question costs the author a minute. A wrong claim stated as fact makes them prove a negative. `/code-review --comment` posts every finding under your name, so this rule covers everything it posts.
 3. **Say what you checked.** Name what you read, what you ran, and what you didn't check. Include at least one thing you did beyond reading the diff: you ran the branch in your Coder workspace, ran the test before and after the fix, ran the query, or tied the change to a decision your team made or an incident you saw.
 4. **Be ready to defend it in person,** without an agent. See [Review defense](#review-defense).
@@ -198,8 +198,10 @@ Six approvals reading "LGTM." An approval that praises a PR for its test count. 
 | | |
 |---|---|
 | First PRs to review: onboarding column groups | Thu Sep 17 |
-| Code Review 1 assigned, at Demo Day 2 | Thu Oct 29 |
-| Code Review 1 due, then Integration Session I | Mon Nov 2, 10:30 |
+| Code Review 1 assigned | Fri Oct 30 |
+| Integration Session I: review working time | Mon Nov 2, in class |
+| Code Review 1 due | Mon Nov 2, 11:59pm |
+| Authors answer Code Review 1 | Tue Nov 3, 11:59pm |
 | Checkpoint 2: your review links so far | Thu Nov 5 |
 | Integration Session II, review defense 1 | Mon Nov 16 |
 | Checkpoint 3: your review links so far | Thu Dec 3 |

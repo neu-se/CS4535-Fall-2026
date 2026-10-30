@@ -67,8 +67,8 @@ The checklist below is not ceremony. Every line on it corresponds to something t
 4. **CI green before Oct 29.** Your assigned reviewers start then, and a red PR spends their attention on your build.
 5. **A rollback sentence.** One line: if this turns out to be wrong in production, what do we do? Revert cleanly? Flip a flag? Fix forward with a migration? Writing this sentence changes the design more often than you'd expect. A change with no clean revert is a different change.
 6. **Review-ready by Thu Oct 29.** Steps 1 to 5 done on every PR in the stack. At Demo Day 2 your team walks through its project board and each member's PR: what it changes, how it's tested, and its rollback sentence. Running it live is optional. Submit your issue and PR links in the **review-ready survey** on Pawtograder by 10:30 that morning, because that's how your reviewers get assigned.
-7. **Two assigned reviewers.** On Oct 29 Jon assigns each stack two reviewers through the **Code Review 1** assignment in Pawtograder: one teammate and one from another team. Their reviews are due Mon Nov 2 at 10:30, before class. As [code review](./code-review.md) explains, there's no TA tier, so these two reads are most of the review your PR will get. You'll review two stacks yourself.
-8. **Address the review within 48 hours.** Don't just comply with it. If a reviewer is wrong, say why, with evidence. Quietly force-pushing over a comment is the one behavior on this list that is a real problem. Everything else here is a rough edge.
+7. **Two assigned reviewers.** On Oct 30 Jon assigns each stack two reviewers through the **Code Review 1** assignment in Pawtograder: one teammate and one from another team. Their reviews are due Mon Nov 2 at 11:59pm, and Monday's class is time to work on them with you in the room. As [code review](./code-review.md) explains, there's no TA tier, so these two reads are most of the review your PR will get. You'll review two stacks yourself.
+8. **Address the review by Tue Nov 3 at 11:59pm.** Don't just comply with it. If a reviewer is wrong, say why, with evidence. Quietly force-pushing over a comment is the one behavior on this list that is a real problem. Everything else here is a rough edge.
 9. **Jon merges to staging.** Once both reviews are addressed, Jon does a last read, merges, and checks that the deploy went through, all by Wed Nov 4. The instructor promotes staging to production periodically, so this is the last gate before real users see it. The merged PR is the evidence for this requirement.
 10. **A course feature flag, if the change is user-visible and unfinished or potentially breaking.** Not every ticket needs one, and reaching for a flag you do not need is its own mistake: a flag is a promise that something is incomplete, and a codebase full of flags nobody retires is worse off than one with none. Over fifteen hundred people use this product every week, though, and not one of them agreed to test a half-built or half-validated feature.
 
@@ -88,7 +88,7 @@ Some tickets are bigger than they look. Sizing a ticket you have not opened is g
 
 **What doesn't:** silence. A ticket you sat on for two weeks and mentioned to nobody is the exact failure this assignment is built to catch. The missing feature does less damage than the missing information. The thirty-minute rule in the [syllabus](/syllabus#communication) exists for this, and two weeks is a lot of thirty minutes.
 
-**If an assigned review hasn't come by 10:30 on Mon Nov 2,** say so in that morning's standup post. A PR that was review-ready on Oct 29 and then waited on somebody else meets this requirement on the date it was ready. What you have to be able to show is the timestamp: the PR was green and described. If you're waiting on somebody, say so in standup.
+**If an assigned review hasn't come by 11:59pm on Mon Nov 2,** say so in your Tuesday standup post. A PR that was review-ready on Oct 29 and then waited on somebody else meets this requirement on the date it was ready. What you have to be able to show is the timestamp: the PR was green and described. If you're waiting on somebody, say so in standup.
 
 ## Grading Rubric
 
@@ -99,7 +99,7 @@ Merging and deploying this is a **Pass** requirement. Steps 5 and 10 are the rol
 | **Scope** | Touches more than one layer; lands as one reviewable PR, or a stacked series with a stated plan |
 | **PR quality** | What, why, how you tested, and the rollback sentence, all present *before* review is requested |
 | **Tests** | A bug fix has a test that fails without it; other changes justify what they cover and what they don't |
-| **Review** | Review-ready by Oct 29; both assigned reviews answered within 48 hours; disagreement argued with evidence |
+| **Review** | Review-ready by Oct 29; both assigned reviews answered by Tue Nov 3; disagreement argued with evidence |
 | **Landed** | Merged to staging by Nov 4 |
 | **Ops** | Unfinished user-visible work sits behind a flag |
 
@@ -121,8 +121,8 @@ A PR opened Oct 29 at 9:00. "Fixed the bug" as a description. Tests that assert 
 | Game Day 1, mid-window | Thu Oct 22 |
 | Review-ready survey: issue and PR links | Thu Oct 29, 10:30 |
 | Review-ready, walked through at Demo Day 2 | Thu Oct 29 |
-| Code Review 1 assigned | Thu Oct 29 |
-| Reviews due | Mon Nov 2, 10:30 (before class) |
-| Review addressed | within 48 hours of each review |
+| Code Review 1 assigned | Fri Oct 30 |
+| Reviews due | Mon Nov 2, 11:59pm |
+| Review addressed | Tue Nov 3, 11:59pm |
 | Merged to staging, by Jon | Wed Nov 4 |
 | Feedback returned | ~Mon Nov 9 |
