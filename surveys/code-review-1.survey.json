@@ -1,10 +1,10 @@
 {
   "title": "CS 4535: Code Review 1",
-  "description": "Due Mon Nov 2, 10:30 ET, before class. About 5 minutes once your reviews are posted.",
+  "description": "Due Mon Nov 2, 11:59pm ET. About 5 minutes once your reviews are posted.",
   "showQuestionNumbers": "off",
   "checkErrorsMode": "onValueChanged",
   "widthMode": "responsive",
-  "completedHtml": "<h3>Submitted.</h3><p>The authors answer your reviews within 48 hours, so keep an eye on both threads. Bring any cross-team conflicts your reviews found to Integration Session I on Mon Nov 2.</p>",
+  "completedHtml": "<h3>Submitted.</h3><p>The authors answer your reviews by Tue Nov 3 at 11:59pm, so keep an eye on both threads. If a review found a conflict with another team's stack, tell Jon.</p>",
   "pages": [
     {
       "name": "reviews",

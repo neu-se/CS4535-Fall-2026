@@ -453,15 +453,14 @@
       ],
       "topics": [
         "Written standup in your team's Discord channel by 10:30",
+        "Code Review 1 working time, with the authors in the room",
         "Shared schema and migration collisions",
-        "Flag interactions across teams",
-        "Merge and rebase conflicts on shared files",
-        "Everyone in the room, failures on screen"
+        "Merge order across teams"
       ],
       "materials": {
         "slides": "/lecture-slides/s22-standup"
       },
-      "notes": "In the room. Moved from Wed 11/4 for the panel watch party. Code Review 1 is due at 10:30, so the cross-team conflicts those reviews find are worked through in the room the same morning. The standup is still a Discord post by 10:30."
+      "notes": "In the room. Moved from Wed 11/4 for the panel watch party. Code Review 1 is due at 11:59pm, so class is review working time: reviewers work on their stacks with the authors in the room, and cross-team conflicts get settled as they turn up. The standup is still a Discord post by 10:30."
     },
     {
       "lectureId": "s23-panel-watch",
@@ -768,10 +767,10 @@
       "id": "code-review-1",
       "title": "Code Review 1: First Implementation Tickets",
       "type": "homework",
-      "assignedDate": "2026-10-29",
+      "assignedDate": "2026-10-30",
       "dueDate": "2026-11-02",
-      "dueTime": "10:30",
-      "notes": "Assigned in Pawtograder at Demo Day 2. Two first-ticket stacks to review, one from your team and one from another team. GitHub review comments on the PRs; submit the links in Pawtograder by Mon 11/2 10:30, before class. Counts toward the Pass review count (6, at least 2 outside your team) and the Credit requirement of 3 reviews that changed the code.",
+      "dueTime": "23:59",
+      "notes": "Assigned in Pawtograder on Fri 10/30. Two first-ticket stacks to review, one from your team and one from another team. GitHub review comments on the PRs; submit the links in Pawtograder by Mon 11/2 11:59pm. Authors answer by Tue 11/3 11:59pm. Counts toward the Pass review count (6, at least 2 outside your team) and the Credit requirement of 3 reviews that changed the code.",
       "url": "/docs/assignments/code-review"
     },
     {
