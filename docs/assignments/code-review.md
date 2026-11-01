@@ -121,6 +121,9 @@ Spend about twenty minutes, and look at these in order. Stop when you run out of
 **8. Can this be operated without a mouse, and does it announce what it is?**
 *In [#913](https://github.com/pawtograder/platform/issues/913), all three survey radio options announce as "checked," so a screen-reader user cannot tell what they selected.* For some of our users, a control with no accessible name can't be found or used.
 
+**9. Does this test assert the output, or only that something was produced?**
+*In [#1139](https://github.com/pawtograder/platform/pull/1139), `tests/e2e/exam-grading.spec.ts` checked `data.questions.length >= 1` and passed on every run while every `ocr_text` was `""`. The fake OCR provider pinned all its words at y 0.10 and 0.15; the spec's answer region sits at y 0.3 to 0.5, so the region matched nothing and the assertion could not tell.* The exam pipeline was green end to end while producing nothing a grader could read. Ask what value this assertion would accept that a user would call broken.
+
 ### Adding an entry {#adding-an-entry}
 
 The checklist should be longer by December, and the new entries should come from you. Proposing one is one of the five Distinction options.
