@@ -26,7 +26,7 @@ Everything in this collection is a **draft** until the semester begins. Dates an
 | [Checkpoints 1–3](./checkpoints.md) | Individual | Oct 14 · Nov 5 · Dec 3 | Pass |
 | [Cross-Project Functions](./cross-project-functions.md) | Individual | standing, Oct 14 – Dec 10 | Distinction |
 | [Reading Presentation](./reading-presentation.md) | Pairs, one group of three | Oct 21 · Oct 28 · Dec 2 | Pass |
-| Game Day Postmortems *(handout to follow)* | Team | within 48h of each game day | Pass · Credit |
+| Game Days | Individual, in pairs, in class | Thu Oct 22 · Thu Nov 5, nothing due afterwards | Pass |
 | Feature Freeze *(handout to follow)* | Team | Mon Nov 23 | Distinction |
 | Learning Summary Report *(handout to follow)* | Individual | Thu Dec 10 | The band claim itself |
 

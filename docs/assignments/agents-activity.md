@@ -287,7 +287,7 @@ This activity isn't a separate assignment. It counts in two places:
 | | What counts | Graded by |
 |---|---|---|
 | **Participation for Oct 7** | Your writeup showing that you tried this with Claude Code, in your Coder workspace or on your own machine, through step 3 (see [Submission](#submission)) | Submitted by Fri Oct 9 |
-| **Your First Implementation Ticket** | The XL ticket you scoped in step 4, built as the stack of PRs you planned, review-ready by Oct 29, then reviewed, merged, deployed, and verified by Nov 4 | The [First Implementation Ticket](./first-implementation-ticket.md) rubric |
+| **Your First Implementation Ticket** | The XL ticket you scoped in step 4, built as the stack of PRs you planned, review-ready by Oct 29, then reviewed, merged, and deployed by Nov 4 | The [First Implementation Ticket](./first-implementation-ticket.md) rubric |
 
 Steps 4 to 6 are where that ticket starts, on your own schedule. Nothing is due for them this week, and draft PRs can't merge until Oct 14 anyway.
 
@@ -316,4 +316,4 @@ Then post in the activity's Discord thread: your flow and role (or pool ticket),
 | Wed Oct 7, class time | Steps 1 to 3 |
 | Fri Oct 9 | Participation: transcript, artifact, and reflection in `notes/`, and your post in the thread |
 | Wed Oct 14 | `staging` unfreezes; drafts can come out of draft after your own review |
-| Thu Oct 15 to Wed Nov 4 | [First Implementation Ticket](./first-implementation-ticket.md): pick your XL ticket by Mon Oct 19 (own-project scope agreed with Jon by then), review-ready by Oct 29, merged and verified by Nov 4 |
+| Thu Oct 15 to Wed Nov 4 | [First Implementation Ticket](./first-implementation-ticket.md): pick your XL ticket by Mon Oct 19 (own-project scope agreed with Jon by then), review-ready by Oct 29, merged by Nov 4 |

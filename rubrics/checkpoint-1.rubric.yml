@@ -1,0 +1,96 @@
+# Checkpoint 1: grading rubric (individual part)
+#
+# Import:  pawtograder rubrics import -c 636 -a checkpoint-1 -f rubrics/checkpoint-1.rubric.yml --dry-run
+# then re-run without --dry-run. Once comments exist, export the live rubric first and copy
+# these names and descriptions onto it, so the check ids survive (see README.md).
+#
+# Every name and description below is shown to students. Grader instructions live here only.
+#
+# Grading:
+# - Submitted is the only scored part, and the assignment is worth 1 point. Submitting the survey
+#   is the Pass requirement. What's in it isn't graded (checkpoints handout).
+# - Judgment: pick exactly one. At risk and Not on track need a comment that says why, and what to
+#   do about it while there's still time. On track takes an optional comment.
+# - Put the "one thing to do next" in the overall comment. Keep teammate ratings out of every
+#   comment: The survey promises teammates never see them, and a comment that paraphrases them
+#   breaks that promise.
+#
+# Ordinals and null-valued properties are omitted for the reasons given in README.md.
+
+name: Checkpoint 1
+description: >-
+  Checkpoint 1 is a progress check. Submitting the survey meets the Pass requirement. The judgment says
+  whether your part of the project is on track as of Oct 15, and why, read against your sprint artifact,
+  your issues and PRs, and the demo.
+cap_score_to_assignment_points: true
+is_private: false
+review_round: grading-review
+parts:
+- name: Submitted
+  description: >-
+    Whether you submitted the Checkpoint 1 survey. This is the only part with points.
+  criteria:
+  - name: Submitted
+    description: >-
+      Submitting each checkpoint survey is a Pass requirement.
+    total_points: 1
+    is_additive: true
+    is_deduction_only: false
+    min_checks_per_submission: 1
+    max_checks_per_submission: 1
+    checks:
+    - name: Submitted
+      description: >-
+        You submitted the survey.
+      points: 1
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: always
+    - name: Not submitted
+      description: >-
+        We have no survey from you. Submit it, and this changes to Submitted.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: always
+- name: Judgment
+  description: >-
+    Whether your part of the project is where Checkpoint 1 says it should be: what the sprint found, a
+    scope, and tickets someone could claim. No points.
+  criteria:
+  - name: Judgment
+    description: >-
+      On track, at risk, or not on track, and why.
+    total_points: 0
+    is_additive: true
+    is_deduction_only: false
+    min_checks_per_submission: 1
+    max_checks_per_submission: 1
+    checks:
+    - name: On track
+      description: >-
+        Your part of the project is where it should be at Checkpoint 1.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: always
+    - name: At risk
+      description: >-
+        Something specific could keep you from Checkpoint 2. The comment names it and what to do.
+      points: 0
+      is_annotation: false
+      is_comment_required: true
+      is_required: false
+      student_visibility: always
+    - name: Not on track
+      description: >-
+        Your part is behind where Checkpoint 1 expects. The comment says what's missing and what to do
+        by when.
+      points: 0
+      is_annotation: false
+      is_comment_required: true
+      is_required: false
+      student_visibility: always

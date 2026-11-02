@@ -1,0 +1,531 @@
+# Onboarding: Gradebook Column Groups: grading rubric
+#
+# Import:  pawtograder rubrics import -c 636 -a hw1-onboarding -f rubrics/hw1-onboarding.rubric.yml --dry-run
+# then re-run without --dry-run.
+#
+# Part 1 is the band reached, scored 0-4, and the only part that carries points. The gradebook's
+# pass-02 requirement reads it as ">= 1". Set the assignment to 4 points.
+# Part 2 is the handout's "What each expectation is judged on" table. Each row is Met or Not yet,
+# and it is the evidence behind the Part 1 choice. It carries no points.
+# Part 3 carries no points. It is a tick-list of the faults named under "What weak looks like"
+# plus the ones found while reading, and the student sees only what was ticked.
+#
+# Ordinals and null-valued properties are omitted for the reasons given in README.md.
+
+name: "Onboarding: Gradebook Column Groups"
+description: >-
+  Banded. Each band includes the one below it, and the band reached is the one the evidence
+  supports, whatever was claimed. An over-claim falls back to the band actually reached. A
+  submission short of Pass comes back within a week with what's missing named, and gets one
+  revision.
+cap_score_to_assignment_points: true
+is_private: false
+review_round: grading-review
+parts:
+- name: Band reached
+  description: >-
+    Pick exactly one. The rubric doesn't enforce nesting, so check it by hand: each band needs the
+    band below it. Pass needs these Part 2 rows Met: Schema, RLS, Backfill, The table, Band claim,
+    Testing, and both writeup rows. An over-claim doesn't make a submission Not yet. Pick the band
+    reached and tick "Over-claim, fell back".
+  criteria:
+  - name: Band reached
+    description: >-
+      Pass: all six deliverables, a backfill that reproduces today's grouping, and the table
+      reading groups from data. Credit: at least three real heuristic failures, each shown by a
+      trace or a gradebook, and corrected by the backfill. Distinction: create, rename, reorder, and delete
+      groups, and move columns between them, with reorder preserving membership. High
+      Distinction: part two of the writeup answers the CS 2100 case, names a structure the
+      current model can't express, prices it, and is specific enough to build from.
+    total_points: 4
+    is_additive: true
+    is_deduction_only: false
+    min_checks_per_submission: 1
+    max_checks_per_submission: 1
+    checks:
+    - name: Not yet
+      description: >-
+        Short of Pass. The comment names each Pass requirement that is missing, and those are the
+        revision.
+      points: 0
+      is_annotation: false
+      is_comment_required: true
+      is_required: false
+      student_visibility: always
+    - name: Pass
+      description: >-
+        The six deliverables are there, the backfill reproduces today's grouping, and the table
+        reads groups from data.
+      points: 1
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: always
+    - name: Credit
+      description: Pass, plus a written list of at least three real failures, each corrected.
+      points: 2
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: always
+    - name: Distinction
+      description: Credit, plus full CRUD, with reorder preserving group membership.
+      points: 3
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: always
+    - name: High Distinction
+      description: Distinction, plus a part-two design that holds up against the CS 2100 case.
+      points: 4
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: always
+- name: Expectations
+  description: >-
+    The handout's "What each expectation is judged on" table. No points. These rows are the
+    evidence for the band above.
+  criteria:
+  - name: Schema
+    description: >-
+      A group is a row, not a substring. Constraints make a broken grouping hard to express.
+    total_points: 0
+    is_additive: true
+    is_deduction_only: false
+    min_checks_per_submission: 1
+    max_checks_per_submission: 1
+    checks:
+    - name: Met
+      description: The database records which group each column is in.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: always
+    - name: Not yet
+      description: See the notes below.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: always
+  - name: RLS
+    description: >-
+      Policies on the new table, consistent with the ones already on gradebook_columns. Nobody
+      sees another course's groups, and the policies are performant.
+    total_points: 0
+    is_additive: true
+    is_deduction_only: false
+    min_checks_per_submission: 1
+    max_checks_per_submission: 1
+    checks:
+    - name: Met
+      description: >-
+        Policies on the new table follow the gradebook_columns policies the handout links, and no
+        student or staff member reads another course's groups.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: always
+    - name: Not yet
+      description: See the notes below.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: always
+  - name: Backfill
+    description: >-
+      Runs against gradebooks that already exist and produces a grouping you can defend, with a
+      stated policy for rows it can't classify.
+    total_points: 0
+    is_additive: true
+    is_deduction_only: false
+    min_checks_per_submission: 1
+    max_checks_per_submission: 1
+    checks:
+    - name: Met
+      description: >-
+        Runs in the migration against gradebooks that already exist. The grouping matches today's,
+        or the PR lists or defends each difference, and rows it can't classify get a stated rule.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: always
+    - name: Not yet
+      description: See the notes below.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: always
+  - name: The table
+    description: Reads groups from your data. No slug splitting left at render time.
+    total_points: 0
+    is_additive: true
+    is_deduction_only: false
+    min_checks_per_submission: 1
+    max_checks_per_submission: 1
+    checks:
+    - name: Met
+      description: The memo shapes rows passed to it and derives nothing from slugs.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: always
+    - name: Not yet
+      description: See the notes below.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: always
+  - name: Band claim
+    description: >-
+      Stated in the PR, justified, and true. At Credit, an explicit written list of what you found
+      and what the migration does about each case.
+    total_points: 0
+    is_additive: true
+    is_deduction_only: false
+    min_checks_per_submission: 1
+    max_checks_per_submission: 1
+    checks:
+    - name: Met
+      description: >-
+        The band is stated in the PR description with a sentence of justification, and at Credit
+        the written list is there. Whether the claim holds is Part 1 and "Over-claim, fell back".
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: always
+    - name: Not yet
+      description: See the notes below.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: always
+  - name: Testing
+    description: >-
+      What you ran it against, said out loud, including what you didn't cover, and the down path.
+    total_points: 0
+    is_additive: true
+    is_deduction_only: false
+    min_checks_per_submission: 1
+    max_checks_per_submission: 1
+    checks:
+    - name: Met
+      description: >-
+        Says what it was run against and what was run, names what wasn't covered, and says what
+        happens if the migration is undone after it has run once.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: always
+    - name: Not yet
+      description: See the notes below.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: always
+  - name: Design writeup, part one
+    description: >-
+      Four questions answered against the design you actually built, with the trade named and
+      what it cost. A reader could predict your schema from your answers.
+    total_points: 0
+    is_additive: true
+    is_deduction_only: false
+    min_checks_per_submission: 1
+    max_checks_per_submission: 1
+    checks:
+    - name: Met
+      description: All four answered, and the answers are about this schema.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: always
+    - name: Not yet
+      description: See the notes below.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: always
+  - name: Design writeup, part two
+    description: >-
+      A design proposal for the CS 2100 shape: the structure the column list can't express, what
+      the display should do with it, and what that would cost.
+    total_points: 0
+    is_additive: true
+    is_deduction_only: false
+    min_checks_per_submission: 1
+    max_checks_per_submission: 1
+    checks:
+    - name: Met
+      description: >-
+        Present in the PR description, with the structure the CS 2100 column list can't express,
+        what the display should do with it, and what it would cost. Whether it reaches High
+        Distinction is Part 1.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: always
+    - name: Not yet
+      description: See the notes below.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: always
+- name: Notes
+  description: >-
+    No points. Tick what applies. The student sees only what was ticked.
+  criteria:
+  - name: Implementation
+    description: What to fix in the migration and the table. Nothing here changes the band on its own.
+    total_points: 0
+    is_additive: true
+    is_deduction_only: false
+    checks:
+    - name: RLS missing or inconsistent with gradebook_columns
+      description: >-
+        The comment names the query that returned a row it shouldn't have, or the policy that
+        diverges from the matching gradebook_columns policy.
+      points: 0
+      is_annotation: false
+      is_comment_required: true
+      is_required: false
+      student_visibility: if_applied
+    - name: Group visible to students when all its columns are hidden
+      description: >-
+        For your information. The handout linked the June 2025 gradebook_columns policy, and a
+        policy that matches it meets the requirement. The live policy also hides unreleased
+        instructor-only columns (20260407000000_gradebook_column_instructor_only.sql), so a group
+        made only of those columns still shows its name to students. The comment names the group.
+      points: 0
+      is_annotation: false
+      is_comment_required: true
+      is_required: false
+      student_visibility: if_applied
+    - name: Function writes groups without checking the caller
+      description: >-
+        A SECURITY DEFINER function granted to authenticated changes groups without checking
+        that the caller is staff in that class. The comment names the function and what a caller
+        in another course could change.
+      points: 0
+      is_annotation: false
+      is_comment_required: true
+      is_required: false
+      student_visibility: if_applied
+    - name: Membership can cross a gradebook or course
+      description: >-
+        Nothing in the schema stops a column from joining a group in another gradebook. The
+        comment names the key.
+      points: 0
+      is_annotation: false
+      is_comment_required: true
+      is_required: false
+      student_visibility: if_applied
+    - name: Slug splitting moved into SQL
+      description: >-
+        The slug rule now runs in Postgres. A one-time backfill may parse slugs. Parsing slugs on every
+        read or write request keeps the heuristic as the source of a column's group.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: Existing gradebooks don't come out grouped
+      description: >-
+        The grouping appears only after a manual step, or only for columns created after the
+        migration. Deliverable 2 is about the columns that are already there.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: No policy for rows the backfill can't classify
+      description: >-
+        State what the backfill does with rows it can't classify. Pointing at the rows makes the
+        rule checkable.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: Doesn't reproduce today's grouping
+      description: >-
+        A difference from the current memo that the PR doesn't list or explain. The comment names
+        the columns.
+      points: 0
+      is_annotation: false
+      is_comment_required: true
+      is_required: false
+      student_visibility: if_applied
+    - name: CRUD incomplete
+      description: >-
+        One of create, rename, delete, reorder, or move-between-groups is missing or doesn't
+        persist.
+      points: 0
+      is_annotation: false
+      is_comment_required: true
+      is_required: false
+      student_visibility: if_applied
+    - name: Reorder loses group membership
+      description: The comment gives the sequence of moves that broke it.
+      points: 0
+      is_annotation: false
+      is_comment_required: true
+      is_required: false
+      student_visibility: if_applied
+    - name: gradebook-e2e red
+      description: >-
+        CI fails and the PR doesn't say whether that's expected. Green isn't required. Red usually
+        means the migration doesn't replay from scratch, the committed types disagree with the
+        schema, or no column ends up in a group.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: No down path stated
+      description: >-
+        Say what happens if the migration has to be undone after it has already run once. If you wrote a
+        down script, run it once on a seeded database to find out whether it works.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+  - name: Writeup and claim
+    description: What to fix in the PR description. Nothing here changes the band on its own.
+    total_points: 0
+    is_additive: true
+    is_deduction_only: false
+    checks:
+    - name: Over-claim, fell back
+      description: The comment names the band reached and what the claimed band was missing.
+      points: 0
+      is_annotation: false
+      is_comment_required: true
+      is_required: false
+      student_visibility: if_applied
+    - name: Credit list missing or short of three
+      description: >-
+        The handout asks for a written list of at least three. A list of one or two is a Pass with
+        a note attached. A correction you made without listing it may still be counted, and it
+        belongs on the list.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: Listed failure not demonstrated
+      description: >-
+        A case on the list with nothing behind it: no trace through the memo's code and no
+        gradebook where it happens. A trace counts. A gradebook that shows the case makes it
+        easier to check. The comment names which.
+      points: 0
+      is_annotation: false
+      is_comment_required: true
+      is_required: false
+      student_visibility: if_applied
+    - name: Writeup would describe any submission
+      description: >-
+        The four answers don't let a reader predict this schema. Tie each one to a table, a key,
+        or a constraint you chose.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: Trade named without its cost
+      description: Say what you gave up as well as what you chose.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: Part two answers the seeded case, not CS 2100
+      description: >-
+        The skill-N aggregates are the mild version. Topics times attempts is the case that
+        the display can't show.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: Part two redraws the same structure
+      description: >-
+        A nicer way to draw prefix groups. Name the relationship the column list can't express.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: Part two unpriced
+      description: >-
+        Schema, migration, query load on a 500-student course, instructor setup effort, and what
+        breaks for a course not organized this way.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: Testing silent on other course shapes
+      description: Everything checked on the seed and nothing said about a course that looks different.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: Writeup outside the PR description
+      description: >-
+        The handout asks for it in the description, where the next reader of the PR finds it.
+        We read it from the linked file this time.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: Part one skips who would check it
+      description: >-
+        Question 2 asks who you'd put your design in front of, and what you'd show them.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: Part two picks a group without saying why
+      description: >-
+        A group is one answer to the CS 2100 case. Say why it fits better than the alternatives, or why it doesn't.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: Part two doesn't say who you'd ask
+      description: >-
+        Prompt 4 asks what you'd need to know to be sure, and who you'd ask.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: Part two isn't specific enough to build
+      description: >-
+        Somebody should be able to build it from your description and get what you meant. Name the tables, keys, and rules.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied

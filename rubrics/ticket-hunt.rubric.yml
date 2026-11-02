@@ -1,0 +1,274 @@
+# The Ticket Hunt: grading rubric
+#
+# Import:  pawtograder rubrics import -c 636 -a ticket-hunt -f rubrics/ticket-hunt.rubric.yml --dry-run
+# then re-run without --dry-run.
+#
+# Part 1 carries the three published expectations, one point each, Met / Not yet.
+# Part 2 carries no points. It is a tick-list of the recurring faults, so feedback
+# is specific without inventing criteria the handout never published.
+#
+# Ordinals are omitted deliberately: The importer assigns them from array position
+# (lib/rubric/parse.ts). Null-valued properties are omitted for the same reason:
+# Every nullable field goes through valOrNull, so absent and null are identical.
+
+name: The Ticket Hunt
+description: >-
+  Two tickets filed from two different roles, and two triage verdicts on items nobody had ruled
+  on. Passing requires all three expectations to be Met. Anything short comes back for resubmission
+  with the notes in Part 2 attached.
+cap_score_to_assignment_points: true
+is_private: false
+review_round: grading-review
+parts:
+- name: Expectations
+  description: >-
+    The three rows of the handout's grading table. Each is Met or Not yet. There is no partial credit,
+    because the task either meets the published standard or comes back.
+  criteria:
+  - name: Tickets filed
+    description: >-
+      Two tickets by Sep 16, from two different roles, the first from the student role. Each one
+      reproducible by a stranger from a state they can reach, searched for duplicates, naming the
+      role it affects and how many of them, carrying evidence beyond the reporter's own account,
+      and stating why it matters in a way a reader could check. A duplicate filed after a real search
+      is fine. A duplicate filed instead of searching is a fault.
+    total_points: 1
+    is_additive: true
+    is_deduction_only: false
+    min_checks_per_submission: 1
+    max_checks_per_submission: 1
+    checks:
+    - name: Met
+      description: Both tickets meet the standard above.
+      points: 1
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: always
+    - name: Not yet
+      description: See the ticket-craft notes below for what to fix.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: always
+  - name: Triage
+    description: >-
+      Two items resolved to one of three verdicts (still real, no longer real, or undecidable
+      without something you named), each posted as a comment on the item, each on somebody else's record, excluding
+      your own findings from this week, and each with reasoning a reader can check. Specifics are the
+      point. Name things such as the commit that introduced the TODO, the ship date of the migration it refers
+      to, the line showing that the branch is now unreachable. "Still relevant" earns nothing. A verdict
+      that does not survive being checked against the code does not count as reached.
+    total_points: 1
+    is_additive: true
+    is_deduction_only: false
+    min_checks_per_submission: 1
+    max_checks_per_submission: 1
+    checks:
+    - name: Met
+      description: Two verdicts, both checkable, both holding up on verification.
+      points: 1
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: always
+    - name: Not yet
+      description: See the triage-craft notes below for what to fix.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: always
+  - name: Honesty about scope
+    description: >-
+      A ticket you could not size says so and names precisely what you would need and who has it.
+      "Undecidable, because I need to know whether phase 2 is scheduled and only the instructor
+      knows" is a complete answer and a useful one. Guessing at a size you have no basis for is
+      one fault this criterion exists to catch. Leaving a size blank with no explanation is the
+      other.
+    total_points: 1
+    is_additive: true
+    is_deduction_only: false
+    min_checks_per_submission: 1
+    max_checks_per_submission: 1
+    checks:
+    - name: Met
+      description: Every size is either argued or declined with what's missing named.
+      points: 1
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: always
+    - name: Not yet
+      description: A size is asserted with no basis, or omitted with no explanation.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: always
+- name: Notes
+  description: >-
+    No points. Tick what applies. The student sees only what was ticked. The checks below name the faults that
+    actually recurred, so most feedback is two clicks and a sentence.
+  criteria:
+  - name: Ticket craft
+    description: What to fix in the tickets. Nothing here changes the score on its own.
+    total_points: 0
+    is_additive: true
+    is_deduction_only: false
+    checks:
+    - name: Hypothesis, not a reproduction
+      description: >-
+        You found this by reading code and never made it happen. Name the observable failure or
+        take it to Discord. The AI policy is explicit that an unreproduced hypothesis is not a
+        ticket.
+      points: 0
+      is_annotation: false
+      is_comment_required: true
+      is_required: false
+      student_visibility: if_applied
+    - name: Mechanism asserted without checking it
+      description: >-
+        The root-cause section says "likely" or "appears to" about something you could have confirmed
+        by opening the file.
+      points: 0
+      is_annotation: false
+      is_comment_required: true
+      is_required: false
+      student_visibility: if_applied
+    - name: Reproduction doesn't start from a reachable state
+      description: >-
+        The steps assume something a stranger doesn't have: your branch, your data, or knowledge
+        of what you meant.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: No evidence beyond your own account
+      description: A screenshot, stack trace, log line, or failing response is required.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: Impact names no role, or no cost to that role
+      description: >-
+        "This is confusing" isn't an impact. Who is worse off, and what does it cost them across
+        a real roster?
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: No duplicate search recorded
+      description: Say what you searched, in the terms a stranger would use.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: Missing the cs4535-hunt tag
+      description: >-
+        Without the tag in the title, the issue doesn't show up in a search for the tag, and it can't be drawn
+        into the first-ticket pool.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: Both tickets from the same role
+      description: >-
+        The first comes from the student role; the second from grader, instructor, or new contributor.
+        You can't find an instructor's problems by acting as a student.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+  - name: Triage craft
+    description: What to fix in the verdicts. Nothing here changes the score on its own.
+    total_points: 0
+    is_additive: true
+    is_deduction_only: false
+    checks:
+    - name: Verdict refuted on verification
+      description: >-
+        I checked your reasoning against the code and it doesn't hold. The comment names which claim
+        failed and why.
+      points: 0
+      is_annotation: false
+      is_comment_required: true
+      is_required: false
+      student_visibility: if_applied
+    - name: Cited evidence that isn't in the source item
+      description: >-
+        An "evidence" line states something the item doesn't say. That mismatch is what unreviewed agent
+        output looks like from the outside.
+      points: 0
+      is_annotation: false
+      is_comment_required: true
+      is_required: false
+      student_visibility: if_applied
+    - name: Answered a different question than the item asked
+      description: >-
+        You verified something true that isn't what the item is about. Re-read what the item asks, including
+        any second half.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: Restates the item without adding a check
+      description: >-
+        Summarizing the item under headings isn't triage. What did you run, open, or measure that
+        the reporter didn't?
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: '"Still real" with no size'
+      description: >-
+        A still-real verdict has to make the item claimable, which means a size and the reasoning
+        behind it.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: Verified against a build older than the item
+      description: >-
+        "Still real on a build from four weeks ago" doesn't establish still real. Say which revision
+        you checked and why it's current enough.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: Triaged a same-day ticket
+      description: >-
+        A verdict on something filed hours ago can only come out "still real." Take an item old
+        enough that the answer isn't already known.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: Verdict posted somewhere other than the item
+      description: >-
+        Post it on the item you triaged so the next reader finds it. For a TODO, comment on the
+        commit that introduced it, which puts the verdict next to the line it is about.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied
+    - name: Fewer than two verdicts posted
+      description: The form recorded verdicts I couldn't find on GitHub, or none at all.
+      points: 0
+      is_annotation: false
+      is_comment_required: false
+      is_required: false
+      student_visibility: if_applied

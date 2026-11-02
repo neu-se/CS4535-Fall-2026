@@ -1,0 +1,82 @@
+{
+  "title": "CS 4535: First Implementation Ticket, Review-Ready",
+  "description": "Due Thu Oct 29, 10:30 ET, before Demo Day 2. About 5 minutes once your PRs are open.",
+  "showQuestionNumbers": "off",
+  "checkErrorsMode": "onValueChanged",
+  "widthMode": "responsive",
+  "completedHtml": "<h3>Submitted.</h3><p>Your two reviewers get a GitHub review request on Oct 29. Answer each review within 48 hours. Jon merges once both reviews are addressed, by Wed Nov 4.</p>",
+  "pages": [
+    {
+      "name": "ready",
+      "elements": [
+        {
+          "type": "html",
+          "name": "intro",
+          "html": "<p>This is how your reviewers get assigned, so the links have to be right. Review-ready means steps 1 to 5 are done on every PR in the stack: CI green, a description that says what, why and how you tested, tests where the change warrants them, and a rollback sentence. See <a href=\"https://neu-se.github.io/CS4535-Fall-2026/docs/assignments/first-implementation-ticket#what-end-to-end-means\" target=\"_blank\">What end to end means</a>.</p>"
+        },
+        {
+          "type": "text",
+          "name": "issue_url",
+          "title": "Link to your ticket's issue",
+          "inputType": "url",
+          "isRequired": true,
+          "description": "The issue where your scope was agreed.",
+          "validators": [
+            {
+              "type": "regex",
+              "regex": "^https://github\\.com/pawtograder/platform/issues/\\d+",
+              "text": "Paste the full link to an issue on pawtograder/platform, such as https://github.com/pawtograder/platform/issues/977"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "pr_urls",
+          "title": "Links to your PRs, one per line, in the order they merge",
+          "rows": 4,
+          "isRequired": true,
+          "description": "One line if it's a single PR. For a stack, put the PR that merges first at the top.",
+          "validators": [
+            {
+              "type": "regex",
+              "regex": "^(\\s*https://github\\.com/pawtograder/platform/pull/\\d+/?\\s*)+$",
+              "text": "One PR link per line, such as https://github.com/pawtograder/platform/pull/1090"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "ready",
+          "title": "Is every PR in the stack review-ready?",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "yes",
+              "text": "Yes: CI green, described, tested, with a rollback sentence"
+            },
+            {
+              "value": "not_yet",
+              "text": "Not yet"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "not_ready",
+          "title": "What's missing, and when will it be ready?",
+          "rows": 2,
+          "isRequired": true,
+          "visibleIf": "{ready} = 'not_yet'",
+          "description": "Your reviewers start today either way. Say it on the issue too."
+        },
+        {
+          "type": "comment",
+          "name": "scope_change",
+          "title": "Did the scope change from what was agreed on the issue?",
+          "rows": 2,
+          "description": "Optional. If you scoped down, link the comment on the issue that says why."
+        }
+      ]
+    }
+  ]
+}

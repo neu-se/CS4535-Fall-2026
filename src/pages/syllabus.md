@@ -67,7 +67,7 @@ Teams own their project areas. The week settles into a rhythm:
 
 | Day | Format |
 |-----|--------|
-| **Monday** | Standup + clinic: a short all-hands standup, then teams sign up for consultation slots on specific blockers, architectural questions, or design tradeoffs. |
+| **Monday** | Standup + clinic. Each person posts a written standup in their team's Discord channel by 10:30, and the room is open for clinic: consultation slots on specific blockers, architectural questions, or design tradeoffs. Mondays with an integration session (Nov 2, Nov 16) or hardening triage (Nov 30) meet in the room. |
 | **Wednesday** | A tech talk, or two pairs teaching an assigned reading to the room. |
 | **Thursday** | Team work session, demo day, or game day. |
 
@@ -76,6 +76,7 @@ Punctuating that rhythm:
 - Demo days, roughly every two weeks. Live product, real environment, five minutes per team plus questions.
 - Two game days, which are incident drills, on Oct 22 and Nov 5.
 - Integration sessions, where cross-team coupling gets resolved in the room rather than over three days of messages.
+- A panel watch party on Nov 4: *Human in the Loop: Expectations in the Agentic AI Era*, streamed live in our room, with a worksheet.
 - The async sprint, Oct 2–13, while the instructor is at OOPSLA/ISSTA. Three sessions run asynchronously and you leave Oct 1 with a plan. Read the [participation](#participation) rules for what counts as attendance in that window.
 
 **Feature freeze is Nov 23.** Nothing new lands after it.
@@ -142,7 +143,7 @@ Illness, family emergency, religious observance, a job interview, a conference, 
 
 ### Async sessions
 
-Three sessions in October run asynchronously while the instructor is traveling. For those, participation *is* the written artifact, whether that's the standup post, the discussion thread, or the triage log. Not posting is an absence, marked the same as an empty chair.
+Three sessions in October run asynchronously while the instructor is traveling, and so do the Monday standups on Oct 26 and Nov 9. For those, participation *is* the written artifact, whether that's the standup post, the discussion thread, or the triage log. Not posting is an absence, marked the same as an empty chair. Clinic on those Mondays is optional: come if you have something to bring.
 
 ### If you can't meet the floor
 
@@ -187,10 +188,10 @@ All eight outcomes at minimum standard. This is the comprehensive band, and a st
 
 - Ticket hunt: two tickets filed, two items triaged, by Sep 16 **(LO1, LO2)**
 - Onboarding column-groups submission at **Pass level or above**: schema, RLS, and a backfill, with the gradebook reading groups from real data, plus your statement of the requirement and the qualities you traded **(LO1, LO2)**
-- First implementation ticket merged, deployed, and verified running **(LO3)**
-- At least 6 substantive code reviews across the term, at least 2 outside your own team **(LO4)**
+- First implementation ticket merged and deployed **(LO3)**
+- At least 6 substantive code reviews across the term, at least 2 outside your own team, each one you can defend in person if we pick it on Nov 16 or Dec 7 **(LO4)**
 - You answer review on your own PRs, with no thread left dead. Judged as a habit across the term rather than per comment **(LO4)**
-- Both game-day postmortems, for Game Days 1 and 2, each naming an action you took during the response **(LO5)**
+- Game Days 1 and 2, with an action you took during each response **(LO5)**
 - Your merged work carries tests where the change warrants them, and a flag when user-visible work is unfinished **(LO5)**
 - At least one user-visible change shipped in your team's project area **(LO6)**
 - A user study of your team's project area with at least five real users, which you helped plan, run, or analyze, and whose findings are written up in your team repo by Checkpoint 3 (Dec 3). It can study the current system, a prototype, or your shipped change **(LO6)**

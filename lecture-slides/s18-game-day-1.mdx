@@ -1,0 +1,305 @@
+---
+sidebar_position: 18
+title: "Game Day 1: Wrong Grades"
+image: /img/lectures/s18-game-day-1.png
+---
+
+import RevealJS, { Slide } from '@site/src/components/RevealJS';
+import Img from '@site/src/components/Img';
+
+<RevealJS transition="slide">
+
+{/* ============================================ */}
+{/* COVER IMAGE */}
+{/* ============================================ */}
+
+<Slide>
+
+  <Img
+    src="/img/lectures/s18-game-day-1.png"
+    prompt="Concept: a student says their grade is wrong, the TA's screen says it's right, and nothing anywhere reports an error. 8-bit lo-fi pixel art, retro game aesthetic, clean outlines, 16:9 landscape. On the LEFT, in warm amber tones, a pixel student at a laptop points at a gradebook cell showing a small number, frowning. On the RIGHT, in teal tones, a pixel TA at another laptop shows the same cell with a larger number and shrugs. Between them, a pixel engineer in a teal hoodie sits at a terminal with a magnifying glass over a scrolling table of rows. Above everything, a small green status light glows steadily. Top banner reads 'Game Day 1: Wrong Grades'. A tagline below the banner reads 'No Error Anywhere.' Bottom text reads 'CS 4535: Software Design and Delivery'."
+    alt="Pixel art of a student pointing at a low grade on the left, a TA showing a higher grade on the right, and an engineer between them reading rows at a terminal while a green status light stays lit. Tagline: No Error Anywhere."
+  />
+
+<aside className="notes">
+**Session:** Thu Oct 22 · Game Day 1: Wrong Grades · 65 min
+
+**One spine: a user reports a symptom, and the room responds to it.** Everyone has their own workspace with the incident already in it, works in pairs, and ends the session with a postmortem drafted by Claude Code and marked up by hand. Nothing is due afterwards.
+
+**Your job today is the clock and the questions.** Don't explain the cause; go around the pairs and ask "what's your hypothesis, and what query would kill it?" The instructor run-sheet (private) has the answer key per workspace, the hints in order, and the repair.
+
+**Before class:** every workspace staged the night before (the check is in the run-sheet). Print 13 worksheets. Have your own workspace on the projector for the share-out.
+
+> **Transition:** Reminders first.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* REMINDERS */}
+{/* ============================================ */}
+
+<Slide>
+
+## Reminders
+
+<div style={{fontSize: '0.8em', textAlign: 'left'}}>
+
+- **FEEDBACK:** Checkpoint 1, closed Tue Oct 13. Feedback is coming back shortly
+- **DUE:** First Implementation Ticket, review-ready Thu Oct 29
+- **TODAY:** Game Days and Postmortems. Everything happens in this room, and nothing is due afterwards
+
+</div>
+
+<aside className="notes">
+Sixty seconds. Say the last line twice: Nothing is due after today, because the first ticket is due next week.
+
+> **Transition:** What you'll be able to do by the end.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* TITLE */}
+{/* ============================================ */}
+
+<Slide>
+
+# CS 4535: Software Design & Delivery
+
+## Game Day 1: Wrong Grades
+
+<p style={{marginTop: '2em', fontSize: '0.8em', color: '#666'}}>
+  &copy;2026 Jonathan Bell, CC-BY-SA
+</p>
+
+<aside className="notes">
+Monday's talk covered the vocabulary. Today you use it on an incident in progress, with the evidence in a database and nobody to ask but each other.
+
+> **Transition:** Here's what you'll be able to do after today.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* LEARNING OBJECTIVES */}
+{/* ============================================ */}
+
+<Slide>
+
+## Learning Objectives
+
+<p style={{fontSize: '0.85em', textAlign: 'left'}}>
+After this session, you'll be able to:
+</p>
+
+<ol style={{fontSize: '0.75em', textAlign: 'left'}}>
+  <li>Find a failure that produces no error anywhere, starting from a user's report</li>
+  <li>Measure how far it spread, and say which question each number answers</li>
+  <li>Stop it from getting worse, repair the damage, and verify the repair</li>
+  <li>Judge a postmortem for accuracy against what you actually saw</li>
+</ol>
+
+<aside className="notes">
+Thirty seconds. Objective 2 is the one to say out loud: "how many people were affected" has more than one honest answer, and they'll be asked which one they measured.
+
+> **Transition:** How today works.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* HOW TODAY WORKS */}
+{/* ============================================ */}
+
+<Slide>
+
+## How Today Works
+
+<div style={{fontSize: '0.72em', textAlign: 'left'}}>
+
+- **Your own workspace:** open `<your-username>/gameday-1` in Coder. It runs a complete local Pawtograder with a seeded class, and something in it is wrong. Treat it as production
+- **Your tools:** `psql` and the code. There are no dashboards and no git history
+- **Start here:** `~/gameday-1/GAMEDAY.md` has the user's report. `~/gameday-1/POSTGRES.md` is a five-minute primer if you need one
+- **Pairs:** each of you on your own workspace, comparing as you go
+- **Half the room starts with Claude Code,** half starts without it. At minute 30, everyone can use it
+
+</div>
+
+<aside className="notes">
+Read out the pairs and which half each pair is in (the run-sheet has the split, with the two AI research students on opposite sides). If someone's workspace won't open, they pair on their partner's screen. Code-server is shared with any signed-in user.
+
+> **Transition:** Four rules.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* RULES */}
+{/* ============================================ */}
+
+<Slide>
+
+## Four Rules
+
+<div style={{fontSize: '0.75em', textAlign: 'left'}}>
+
+1. **Read-only until you can explain it.** Use `psql-ro` until you can tell your partner the cause *and* how many were affected. Then `psql-rw`
+2. **Log everything in `~/gameday-1/timeline.md`:** the time, the query, and what it told you
+3. **Repairs run inside `BEGIN`.** Check the row count before you `COMMIT`
+4. **Don't reset or stop the stack.** Production doesn't have a reset button
+
+</div>
+
+<aside className="notes">
+Rule 2 is the one they'll skip, and the postmortem is built from it. Say that at minute 15 too.
+
+Rule 4: a reset would make the symptom go away and destroy the evidence at the same time. Don't explain more than that.
+
+> **Transition:** The clock.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* THE CLOCK */}
+{/* ============================================ */}
+
+<Slide>
+
+## The Clock
+
+<div style={{fontSize: '0.68em'}}>
+
+| Minutes | What you do |
+|---|---|
+| 5–30 | Read the report. Detect, scope, find the cause |
+| 30–40 | Mitigate and repair. **Block 1** before you commit |
+| 40–45 | **Block 2**: your account |
+| 45–52 | **Block 3**, then `gameday-postmortem` |
+| 52–60 | **Block 4**: check the draft against your prediction |
+| 60–65 | Two pairs share what their AI got wrong |
+
+</div>
+
+<aside className="notes">
+Leave this slide up while they work. Call minute 20 out loud: "How many are affected? Shout your number, and say which question it answers." The numbers will differ, and that disagreement is the discussion.
+
+At minute 30, tell the agents-later half they can now use Claude Code. Remind the room that block 1 is filled in *before* the repair commits. Walk around and check the predictions are on paper first.
+
+> **Transition:** At minute 40, block 2.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* THE WORKSHEET */}
+{/* ============================================ */}
+
+<Slide>
+
+## The Worksheet: Predict, Then Run
+
+<div style={{fontSize: '0.68em', textAlign: 'left'}}>
+
+One page, on paper, no AI. Each prediction goes on paper **before** you run the thing it predicts.
+
+1. **The repair** (inside `BEGIN`): predicted rows, what psql said, and why they differ if they do. Decide before you `COMMIT`
+2. **Your account** (minute 40): the cause, how many and which question that answers, the action you took
+3. **Predict the AI** (before `gameday-postmortem`): its number, and what it'll get wrong
+4. **Run it, then check:** were you right, what it actually got wrong, and the action item you'd ship first
+
+</div>
+
+<aside className="notes">
+Show this at minute 0 with the handout of the sheet, and again at minute 40. The predictions are the point: A row count that surprises them before COMMIT is the most useful thing that can happen to them today, and a prediction about the AI keeps them from anchoring on whatever the draft says.
+
+> **Transition:** At minute 45, the postmortem.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* THE POSTMORTEM */}
+{/* ============================================ */}
+
+<Slide>
+
+## Minute 45: Predict, Then Run the Postmortem
+
+<div style={{fontSize: '0.75em', textAlign: 'left'}}>
+
+Fill in **block 3** first. Then:
+
+```bash
+gameday-postmortem
+```
+
+- Runs Claude Code with the same prompt for everyone: read it in `~/gameday-1/POSTMORTEM-PROMPT.txt`
+- It reads your `timeline.md`, checks facts with read-only queries, and writes `~/gameday-1/POSTMORTEM.md`
+- It takes two to three minutes. Then **block 4**: check it against your prediction
+
+</div>
+
+<aside className="notes">
+Check block 3 is filled in before anyone presses enter. If someone's Claude Code isn't logged in, they run `claude` once to log in, or read their partner's draft. A thin `timeline.md` produces a thin draft. That's worth pointing out to whoever skipped rule 2. Collect sheets at minute 60.
+
+> **Transition:** Two pairs share.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* SHARE-OUT */}
+{/* ============================================ */}
+
+<Slide>
+
+## Minute 60: What Did Your AI Get Wrong?
+
+<div style={{fontSize: '0.8em', textAlign: 'left'}}>
+
+- Two pairs, one from each half of the room
+- Leave `timeline.md` and `POSTMORTEM.md` in `~/gameday-1`. We copy them after class
+
+</div>
+
+<aside className="notes">
+Pick one agents-first pair and one agents-later pair. Two minutes each: what their draft got wrong, and how they knew. Collect worksheets. Run the collect script after class.
+
+> **Transition:** What's next.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* UP NEXT */}
+{/* ============================================ */}
+
+<Slide>
+
+## Up Next
+
+<div style={{fontSize: '0.85em', textAlign: 'left'}}>
+
+**Mon Oct 26: Written Standup + Clinic**
+
+**Wed Oct 28: Reading Presentations 2.** Two AI readings. We'll bring what today's two halves of the room found
+
+</div>
+
+<div style={{fontSize: '0.75em', textAlign: 'left', marginTop: '1em'}}>
+
+**Before then:**
+
+- **First Implementation Ticket:** review-ready Thu Oct 29
+
+</div>
+
+<aside className="notes">
+Close on Wednesday: The agents-first vs. agents-later comparison from today's worksheets is real data for the R11 and R12 discussion. Then the ticket: A PR open before the weekend is in good shape.
+</aside>
+
+</Slide>
+
+</RevealJS>

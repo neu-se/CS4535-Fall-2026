@@ -4,7 +4,7 @@
  "showQuestionNumbers": "off",
  "checkErrorsMode": "onValueChanged",
  "widthMode": "responsive",
- "completedHtml": "<h3>Checkpoint 2 submitted.</h3><p>Your team's review and your individual judgment come back within a week. The Game Day 2 postmortem (Nov 5) is due within 48 hours of the game day.</p>",
+ "completedHtml": "<h3>Checkpoint 2 submitted.</h3><p>Your team's review and your individual judgment come back within a week, with the grade we realistically see you getting from here.</p>",
  "pages": [
   {
    "name": "pass",
@@ -13,65 +13,42 @@
     {
      "type": "html",
      "name": "intro",
-     "html": "<p>About 15 minutes if your work is linked. Where you can, paste a link. The layout follows the Learning Summary Report: each requirement, then the link that shows it. Checkpoint 3 asks the same things, so whatever you put here carries forward. We read this alongside your team's review and send back a written judgment within a week: on track for your declared band or not, and why. See <a href=\"https://neu-se.github.io/CS4535-Fall-2026/docs/assignments/checkpoints\" target=\"_blank\">Project Milestones &amp; Checkpoints</a>.</p>"
-    },
-    {
-     "type": "text",
-     "name": "ft_pr",
-     "title": "First Implementation Ticket: link to the PR",
-     "inputType": "url",
-     "isRequired": true,
-     "validators": [
-      {
-       "type": "regex",
-       "regex": "^https?://",
-       "text": "Paste a full link."
-      }
-     ],
-     "description": "If it's a stack, link the last PR and list the others in the next box."
+     "html": "<p>About 20 minutes if your work is linked. Where you can, paste a link. The layout follows the Learning Summary Report: each requirement, then the link that shows it. Checkpoint 3 asks the same things, so whatever you put here carries forward. We read this alongside your team's review and send back a written judgment within a week: on track for your declared band or not, why, and the grade we realistically see you getting from where you are. See <a href=\"https://neu-se.github.io/CS4535-Fall-2026/docs/assignments/checkpoints\" target=\"_blank\">Project Milestones &amp; Checkpoints</a>.</p>"
     },
     {
      "type": "comment",
-     "name": "ft_more",
-     "title": "Other PRs in the stack, and anything about how it landed",
-     "rows": 2,
-     "description": "Optional. A revert, a fix-forward, or a review that changed the design all belong here."
+     "name": "reviews_links",
+     "title": "Links to the code reviews you've written so far, one per line",
+     "rows": 5,
+     "isRequired": true,
+     "description": "Mark each review outside your team with (outside). Pass needs six across the term, two outside your team. A review you did through your cross-project function counts as outside your team. If there are none yet, say which PRs you're reviewing next."
     },
     {
-     "type": "text",
-     "name": "ft_verify",
-     "title": "Link to your deploy-verification post in your team channel",
-     "inputType": "url",
+     "type": "radiogroup",
+     "name": "reviews_answered",
+     "title": "Does every review thread on your own PRs have an answer from you?",
      "isRequired": true,
-     "validators": [
+     "choices": [
       {
-       "type": "regex",
-       "regex": "^https?://",
-       "text": "Paste a full link."
-      }
-     ],
-     "description": "The PR link, the deploy timestamp, what you clicked, and what Sentry showed."
-    },
-    {
-     "type": "text",
-     "name": "gd1_postmortem",
-     "title": "Link to your Game Day 1 postmortem",
-     "inputType": "url",
-     "isRequired": true,
-     "validators": [
+       "value": "yes",
+       "text": "Yes"
+      },
       {
-       "type": "regex",
-       "regex": "^https?://",
-       "text": "Paste a full link."
+       "value": "some_open",
+       "text": "Some are still open"
+      },
+      {
+       "value": "no_reviews",
+       "text": "Nobody has reviewed my PRs yet"
       }
-     ],
-     "description": "Game Day 1 was Oct 22. The Game Day 2 postmortem is due after today's game day and goes on Checkpoint 3."
+     ]
     },
     {
      "type": "comment",
-     "name": "gd1_action",
-     "title": "The action you took during the Game Day 1 response, in one sentence",
+     "name": "reviews_open",
+     "title": "Which threads are still open, and why?",
      "rows": 2,
+     "visibleIf": "{reviews_answered} = 'some_open'",
      "isRequired": true
     },
     {
@@ -275,7 +252,7 @@
      "title": "Link, or what it will be",
      "visibleIf": "{band} anyof ['credit','distinction','high_distinction']",
      "rows": 2,
-     "description": "Game Day 1 counts. Link the thread or the postmortem section that shows what you did."
+     "description": "Game Day 1 counts. Say what you did, and link the thread if there is one."
     },
     {
      "type": "checkbox",
@@ -489,6 +466,117 @@
      "visibleIf": "{band} = 'high_distinction'",
      "isRequired": true,
      "rows": 3
+    }
+   ]
+  },
+  {
+   "name": "standing",
+   "title": "Where you stand",
+   "elements": [
+    {
+     "type": "html",
+     "name": "standing_intro",
+     "html": "<p>Give your own assessment first, before we send ours. We send back the grade we realistically see you getting, and we compare it with what you say here. If the two disagree, that's worth knowing early, so be honest.</p>"
+    },
+    {
+     "type": "matrix",
+     "name": "lo_standing",
+     "title": "For each learning outcome, are you on track to meet it at Pass by Dec 10?",
+     "description": "All eight are required at Pass. See <a href=\"https://neu-se.github.io/CS4535-Fall-2026/syllabus#learning-outcomes\" target=\"_blank\">Learning Outcomes</a>.",
+     "isRequired": true,
+     "isAllRowRequired": true,
+     "columns": [
+      {
+       "value": "on_track",
+       "text": "On track"
+      },
+      {
+       "value": "at_risk",
+       "text": "At risk"
+      },
+      {
+       "value": "not_on_track",
+       "text": "Not on track"
+      }
+     ],
+     "rows": [
+      {
+       "value": "lo1",
+       "text": "LO1: Get productive in a large, unfamiliar, live codebase"
+      },
+      {
+       "value": "lo2",
+       "text": "LO2: Work out what's needed, and what \"good\" means, before building it"
+      },
+      {
+       "value": "lo3",
+       "text": "LO3: Take a change from problem through deploy and observation"
+      },
+      {
+       "value": "lo4",
+       "text": "LO4: Review others' work substantively, and respond to review"
+      },
+      {
+       "value": "lo5",
+       "text": "LO5: Design for operability, and act during an incident"
+      },
+      {
+       "value": "lo6",
+       "text": "LO6: Decide from evidence about real users"
+      },
+      {
+       "value": "lo7",
+       "text": "LO7: Collaborate on a shared codebase"
+      },
+      {
+       "value": "lo8",
+       "text": "LO8: Teach technical work to peers"
+      }
+     ]
+    },
+    {
+     "type": "comment",
+     "name": "lo_behind",
+     "title": "For each outcome at risk or not on track: what's missing, and what you'll do about it",
+     "rows": 3,
+     "visibleIf": "{lo_standing.lo1} anyof ['at_risk','not_on_track'] or {lo_standing.lo2} anyof ['at_risk','not_on_track'] or {lo_standing.lo3} anyof ['at_risk','not_on_track'] or {lo_standing.lo4} anyof ['at_risk','not_on_track'] or {lo_standing.lo5} anyof ['at_risk','not_on_track'] or {lo_standing.lo6} anyof ['at_risk','not_on_track'] or {lo_standing.lo7} anyof ['at_risk','not_on_track'] or {lo_standing.lo8} anyof ['at_risk','not_on_track']",
+     "isRequired": true
+    },
+    {
+     "type": "radiogroup",
+     "name": "realistic_band",
+     "title": "Realistically, what grade do you expect if you keep going as you are?",
+     "description": "This can differ from the band you're working toward. It doesn't change your declaration.",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "below_pass",
+       "text": "Below Pass"
+      },
+      {
+       "value": "pass",
+       "text": "Pass"
+      },
+      {
+       "value": "credit",
+       "text": "Credit"
+      },
+      {
+       "value": "distinction",
+       "text": "Distinction"
+      },
+      {
+       "value": "high_distinction",
+       "text": "High Distinction"
+      }
+     ]
+    },
+    {
+     "type": "comment",
+     "name": "realistic_why",
+     "title": "Why, in a sentence or two?",
+     "rows": 2,
+     "isRequired": true
     }
    ]
   },

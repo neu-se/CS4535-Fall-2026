@@ -1,0 +1,95 @@
+{
+  "title": "CS 4535: Your First Implementation Ticket",
+  "description": "Due Mon Oct 19, 23:59 ET. About 5 minutes once your issue is open.",
+  "showQuestionNumbers": "off",
+  "checkErrorsMode": "onValueChanged",
+  "widthMode": "responsive",
+  "completedHtml": "<h3>Submitted.</h3><p>I agree scopes on the issues. Watch yours for my reply, and answer questions there. Review-ready is Thu Oct 29.</p>",
+  "pages": [
+    {
+      "name": "ticket",
+      "elements": [
+        {
+          "type": "html",
+          "name": "intro",
+          "html": "<p>The issue is where your scope gets agreed. This survey is how I find every issue in one place. If your ticket doesn't have an issue yet, open one on <code>pawtograder/platform</code> first, post your plan there, and tag <code>@jon-bell</code>. See <a href=\"https://neu-se.github.io/CS4535-Fall-2026/docs/assignments/first-implementation-ticket\" target=\"_blank\">First Implementation Ticket</a>.</p>"
+        },
+        {
+          "type": "text",
+          "name": "issue_url",
+          "title": "Link to your ticket's issue on pawtograder/platform",
+          "description": "For a pool XL group or a stack, link the issue that holds your plan.",
+          "inputType": "url",
+          "isRequired": true,
+          "validators": [
+            {
+              "type": "regex",
+              "regex": "^https://github\\.com/pawtograder/platform/issues/\\d+",
+              "text": "Paste the full link to an issue on pawtograder/platform, such as https://github.com/pawtograder/platform/issues/977"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "source",
+          "title": "Where does it come from?",
+          "isRequired": true,
+          "choices": [
+            { "value": "own", "text": "My own project: my sprint artifact, my team's issues, or my Agents Activity analysis" },
+            { "value": "pool", "text": "The cs4535-first-ticket pool" }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "done_when",
+          "title": "Done when... (one sentence that names a user)",
+          "description": "For example: \"A TA grading a scanned exam sees each answer's crop at its true shape.\"",
+          "isRequired": true,
+          "rows": 2
+        },
+        {
+          "type": "checkbox",
+          "name": "layers",
+          "title": "Which layers does it touch?",
+          "description": "XL means more than one layer.",
+          "isRequired": true,
+          "choices": [
+            { "value": "ui", "text": "UI (pages, components, hooks)" },
+            { "value": "db", "text": "Database (migrations, RLS policies, SQL functions)" },
+            { "value": "edge", "text": "Edge functions or workers" },
+            { "value": "tests", "text": "Tests or CI" },
+            { "value": "infra", "text": "Infrastructure or deploy" }
+          ],
+          "validators": [
+            {
+              "type": "expression",
+              "expression": "{layers.length} >= 2",
+              "text": "An XL ticket touches more than one layer. If yours touches one, it isn't XL yet. Grow it, or tell me on the issue."
+            }
+          ]
+        },
+        {
+          "type": "boolean",
+          "name": "plan_posted",
+          "title": "I posted my plan on the issue (the PR stack in order, with a rollback sentence for each) and tagged @jon-bell",
+          "isRequired": true,
+          "renderAs": "checkbox",
+          "validators": [
+            {
+              "type": "expression",
+              "expression": "{plan_posted} = true",
+              "text": "Post the plan on the issue first. That's where the scope gets agreed."
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "blocker",
+          "title": "Anything blocking you, or a question you need answered before you start?",
+          "description": "Optional.",
+          "rows": 2
+        }
+      ]
+    }
+  ]
+}
