@@ -429,7 +429,10 @@
         "R11: Copilot usability and perceived productivity (Vaithilingam et al., CHI 2022 EA; Ziegler et al., CACM 2024) · Bohan and Som",
         "R12: An endless stream of AI slop (Baltes, Cheong and Treude, 2026) · Naman and Zhirui"
       ],
-      "notes": "Two pairs, one reading each, from the 13-reading list in the reading-presentation handout. Pre-reads posted 48h ahead. Running order: R11 first, then R12, which argues with it. 30 minutes each: 20 of talk, 10 of discussion."
+      "notes": "Two pairs, one reading each, from the 13-reading list in the reading-presentation handout. Pre-reads posted 48h ahead. Running order: R11 first, then R12, which argues with it. 30 minutes each: 20 of talk, 10 of discussion.",
+      "materials": {
+        "slides": "pathname:///reading-presentations/r12-ai-slop/slides.pdf"
+      }
     },
     {
       "lectureId": "s21-demo-day-2",
