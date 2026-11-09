@@ -501,18 +501,20 @@
     },
     {
       "lectureId": "s25-standup",
-      "title": "Written Standup + Clinic",
+      "title": "Written Standup + Team Meetings",
       "dates": [
         "2026-11-09"
       ],
       "topics": [
         "Written standup in your team's Discord channel by 10:30",
-        "Clinic in the room: bring a blocker or book a slot"
+        "Announce what you'll show at Demo Day 3",
+        "Set a realistic Nov 23 goal, and cut the rest",
+        "Team meetings at tables in the room, with notes in notes/meetings/"
       ],
       "materials": {
         "slides": "/lecture-slides/s25-standup"
       },
-      "notes": "Standup is a Discord post; attendance = your post by 10:30. Clinic is optional."
+      "notes": "Standup is still a Discord post by 10:30. This week everyone comes to the room: each team holds its weekly meeting at a table."
     },
     {
       "lectureId": "s26-demo-day-3",

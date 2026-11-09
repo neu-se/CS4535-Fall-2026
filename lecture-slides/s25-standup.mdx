@@ -1,7 +1,7 @@
 ---
 sidebar_position: 25
-title: "Written Standup + Clinic"
-image: /img/lectures/s25-standup.png
+title: "Written Standup + Team Meetings"
+image: /img/lectures/s25-standup.webp
 ---
 
 import RevealJS, { Slide } from '@site/src/components/RevealJS';
@@ -16,19 +16,21 @@ import Img from '@site/src/components/Img';
 <Slide>
 
   <Img
-    src="/img/lectures/s25-standup.png"
-    prompt="PLACEHOLDER concept: The standup is already written; the room is for the hard questions. 8-bit lo-fi pixel art, retro game aesthetic, clean outlines, teal and blue cool tones with warm amber accents, 16:9 landscape. Top banner reads Written Standup + Clinic. Bottom text reads CS 4535: Software Design and Delivery."
-    alt="TODO: describe the cover image once generated."
+    src="/img/lectures/s25-standup.webp"
+    prompt="Minimalist hand-drawn cartoon illustration in the style of XKCD and New Yorker spot cartoons, wide 16:9 composition on a pure solid flat white background (#FFFFFF). On the left side, two tiny boxy wheeled robots are buried inside a towering, chaotic, ceiling-high mountain of unspooled continuous-feed printer paper scrolls. On the right side, four cute cartoon husky dogs wearing small red bandanas have stepped away from the paper mountain to sit together at a clean wooden table with coffee mugs, calmly pointing at a single simple boxes-and-arrows flowchart diagram while a bright yellow lightbulb glows above them. Simple expressive black ink line art, clean strokes, minimal flat color accents in Northeastern red, warm amber, and soft teal. Strictly NO text, NO words, NO letters, NO frames or borders."
+    alt="Cartoon contrasting two tiny wheeled robots buried in a mountain of unspooled paper scrolls on the left with four student huskies in red bandanas sitting together at a table over a single flowchart diagram and coffee mugs under a glowing lightbulb on the right."
   />
 
 <aside className="notes">
-**Session:** Mon Nov 9 · Written Standup + Clinic
+**Session:** Mon Nov 9 · Written Standup + Team Meetings
 
-**Format.** The standup is a post in each team's Discord channel by 10:30. Attendance is the post. The room is open for clinic, and clinic is optional. This changed after s16 (Oct 19), when most of the room was empty during midterms and the decisions made there had to be re-sent by email. A Monday standup works as well written, and it reaches the people who weren't there. Demo days, game days, and integration sessions stay in the room.
+**Format, this week only.** The standup is still a post in each team's Discord channel by 10:30. Unlike other written-standup Mondays, everyone comes to the room: each team holds its weekly meeting at a table, after a 15-minute discussion of how teams are meeting. Announced on Discord the Friday before.
 
-**Before 10:30:** read every post. Anyone without one by 10:45 is absent. Message them that day. Pull blockers that need you into clinic, and reply in the channel to the ones that don't.
+**Why.** Two weeks to feature freeze. Each team leaves today with a demo it can run on Thursday and a Nov 23 goal it can actually reach, and both are easier to settle at a table than in a channel.
 
-> **Transition:** Reminders first, then clinic.
+**Before 10:30:** read every post. Anyone without one by 10:45 is absent.
+
+> **Transition:** Reminders first, then how teams are meeting.
 </aside>
 
 </Slide>
@@ -46,12 +48,13 @@ import Img from '@site/src/components/Img';
 - **FEEDBACK:** Checkpoint 2 (closed Thu Nov 5), coming back this week with the grade we realistically see you getting
 - **FEEDBACK:** First Implementation Ticket, coming back this week
 - **FEEDBACK:** Game Day 2 worksheets, collected in class Thu Nov 5. Notes come back this week
+- **NEW:** draft agent guidelines for Pawtograder, from the AI research function. Comment on the PR by **Fri Nov 13**
 - **No class Wed Nov 11** (Veterans Day)
 
 </div>
 
 <aside className="notes">
-Keep this to 60 seconds, for whoever came to clinic. Deadlines and returning feedback only.
+Keep this to 60 seconds. Deadlines and returning feedback only.
 
 > **Transition:** Now, today.
 </aside>
@@ -66,14 +69,14 @@ Keep this to 60 seconds, for whoever came to clinic. Deadlines and returning fee
 
 # CS 4535: Software Design & Delivery
 
-## Written Standup + Clinic
+## Written Standup + Team Meetings
 
 <p style={{marginTop: '2em', fontSize: '0.8em', color: '#666'}}>
   &copy;2026 Jonathan Bell, CC-BY-SA
 </p>
 
 <aside className="notes">
-**Why today.** Two weeks to feature freeze, and Demo Day 3 is Thursday. It's the last demo before the freeze where the main flow can still change shape.
+**Why today.** Two weeks to feature freeze, and Demo Day 3 is Thursday. It's the last demo before the freeze where the main flow can still change shape, and the last point where a team that isn't talking can fix that cheaply.
 
 > **Transition:** Here's what you'll be able to do after today.
 </aside>
@@ -94,14 +97,143 @@ After this session, you'll be able to:
 
 <ol style={{fontSize: '0.75em', textAlign: 'left'}}>
   <li>Write a standup post that's useful to someone who wasn't there</li>
-  <li>Name a blocker with a specific ask attached</li>
-  <li>Say what your team will and won't finish by Nov 23</li>
+  <li>Commit to a demo you can actually run</li>
+  <li>Set a Nov 23 goal from the pace your team has actually worked at</li>
+  <li>Keep a written record of team decisions that someone who missed the meeting can act on</li>
 </ol>
 
 <aside className="notes">
-There's no talk. The objectives are met by the post and by clinic.
+A short discussion, then the team meetings. The first objective is met by the post, the rest at the tables.
 
-> **Transition:** The post.
+> **Transition:** First, how teams are meeting now.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* HOW TEAMS MEET                               */}
+{/* ============================================ */}
+
+<Slide>
+
+## How Is Your Team Meeting?
+
+<div style={{fontSize: '0.8em', textAlign: 'left'}}>
+
+One person per team, about a minute each:
+
+1. When were all of you last in one place, in person?
+2. Out of class, do you meet in person, on a call, or only in text?
+3. Where do your decisions get written down?
+
+</div>
+
+<aside className="notes">
+Five minutes. Go team by team. No judgment on the answers. The point is that each team hears how the others work.
+
+> **Transition:** You already said why this matters, last week.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## You Said It Last Week
+
+<div style={{fontSize: '0.75em', textAlign: 'left'}}>
+
+**From your panel worksheets (Nov 4):**
+
+> "Owning solutions you generate with agents… knowing it in and out and owning it."
+
+> "The code is fine, but more validation is needed."
+
+> "Test the human, not the artifact."
+
+**From the employers at the Nov 3 roundtable:** "AI does the typing, the human owns the decisions." The skill gaps they named most often: handling ambiguity, and raising a problem early.
+
+</div>
+
+<aside className="notes">
+Unattributed on purpose. Several of you wrote that code can't be the assessment any more. Agree with them: for the rest of the term, what you can say about your PR counts as much as the PR. Integration II and the review defense on Nov 16 test exactly that.
+
+> **Transition:** Two things to announce before you leave today. First, Thursday.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## Demo Day 3: Announce It Today
+
+<div style={{fontSize: '0.8em', textAlign: 'left'}}>
+
+Before you leave, each team posts in its channel:
+
+- **What you'll show Thursday**, as one flow a user goes through, in your team's demo class
+- **Who drives each part.** Everyone on the team shows something they built
+- **What's still risky**, and what you'll show instead if it breaks
+
+Show what really runs. A flow that works and stops short beats a full one that doesn't.
+
+</div>
+
+<aside className="notes">
+Check each team's post before the end of class. A team that can't name its flow today has found its Nov 23 problem, so take that straight into the next slide.
+
+> **Transition:** Then, two weeks out.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## Nov 23: A Realistic Goal
+
+<div style={{fontSize: '0.75em', textAlign: 'left'}}>
+
+Feature freeze is in two weeks. At your table, work it out in this order:
+
+1. **Look back.** What has each of you shipped since September, and what did you have to learn to do it? A large codebase you'd never seen, its database and deploys, review, your users
+2. **Look ahead.** What's left between today and a user doing your main flow on staging, behind your flag?
+3. **Pick the goal.** What can this team actually finish in two weeks, at the pace you've really been working? Most of the learning is behind you now. Cut the rest, and say so
+
+Post one paragraph: **what a user can do on Nov 23 that they can't do today**. Then move everything else off the Nov 23 milestone.
+
+</div>
+
+<aside className="notes">
+Nine of thirteen first tickets have merged. Every one of those took learning the codebase, its migrations and its CI from zero. That's the slow part, and it's mostly done. Push teams to plan from what they've actually delivered per week, not from the September plan.
+
+The paragraph replaces charter section 2's Nov 23 statement where the two disagree.
+
+> **Transition:** And the habits that get you there.
+</aside>
+
+</Slide>
+
+<Slide>
+
+## This Week's Ask
+
+<div style={{fontSize: '0.72em', textAlign: 'left'}}>
+
+1. **One in-person slot a week**, written in your charter. Class time counts
+2. **Notes from every meeting** in `notes/meetings/YYYY-MM-DD.md`, within a day: who came, what you decided, who owns each next step. AI-written notes are fine. One named person checks them before they're posted. Recording needs everyone's OK
+3. **At every meeting, go through the open PRs** that touch a migration, a shared table or a shared file, and who has told whom
+4. **Charter section 9: "How we use agents."** Draft it today, finalize it after Nov 16
+5. **If a review concern isn't settled in one round of writing, talk.** 15 minutes, in person or on a call. The author shows the change follows the conventions, then posts a short summary on the thread
+
+</div>
+
+<aside className="notes">
+Frame these as how you'll hit the Nov 23 goal, not as new rules for their own sake.
+
+Item 2: Massachusetts requires every party's consent to record a conversation, and live transcription counts.
+
+Item 5 is a mentorship moment either way: if the author can show it, the reviewer learns how; if they can't, the author learns what was missing.
+
+> **Transition:** Your post is already in. Now, the tables.
 </aside>
 
 </Slide>
@@ -126,35 +258,36 @@ The post is your attendance. "Still working on it" doesn't meet the format: A te
 </div>
 
 <aside className="notes">
-Same three questions as the async sprint. Read the posts against each team's board. An issue that's "next" in every standup since Oct 26 is a cut to discuss in clinic.
+Same three questions as the async sprint. Read the posts against each team's board. An issue that's "next" in every standup since Oct 26 is a cut to discuss at the table.
 
-> **Transition:** Then clinic.
+> **Transition:** Then the tables.
 </aside>
 
 </Slide>
 
 {/* ============================================ */}
-{/* CLINIC                                       */}
+{/* TEAM TABLES                                  */}
 {/* ============================================ */}
 
 <Slide>
 
-## Clinic
+## Team Meetings at Your Tables
 
 <div style={{fontSize: '0.75em', textAlign: 'left'}}>
 
-The room is open for the whole session. Come if you have something to bring:
+Your weekly meeting, now, in the room. Leave with:
 
-- a blocker from your post
-- an architectural question or a design tradeoff
-- what your team should cut before the Nov 23 freeze
+- **Demo Day 3 plan** posted in your channel
+- **Your Nov 23 goal** posted, and the cuts moved off the milestone
+- this meeting's notes in `notes/meetings/`
+- your weekly in-person slot and a draft section 9 in a charter PR
 
-Posting is required. Coming is optional.
+Jon comes to each table, and pulls a few of you aside for short one-on-ones.
 
 </div>
 
 <aside className="notes">
-**Priority today: cuts.** Ask each team that shows up which board issues won't make Nov 23, and get them moved off the milestone now. Teams that don't come get the same question as a reply in their channel.
+**Priority: the demo plan, then the Nov 23 goal.** At each table, ask what they'll show Thursday and who drives each part. Then ask for the goal paragraph, and which board issues come off the milestone. Push back on any goal that needs more than the team has delivered in the last two weeks.
 
 > **Transition:** Close on what's next.
 </aside>
@@ -181,13 +314,45 @@ Then **Thu Nov 12: Demo Day 3**: the main flow, end to end.
 
 **Before then:**
 
-- Main flow running in your team's demo class for Thursday
+- The flow you announced, running in your team's demo class for Thursday
 - Board current: cuts moved off the Nov 23 milestone
+- One comment or suggested change on the agent guidelines PR, by Fri Nov 13
 
 </div>
 
 <aside className="notes">
 Put the reminders first and close on the transition. Students should leave knowing what today was for.
+</aside>
+
+</Slide>
+
+{/* ============================================ */}
+{/* JUST ARRIVED                                 */}
+{/* ============================================ */}
+
+<Slide>
+
+## Just Arrived? Start Here
+
+<div style={{fontSize: '0.72em', textAlign: 'left'}}>
+
+Go to your team's table. Before you leave today, your team has:
+
+1. **Demo Day 3 plan** posted in your channel: the flow, who drives each part, and the fallback
+2. **Your Nov 23 goal** posted, in one paragraph: what a user can do on Nov 23 that they can't do today. The rest moves off the milestone
+3. **Notes from today's meeting** in `notes/meetings/2026-11-09.md`
+4. **Your weekly in-person slot and a draft section 9** ("How we use agents") in a charter PR
+
+No standup post yet? Post it now.
+
+**Missed the start?** Open this deck and skim it while your team keeps going:
+
+`neu-se.github.io/CS4535-Fall-2026/lecture-slides/s25-standup`
+
+</div>
+
+<aside className="notes">
+Leave this slide up for the rest of the session. It's for everyone who walks in after 10:45.
 </aside>
 
 </Slide>
