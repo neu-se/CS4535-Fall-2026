@@ -548,32 +548,32 @@
       }
     },
     {
-      "lectureId": "s28-talk-risk",
-      "title": "Tech Talk: Risk Management & Release Readiness",
+      "lectureId": "s28-tech-interviews",
+      "title": "Technical Interviews When Candidates Can Use AI",
       "dates": [
         "2026-11-18"
       ],
       "topics": [
-        "Risk registers",
-        "Mitigation strategies",
-        "What ships in January and what doesn't"
+        "Discussion led by Naman: what a technical interview tests once the candidate has an AI tool",
+        "Read before class: Newton, \"Yes, You Can Use AI in Our Interviews. In fact, we insist\" (Canva Engineering Blog, 2025)",
+        "Read before class: Behroozi, Shirolkar, Barik and Parnin, \"Does Stress Impact Technical Interview Performance?\" (ESEC/FSE 2020)",
+        "Bring the interviews you sat this fall: which allowed AI, which banned it, and what they were testing"
       ],
-      "notes": "Instructor-led — sets up the feature freeze",
-      "materials": {
-        "slides": "/lecture-slides/s28-talk-risk"
-      }
+      "notes": "Naman leads. Read both before class. Canva replaced its algorithms screen with an interview where candidates must use AI. Behroozi et al. found that being watched at a whiteboard cut performance by more than half. If interviews already measure anxiety, what does adding an AI tool measure?"
     },
     {
       "lectureId": "s29-studio",
-      "title": "Studio Work Session",
+      "title": "Risk Register + Studio",
       "dates": [
         "2026-11-19"
       ],
       "topics": [
-        "Team work time",
+        "15-minute setup: risk registers and release readiness",
+        "Team activity: draft your risk register, in preparation for the feature freeze",
+        "What ships in January and what doesn't",
         "Clinic: blockers before feature freeze"
       ],
-      "notes": "Team work session ahead of the Nov 23 feature freeze."
+      "notes": "A 15-minute setup, then each team drafts its risk register as preparation for the Nov 23 feature freeze."
     },
     {
       "lectureId": "s30-feature-freeze",
