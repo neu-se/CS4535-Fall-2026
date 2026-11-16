@@ -121,6 +121,9 @@ Spend about twenty minutes, and look at these in order. Stop when you run out of
 **8. Can this be operated without a mouse, and does it announce what it is?**
 *In [#913](https://github.com/pawtograder/platform/issues/913), all three survey radio options announce as "checked," so a screen-reader user cannot tell what they selected.* For some of our users, a control with no accessible name can't be found or used.
 
+**9. Does this test assert the output, or only that something was produced?**
+*In [#1139](https://github.com/pawtograder/platform/pull/1139), `tests/e2e/exam-grading.spec.ts` checked `data.questions.length >= 1` and passed on every run while every `ocr_text` was `""`. The fake OCR provider pinned all its words at y 0.10 and 0.15; the spec's answer region sits at y 0.3 to 0.5, so the region matched nothing and the assertion could not tell.* The exam pipeline was green end to end while producing nothing a grader could read. Ask what value this assertion would accept that a user would call broken.
+
 **10. Do live updates filter rows the same way the first load does?**
 *In [#1067](https://github.com/pawtograder/platform/pull/1067#discussion_r4449228122), the instructor's survey responses table loaded only submitted responses, but live updates matched on `survey_id` alone, so students' autosaved drafts showed up in the table and the CSV export.* A reload hides it. Compare `realtimeFilter` with the query whenever a diff changes either one, or starts writing rows the query leaves out.
 
