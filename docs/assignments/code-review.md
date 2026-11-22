@@ -127,6 +127,9 @@ Spend about twenty minutes, and look at these in order. Stop when you run out of
 **10. Do live updates filter rows the same way the first load does?**
 *In [#1067](https://github.com/pawtograder/platform/pull/1067#discussion_r4449228122), the instructor's survey responses table loaded only submitted responses, but live updates matched on `survey_id` alone, so students' autosaved drafts showed up in the table and the CSV export.* A reload hides it. Compare `realtimeFilter` with the query whenever a diff changes either one, or starts writing rows the query leaves out.
 
+**11. Does the submitted score match what the grader selected or entered?**
+*In [#1152](https://github.com/pawtograder/platform/pull/1152#issuecomment-6649261711), selecting a 3-point partial-credit option on a 5-point check left the Points input at 5, and that input took precedence on submit, so the submitted score was 5 instead of 3.* Checking the submitted value after selecting an option or manually changing the points would have caught the mismatch.
+
 ### Adding an entry {#adding-an-entry}
 
 The checklist should be longer by December, and the new entries should come from you. Proposing one is one of the five Distinction options.
